@@ -1,0 +1,12 @@
+@include font-face(
+  "OpenSans-Regular",
+  "#{$project-font-path}/OpenSans/OpenSans-Regular/OpenSans-Regular",
+  normal,
+  normal
+);
+@include font-face(
+  "OpenSans-Bold",
+  "#{$project-font-path}/OpenSans/OpenSans-Bold/OpenSans-Bold",
+  bold,
+  normal
+);

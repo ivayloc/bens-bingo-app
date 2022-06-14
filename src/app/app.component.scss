@@ -1,0 +1,104 @@
+.top-bar {
+  line-height: normal;
+  background: #401784;
+  background: linear-gradient(
+    to right,
+    #401784 16%,
+    #652ac5 51%,
+    #431888 79%,
+    #5321a4 100%
+  );
+  &-username {
+    line-height: normal;
+    font-size: 27px;
+    margin-top: -2px;
+    margin-bottom: 5px;
+  }
+}
+
+.header {
+  background: #401784;
+  background: linear-gradient(148deg, #401784 22%, #652ac5 61%);
+
+  &-logo {
+    font-family: OpenSans-Bold;
+    color: white;
+    font-size: 72px;
+  }
+  &-btn-login {
+    min-width: 265px;
+    padding-inline-start: 35px;
+    padding-inline-end: 35px;
+    transform: skew(-20deg);
+    background: #e833d0;
+    margin-right: -43px;
+    &-text {
+      transform: skew(20deg);
+      font-size: 30px;
+      text-transform: uppercase;
+      font-family: OpenSans-Bold;
+      color: white;
+      display: block;
+    }
+  }
+}
+.language-selector {
+  &,
+  &-lng {
+    width: 84px;
+    height: 78px;
+  }
+  &-lng {
+    border: solid 2px #e833d0;
+    font-family: OpenSans-Bold;
+    font-size: 40px;
+    color: white;
+  }
+}
+
+.main-navigation {
+  background-color: #0d808a;
+  &-link {
+    text-transform: uppercase;
+    text-decoration: none;
+    transform: skew(-20deg);
+    display: block;
+    padding-inline-start: 40px;
+    padding-inline-end: 40px;
+    &.active {
+      background-color: #093a5c;
+    }
+    &-text {
+      font-size: 31px;
+      font-family: OpenSans-Bold;
+      color: white;
+      transform: skew(20deg);
+      display: block;
+    }
+  }
+}
+
+.new-game {
+  overflow: hidden;
+  img {
+    margin-left: -28px;
+    margin-top: -10px;
+  }
+  &-btn-more {
+    background-color: #0d808a;
+    min-width: 282px;
+    transform: skew(-20deg);
+    position: absolute;
+    z-index: 9;
+    bottom: 0;
+    right: 210px;
+    &-text {
+      color: white;
+      font-size: 35px;
+      font-family: OpenSans-Bold;
+      line-height: normal;
+      transform: skew(20deg);
+      display: block;
+    }
+  }
+}
