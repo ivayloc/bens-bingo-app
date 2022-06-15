@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'Open Sans';
+    src: url('OpenSans-BoldItalic.eot');
+    src: url('OpenSans-BoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('OpenSans-BoldItalic.woff2') format('woff2'),
+        url('OpenSans-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
