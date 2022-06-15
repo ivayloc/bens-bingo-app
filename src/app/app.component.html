@@ -2,7 +2,7 @@
   <div class="top-bar d-flex justify-content-end px-5">
     <div class="top-bar-username text-white">username</div>
   </div>
-  <div class="position-relative">
+  <div class="header-top position-relative">
     <div class="d-flex">
       <div class="">
         <div class="header d-flex align-items-center px-4">
@@ -22,8 +22,8 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-10">
+    <div class="d-flex mb-2">
+      <div>
         <!-- Main Navigation BEGIN -->
         <nav class="main-navigation px-5">
           <ul class="main-navigation-list list-unstyled d-flex mb-0 px-5 mx-5">
@@ -50,40 +50,96 @@
           </ul>
         </nav>
         <!-- Main Navigation END -->
-
         <!-- New Game BEGIN -->
         <div class="new-game position-relative">
           <img
             alt="usagi-character"
             src="/assets/images/what-s-new-banner-box.webp"
-            srcset="
+            class="new-game-banner"
+          />
+          <!-- srcset="
               /assets/images/what-s-new-banner-box@2x.webp 2x,
               /assets/images/what-s-new-banner-box@3x.webp 3x
-            "
-            class="UsagiCharacter"
-          />
+            " -->
           <button class="btn-clear new-game-btn-more">
             <span class="new-game-btn-more-text">More!</span>
           </button>
         </div>
         <!-- New Game END -->
-
-        <!-- Coming Up BEGIN -->
-        <div class="coming-up">
-          <div class="coming-up-new-label">New</div>
-          <div class="coming-up-label">Coming Up!</div>
-          <div>
-            You're a VIP member and always get 20% on every deposit! Friday
-            27.05.2022 (times in CET) Daily bonuses for VIP 5+ 12-13 MIDDAY
-            MADNESS - 100% BONUS on ALL deposits 19-21 DINNER PARTY - 100% BONUS
-            on your first deposit
-          </div>
-          <div class="coming-up-more">More!</div>
-        </div>
-        <!-- Coming Up END -->
       </div>
     </div>
-
-    <div class="header-girl"></div>
+    <div class="d-flex">
+      <!-- Coming Up BEGIN -->
+      <div class="coming-up position-relative">
+        <div class="coming-up-body">
+          <div class="coming-up-label-new pe-5">
+            <div class="coming-up-label-new-text me-4">New</div>
+          </div>
+          <div class="coming-up-label">
+            <div class="coming-up-label-text">Coming Up!</div>
+          </div>
+          <div class="coming-up-body-content py-5 pe-5">
+            <div class="pt-3">
+              <article class="mb-3">
+                <header>
+                  You're a VIP member and always get 20% on every deposit!
+                </header>
+                <p>Friday 27.05.2022 (times in CET)</p>
+              </article>
+              <article class="mb-3">
+                <header>Daily bonuses for VIP 5+</header>
+                <p>
+                  12-13 MIDDAY MADNESS - 100% BONUS on ALL deposits 19-21 DINNER
+                </p>
+                <p>PARTY - 100% BONUS on your first deposit</p>
+              </article>
+            </div>
+          </div>
+          <button class="btn-clear coming-up-btn-more">
+            <span class="coming-up-btn-more-text">More!</span>
+          </button>
+        </div>
+      </div>
+      <!-- Coming Up END -->
+    </div>
+    <div class="header-character">
+      <img
+        class="header-character-girl"
+        src="/assets/images/character-1.webp"
+        alt="character"
+      />
+      <img
+        class="header-character-mask"
+        src="/assets/images/mask-1.webp"
+        alt="mask"
+      />
+      <img
+        src="/assets/images/s-green/s-green.webp"
+        srcset="
+          /assets/images/s-green/s-green@2x.webp 2x,
+          /assets/images/s-green/s-green@3x.webp 3x
+        "
+        class="header-character-s-green"
+        alt="green stone"
+      />
+      <img
+        src="/assets/images/s-red/s-red.webp"
+        srcset="
+          /assets/images/s-red/s-red@2x.webp 2x,
+          /assets/images/s-red/s-red@3x.webp 3x
+        "
+        class="header-character-s-red"
+        alt="red stone"
+      />
+      <img
+        src="/assets/images/s-purple/s-purple.webp"
+        srcset="
+          /assets/images/s-purple/s-purple@2x.webp 2x,
+          /assets/images/s-purple/s-purple@3x.webp 3x
+        "
+        class="header-character-s-purple"
+        alt="purple stone"
+      />
+    </div>
   </div>
 </div>

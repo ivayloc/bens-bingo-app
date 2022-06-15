@@ -10,3 +10,9 @@
   bold,
   normal
 );
+@include font-face(
+  "OpenSans-BoldItalic",
+  "#{$project-font-path}/OpenSans/OpenSans-BoldItalic/OpenSans-BoldItalic",
+  bold,
+  italic
+);
