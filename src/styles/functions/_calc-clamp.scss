@@ -1,14 +1,15 @@
 @use "sass:math";
 @import "./calc-rem";
 
-@function calc-clamp($max-width, $min-width: 0, $negative: false) {
+@function calc-clamp($max-width, $min-width: 0) {
   $dynamic-width: #{math.div($max-width, 1920) * 100};
-  @if $negative {
-    $dynamic-width: #{(math.div($max-width, 1920) * 100) * -1};
+  @if $max-width < 0 {
+    // $dynamic-width: #{(math.div($max-width, 1920) * 100) * -1};
   }
-  @return clamp(
-    #{calc-rem($min-width)},
-    #{$dynamic-width}vw,
-    #{calc-rem($max-width)}
-  );
+  // @return clamp(
+  //   #{calc-rem($min-width)},
+  //   #{$dynamic-width}vw,
+  //   #{calc-rem($max-width)}
+  // );
+  @return #{$dynamic-width}vw;
 }
