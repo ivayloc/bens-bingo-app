@@ -21,7 +21,7 @@
 .header-top {
   background: url("/assets/images/header-bg.webp") no-repeat 0 0;
   background-size: cover;
-  padding-bottom: 133px;
+  padding-bottom: calc-clamp(200);
 }
 .header {
   background: #401784;
@@ -131,7 +131,7 @@
   &-body {
     transform: skew(20deg);
     &-content {
-      min-height: 325px;
+      min-height: calc-clamp(325);
       color: white;
       padding-inline-start: calc-clamp(90);
       margin-inline-start: calc-clamp(150);
@@ -239,5 +239,152 @@
     position: absolute;
     top: 10px;
     right: 130px;
+  }
+}
+
+.bingo-games {
+  &-header {
+    background: linear-gradient(148deg, #401784 9%, #652ac5 55%, #401784 72%);
+    position: relative;
+    padding-left: calc-clamp(225);
+    top: calc-clamp(-45);
+    margin-bottom: calc-clamp(-15);
+    &-text {
+      font-family: OpenSans-Bold;
+      font-size: calc-clamp(60);
+      text-transform: uppercase;
+      color: white;
+      margin-inline-end: calc-clamp(360);
+    }
+    .fox-icon {
+      position: absolute;
+      top: 33%;
+      transform: translateY(-50%);
+      left: calc-clamp(-20);
+      width: calc-clamp(244);
+      z-index: 9;
+    }
+    &-btn-more {
+      background-color: #0d808a;
+      min-width: calc-clamp(282);
+      transform: skew(-10deg);
+      margin-right: calc-clamp(-10);
+      min-width: calc-clamp(358);
+      &-text {
+        color: white;
+        font-size: calc-clamp(35);
+        font-family: OpenSans-Bold;
+        transform: skew(10deg);
+        display: block;
+        text-transform: uppercase;
+      }
+    }
+  }
+  &-list {
+    overflow-x: clip;
+    li {
+      &:nth-child(1) {
+        .bingo-game-wrap {
+          background-image: url("/assets/images/games/game-1.webp");
+        }
+      }
+      &:nth-child(2) {
+        .bingo-game-wrap {
+          background-image: url("/assets/images/games/game-2.webp");
+        }
+      }
+      &:nth-child(3) {
+        .bingo-game-wrap {
+          background-image: url("/assets/images/games/game-3.webp");
+        }
+      }
+      &:nth-child(4) {
+        .bingo-game-wrap {
+          background-image: url("/assets/images/games/game-4.webp");
+        }
+      }
+    }
+  }
+}
+.bingo-game {
+  &-wrap {
+    clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0 calc-clamp(-32);
+  }
+  min-height: calc-clamp(500);
+  position: relative;
+  &-time {
+    display: inline-block;
+    background-color: #662bc7;
+    text-align: center;
+    transform: skew(351deg);
+    margin-inline-start: calc-clamp(76);
+    padding: 0 calc-clamp(24);
+    margin-top: 5px;
+    &-text {
+      font-family: OpenSans-Bold;
+      color: white;
+      font-size: calc-clamp(31);
+      transform: skew(-351deg);
+    }
+  }
+  &-type {
+    font-size: calc-clamp(30);
+    font-family: OpenSans-BoldItalic;
+    color: white;
+    text-transform: uppercase;
+    padding-inline-start: calc-clamp(65);
+    margin-top: calc-clamp(115);
+  }
+  &-name {
+    font-size: calc-clamp(71);
+    font-family: OpenSans-Bold;
+    color: white;
+    text-transform: uppercase;
+    padding-inline-start: calc-clamp(45);
+    line-height: 1;
+  }
+  &-jackpot {
+    background-color: rgba(#000, 0.8);
+    color: white;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: calc-clamp(38);
+    height: calc-clamp(200);
+    padding-bottom: calc-clamp(90);
+
+    &-title {
+      font-family: OpenSans-BoldItalic;
+      font-size: calc-clamp(30);
+      padding-inline-start: calc-clamp(35);
+      line-height: 1;
+      margin-top: 8px;
+    }
+    &-sum {
+      font-family: OpenSans-Bold;
+      font-size: calc-clamp(55);
+      line-height: 1;
+    }
+  }
+  &-btn {
+    background-color: #0d808a;
+    position: absolute;
+    left: calc(50% - calc-clamp(33));
+    transform: skew(-10deg) translateX(-50%);
+    padding: calc-clamp(9) calc-clamp(40);
+    bottom: -35px;
+    z-index: 9;
+    &-text {
+      color: white;
+      font-size: calc-clamp(35);
+      font-family: OpenSans-Bold;
+      transform: skew(15deg);
+      display: block;
+      text-transform: uppercase;
+    }
   }
 }
