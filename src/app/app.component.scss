@@ -243,6 +243,7 @@
 }
 
 .bingo-games {
+  margin-bottom: calc-clamp(156);
   &-header {
     background: linear-gradient(148deg, #401784 9%, #652ac5 55%, #401784 72%);
     position: relative;
@@ -281,7 +282,6 @@
     }
   }
   &-list {
-    overflow-x: clip;
     li {
       &:nth-child(1) {
         .bingo-game-wrap {
@@ -385,6 +385,106 @@
       transform: skew(15deg);
       display: block;
       text-transform: uppercase;
+    }
+  }
+}
+
+.box-pink {
+  padding: 7px;
+  padding-top: 0;
+  &-left {
+    .box-pink-wrap {
+      margin-inline-start: -25px;
+      margin-inline-end: 16px;
+    }
+  }
+  &-right {
+    margin-top: -90px;
+    margin-bottom: 40px;
+    .box-pink-wrap {
+      margin-inline-end: -35px;
+      margin-inline-start: 16px;
+    }
+  }
+  &-wrap {
+    background-color: #da15a9;
+    color: white;
+    transform: skew(-10deg);
+  }
+
+  &-header {
+    background: linear-gradient(
+      135deg,
+      #b11f8d 1%,
+      #b11f8d 11%,
+      #e311af 17%,
+      #e311af 32%,
+      #b11f8d 34%,
+      #e311af 71%,
+      #e311af 76%,
+      #b11f8d 91%,
+      #e311af 100%
+    );
+    // transform: skew(10deg);
+    margin: 0 -7px;
+    &-text {
+      text-align: center;
+      font-family: OpenSans-BoldItalic;
+      font-size: calc-clamp(60);
+      text-transform: uppercase;
+      line-height: normal;
+      transform: skew(10deg);
+    }
+  }
+  &-body {
+    background-color: #000;
+    padding: calc-clamp(28) calc-clamp(88);
+  }
+}
+.jackpots-list {
+  transform: skew(10deg);
+  &-item {
+    font-size: calc-clamp(80);
+    font-family: OpenSans-Bold;
+    line-height: 1;
+    &-game {
+      &-studio {
+        font-family: OpenSans-BoldItalic;
+        font-size: calc-clamp(30);
+        line-height: 1;
+      }
+    }
+  }
+}
+.winners-list {
+  transform: skew(10deg);
+  &-item {
+    font-size: calc-clamp(47);
+    font-family: OpenSans-Bold;
+    line-height: 1;
+    position: relative;
+    padding-bottom: 30px;
+    &:after {
+      content: "";
+      height: 2px;
+      width: 112%;
+      background-color: #826c6c;
+      position: absolute;
+      bottom: 15px;
+      left: -6%;
+    }
+    &:last-child {
+      padding-bottom: 0;
+      &:after {
+        content: none;
+      }
+    }
+    &-game {
+      &-username {
+        font-family: OpenSans-BoldItalic;
+        font-size: calc-clamp(17);
+        line-height: 1;
+      }
     }
   }
 }
