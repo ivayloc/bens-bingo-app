@@ -26,7 +26,7 @@
 .header {
   background: #401784;
   background: linear-gradient(148deg, #401784 22%, #652ac5 61%);
-
+  line-height: 1.389;
   &-logo {
     font-family: OpenSans-Bold;
     color: white;
@@ -135,6 +135,7 @@
       color: white;
       padding-inline-start: calc-clamp(90);
       margin-inline-start: calc-clamp(150);
+      line-height: 1.28;
     }
     // TODO: Content
     header {
@@ -211,7 +212,7 @@
   right: 0;
   &-girl {
     width: calc-clamp(589);
-
+    margin-right: calc-clamp(-20);
     position: relative;
     z-index: 1;
   }
