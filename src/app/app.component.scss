@@ -627,9 +627,7 @@
 .bens-bingo-ads {
   position: relative;
   min-height: calc-clamp(226);
-  background: url("/assets/images/bg-with-mask-2/bg-with-mask-2.webp") no-repeat
-    0 center;
-  background-size: cover;
+
   &-text {
     color: white;
     font-family: OpenSans-Bold;
@@ -640,5 +638,20 @@
     position: absolute;
     top: calc-clamp(-130);
     right: calc-clamp(-120);
+  }
+}
+.page-footer {
+  background: url("/assets/images/bg-with-mask-2/bg-with-mask-2.webp") no-repeat
+    0 0;
+  background-size: cover;
+  &-content {
+    padding: calc-clamp(90) calc-clamp(80) 0;
+    background-color: rgba(#000, 0.6);
+  }
+  &-link {
+    font-family: OpenSans-Regular;
+    font-size: calc-clamp(30);
+    color: #6b5e74;
+    text-decoration: none;
   }
 }
