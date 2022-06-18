@@ -510,7 +510,7 @@
 }
 
 .slots-games {
-  margin-bottom: calc-clamp(238);
+  margin-bottom: calc-clamp(100);
   &-header {
     background: linear-gradient(148deg, #401784 9%, #652ac5 55%, #401784 72%);
     position: relative;
@@ -622,5 +622,23 @@
       transform: translate(-50%, -50%);
       top: 50%;
     }
+  }
+}
+.bens-bingo-ads {
+  position: relative;
+  min-height: calc-clamp(226);
+  background: url("/assets/images/bg-with-mask-2/bg-with-mask-2.webp") no-repeat
+    0 center;
+  background-size: cover;
+  &-text {
+    color: white;
+    font-family: OpenSans-Bold;
+    font-size: calc-clamp(72);
+  }
+  &-stones {
+    width: calc-clamp(439);
+    position: absolute;
+    top: calc-clamp(-130);
+    right: calc-clamp(-120);
   }
 }
