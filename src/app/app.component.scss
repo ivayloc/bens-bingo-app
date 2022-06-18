@@ -508,3 +508,119 @@
     }
   }
 }
+
+.slots-games {
+  margin-bottom: calc-clamp(238);
+  &-header {
+    background: linear-gradient(148deg, #401784 9%, #652ac5 55%, #401784 72%);
+    position: relative;
+    padding-left: calc-clamp(225);
+    top: calc-clamp(-45);
+    margin-bottom: calc-clamp(-15);
+    &-text {
+      font-family: OpenSans-Bold;
+      font-size: calc-clamp(60);
+      text-transform: uppercase;
+      color: white;
+      margin-inline-end: calc-clamp(360);
+    }
+    .usagi-icon {
+      position: absolute;
+      top: 33%;
+      transform: translateY(-50%);
+      left: calc-clamp(-20);
+      width: calc-clamp(244);
+      z-index: 9;
+    }
+    &-btn-more {
+      background-color: #0d808a;
+      min-width: calc-clamp(282);
+      transform: skew(-10deg);
+      margin-right: calc-clamp(-10);
+      min-width: calc-clamp(358);
+      &-text {
+        color: white;
+        font-size: calc-clamp(35);
+        font-family: OpenSans-Bold;
+        transform: skew(10deg);
+        display: block;
+        text-transform: uppercase;
+      }
+    }
+  }
+  &-list {
+    li {
+      &:nth-child(1) {
+        .slots-game-wrap {
+          background-image: url("/assets/images/games/slot-1.jpg");
+        }
+      }
+      &:nth-child(2) {
+        .slots-game-wrap {
+          background-image: url("/assets/images/games/slot-2.jpg");
+        }
+      }
+      &:nth-child(3) {
+        .slots-game-wrap {
+          background-image: url("/assets/images/games/slot-3.jpg");
+        }
+      }
+      &:nth-child(4) {
+        .slots-game-wrap {
+          background-image: url("/assets/images/games/slot-4.jpg");
+        }
+      }
+      &:nth-child(5) {
+        .slots-game-wrap {
+          background-image: url("/assets/images/games/slot-5.jpg");
+        }
+      }
+    }
+  }
+}
+
+.slots-game {
+  &-wrap {
+    clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0 calc-clamp(-23);
+  }
+  min-height: calc-clamp(500);
+  position: relative;
+  &-studio {
+    display: inline-block;
+    background-color: #000;
+    transform: skew(351deg);
+    margin-inline-start: calc-clamp(60);
+    padding: 0 calc-clamp(10);
+    min-width: calc-clamp(200);
+    &-text {
+      font-family: OpenSans-Italic;
+      color: white;
+      font-size: calc-clamp(21);
+      transform: skew(-351deg);
+    }
+  }
+
+  &-name {
+    background-color: rgba(#000, 0.8);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: calc-clamp(38);
+    height: calc-clamp(125);
+    padding: 0 calc-clamp(20);
+    &-text {
+      color: white;
+      font-family: OpenSans-Bold;
+      font-size: calc-clamp(50);
+      line-height: 1;
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      top: 50%;
+    }
+  }
+}

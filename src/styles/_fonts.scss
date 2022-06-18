@@ -16,3 +16,9 @@
   bold,
   italic
 );
+@include font-face(
+  "OpenSans-Italic",
+  "#{$project-font-path}/OpenSans/OpenSans-Italic/OpenSans-Italic",
+  bold,
+  italic
+);
