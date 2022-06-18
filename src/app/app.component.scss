@@ -243,7 +243,7 @@
 }
 
 .bingo-games {
-  margin-bottom: calc-clamp(156);
+  margin-bottom: calc-clamp(238);
   &-header {
     background: linear-gradient(148deg, #401784 9%, #652ac5 55%, #401784 72%);
     position: relative;
@@ -323,7 +323,7 @@
     transform: skew(351deg);
     margin-inline-start: calc-clamp(76);
     padding: 0 calc-clamp(24);
-    margin-top: 5px;
+    margin-top: calc-clamp(5);
     &-text {
       font-family: OpenSans-Bold;
       color: white;
@@ -362,7 +362,7 @@
       font-size: calc-clamp(30);
       padding-inline-start: calc-clamp(35);
       line-height: 1;
-      margin-top: 8px;
+      margin-top: calc-clamp(8);
     }
     &-sum {
       font-family: OpenSans-Bold;
@@ -376,7 +376,7 @@
     left: calc(50% - calc-clamp(33));
     transform: skew(-10deg) translateX(-50%);
     padding: calc-clamp(9) calc-clamp(40);
-    bottom: -35px;
+    bottom: calc-clamp(-35);
     z-index: 9;
     &-text {
       color: white;
@@ -390,7 +390,7 @@
 }
 
 .box-pink {
-  padding: 7px;
+  padding: calc-clamp(7);
   padding-top: 0;
   &-wrap {
     background-color: #da15a9;
@@ -399,8 +399,9 @@
   }
   &-left {
     .box-pink-wrap {
-      margin-inline-start: -25px;
-      margin-inline-end: 16px;
+      margin-top: calc-clamp(-75);
+      margin-inline-start: calc-clamp(-25);
+      margin-inline-end: calc-clamp(16);
     }
     .box-pink-header {
       background: linear-gradient(
@@ -418,11 +419,11 @@
     }
   }
   &-right {
-    margin-top: -90px;
-    margin-bottom: 40px;
+    margin-top: calc-clamp(-165);
+    margin-bottom: calc-clamp(40);
     .box-pink-wrap {
-      margin-inline-end: -35px;
-      margin-inline-start: 16px;
+      margin-inline-end: calc-clamp(-35);
+      margin-inline-start: calc-clamp(16);
     }
     .box-pink-header {
       background: linear-gradient(
@@ -439,7 +440,7 @@
   }
 
   &-header {
-    margin: 0 -7px;
+    margin: 0 calc-clamp(-7);
     &-text {
       text-align: center;
       font-family: OpenSans-BoldItalic;
@@ -453,6 +454,12 @@
     background-color: #000;
     padding: calc-clamp(28) calc-clamp(88);
   }
+}
+.bg-jackpot-winners {
+  padding-bottom: calc-clamp(130);
+  background: url("/assets/images/bg-with-mask/bg-with-mask.webp") no-repeat 0
+    center;
+  background-size: cover;
 }
 .jackpots-list {
   transform: skew(10deg);
@@ -476,14 +483,14 @@
     font-family: OpenSans-Bold;
     line-height: 1;
     position: relative;
-    padding-bottom: 30px;
+    padding-bottom: calc-clamp(30);
     &:after {
       content: "";
-      height: 2px;
+      height: calc-clamp(2);
       width: 112%;
       background-color: #826c6c;
       position: absolute;
-      bottom: 15px;
+      bottom: calc-clamp(15);
       left: -6%;
     }
     &:last-child {
