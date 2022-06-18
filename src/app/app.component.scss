@@ -27,6 +27,7 @@
   background: #401784;
   background: linear-gradient(148deg, #401784 22%, #652ac5 61%);
   line-height: 1.389;
+  padding: 0 calc-clamp(24);
   &-logo {
     font-family: OpenSans-Bold;
     color: white;
@@ -50,6 +51,7 @@
   }
 }
 .language-selector {
+  margin: 0 calc-clamp(16);
   &,
   &-lng {
     width: calc-clamp(84);
@@ -123,7 +125,7 @@
 }
 
 .coming-up {
-  margin-inline-start: calc(calc-clamp(65) * -1);
+  margin-inline-start: calc-clamp(-60);
   background-color: rgba(#000, 0.7);
   transform: skew(-20deg);
   z-index: 1;
@@ -132,9 +134,9 @@
     &-content {
       min-height: calc-clamp(325);
       color: white;
-      padding-inline-start: calc-clamp(90);
-      margin-inline-start: calc-clamp(150);
-      // line-height: 1.28;
+      padding-inline-start: calc-clamp(265);
+      padding-top: calc-clamp(70);
+      padding-bottom: calc-clamp(43);
     }
     // TODO: Content
     header {
@@ -143,7 +145,8 @@
     }
     article {
       font-size: calc-clamp(25);
-      letter-spacing: -1px;
+      letter-spacing: calc-clamp(-1);
+      margin-bottom: calc-clamp(20);
       p {
         margin-bottom: 0;
       }
@@ -170,8 +173,8 @@
     min-width: calc-clamp(287);
     transform: skew(-20deg);
     position: absolute;
-    right: calc-clamp(55);
-    margin-bottom: 0;
+    right: calc-clamp(66);
+    margin-bottom: calc-clamp(-26);
     bottom: 0;
     &-text {
       display: block;
@@ -189,11 +192,12 @@
     text-align: end;
     transform: skew(-20deg);
     position: absolute;
-    min-width: calc-clamp(450);
+    min-width: calc-clamp(447);
     left: calc-clamp(-10);
     z-index: 1;
     top: 0;
     transform: skew(-20deg) translate(0, -58%);
+    padding-inline-end: calc-clamp(50);
     &-text {
       font-size: calc-clamp(60);
       text-transform: uppercase;
