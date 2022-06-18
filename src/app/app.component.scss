@@ -4,6 +4,7 @@
 .top-bar {
   line-height: normal;
   background: #401784;
+  padding: 0 calc-clamp(48);
   background: linear-gradient(
     to right,
     #401784 16%,
@@ -32,6 +33,8 @@
     font-family: OpenSans-Bold;
     color: white;
     font-size: calc-clamp(72);
+    padding-inline-start: calc-clamp(48);
+    padding-inline-end: calc-clamp(140);
   }
   &-btn-login {
     min-width: calc-clamp(265);
@@ -69,6 +72,7 @@
   background-color: #0d808a;
   transform: skew(-20deg);
   margin: 0 calc-clamp(-8);
+  padding: 0 calc-clamp(60) 0 calc-clamp(160);
   &-list {
     transform: skew(20deg);
   }
@@ -673,5 +677,18 @@
     background-color: #6b5e74;
     height: calc-clamp(2);
     opacity: 0.5;
+  }
+
+  &-18-plus {
+    width: calc-clamp(75);
+  }
+  &-ce {
+    width: calc-clamp(204);
+  }
+  &-innovus-nv {
+    width: calc-clamp(161);
+  }
+  &-aberrant {
+    width: calc-clamp(225);
   }
 }
