@@ -14,8 +14,8 @@
   &-username {
     line-height: normal;
     font-size: calc-clamp(27);
-    margin-top: -2px;
-    margin-bottom: 5px;
+    margin-top: calc-clamp(-2);
+    margin-bottom: calc-clamp(5);
   }
 }
 .header-top {
@@ -38,7 +38,7 @@
     padding-inline-end: calc-clamp(35);
     transform: skew(-20deg);
     background: #e833d0;
-    margin-right: -43px;
+    margin-right: calc-clamp(-43);
     &-text {
       transform: skew(20deg);
       font-size: calc-clamp(31);
@@ -66,7 +66,7 @@
 .main-navigation {
   background-color: #0d808a;
   transform: skew(-20deg);
-  margin: 0 -8px;
+  margin: 0 calc-clamp(-8);
   &-list {
     transform: skew(20deg);
   }
@@ -92,16 +92,15 @@
 
 .new-game {
   overflow: hidden;
-  width: calc-clamp(1582);
   z-index: 1;
+  width: calc-clamp(1583);
+  min-height: calc-clamp(548);
   &-banner {
-    width: min(
-      100,
-      84.47916666666667vw
-    ); // clamp(100px, 84.47916666666667vw, 2000px);
+    width: calc-clamp(1583);
+
     // TODO: remove
-    margin-left: calc-clamp(-65);
-    margin-top: -10px;
+    margin-left: calc-clamp(-15);
+    // margin-top: calc-clamp(-10);
   }
   &-btn-more {
     background-color: #0d808a;
@@ -110,7 +109,7 @@
     position: absolute;
     z-index: 9;
     bottom: 0;
-    right: calc-clamp(234);
+    right: calc-clamp(213);
     &-text {
       color: white;
       font-size: calc-clamp(35);
@@ -135,7 +134,7 @@
       color: white;
       padding-inline-start: calc-clamp(90);
       margin-inline-start: calc-clamp(150);
-      line-height: 1.28;
+      // line-height: 1.28;
     }
     // TODO: Content
     header {
@@ -194,7 +193,7 @@
     left: calc-clamp(-10);
     z-index: 1;
     top: 0;
-    transform: skew(-20deg) translate(0px, -58%);
+    transform: skew(-20deg) translate(0, -58%);
     &-text {
       font-size: calc-clamp(60);
       text-transform: uppercase;
@@ -211,7 +210,7 @@
   top: calc-clamp(10);
   right: 0;
   &-girl {
-    width: calc-clamp(589);
+    width: calc-clamp(609);
     margin-right: calc-clamp(-20);
     position: relative;
     z-index: 1;
@@ -227,19 +226,19 @@
     width: calc-clamp(152);
     position: absolute;
     left: 0;
-    bottom: calc-clamp(490);
+    bottom: calc-clamp(500);
   }
   &-s-red {
     width: calc-clamp(132);
     position: absolute;
-    top: 135px;
-    right: 25px;
+    top: calc-clamp(135);
+    right: calc-clamp(25);
   }
   &-s-purple {
     width: calc-clamp(49);
     position: absolute;
-    top: 10px;
-    right: 130px;
+    top: calc-clamp(10);
+    right: calc-clamp(130);
   }
 }
 
@@ -642,17 +641,33 @@
   }
 }
 .page-footer {
+  color: #6b5e74;
   background: url("/assets/images/bg-with-mask-2/bg-with-mask-2.webp") no-repeat
-    0 0;
+    center 0;
   background-size: cover;
   &-content {
-    padding: calc-clamp(90) calc-clamp(80) 0;
+    padding: calc-clamp(90) calc-clamp(80) calc-clamp(50);
     background-color: rgba(#000, 0.6);
   }
+
   &-link {
     font-family: OpenSans-Regular;
     font-size: calc-clamp(30);
     color: #6b5e74;
     text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &-disclaimer {
+    max-width: calc-clamp(950);
+    font-size: calc-clamp(15);
+  }
+  .page-footer-separator {
+    margin-bottom: calc-clamp(45);
+    margin-top: calc-clamp(40);
+    background-color: #6b5e74;
+    height: calc-clamp(2);
+    opacity: 0.5;
   }
 }
