@@ -194,7 +194,6 @@
   &-label-new {
     background: linear-gradient(148deg, #401784 22%, #652ac5 61%);
     text-align: end;
-    transform: skew(-20deg);
     position: absolute;
     min-width: calc-clamp(447);
     left: calc-clamp(-10);
@@ -208,7 +207,6 @@
       font-family: OpenSans-Bold;
       transform: skew(20deg);
       color: white;
-      display: block;
     }
   }
 }
@@ -652,7 +650,7 @@
   color: #6b5e74;
   background: url("/assets/images/bg-with-mask-2/bg-with-mask-2.webp") no-repeat
     center 0;
-  background-size: cover;
+  background-size: contain;
   &-content {
     padding: calc-clamp(90) calc-clamp(80) calc-clamp(50);
     background-color: rgba(#000, 0.6);
@@ -690,5 +688,17 @@
   }
   &-aberrant {
     width: calc-clamp(225);
+  }
+  &-icon-visa {
+    width: calc-clamp(105);
+  }
+  &-icon-mastercard {
+    width: calc-clamp(76);
+  }
+  &-icon-ew {
+    width: calc-clamp(98);
+  }
+  &-icon-ap {
+    width: calc-clamp(171);
   }
 }
