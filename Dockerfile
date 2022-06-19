@@ -1,12 +1,9 @@
-# Stage 1
-FROM node:14.15.5-alpine3.13 as build-step
-RUN mkdir -p /app
+#stage 1
+FROM node:latest as node
 WORKDIR /app
-COPY package.json /app
+COPY . .
 RUN npm install
-COPY . /app
 RUN npm run build
-
-# Stage 2
-FROM nginx:1.21.6-alpine
-COPY --from=build-step app/dist/bens-bingo-app /usr/share/nginx/html
+#stage 2
+FROM nginx:alpine
+COPY --from=node /app/dist/bens-bingo-app /usr/share/nginx/html
