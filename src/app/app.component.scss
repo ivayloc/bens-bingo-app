@@ -33,8 +33,9 @@
   &-logo {
     padding-inline-start: calc-clamp(48);
     padding-inline-end: calc-clamp(140);
-    font-family: OpenSans-Bold, sans-serif;
+    font-family: OpenSans, sans-serif;
     font-size: calc-clamp(72);
+    font-weight: 700;
     color: #fff;
   }
   &-btn-login {
@@ -46,8 +47,9 @@
     transform: skew(-20deg);
     &-text {
       display: block;
-      font-family: OpenSans-Bold, sans-serif;
+      font-family: OpenSans, sans-serif;
       font-size: calc-clamp(31);
+      font-weight: 700;
       color: #fff;
       text-transform: uppercase;
       transform: skew(20deg);
@@ -62,8 +64,9 @@
     height: calc-clamp(78);
   }
   &-lng {
-    font-family: OpenSans-Bold, sans-serif;
+    font-family: OpenSans, sans-serif;
     font-size: calc-clamp(40);
+    font-weight: 700;
     color: #fff;
     border: solid 2px #e833d0;
   }
@@ -89,8 +92,9 @@
     }
     &-text {
       display: block;
-      font-family: OpenSans-Bold, sans-serif;
+      font-family: OpenSans, sans-serif;
       font-size: calc-clamp(31);
+      font-weight: 700;
       color: #fff;
       transform: skew(20deg);
     }
@@ -120,8 +124,9 @@
     transform: skew(-20deg);
     &-text {
       display: block;
-      font-family: OpenSans-Bold, sans-serif;
+      font-family: OpenSans, sans-serif;
       font-size: calc-clamp(35);
+      font-weight: 700;
       line-height: normal;
       color: #fff;
       text-transform: uppercase;
@@ -146,8 +151,10 @@
     }
     // TODO: Content
     header {
-      font-family: OpenSans-BoldItalic, sans-serif;
+      font-family: OpenSans, sans-serif;
       font-size: calc-clamp(33);
+      font-style: italic;
+      font-weight: 700;
     }
     article {
       margin-bottom: calc-clamp(20);
@@ -167,8 +174,9 @@
     background-color: #0d808a;
     transform: skew(-20deg) translateX(-50%);
     &-text {
-      font-family: OpenSans-Bold, sans-serif;
+      font-family: OpenSans, sans-serif;
       font-size: calc-clamp(35);
+      font-weight: 700;
       color: #fff;
       text-align: center;
       transform: skew(20deg);
@@ -184,8 +192,9 @@
     transform: skew(-20deg);
     &-text {
       display: block;
-      font-family: OpenSans-Bold, sans-serif;
+      font-family: OpenSans, sans-serif;
       font-size: calc-clamp(35);
+      font-weight: 700;
       color: #fff;
       text-align: center;
       text-transform: uppercase;
@@ -204,8 +213,9 @@
     background: linear-gradient(148deg, #401784 22%, #652ac5 61%);
     transform: skew(-20deg) translate(0, -58%);
     &-text {
-      font-family: OpenSans-Bold, sans-serif;
+      font-family: OpenSans, sans-serif;
       font-size: calc-clamp(60);
+      font-weight: 700;
       color: #fff;
       text-transform: uppercase;
       transform: skew(20deg);
@@ -260,8 +270,9 @@
     background: linear-gradient(148deg, #401784 9%, #652ac5 55%, #401784 72%);
     &-text {
       margin-inline-end: calc-clamp(360);
-      font-family: OpenSans-Bold, sans-serif;
+      font-family: OpenSans, sans-serif;
       font-size: calc-clamp(60);
+      font-weight: 700;
       color: #fff;
       text-transform: uppercase;
     }
@@ -281,8 +292,9 @@
       transform: skew(-10deg);
       &-text {
         display: block;
-        font-family: OpenSans-Bold, sans-serif;
+        font-family: OpenSans, sans-serif;
         font-size: calc-clamp(35);
+        font-weight: 700;
         color: #fff;
         text-transform: uppercase;
         transform: skew(10deg);
@@ -333,8 +345,9 @@
     background-color: #662bc7;
     transform: skew(351deg);
     &-text {
-      font-family: OpenSans-Bold, sans-serif;
+      font-family: OpenSans, sans-serif;
       font-size: calc-clamp(31);
+      font-weight: 700;
       color: #fff;
       transform: skew(-351deg);
     }
@@ -342,15 +355,18 @@
   &-type {
     padding-inline-start: calc-clamp(65);
     margin-top: calc-clamp(115);
-    font-family: OpenSans-BoldItalic, sans-serif;
+    font-family: OpenSans, sans-serif;
     font-size: calc-clamp(30);
+    font-style: italic;
+    font-weight: 700;
     color: #fff;
     text-transform: uppercase;
   }
   &-name {
     padding-inline-start: calc-clamp(45);
-    font-family: OpenSans-Bold, sans-serif;
+    font-family: OpenSans, sans-serif;
     font-size: calc-clamp(71);
+    font-weight: 700;
     line-height: 1;
     color: #fff;
     text-transform: uppercase;
@@ -368,13 +384,16 @@
     &-title {
       padding-inline-start: calc-clamp(35);
       margin-top: calc-clamp(8);
-      font-family: OpenSans-BoldItalic, sans-serif;
+      font-family: OpenSans, sans-serif;
       font-size: calc-clamp(30);
+      font-style: italic;
+      font-weight: 700;
       line-height: 1;
     }
     &-sum {
-      font-family: OpenSans-Bold, sans-serif;
+      font-family: OpenSans, sans-serif;
       font-size: calc-clamp(55);
+      font-weight: 700;
       line-height: 1;
     }
   }
@@ -389,8 +408,9 @@
     transform: skew(-10deg) translateX(-50%);
     &-text {
       display: block;
-      font-family: OpenSans-Bold, sans-serif;
+      font-family: OpenSans, sans-serif;
       font-size: calc-clamp(35);
+      font-weight: 700;
       color: #fff;
       text-transform: uppercase;
       transform: skew(15deg);
@@ -453,8 +473,10 @@
   &-header {
     margin: 0 calc-clamp(-7);
     &-text {
-      font-family: OpenSans-BoldItalic, sans-serif;
+      font-family: OpenSans, sans-serif;
       font-size: calc-clamp(60);
+      font-style: italic;
+      font-weight: 700;
       line-height: normal;
       text-align: center;
       text-transform: uppercase;
@@ -476,13 +498,16 @@
 .jackpots-list {
   transform: skew(10deg);
   &-item {
-    font-family: OpenSans-Bold, sans-serif;
+    font-family: OpenSans, sans-serif;
     font-size: calc-clamp(80);
+    font-weight: 700;
     line-height: 1;
     &-game {
       &-studio {
-        font-family: OpenSans-BoldItalic, sans-serif;
+        font-family: OpenSans, sans-serif;
         font-size: calc-clamp(30);
+        font-style: italic;
+        font-weight: 700;
         line-height: 1;
       }
     }
@@ -493,8 +518,9 @@
   &-item {
     position: relative;
     padding-bottom: calc-clamp(30);
-    font-family: OpenSans-Bold, sans-serif;
+    font-family: OpenSans, sans-serif;
     font-size: calc-clamp(47);
+    font-weight: 700;
     line-height: 1;
     &::after {
       position: absolute;
@@ -513,8 +539,10 @@
     }
     &-game {
       &-username {
-        font-family: OpenSans-BoldItalic, sans-serif;
+        font-family: OpenSans, sans-serif;
         font-size: calc-clamp(17);
+        font-style: italic;
+        font-weight: 700;
         line-height: 1;
       }
     }
@@ -531,8 +559,9 @@
     background: linear-gradient(148deg, #401784 9%, #652ac5 55%, #401784 72%);
     &-text {
       margin-inline-end: calc-clamp(360);
-      font-family: OpenSans-Bold, sans-serif;
+      font-family: OpenSans, sans-serif;
       font-size: calc-clamp(60);
+      font-weight: 700;
       color: #fff;
       text-transform: uppercase;
     }
@@ -552,8 +581,9 @@
       transform: skew(-10deg);
       &-text {
         display: block;
-        font-family: OpenSans-Bold, sans-serif;
+        font-family: OpenSans, sans-serif;
         font-size: calc-clamp(35);
+        font-weight: 700;
         color: #fff;
         text-transform: uppercase;
         transform: skew(10deg);
@@ -609,8 +639,9 @@
     background-color: #000;
     transform: skew(351deg);
     &-text {
-      font-family: OpenSans-Italic, sans-serif;
+      font-family: OpenSans, sans-serif;
       font-size: calc-clamp(21);
+      font-style: italic;
       color: #fff;
       transform: skew(-351deg);
     }
@@ -628,8 +659,9 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      font-family: OpenSans-Bold, sans-serif;
+      font-family: OpenSans, sans-serif;
       font-size: calc-clamp(50);
+      font-weight: 700;
       line-height: 1;
       color: #fff;
       transform: translate(-50%, -50%);
@@ -641,8 +673,9 @@
   min-height: calc-clamp(226);
 
   &-text {
-    font-family: OpenSans-Bold, sans-serif;
+    font-family: OpenSans, sans-serif;
     font-size: calc-clamp(72);
+    font-weight: 700;
     color: #fff;
   }
   &-stones {
@@ -664,10 +697,11 @@
   }
 
   &-link {
-    font-family: OpenSans-Regular, sans-serif;
+    font-family: OpenSans, sans-serif;
     font-size: calc-clamp(30);
     color: #6b5e74;
     text-decoration: none;
+    display: block;
     &:hover {
       text-decoration: underline;
     }

@@ -1,24 +1,24 @@
 @include font-face(
-  "OpenSans-Regular",
+  "OpenSans",
   "#{$project-font-path}/OpenSans/OpenSans-Regular/OpenSans-Regular",
   normal,
   normal
 );
 @include font-face(
-  "OpenSans-Bold",
+  "OpenSans",
   "#{$project-font-path}/OpenSans/OpenSans-Bold/OpenSans-Bold",
-  bold,
+  700,
   normal
 );
 @include font-face(
-  "OpenSans-BoldItalic",
+  "OpenSans",
   "#{$project-font-path}/OpenSans/OpenSans-BoldItalic/OpenSans-BoldItalic",
-  bold,
+  700,
   italic
 );
 @include font-face(
-  "OpenSans-Italic",
+  "OpenSans",
   "#{$project-font-path}/OpenSans/OpenSans-Italic/OpenSans-Italic",
-  bold,
+  normal,
   italic
 );
