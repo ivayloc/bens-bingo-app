@@ -2,54 +2,55 @@
 @import "../styles/vendors/bootstrap/shared";
 
 .top-bar {
+  padding: 0 calc-clamp(48);
   line-height: normal;
   background: #401784;
-  padding: 0 calc-clamp(48);
-  background: linear-gradient(
-    to right,
-    #401784 16%,
-    #652ac5 51%,
-    #431888 79%,
-    #5321a4 100%
-  );
+  background:
+    linear-gradient(
+      to right,
+      #401784 16%,
+      #652ac5 51%,
+      #431888 79%,
+      #5321a4 100%
+    );
   &-username {
-    line-height: normal;
-    font-size: calc-clamp(27);
     margin-top: calc-clamp(-2);
     margin-bottom: calc-clamp(5);
+    font-size: calc-clamp(27);
+    line-height: normal;
   }
 }
 .header-top {
+  padding-bottom: calc-clamp(200);
   background: url("/assets/images/header-bg.webp") no-repeat 0 0;
   background-size: cover;
-  padding-bottom: calc-clamp(200);
 }
 .header {
+  padding: 0 calc-clamp(24);
+  line-height: 1.389;
   background: #401784;
   background: linear-gradient(148deg, #401784 22%, #652ac5 61%);
-  line-height: 1.389;
-  padding: 0 calc-clamp(24);
   &-logo {
-    font-family: OpenSans-Bold;
-    color: white;
-    font-size: calc-clamp(72);
     padding-inline-start: calc-clamp(48);
     padding-inline-end: calc-clamp(140);
+    font-family: OpenSans-Bold, sans-serif;
+    font-size: calc-clamp(72);
+    color: #fff;
   }
   &-btn-login {
     min-width: calc-clamp(265);
     padding-inline-start: calc-clamp(35);
     padding-inline-end: calc-clamp(35);
-    transform: skew(-20deg);
-    background: #e833d0;
     margin-right: calc-clamp(-43);
+    background: #e833d0;
+    transform: skew(-20deg);
     &-text {
-      transform: skew(20deg);
-      font-size: calc-clamp(31);
-      text-transform: uppercase;
-      font-family: OpenSans-Bold;
-      color: white;
       display: block;
+      font-family: OpenSans-Bold, sans-serif;
+      font-size: calc-clamp(31);
+      color: #fff;
+      text-transform: uppercase;
+      transform: skew(20deg);
     }
   }
 }
@@ -61,46 +62,46 @@
     height: calc-clamp(78);
   }
   &-lng {
-    border: solid 2px #e833d0;
-    font-family: OpenSans-Bold;
+    font-family: OpenSans-Bold, sans-serif;
     font-size: calc-clamp(40);
-    color: white;
+    color: #fff;
+    border: solid 2px #e833d0;
   }
 }
 
 .main-navigation {
+  padding: 0 calc-clamp(60) 0 calc-clamp(160);
+  margin: 0 calc-clamp(-8);
   background-color: #0d808a;
   transform: skew(-20deg);
-  margin: 0 calc-clamp(-8);
-  padding: 0 calc-clamp(60) 0 calc-clamp(160);
   &-list {
     transform: skew(20deg);
   }
   &-link {
-    text-transform: uppercase;
-    text-decoration: none;
-    transform: skew(-20deg);
     display: block;
     padding-inline-start: calc-clamp(40);
     padding-inline-end: calc-clamp(40);
+    text-decoration: none;
+    text-transform: uppercase;
+    transform: skew(-20deg);
     &.active {
       background-color: #093a5c;
     }
     &-text {
-      font-size: calc-clamp(31);
-      font-family: OpenSans-Bold;
-      color: white;
-      transform: skew(20deg);
       display: block;
+      font-family: OpenSans-Bold, sans-serif;
+      font-size: calc-clamp(31);
+      color: #fff;
+      transform: skew(20deg);
     }
   }
 }
 
 .new-game {
-  overflow: hidden;
   z-index: 1;
   width: calc-clamp(1583);
   min-height: calc-clamp(548);
+  overflow: hidden;
   &-banner {
     width: calc-clamp(1583);
 
@@ -109,48 +110,48 @@
     // margin-top: calc-clamp(-10);
   }
   &-btn-more {
-    background-color: #0d808a;
-    min-width: calc-clamp(282);
-    transform: skew(-20deg);
     position: absolute;
-    z-index: 9;
-    bottom: 0;
     right: calc-clamp(213);
+    bottom: 0;
+    z-index: 9;
+    min-width: calc-clamp(282);
+    background-color: #0d808a;
+    transform: skew(-20deg);
     &-text {
-      color: white;
-      font-size: calc-clamp(35);
-      font-family: OpenSans-Bold;
-      line-height: normal;
-      transform: skew(20deg);
       display: block;
+      font-family: OpenSans-Bold, sans-serif;
+      font-size: calc-clamp(35);
+      line-height: normal;
+      color: #fff;
       text-transform: uppercase;
+      transform: skew(20deg);
     }
   }
 }
 
 .coming-up {
-  margin-inline-start: calc-clamp(-60);
-  background-color: rgba(#000, 0.7);
-  transform: skew(-20deg);
   z-index: 1;
+  margin-inline-start: calc-clamp(-60);
+  background-color: rgba(#000, .7);
+  transform: skew(-20deg);
   &-body {
     transform: skew(20deg);
     &-content {
       min-height: calc-clamp(325);
-      color: white;
       padding-inline-start: calc-clamp(265);
       padding-top: calc-clamp(70);
       padding-bottom: calc-clamp(43);
+      color: #fff;
     }
     // TODO: Content
     header {
-      font-family: OpenSans-BoldItalic;
+      font-family: OpenSans-BoldItalic, sans-serif;
       font-size: calc-clamp(33);
     }
     article {
+      margin-bottom: calc-clamp(20);
       font-size: calc-clamp(25);
       letter-spacing: calc-clamp(-1);
-      margin-bottom: calc-clamp(20);
       p {
         margin-bottom: 0;
       }
@@ -158,55 +159,55 @@
   }
 
   &-label {
-    background-color: #0d808a;
-    min-width: calc-clamp(287);
-    transform: skew(-20deg) translateX(-50%);
     position: absolute;
     top: 0;
     left: 50%;
+    min-width: calc-clamp(287);
+    background-color: #0d808a;
+    transform: skew(-20deg) translateX(-50%);
     &-text {
-      font-family: OpenSans-Bold;
-      color: white;
+      font-family: OpenSans-Bold, sans-serif;
       font-size: calc-clamp(35);
-      transform: skew(20deg);
+      color: #fff;
       text-align: center;
+      transform: skew(20deg);
     }
   }
   &-btn-more {
-    background-color: #0d808a;
-    min-width: calc-clamp(287);
-    transform: skew(-20deg);
     position: absolute;
     right: calc-clamp(66);
-    margin-bottom: calc-clamp(-26);
     bottom: 0;
+    min-width: calc-clamp(287);
+    margin-bottom: calc-clamp(-26);
+    background-color: #0d808a;
+    transform: skew(-20deg);
     &-text {
       display: block;
-      transform: skew(20deg);
-      font-family: OpenSans-Bold;
-      color: white;
+      font-family: OpenSans-Bold, sans-serif;
       font-size: calc-clamp(35);
+      color: #fff;
       text-align: center;
       text-transform: uppercase;
+      transform: skew(20deg);
     }
   }
 
   &-label-new {
-    background: linear-gradient(148deg, #401784 22%, #652ac5 61%);
-    text-align: end;
     position: absolute;
-    min-width: calc-clamp(447);
+    top: 0;
     left: calc-clamp(-10);
     z-index: 1;
-    top: 0;
-    transform: skew(-20deg) translate(0, -58%);
+    min-width: calc-clamp(447);
     padding-inline-end: calc-clamp(50);
+    text-align: end;
+    background: linear-gradient(148deg, #401784 22%, #652ac5 61%);
+    transform: skew(-20deg) translate(0, -58%);
     &-text {
+      font-family: OpenSans-Bold, sans-serif;
       font-size: calc-clamp(60);
+      color: #fff;
       text-transform: uppercase;
-      font-family: OpenSans-Bold;
       transform: skew(20deg);
-      color: white;
     }
   }
 }
@@ -216,74 +217,74 @@
   top: calc-clamp(10);
   right: 0;
   &-girl {
-    width: calc-clamp(609);
-    margin-right: calc-clamp(-20);
     position: relative;
     z-index: 1;
+    width: calc-clamp(609);
+    margin-right: calc-clamp(-20);
   }
   &-mask {
-    width: calc-clamp(606);
     position: absolute;
     bottom: calc-clamp(80);
-    left: calc(calc-clamp(315, 295) * -1);
+    left: calc-clamp(-315);
     z-index: 0;
+    width: calc-clamp(606);
   }
   &-s-green {
-    width: calc-clamp(152);
     position: absolute;
-    left: 0;
     bottom: calc-clamp(500);
+    left: 0;
+    width: calc-clamp(152);
   }
   &-s-red {
-    width: calc-clamp(132);
     position: absolute;
     top: calc-clamp(135);
     right: calc-clamp(25);
+    width: calc-clamp(132);
   }
   &-s-purple {
-    width: calc-clamp(49);
     position: absolute;
     top: calc-clamp(10);
     right: calc-clamp(130);
+    width: calc-clamp(49);
   }
 }
 
 .bingo-games {
   margin-bottom: calc-clamp(238);
   &-header {
-    background: linear-gradient(148deg, #401784 9%, #652ac5 55%, #401784 72%);
     position: relative;
-    padding-left: calc-clamp(225);
     top: calc-clamp(-45);
+    padding-left: calc-clamp(225);
     margin-bottom: calc-clamp(-15);
+    background: linear-gradient(148deg, #401784 9%, #652ac5 55%, #401784 72%);
     &-text {
-      font-family: OpenSans-Bold;
-      font-size: calc-clamp(60);
-      text-transform: uppercase;
-      color: white;
       margin-inline-end: calc-clamp(360);
+      font-family: OpenSans-Bold, sans-serif;
+      font-size: calc-clamp(60);
+      color: #fff;
+      text-transform: uppercase;
     }
     .fox-icon {
       position: absolute;
       top: 33%;
-      transform: translateY(-50%);
       left: calc-clamp(-20);
-      width: calc-clamp(244);
       z-index: 9;
+      width: calc-clamp(244);
+      transform: translateY(-50%);
     }
     &-btn-more {
-      background-color: #0d808a;
       min-width: calc-clamp(282);
-      transform: skew(-10deg);
-      margin-right: calc-clamp(-10);
       min-width: calc-clamp(358);
+      margin-right: calc-clamp(-10);
+      background-color: #0d808a;
+      transform: skew(-10deg);
       &-text {
-        color: white;
-        font-size: calc-clamp(35);
-        font-family: OpenSans-Bold;
-        transform: skew(10deg);
         display: block;
+        font-family: OpenSans-Bold, sans-serif;
+        font-size: calc-clamp(35);
+        color: #fff;
         text-transform: uppercase;
+        transform: skew(10deg);
       }
     }
   }
@@ -314,83 +315,84 @@
 }
 .bingo-game {
   &-wrap {
+    margin: 0 calc-clamp(-32);
     clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%);
-    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    margin: 0 calc-clamp(-32);
+    background-size: cover;
   }
-  min-height: calc-clamp(500);
   position: relative;
+  min-height: calc-clamp(500);
   &-time {
     display: inline-block;
-    background-color: #662bc7;
-    text-align: center;
-    transform: skew(351deg);
-    margin-inline-start: calc-clamp(76);
     padding: 0 calc-clamp(24);
+    margin-inline-start: calc-clamp(76);
     margin-top: calc-clamp(5);
+    text-align: center;
+    background-color: #662bc7;
+    transform: skew(351deg);
     &-text {
-      font-family: OpenSans-Bold;
-      color: white;
+      font-family: OpenSans-Bold, sans-serif;
       font-size: calc-clamp(31);
+      color: #fff;
       transform: skew(-351deg);
     }
   }
   &-type {
-    font-size: calc-clamp(30);
-    font-family: OpenSans-BoldItalic;
-    color: white;
-    text-transform: uppercase;
     padding-inline-start: calc-clamp(65);
     margin-top: calc-clamp(115);
+    font-family: OpenSans-BoldItalic, sans-serif;
+    font-size: calc-clamp(30);
+    color: #fff;
+    text-transform: uppercase;
   }
   &-name {
-    font-size: calc-clamp(71);
-    font-family: OpenSans-Bold;
-    color: white;
-    text-transform: uppercase;
     padding-inline-start: calc-clamp(45);
+    font-family: OpenSans-Bold, sans-serif;
+    font-size: calc-clamp(71);
     line-height: 1;
+    color: #fff;
+    text-transform: uppercase;
   }
   &-jackpot {
-    background-color: rgba(#000, 0.8);
-    color: white;
     position: absolute;
+    right: calc-clamp(38);
     bottom: 0;
     left: 0;
-    right: calc-clamp(38);
     height: calc-clamp(200);
     padding-bottom: calc-clamp(90);
+    color: #fff;
+    background-color: rgba(#000, .8);
 
     &-title {
-      font-family: OpenSans-BoldItalic;
-      font-size: calc-clamp(30);
       padding-inline-start: calc-clamp(35);
-      line-height: 1;
       margin-top: calc-clamp(8);
+      font-family: OpenSans-BoldItalic, sans-serif;
+      font-size: calc-clamp(30);
+      line-height: 1;
     }
     &-sum {
-      font-family: OpenSans-Bold;
+      font-family: OpenSans-Bold, sans-serif;
       font-size: calc-clamp(55);
       line-height: 1;
     }
   }
   &-btn {
-    background-color: #0d808a;
     position: absolute;
-    left: calc(50% - calc-clamp(33));
-    transform: skew(-10deg) translateX(-50%);
-    padding: calc-clamp(9) calc-clamp(40);
     bottom: calc-clamp(-35);
+    /* stylelint-disable-next-line function-disallowed-list */
+    left: calc(50% - calc-clamp(33));
     z-index: 9;
+    padding: calc-clamp(9) calc-clamp(40);
+    background-color: #0d808a;
+    transform: skew(-10deg) translateX(-50%);
     &-text {
-      color: white;
-      font-size: calc-clamp(35);
-      font-family: OpenSans-Bold;
-      transform: skew(15deg);
       display: block;
+      font-family: OpenSans-Bold, sans-serif;
+      font-size: calc-clamp(35);
+      color: #fff;
       text-transform: uppercase;
+      transform: skew(15deg);
     }
   }
 }
@@ -399,83 +401,86 @@
   padding: calc-clamp(7);
   padding-top: 0;
   &-wrap {
+    color: #fff;
     background-color: #da15a9;
-    color: white;
     transform: skew(-10deg);
   }
   &-left {
     .box-pink-wrap {
-      margin-top: calc-clamp(-75);
       margin-inline-start: calc-clamp(-25);
       margin-inline-end: calc-clamp(16);
+      margin-top: calc-clamp(-75);
     }
     .box-pink-header {
-      background: linear-gradient(
-        135deg,
-        #981177 1%,
-        #981177 11%,
-        #e311af 17%,
-        #e311af 32%,
-        #981177 33%,
-        #e311af 71%,
-        #e311af 76%,
-        #981177 91%,
-        #e311af 100%
-      );
+      background:
+        linear-gradient(
+          135deg,
+          #981177 1%,
+          #981177 11%,
+          #e311af 17%,
+          #e311af 32%,
+          #981177 33%,
+          #e311af 71%,
+          #e311af 76%,
+          #981177 91%,
+          #e311af 100%
+        );
     }
   }
   &-right {
     margin-top: calc-clamp(-165);
     margin-bottom: calc-clamp(40);
     .box-pink-wrap {
-      margin-inline-end: calc-clamp(-35);
       margin-inline-start: calc-clamp(16);
+      margin-inline-end: calc-clamp(-35);
     }
     .box-pink-header {
-      background: linear-gradient(
-        135deg,
-        #e311af 6%,
-        #981177 20%,
-        #e311af 22%,
-        #e311af 58%,
-        #981177 74%,
-        #981177 85%,
-        #e311af 87%
-      );
+      background:
+        linear-gradient(
+          135deg,
+          #e311af 6%,
+          #981177 20%,
+          #e311af 22%,
+          #e311af 58%,
+          #981177 74%,
+          #981177 85%,
+          #e311af 87%
+        );
     }
   }
 
   &-header {
     margin: 0 calc-clamp(-7);
     &-text {
-      text-align: center;
-      font-family: OpenSans-BoldItalic;
+      font-family: OpenSans-BoldItalic, sans-serif;
       font-size: calc-clamp(60);
-      text-transform: uppercase;
       line-height: normal;
+      text-align: center;
+      text-transform: uppercase;
       transform: skew(10deg);
     }
   }
   &-body {
-    background-color: #000;
     padding: calc-clamp(28) calc-clamp(88);
+    background-color: #000;
   }
 }
 .bg-jackpot-winners {
   padding-bottom: calc-clamp(130);
-  background: url("/assets/images/bg-with-mask/bg-with-mask.webp") no-repeat 0
+  background:
+    url("/assets/images/bg-with-mask/bg-with-mask.webp") no-repeat 0
     center;
   background-size: cover;
 }
 .jackpots-list {
   transform: skew(10deg);
   &-item {
+    font-family: OpenSans-Bold, sans-serif;
     font-size: calc-clamp(80);
-    font-family: OpenSans-Bold;
     line-height: 1;
     &-game {
       &-studio {
-        font-family: OpenSans-BoldItalic;
+        font-family: OpenSans-BoldItalic, sans-serif;
         font-size: calc-clamp(30);
         line-height: 1;
       }
@@ -485,29 +490,29 @@
 .winners-list {
   transform: skew(10deg);
   &-item {
-    font-size: calc-clamp(47);
-    font-family: OpenSans-Bold;
-    line-height: 1;
     position: relative;
     padding-bottom: calc-clamp(30);
-    &:after {
-      content: "";
-      height: calc-clamp(2);
-      width: 112%;
-      background-color: #826c6c;
+    font-family: OpenSans-Bold, sans-serif;
+    font-size: calc-clamp(47);
+    line-height: 1;
+    &::after {
       position: absolute;
       bottom: calc-clamp(15);
       left: -6%;
+      width: 112%;
+      height: calc-clamp(2);
+      content: "";
+      background-color: #826c6c;
     }
     &:last-child {
       padding-bottom: 0;
-      &:after {
+      &::after {
         content: none;
       }
     }
     &-game {
       &-username {
-        font-family: OpenSans-BoldItalic;
+        font-family: OpenSans-BoldItalic, sans-serif;
         font-size: calc-clamp(17);
         line-height: 1;
       }
@@ -518,39 +523,39 @@
 .slots-games {
   margin-bottom: calc-clamp(100);
   &-header {
-    background: linear-gradient(148deg, #401784 9%, #652ac5 55%, #401784 72%);
     position: relative;
-    padding-left: calc-clamp(225);
     top: calc-clamp(-45);
+    padding-left: calc-clamp(225);
     margin-bottom: calc-clamp(-15);
+    background: linear-gradient(148deg, #401784 9%, #652ac5 55%, #401784 72%);
     &-text {
-      font-family: OpenSans-Bold;
-      font-size: calc-clamp(60);
-      text-transform: uppercase;
-      color: white;
       margin-inline-end: calc-clamp(360);
+      font-family: OpenSans-Bold, sans-serif;
+      font-size: calc-clamp(60);
+      color: #fff;
+      text-transform: uppercase;
     }
     .usagi-icon {
       position: absolute;
       top: 33%;
-      transform: translateY(-50%);
       left: calc-clamp(-20);
-      width: calc-clamp(244);
       z-index: 9;
+      width: calc-clamp(244);
+      transform: translateY(-50%);
     }
     &-btn-more {
-      background-color: #0d808a;
       min-width: calc-clamp(282);
-      transform: skew(-10deg);
-      margin-right: calc-clamp(-10);
       min-width: calc-clamp(358);
+      margin-right: calc-clamp(-10);
+      background-color: #0d808a;
+      transform: skew(-10deg);
       &-text {
-        color: white;
-        font-size: calc-clamp(35);
-        font-family: OpenSans-Bold;
-        transform: skew(10deg);
         display: block;
+        font-family: OpenSans-Bold, sans-serif;
+        font-size: calc-clamp(35);
+        color: #fff;
         text-transform: uppercase;
+        transform: skew(10deg);
       }
     }
   }
@@ -587,46 +592,46 @@
 
 .slots-game {
   &-wrap {
+    margin: 0 calc-clamp(-23);
     clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%);
-    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    margin: 0 calc-clamp(-23);
+    background-size: cover;
   }
-  min-height: calc-clamp(500);
   position: relative;
+  min-height: calc-clamp(500);
   &-studio {
     display: inline-block;
+    min-width: calc-clamp(200);
+    padding: 0 calc-clamp(10);
+    margin-inline-start: calc-clamp(60);
     background-color: #000;
     transform: skew(351deg);
-    margin-inline-start: calc-clamp(60);
-    padding: 0 calc-clamp(10);
-    min-width: calc-clamp(200);
     &-text {
-      font-family: OpenSans-Italic;
-      color: white;
+      font-family: OpenSans-Italic, sans-serif;
       font-size: calc-clamp(21);
+      color: #fff;
       transform: skew(-351deg);
     }
   }
 
   &-name {
-    background-color: rgba(#000, 0.8);
     position: absolute;
+    right: calc-clamp(38);
     bottom: 0;
     left: 0;
-    right: calc-clamp(38);
     height: calc-clamp(125);
     padding: 0 calc-clamp(20);
+    background-color: rgba(#000, .8);
     &-text {
-      color: white;
-      font-family: OpenSans-Bold;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-family: OpenSans-Bold, sans-serif;
       font-size: calc-clamp(50);
       line-height: 1;
-      position: absolute;
-      left: 50%;
+      color: #fff;
       transform: translate(-50%, -50%);
-      top: 50%;
     }
   }
 }
@@ -635,29 +640,30 @@
   min-height: calc-clamp(226);
 
   &-text {
-    color: white;
-    font-family: OpenSans-Bold;
+    font-family: OpenSans-Bold, sans-serif;
     font-size: calc-clamp(72);
+    color: #fff;
   }
   &-stones {
-    width: calc-clamp(439);
     position: absolute;
     top: calc-clamp(-130);
     right: calc-clamp(-120);
+    width: calc-clamp(439);
   }
 }
 .page-footer {
   color: #6b5e74;
-  background: url("/assets/images/bg-with-mask-2/bg-with-mask-2.webp") no-repeat
+  background:
+    url("/assets/images/bg-with-mask-2/bg-with-mask-2.webp") no-repeat
     center 0;
   background-size: contain;
   &-content {
-    padding: calc-clamp(90) calc-clamp(80) calc-clamp(50);
-    background-color: rgba(#000, 0.6);
+    padding: calc-clamp(60) calc-clamp(80) calc-clamp(50);
+    background-color: rgba(#000, .6);
   }
 
   &-link {
-    font-family: OpenSans-Regular;
+    font-family: OpenSans-Regular, sans-serif;
     font-size: calc-clamp(30);
     color: #6b5e74;
     text-decoration: none;
@@ -670,11 +676,11 @@
     font-size: calc-clamp(15);
   }
   .page-footer-separator {
-    margin-bottom: calc-clamp(45);
-    margin-top: calc-clamp(40);
-    background-color: #6b5e74;
     height: calc-clamp(2);
-    opacity: 0.5;
+    margin-top: calc-clamp(40);
+    margin-bottom: calc-clamp(45);
+    background-color: #6b5e74;
+    opacity: .5;
   }
 
   &-18-plus {
