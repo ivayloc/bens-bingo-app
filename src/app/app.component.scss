@@ -1,5 +1,8 @@
 @import "../styles/functions/calc-clamp";
 @import "../styles/vendors/bootstrap/shared";
+@import "../styles/vendors/hovercss";
+
+@import "/node_modules/hover.css/scss/effects/background-transitions/fade";
 
 .top-bar {
   padding: 0 calc-clamp(48);
@@ -81,6 +84,7 @@
     transform: skew(20deg);
   }
   &-link {
+    @include fade();
     display: block;
     padding-inline-start: calc-clamp(40);
     padding-inline-end: calc-clamp(40);
@@ -112,9 +116,9 @@
 
     // TODO: remove
     margin-inline-start: calc-clamp(-15);
-    // margin-top: calc-clamp(-10);
   }
   &-btn-more {
+    @include fade();
     position: absolute;
     right: calc-clamp(213);
     bottom: 0;
@@ -123,10 +127,6 @@
     padding: calc-clamp(8) calc-clamp(15);
     background-color: #0d808a;
     transform: skew(-20deg);
-    transition: background-color .2s ease-in-out;
-    &:hover{
-      background-color: #093a5c;
-    }
     &-text {
       display: block;
       font-family: OpenSans, sans-serif;
@@ -139,7 +139,18 @@
     }
   }
 }
-
+/* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+:host::ng-deep .coming-up-body-content-scroll {
+  width: 100%;
+  height: calc-clamp(230);
+  .p-scrollpanel-bar-y {
+    right: unset;
+    left: calc-clamp(-18);
+  }
+  .p-scrollpanel-content {
+    padding: 0;
+  }
+}
 .coming-up {
   z-index: 1;
   margin-inline-start: calc-clamp(-60);
@@ -188,8 +199,9 @@
     }
   }
   &-btn-more {
+    @include fade();
     position: absolute;
-    right: calc-clamp(66);
+    right: calc-clamp(62);
     bottom: 0;
     min-width: calc-clamp(287);
     margin-bottom: calc-clamp(-26);
@@ -290,6 +302,7 @@
       transform: translateY(-50%);
     }
     &-btn-more {
+      @include fade();
       min-width: calc-clamp(282);
       min-width: calc-clamp(358);
       margin-inline-end: calc-clamp(-10);
@@ -308,6 +321,7 @@
   }
   &-list {
     li {
+      width: 25vw;
       &:nth-child(1) {
         .bingo-game-wrap {
           background-image: url("/assets/images/games/game-1.webp");
@@ -403,6 +417,7 @@
     }
   }
   &-btn {
+    @include fade();
     position: absolute;
     bottom: calc-clamp(-35);
     /* stylelint-disable-next-line function-disallowed-list */
@@ -579,6 +594,7 @@
       transform: translateY(-50%);
     }
     &-btn-more {
+      @include fade();
       min-width: calc-clamp(282);
       min-width: calc-clamp(358);
       margin-inline-end: calc-clamp(-10);
