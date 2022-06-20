@@ -6,5 +6,6 @@ import { AngularMaterialModule } from './modules/angular-material/angular-materi
 @NgModule({
   declarations: [BingoGameDetailsDialogComponent],
   imports: [CommonModule, AngularMaterialModule],
+  exports: [AngularMaterialModule],
 })
 export class SharedModule {}

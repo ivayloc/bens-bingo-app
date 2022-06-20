@@ -123,6 +123,10 @@
     padding: calc-clamp(8) calc-clamp(15);
     background-color: #0d808a;
     transform: skew(-20deg);
+    transition: background-color .2s ease-in-out;
+    &:hover{
+      background-color: #093a5c;
+    }
     &-text {
       display: block;
       font-family: OpenSans, sans-serif;
