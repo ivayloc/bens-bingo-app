@@ -3,6 +3,9 @@
 @import "../styles/vendors/hovercss";
 
 @import "/node_modules/hover.css/scss/effects/background-transitions/fade";
+@import "/node_modules/hover.css/scss/effects/shadow-and-glow-transitions/grow-shadow";
+@import "/node_modules/hover.css/scss/effects/shadow-and-glow-transitions/float-shadow";
+@import "/node_modules/hover.css/scss/effects/2d-transitions/grow";
 
 .top-bar {
   padding: 0 calc-clamp(48);
@@ -258,6 +261,7 @@
     width: calc-clamp(606);
   }
   &-s-green {
+    @include grow();
     position: absolute;
     bottom: calc-clamp(500);
     left: 0;
@@ -321,6 +325,7 @@
   }
   &-list {
     li {
+      @include grow-shadow();
       width: 25vw;
       &:nth-child(1) {
         .bingo-game-wrap {
@@ -349,6 +354,7 @@
   &-wrap {
     margin: 0 calc-clamp(-32);
     clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%);
+    background-color: #000;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -447,6 +453,7 @@
     transform: skew(-10deg);
   }
   &-left {
+    @include float-shadow();
     .box-pink-wrap {
       margin-inline-start: calc-clamp(-25);
       margin-inline-end: calc-clamp(16);
@@ -469,6 +476,7 @@
     }
   }
   &-right {
+    @include float-shadow();
     margin-top: calc-clamp(-165);
     margin-bottom: calc-clamp(40);
     .box-pink-wrap {
