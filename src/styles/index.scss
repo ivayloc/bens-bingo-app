@@ -11,3 +11,8 @@
 @import "./typography";
 
 @import "./components/buttons";
+
+html,
+body {
+  height: 100%;
+}

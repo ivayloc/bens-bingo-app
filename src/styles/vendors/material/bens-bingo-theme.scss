@@ -1,0 +1,53 @@
+/* stylelint-disable function-parentheses-newline-inside */
+/* stylelint-disable value-keyword-case */
+/* stylelint-disable scss/dollar-variable-default */
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use "@angular/material" as mat;
+// Plus imports for other components in your app.
+@use "@angular/cdk" as cdk;
+
+cdk.$overlay-backdrop-color: rgba(0, 0, 0, .66);
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define a custom typography config that overrides the font-family as well as the
+// `headlines` and `body-1` levels.
+$my-custom-level: mat.define-typography-level(
+  $font-family: OpenSans,
+  $font-weight: 400,
+  $font-size: 1rem,
+  $line-height: 1,
+  $letter-spacing: normal,
+);
+
+// Override typography for all Angular Material, including mat-base-typography and all components.
+// @include angular-material-typography($custom-typography);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$bens-bingo-app-primary: mat.define-palette(mat.$indigo-palette);
+$bens-bingo-app-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$bens-bingo-app-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$bens-bingo-app-theme: mat.define-light-theme((
+  color: (
+    primary: $bens-bingo-app-primary,
+    accent: $bens-bingo-app-accent,
+    warn: $bens-bingo-app-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($bens-bingo-app-theme);
