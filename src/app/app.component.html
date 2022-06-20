@@ -77,7 +77,6 @@
             <div class="coming-up-label-text">Coming Up!</div>
           </div>
           <div class="coming-up-body-content">
-            <!-- <div> -->
             <article>
               <header>
                 You're a VIP member and always get 20% on every deposit!
@@ -91,7 +90,6 @@
               </p>
               <p>PARTY - 100% BONUS on your first deposit</p>
             </article>
-            <!-- </div> -->
           </div>
           <button class="btn-clear coming-up-btn-more">
             <span class="coming-up-btn-more-text">More!</span>
@@ -167,7 +165,11 @@
       </div>
     </div>
     <ul class="bingo-games-list list-unstyled d-flex mb-0">
-      <li class="position-relative flex-fill" *ngFor="let item of games">
+      <li
+        class="position-relative flex-fill"
+        *ngFor="let item of games"
+        (click)="showBingoGameDetails()"
+      >
         <div class="bingo-game-wrap">
           <div class="bingo-game">
             <div class="bingo-game-time">
