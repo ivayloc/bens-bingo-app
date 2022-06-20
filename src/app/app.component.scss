@@ -42,7 +42,7 @@
     min-width: calc-clamp(265);
     padding-inline-start: calc-clamp(35);
     padding-inline-end: calc-clamp(35);
-    margin-right: calc-clamp(-43);
+    margin-inline-end: calc-clamp(-43);
     background: #e833d0;
     transform: skew(-20deg);
     &-text {
@@ -111,7 +111,7 @@
     width: calc-clamp(1583);
 
     // TODO: remove
-    margin-left: calc-clamp(-15);
+    margin-inline-start: calc-clamp(-15);
     // margin-top: calc-clamp(-10);
   }
   &-btn-more {
@@ -120,6 +120,7 @@
     bottom: 0;
     z-index: 9;
     min-width: calc-clamp(282);
+    padding: calc-clamp(8) calc-clamp(15);
     background-color: #0d808a;
     transform: skew(-20deg);
     &-text {
@@ -127,7 +128,7 @@
       font-family: OpenSans, sans-serif;
       font-size: calc-clamp(35);
       font-weight: 700;
-      line-height: normal;
+      line-height: 1;
       color: #fff;
       text-transform: uppercase;
       transform: skew(20deg);
@@ -231,7 +232,7 @@
     position: relative;
     z-index: 1;
     width: calc-clamp(609);
-    margin-right: calc-clamp(-20);
+    margin-inline-end: calc-clamp(-20);
   }
   &-mask {
     position: absolute;
@@ -265,7 +266,7 @@
   &-header {
     position: relative;
     top: calc-clamp(-45);
-    padding-left: calc-clamp(225);
+    padding-inline-start: calc-clamp(225);
     margin-bottom: calc-clamp(-15);
     background: linear-gradient(148deg, #401784 9%, #652ac5 55%, #401784 72%);
     &-text {
@@ -287,7 +288,7 @@
     &-btn-more {
       min-width: calc-clamp(282);
       min-width: calc-clamp(358);
-      margin-right: calc-clamp(-10);
+      margin-inline-end: calc-clamp(-10);
       background-color: #0d808a;
       transform: skew(-10deg);
       &-text {
@@ -554,7 +555,7 @@
   &-header {
     position: relative;
     top: calc-clamp(-45);
-    padding-left: calc-clamp(225);
+    padding-inline-start: calc-clamp(225);
     margin-bottom: calc-clamp(-15);
     background: linear-gradient(148deg, #401784 9%, #652ac5 55%, #401784 72%);
     &-text {
@@ -576,7 +577,7 @@
     &-btn-more {
       min-width: calc-clamp(282);
       min-width: calc-clamp(358);
-      margin-right: calc-clamp(-10);
+      margin-inline-end: calc-clamp(-10);
       background-color: #0d808a;
       transform: skew(-10deg);
       &-text {
@@ -697,11 +698,11 @@
   }
 
   &-link {
+    display: block;
     font-family: OpenSans, sans-serif;
     font-size: calc-clamp(30);
     color: #6b5e74;
     text-decoration: none;
-    display: block;
     &:hover {
       text-decoration: underline;
     }
