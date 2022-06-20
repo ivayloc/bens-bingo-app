@@ -14,7 +14,10 @@
             </li>
           </ul>
           <div class="header-logo flex-fill">BEN's Bingo</div>
-          <button class="btn-clear header-btn-login align-self-stretch">
+          <button
+            class="btn-clear header-btn-login align-self-stretch"
+            matRipple
+          >
             <span class="header-btn-login-text">Login</span>
           </button>
         </div>
@@ -26,22 +29,22 @@
         <nav class="main-navigation">
           <ul class="main-navigation-list list-unstyled d-flex mb-0">
             <li class="main-navigation-item">
-              <a class="main-navigation-link active" href=""
+              <a class="main-navigation-link active" href="#" matRipple
                 ><span class="main-navigation-link-text">Bingo</span></a
               >
             </li>
             <li class="main-navigation-item">
-              <a class="main-navigation-link" href=""
+              <a class="main-navigation-link" href="#" matRipple
                 ><span class="main-navigation-link-text">Casino</span></a
               >
             </li>
             <li class="main-navigation-item">
-              <a class="main-navigation-link" href=""
+              <a class="main-navigation-link" href="#" matRipple
                 ><span class="main-navigation-link-text">Register</span></a
               >
             </li>
             <li class="main-navigation-item">
-              <a class="main-navigation-link" href=""
+              <a class="main-navigation-link" href="#" matRipple
                 ><span class="main-navigation-link-text">Help</span></a
               >
             </li>
@@ -77,21 +80,30 @@
             <div class="coming-up-label-text">Coming Up!</div>
           </div>
           <div class="coming-up-body-content">
-            <article>
-              <header>
-                You're a VIP member and always get 20% on every deposit!
-              </header>
-              <p>Friday 27.05.2022 (times in CET)</p>
-            </article>
-            <article>
-              <header>Daily bonuses for VIP 5+</header>
-              <p>
-                12-13 MIDDAY MADNESS - 100% BONUS on ALL deposits 19-21 DINNER
-              </p>
-              <p>PARTY - 100% BONUS on your first deposit</p>
-            </article>
+            <p-scrollPanel styleClass="coming-up-body-content-scroll">
+              <article>
+                <header>
+                  You're a VIP member and always get 20% on every deposit!
+                </header>
+                <p>Friday 27.05.2022 (times in CET)</p>
+              </article>
+              <article>
+                <header>Daily bonuses for VIP 5+</header>
+                <p>
+                  12-13 MIDDAY MADNESS - 100% BONUS on ALL deposits 19-21 DINNER
+                </p>
+                <p>PARTY - 100% BONUS on your first deposit</p>
+              </article>
+              <article>
+                <header>Daily bonuses for VIP 5+</header>
+                <p>
+                  12-13 MIDDAY MADNESS - 100% BONUS on ALL deposits 19-21 DINNER
+                </p>
+                <p>PARTY - 100% BONUS on your first deposit</p>
+              </article>
+            </p-scrollPanel>
           </div>
-          <button class="btn-clear coming-up-btn-more">
+          <button class="btn-clear coming-up-btn-more" matRipple>
             <span class="coming-up-btn-more-text">More!</span>
           </button>
         </div>
@@ -159,7 +171,7 @@
           alt="fox head"
         />
         <div class="bingo-games-header-text">Bingo Games</div>
-        <button class="btn-clear bingo-games-header-btn-more">
+        <button class="btn-clear bingo-games-header-btn-more" matRipple>
           <span class="bingo-games-header-btn-more-text">More games</span>
         </button>
       </div>
@@ -176,7 +188,7 @@
               <div class="bingo-game-time-text">1:43</div>
             </div>
             <div class="bingo-game-type">Game</div>
-            <div class="bingo-game-name">1001-10</div>
+            <div class="bingo-game-name" appShrinkFontSize>1001-10</div>
             <div class="bingo-game-jackpot">
               <div class="bingo-game-jackpot-title">JACKPOT</div>
               <div
@@ -191,7 +203,7 @@
             </div>
           </div>
         </div>
-        <button class="btn-clear bingo-game-btn">
+        <button class="btn-clear bingo-game-btn" matRipple>
           <span class="bingo-game-btn-text">Register</span>
         </button>
       </li>
@@ -266,7 +278,7 @@
           alt="fox head"
         />
         <div class="slots-games-header-text">Hot Slots</div>
-        <button class="btn-clear slots-games-header-btn-more">
+        <button class="btn-clear slots-games-header-btn-more" matRipple>
           <span class="slots-games-header-btn-more-text">More games</span>
         </button>
       </div>

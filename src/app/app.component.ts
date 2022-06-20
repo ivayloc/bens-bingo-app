@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { BingoGameDetailsDialogComponent } from './shared/bingo-game-details-dialog/bingo-game-details-dialog.component';
+import { BingoGameDetailsDialogComponent } from './shared/components/bingo-game-details-dialog/bingo-game-details-dialog.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
