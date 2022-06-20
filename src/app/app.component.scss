@@ -1,6 +1,8 @@
+/* stylelint-disable selector-pseudo-element-no-unknown */
 @import "../styles/functions/calc-clamp";
 @import "../styles/vendors/bootstrap/shared";
 @import "../styles/vendors/hovercss";
+@import "../styles/mixins/btn-clear";
 
 @import "/node_modules/hover.css/scss/effects/background-transitions/fade";
 @import "/node_modules/hover.css/scss/effects/shadow-and-glow-transitions/grow-shadow";
@@ -110,15 +112,27 @@
 
 .new-game {
   z-index: 1;
-  width: calc-clamp(1583);
+  width: calc-clamp(1568);
   min-height: calc-clamp(548);
   overflow: hidden;
   clip-path: polygon(0 0, 99.1% 0%, 86% 100%, 0% 100%);
   &-banner {
-    width: calc-clamp(1583);
+    width: calc-clamp(1568);
 
     // TODO: remove
-    margin-inline-start: calc-clamp(-15);
+    // margin-inline-start: calc-clamp(-15);
+  }
+  &-studio {
+    position: absolute;
+    right: 160px;
+    bottom: 0;
+    left: 0;
+    z-index: 9;
+    padding-inline-end: 17px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    text-align: center;
+    background: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, .6) 65%, rgb(0 0 0 / 0%) 100%);
   }
   &-btn-more {
     @include fade();
@@ -141,8 +155,31 @@
       transform: skew(20deg);
     }
   }
+  ::ng-deep {
+    .p-carousel-indicators {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      padding: 0;
+      padding-inline-end: 172px;
+      margin: 0;
+      list-style: none;
+      .p-link {
+        @include btn-clear();
+        width: 10px;
+        height: 10px;
+        margin: 0 5px;
+        background-color: #fff;
+        border-radius: 50%;
+      }
+      /* stylelint-disable-next-line selector-max-compound-selectors */
+      .p-highlight .p-link {
+        background-color: #000;
+        border: 1px solid #fff;
+      }
+    }
+  }
 }
-/* stylelint-disable-next-line selector-pseudo-element-no-unknown */
 :host::ng-deep .coming-up-body-content-scroll {
   width: 100%;
   height: calc-clamp(230);
@@ -324,9 +361,9 @@
     }
   }
   &-list {
-    li {
-      @include grow-shadow();
-      width: 25vw;
+    &-item {
+      // @include grow-shadow();
+      // width: 25vw;
       &:nth-child(1) {
         .bingo-game-wrap {
           background-image: url("/assets/images/games/game-1.webp");
@@ -362,7 +399,7 @@
   position: relative;
   min-height: calc-clamp(500);
   &-time {
-    display: inline-block;
+    max-width: calc-clamp(120);
     padding: 0 calc-clamp(24);
     margin-inline-start: calc-clamp(76);
     margin-top: calc-clamp(5);

@@ -53,18 +53,30 @@
         <!-- Main Navigation END -->
         <!-- New Game BEGIN -->
         <div class="new-game position-relative">
-          <img
-            alt="usagi-character"
-            src="/assets/images/what-s-new-banner-box/what-s-new-banner-box.png"
-            class="new-game-banner"
-            srcset="
-              /assets/images/what-s-new-banner-box/what-s-new-banner-box@2x.png 2x,
-              /assets/images/what-s-new-banner-box/what-s-new-banner-box@3x.png 3x
-            "
-          />
-          <button class="btn-clear new-game-btn-more" matRipple>
-            <span class="new-game-btn-more-text">More!</span>
-          </button>
+          <p-carousel [value]="newGames" [showNavigators]="false">
+            <ng-template let-newGame pTemplate="item">
+              <div class="position-relative">
+                <img
+                  alt="what's new"
+                  src="/assets/images/what-s-new-banner-box/what-s-new-banner-box.png"
+                  class="new-game-banner"
+                  srcset="
+                    /assets/images/what-s-new-banner-box/what-s-new-banner-box@2x.png 2x,
+                    /assets/images/what-s-new-banner-box/what-s-new-banner-box@3x.png 3x
+                  "
+                />
+                <div class="new-game-studio">
+                  <img
+                    src="/assets/images/temp/logo-elysium.png"
+                    alt="elysium"
+                  />
+                </div>
+                <button class="btn-clear new-game-btn-more" matRipple>
+                  <span class="new-game-btn-more-text">More!</span>
+                </button>
+              </div>
+            </ng-template>
+          </p-carousel>
         </div>
         <!-- New Game END -->
       </div>
@@ -176,38 +188,51 @@
         </button>
       </div>
     </div>
-    <ul class="bingo-games-list list-unstyled d-flex mb-0">
-      <li
-        class="position-relative flex-fill"
-        *ngFor="let item of games"
-        (click)="showBingoGameDetails()"
+
+    <div class="bingo-games-list">
+      <p-carousel
+        [value]="games"
+        styleClass="custom-carousel"
+        [numVisible]="4"
+        [numScroll]="1"
+        [circular]="true"
+        [showIndicators]="false"
+        [showNavigators]="false"
       >
-        <div class="bingo-game-wrap">
-          <div class="bingo-game">
-            <div class="bingo-game-time">
-              <div class="bingo-game-time-text">1:43</div>
-            </div>
-            <div class="bingo-game-type">Game</div>
-            <div class="bingo-game-name" appShrinkFontSize>1001-10</div>
-            <div class="bingo-game-jackpot">
-              <div class="bingo-game-jackpot-title">JACKPOT</div>
-              <div
-                class="align-items-center d-flex justify-content-center h-100"
-              >
-                <div class="bingo-game-jackpot-sum">
-                  $ 1.302,57
-                  <div></div>
-                  $ 110,76
+        <ng-template let-game pTemplate="item">
+          <div
+            class="bingo-games-list-item position-relative"
+            (click)="showBingoGameDetails()"
+          >
+            <!-- *ngFor="let item of games" -->
+            <div class="bingo-game-wrap">
+              <div class="bingo-game">
+                <div class="bingo-game-time">
+                  <div class="bingo-game-time-text">1:43</div>
+                </div>
+                <div class="bingo-game-type">Game</div>
+                <div class="bingo-game-name" appShrinkFontSize>1001-10</div>
+                <div class="bingo-game-jackpot">
+                  <div class="bingo-game-jackpot-title">JACKPOT</div>
+                  <div
+                    class="align-items-center d-flex justify-content-center h-100"
+                  >
+                    <div class="bingo-game-jackpot-sum">
+                      $ 1.302,57
+                      <div></div>
+                      $ 110,76
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+            <button class="btn-clear bingo-game-btn" matRipple>
+              <span class="bingo-game-btn-text">Register</span>
+            </button>
           </div>
-        </div>
-        <button class="btn-clear bingo-game-btn" matRipple>
-          <span class="bingo-game-btn-text">Register</span>
-        </button>
-      </li>
-    </ul>
+        </ng-template></p-carousel
+      >
+    </div>
   </div>
   <div class="bg-jackpot-winners d-flex align-items-start">
     <div class="box-pink-left flex-fill">

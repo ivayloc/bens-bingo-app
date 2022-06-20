@@ -1,7 +1,5 @@
+@import "../mixins/btn-clear";
+
 .btn-clear {
-  padding: 0;
-  border: none;
-  background: none;
-  color: inherit;
-  box-shadow: none;
+  @include btn-clear();
 }
