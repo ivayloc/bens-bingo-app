@@ -95,9 +95,19 @@
   .coming-up-body-content-scroll {
     width: 100%;
     height: calc-clamp(230);
+
     .p-scrollpanel-bar-y {
       right: unset;
       left: calc-clamp(-18);
+    }
+    .p-scrollpanel-bar {
+      background: #000;
+      width: 6px;
+    }
+    &:hover {
+      .p-scrollpanel-bar-y {
+        opacity: 0.5;
+      }
     }
     .p-scrollpanel-content {
       padding: 0;
