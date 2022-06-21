@@ -102,7 +102,7 @@
     }
     .p-scrollpanel-bar {
       background: #000;
-      width: 6px;
+      width: calc-clamp(6);
     }
     &:hover {
       .p-scrollpanel-bar-y {
