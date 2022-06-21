@@ -1,8 +1,10 @@
 @import "../../../../styles/functions/calc-clamp";
-.header-character {
+:host {
   position: absolute;
-  top: calc-clamp(10);
+  top: calc-clamp(-87);
   right: 0;
+}
+.header-character {
   &-girl {
     position: relative;
     z-index: 1;

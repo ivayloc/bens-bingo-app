@@ -9,6 +9,7 @@
   min-height: calc-clamp(548);
   overflow: hidden;
   clip-path: polygon(0 0, 99.1% 0%, 86% 100%, 0% 100%);
+  margin-bottom: calc-clamp(8);
   &-banner {
     width: calc-clamp(1568);
   }

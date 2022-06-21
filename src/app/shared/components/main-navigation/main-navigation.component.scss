@@ -2,6 +2,11 @@
 @import "../../../../styles/vendors/hovercss";
 @import "/node_modules/hover.css/scss/effects/background-transitions/fade";
 
+:host {
+  display: block;
+  width: 100%;
+  width: calc-clamp(1555);
+}
 .main-navigation {
   padding: 0 calc-clamp(60) 0 calc-clamp(160);
   margin: 0 calc-clamp(-8);
