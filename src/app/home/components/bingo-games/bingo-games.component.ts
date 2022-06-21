@@ -12,7 +12,7 @@ export class BingoGamesComponent implements OnInit {
   games = [1, 2, 3, 4, 1, 2, 3, 4];
 
   ngOnInit(): void {
-    this.showBingoGameDetails();
+    // this.showBingoGameDetails();
   }
 
   showBingoGameDetails() {

@@ -1,6 +1,6 @@
 @import "../../../../styles/functions/calc-clamp";
+
 .header-btn-login {
-  height: 100%;
   min-width: calc-clamp(265);
   padding-inline-start: calc-clamp(35);
   padding-inline-end: calc-clamp(35);

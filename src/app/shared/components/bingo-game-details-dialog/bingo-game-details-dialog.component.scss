@@ -6,25 +6,25 @@ $icon-close: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
 .game-details {
   transform: skew(-10deg);
   background-color: rgba(#000, 0.8);
-  padding: 16px 44px;
+  padding: calc-clamp(16) calc-clamp(44);
   &-wrap {
-    margin-bottom: 20px;
-    margin-top: 200px;
-    margin-inline-start: 49px;
-    margin-inline-end: 53px;
+    margin-bottom: calc-clamp(30);
+    margin-top: calc-clamp(200);
+    margin-inline-start: calc-clamp(49);
+    margin-inline-end: calc-clamp(53);
     position: relative;
   }
   &-btn-close {
-    width: 84px;
-    height: 78px;
+    width: calc-clamp(84);
+    height: calc-clamp(78);
     background: #000 url($icon-close) no-repeat center;
     background-size: 60%;
-    border: solid 3px #e833d0;
+    border: solid calc-clamp(3) #e833d0;
     position: absolute;
-    top: -180px;
+    top: calc-clamp(-180);
     left: 50%;
     transform: translateX(-50%);
-    box-shadow: 0 -10px 30px 5px #000;
+    box-shadow: 0 calc-clamp(-10) calc-clamp(30) calc-clamp(5) #000;
   }
   &-time {
     max-width: calc-clamp(120);
@@ -32,7 +32,7 @@ $icon-close: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
     text-align: center;
     background-color: #662bc7;
     transform: skew(351deg);
-    margin-inline-start: 43px;
+    margin-inline-start: calc-clamp(43);
     &-text {
       font-family: OpenSans, sans-serif;
       font-size: calc-clamp(31);
@@ -49,20 +49,20 @@ $icon-close: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
     font-family: OpenSans, sans-serif;
     font-weight: 700;
     color: #fff;
-    border-bottom: 1px solid #fff;
+    border-bottom: calc-clamp(1) solid #fff;
     line-height: 1;
-    margin: 0px -44px 0 -13px;
-    padding: 0 20px 20px;
+    margin: 0 calc-clamp(-44) 0 calc-clamp(-13);
+    padding: 0 calc-clamp(20) calc-clamp(20);
     &-type {
-      font-size: 29px;
+      font-size: calc-clamp(29);
       font-style: italic;
     }
     &-name {
-      font-size: 70px;
+      font-size: calc-clamp(70);
     }
   }
   &-body {
-    min-height: 300px;
+    min-height: calc-clamp(300);
   }
   &-btn {
     @include fade();
