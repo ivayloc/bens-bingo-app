@@ -8,7 +8,7 @@ import {
   TranslocoModule,
 } from '@ngneat/transloco';
 import { Injectable, NgModule } from '@angular/core';
-import { environment } from '../environments/environment';
+import { environment } from '../../../environments/environment';
 import {
   TranslocoPersistLangModule,
   TRANSLOCO_PERSIST_LANG_STORAGE,

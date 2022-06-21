@@ -1,0 +1,7 @@
+@import "../../../../styles/functions/calc-clamp";
+
+.header-top {
+  padding-bottom: calc-clamp(200);
+  background: url("/assets/images/header-bg.webp") no-repeat 0 0;
+  background-size: cover;
+}

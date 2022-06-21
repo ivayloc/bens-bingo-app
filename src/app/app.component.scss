@@ -7,9 +7,3 @@
 @import "/node_modules/hover.css/scss/effects/background-transitions/fade";
 @import "/node_modules/hover.css/scss/effects/shadow-and-glow-transitions/grow-shadow";
 @import "/node_modules/hover.css/scss/effects/2d-transitions/grow";
-
-.header-top {
-  padding-bottom: calc-clamp(200);
-  background: url("/assets/images/header-bg.webp") no-repeat 0 0;
-  background-size: cover;
-}
