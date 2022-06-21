@@ -28,10 +28,7 @@
       [showNavigators]="true"
     >
       <ng-template let-game pTemplate="item">
-        <div
-          class="bingo-games-list-item position-relative"
-          (click)="showBingoGameDetails()"
-        >
+        <div class="bingo-games-list-item position-relative">
           <!-- *ngFor="let item of games" -->
           <div class="bingo-game-wrap">
             <div class="bingo-game">
@@ -54,7 +51,11 @@
               </div>
             </div>
           </div>
-          <button class="btn-clear bingo-game-btn" matRipple>
+          <button
+            class="btn-clear bingo-game-btn"
+            (click)="showBingoGameDetails()"
+            matRipple
+          >
             <span class="bingo-game-btn-text">Register</span>
           </button>
         </div>
