@@ -1,0 +1,106 @@
+@import "../../../../styles/functions/calc-clamp";
+@import "../../../../styles/vendors/hovercss";
+@import "/node_modules/hover.css/scss/effects/background-transitions/fade";
+
+.coming-up {
+  z-index: 1;
+  margin-inline-start: calc-clamp(-60);
+  background-color: rgba(#000, 0.7);
+  transform: skew(-20deg);
+  &-body {
+    transform: skew(20deg);
+    &-content {
+      min-height: calc-clamp(325);
+      padding-inline-start: calc-clamp(265);
+      padding-top: calc-clamp(70);
+      padding-bottom: calc-clamp(43);
+      color: #fff;
+    }
+    // TODO: Content
+    header {
+      font-family: OpenSans, sans-serif;
+      font-size: calc-clamp(33);
+      font-style: italic;
+      font-weight: 700;
+    }
+    article {
+      margin-bottom: calc-clamp(20);
+      font-size: calc-clamp(25);
+      letter-spacing: calc-clamp(-1);
+      p {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &-label {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    min-width: calc-clamp(287);
+    background-color: #0d808a;
+    transform: skew(-20deg) translateX(-50%);
+    &-text {
+      font-family: OpenSans, sans-serif;
+      font-size: calc-clamp(35);
+      font-weight: 700;
+      color: #fff;
+      text-align: center;
+      transform: skew(20deg);
+    }
+  }
+  &-btn-more {
+    @include fade();
+    position: absolute;
+    right: calc-clamp(62);
+    bottom: 0;
+    min-width: calc-clamp(287);
+    margin-bottom: calc-clamp(-26);
+    background-color: #0d808a;
+    transform: skew(-20deg);
+    &-text {
+      display: block;
+      font-family: OpenSans, sans-serif;
+      font-size: calc-clamp(35);
+      font-weight: 700;
+      color: #fff;
+      text-align: center;
+      text-transform: uppercase;
+      transform: skew(20deg);
+    }
+  }
+
+  &-label-new {
+    position: absolute;
+    top: 0;
+    left: calc-clamp(-10);
+    z-index: 1;
+    min-width: calc-clamp(447);
+    padding-inline-end: calc-clamp(50);
+    text-align: end;
+    background: linear-gradient(148deg, #401784 22%, #652ac5 61%);
+    transform: skew(-20deg) translate(0, -58%);
+    &-text {
+      font-family: OpenSans, sans-serif;
+      font-size: calc-clamp(60);
+      font-weight: 700;
+      color: #fff;
+      text-transform: uppercase;
+      transform: skew(20deg);
+    }
+  }
+}
+
+:host ::ng-deep {
+  .coming-up-body-content-scroll {
+    width: 100%;
+    height: calc-clamp(230);
+    .p-scrollpanel-bar-y {
+      right: unset;
+      left: calc-clamp(-18);
+    }
+    .p-scrollpanel-content {
+      padding: 0;
+    }
+  }
+}

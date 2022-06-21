@@ -1,0 +1,78 @@
+@import "../../../../styles/mixins/btn-clear";
+@import "../../../../styles/functions/calc-clamp";
+@import "../../../../styles/vendors/hovercss";
+@import "/node_modules/hover.css/scss/effects/background-transitions/fade";
+
+.new-game {
+  z-index: 1;
+  width: calc-clamp(1568);
+  min-height: calc-clamp(548);
+  overflow: hidden;
+  clip-path: polygon(0 0, 99.1% 0%, 86% 100%, 0% 100%);
+  &-banner {
+    width: calc-clamp(1568);
+  }
+  &-studio {
+    position: absolute;
+    right: calc-clamp(160);
+    bottom: 0;
+    left: 0;
+    z-index: 9;
+    padding-inline-end: calc-clamp(17);
+    padding-top: calc-clamp(40);
+    padding-bottom: calc-clamp(40);
+    text-align: center;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.6) 65%,
+      rgb(0 0 0 / 0%) 100%
+    );
+  }
+  &-btn-more {
+    @include fade();
+    position: absolute;
+    right: calc-clamp(213);
+    bottom: 0;
+    z-index: 9;
+    min-width: calc-clamp(282);
+    padding: calc-clamp(8) calc-clamp(15);
+    background-color: #0d808a;
+    transform: skew(-20deg);
+    &-text {
+      display: block;
+      font-family: OpenSans, sans-serif;
+      font-size: calc-clamp(35);
+      font-weight: 700;
+      line-height: 1;
+      color: #fff;
+      text-transform: uppercase;
+      transform: skew(20deg);
+    }
+  }
+}
+
+:host ::ng-deep {
+  .p-carousel-indicators {
+    position: absolute;
+    bottom: calc-clamp(20);
+    width: 100%;
+    padding: 0;
+    padding-inline-end: calc-clamp(172);
+    margin: 0;
+    list-style: none;
+    .p-link {
+      @include btn-clear();
+      width: calc-clamp(10);
+      height: calc-clamp(10);
+      margin: 0 calc-clamp(5);
+      background-color: #fff;
+      border-radius: 50%;
+    }
+    /* stylelint-disable-next-line selector-max-compound-selectors */
+    .p-highlight .p-link {
+      background-color: #000;
+      border: 1px solid #fff;
+    }
+  }
+}

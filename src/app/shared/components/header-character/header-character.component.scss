@@ -1,0 +1,37 @@
+@import "../../../../styles/functions/calc-clamp";
+.header-character {
+  position: absolute;
+  top: calc-clamp(10);
+  right: 0;
+  &-girl {
+    position: relative;
+    z-index: 1;
+    width: calc-clamp(609);
+    margin-inline-end: calc-clamp(-20);
+  }
+  &-mask {
+    position: absolute;
+    bottom: calc-clamp(80);
+    left: calc-clamp(-315);
+    z-index: 0;
+    width: calc-clamp(606);
+  }
+  &-s-green {
+    position: absolute;
+    bottom: calc-clamp(500);
+    left: 0;
+    width: calc-clamp(152);
+  }
+  &-s-red {
+    position: absolute;
+    top: calc-clamp(135);
+    right: calc-clamp(25);
+    width: calc-clamp(132);
+  }
+  &-s-purple {
+    position: absolute;
+    top: calc-clamp(10);
+    right: calc-clamp(130);
+    width: calc-clamp(49);
+  }
+}

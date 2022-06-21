@@ -1,0 +1,19 @@
+@import "../../../../styles/functions/calc-clamp";
+.header-btn-login {
+  height: 100%;
+  min-width: calc-clamp(265);
+  padding-inline-start: calc-clamp(35);
+  padding-inline-end: calc-clamp(35);
+  margin-inline-end: calc-clamp(-43);
+  background: #e833d0;
+  transform: skew(-20deg);
+  &-text {
+    display: block;
+    font-family: OpenSans, sans-serif;
+    font-size: calc-clamp(31);
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    transform: skew(20deg);
+  }
+}

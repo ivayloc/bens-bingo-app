@@ -9,14 +9,4 @@ import { BingoGameDetailsDialogComponent } from './shared/components/bingo-game-
 export class AppComponent {
   title = 'bens-bingo-app';
   // games = [1, 2, 3, 4, 1, 2, 3, 4];
-  games = [1, 2, 3, 4];
-  newGames = [1, 2, 3, 4];
-  slots = [1, 2, 3, 4, 5];
-  constructor(public dialog: MatDialog) {}
-  showBingoGameDetails() {
-    const dialogRef = this.dialog.open(BingoGameDetailsDialogComponent, {
-      width: '56.25vw',
-      // data: {name: this.name, animal: this.animal},
-    });
-  }
 }

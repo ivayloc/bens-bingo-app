@@ -1,0 +1,16 @@
+@import "../../../../styles/functions/calc-clamp";
+.language-selector {
+  margin: 0 calc-clamp(16);
+  &,
+  &-lng {
+    width: calc-clamp(84);
+    height: calc-clamp(78);
+  }
+  &-lng {
+    font-family: OpenSans, sans-serif;
+    font-size: calc-clamp(40);
+    font-weight: 700;
+    color: #fff;
+    border: solid 2px #e833d0;
+  }
+}

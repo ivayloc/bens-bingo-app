@@ -1,0 +1,164 @@
+@import "../../../../styles/functions/calc-clamp";
+@import "../../../../styles/vendors/hovercss";
+@import "/node_modules/hover.css/scss/effects/background-transitions/fade";
+
+.bingo-games {
+  margin-bottom: calc-clamp(238);
+  &-header {
+    position: relative;
+    top: calc-clamp(-45);
+    padding-inline-start: calc-clamp(225);
+    margin-bottom: calc-clamp(-15);
+    background: linear-gradient(148deg, #401784 9%, #652ac5 55%, #401784 72%);
+    &-text {
+      margin-inline-end: calc-clamp(360);
+      font-family: OpenSans, sans-serif;
+      font-size: calc-clamp(60);
+      font-weight: 700;
+      color: #fff;
+      text-transform: uppercase;
+    }
+    .fox-icon {
+      position: absolute;
+      top: 33%;
+      left: calc-clamp(-20);
+      z-index: 9;
+      width: calc-clamp(244);
+      transform: translateY(-50%);
+    }
+    &-btn-more {
+      @include fade();
+      min-width: calc-clamp(282);
+      min-width: calc-clamp(358);
+      margin-inline-end: calc-clamp(-10);
+      background-color: #0d808a;
+      transform: skew(-10deg);
+      &-text {
+        display: block;
+        font-family: OpenSans, sans-serif;
+        font-size: calc-clamp(35);
+        font-weight: 700;
+        color: #fff;
+        text-transform: uppercase;
+        transform: skew(10deg);
+      }
+    }
+  }
+  &-list {
+    &-item {
+      &:nth-child(1) {
+        .bingo-game-wrap {
+          background-image: url("/assets/images/games/game-1.webp");
+        }
+      }
+      &:nth-child(2) {
+        .bingo-game-wrap {
+          background-image: url("/assets/images/games/game-2.webp");
+        }
+      }
+      &:nth-child(3) {
+        .bingo-game-wrap {
+          background-image: url("/assets/images/games/game-3.webp");
+        }
+      }
+      &:nth-child(4) {
+        .bingo-game-wrap {
+          background-image: url("/assets/images/games/game-4.webp");
+        }
+      }
+    }
+  }
+}
+.bingo-game {
+  &-wrap {
+    margin: 0 calc-clamp(-32);
+    clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%);
+    background-color: #000;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+  position: relative;
+  min-height: calc-clamp(500);
+  &-time {
+    max-width: calc-clamp(120);
+    padding: 0 calc-clamp(24);
+    margin-inline-start: calc-clamp(76);
+    margin-top: calc-clamp(5);
+    text-align: center;
+    background-color: #662bc7;
+    transform: skew(351deg);
+    &-text {
+      font-family: OpenSans, sans-serif;
+      font-size: calc-clamp(31);
+      font-weight: 700;
+      color: #fff;
+      transform: skew(-351deg);
+    }
+  }
+  &-type {
+    padding-inline-start: calc-clamp(65);
+    margin-top: calc-clamp(115);
+    font-family: OpenSans, sans-serif;
+    font-size: calc-clamp(30);
+    font-style: italic;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+  }
+  &-name {
+    padding-inline-start: calc-clamp(45);
+    font-family: OpenSans, sans-serif;
+    font-size: calc-clamp(71);
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-transform: uppercase;
+  }
+  &-jackpot {
+    position: absolute;
+    right: calc-clamp(38);
+    bottom: 0;
+    left: 0;
+    height: calc-clamp(200);
+    padding-bottom: calc-clamp(90);
+    color: #fff;
+    background-color: rgba(#000, 0.8);
+
+    &-title {
+      padding-inline-start: calc-clamp(35);
+      margin-top: calc-clamp(8);
+      font-family: OpenSans, sans-serif;
+      font-size: calc-clamp(30);
+      font-style: italic;
+      font-weight: 700;
+      line-height: 1;
+    }
+    &-sum {
+      font-family: OpenSans, sans-serif;
+      font-size: calc-clamp(55);
+      font-weight: 700;
+      line-height: 1;
+    }
+  }
+  &-btn {
+    @include fade();
+    position: absolute;
+    bottom: calc-clamp(-35);
+    /* stylelint-disable-next-line function-disallowed-list */
+    left: calc(50% - calc-clamp(33));
+    z-index: 9;
+    padding: calc-clamp(9) calc-clamp(40);
+    background-color: #0d808a;
+    transform: skew(-10deg) translateX(-50%);
+    &-text {
+      display: block;
+      font-family: OpenSans, sans-serif;
+      font-size: calc-clamp(35);
+      font-weight: 700;
+      color: #fff;
+      text-transform: uppercase;
+      transform: skew(15deg);
+    }
+  }
+}

@@ -1,0 +1,33 @@
+@import "../../../../styles/functions/calc-clamp";
+@import "../../../../styles/vendors/hovercss";
+@import "/node_modules/hover.css/scss/effects/background-transitions/fade";
+
+.main-navigation {
+  padding: 0 calc-clamp(60) 0 calc-clamp(160);
+  margin: 0 calc-clamp(-8);
+  background-color: #0d808a;
+  transform: skew(-20deg);
+  &-list {
+    transform: skew(20deg);
+  }
+  &-link {
+    @include fade();
+    display: block;
+    padding-inline-start: calc-clamp(40);
+    padding-inline-end: calc-clamp(40);
+    text-decoration: none;
+    text-transform: uppercase;
+    transform: skew(-20deg);
+    &.active {
+      background-color: #093a5c;
+    }
+    &-text {
+      display: block;
+      font-family: OpenSans, sans-serif;
+      font-size: calc-clamp(31);
+      font-weight: 700;
+      color: #fff;
+      transform: skew(20deg);
+    }
+  }
+}
