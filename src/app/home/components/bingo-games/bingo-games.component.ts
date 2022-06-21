@@ -11,7 +11,9 @@ export class BingoGamesComponent implements OnInit {
   constructor(public dialog: MatDialog) {}
   games = [1, 2, 3, 4, 1, 2, 3, 4];
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.showBingoGameDetails();
+  }
 
   showBingoGameDetails() {
     const dialogRef = this.dialog.open(BingoGameDetailsDialogComponent, {

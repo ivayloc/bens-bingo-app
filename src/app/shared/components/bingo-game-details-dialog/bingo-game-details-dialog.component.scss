@@ -1,0 +1,86 @@
+@import "../../../../styles/functions/calc-clamp";
+@import "../../../../styles/vendors/hovercss";
+@import "/node_modules/hover.css/scss/effects/background-transitions/fade";
+@import "/node_modules/hover.css/scss/effects/2d-transitions/shrink";
+$icon-close: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNzIuOCAxNzIuOCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTcyLjggMTcyLjgiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwYXRoIGQ9Ik05NS41IDg2LjQgMTcxIDEwLjljMi41LTIuNSAyLjUtNi42IDAtOS4xcy02LjYtMi41LTkuMSAwTDg2LjQgNzcuMyAxMC45IDEuOUM4LjQtLjYgNC4zLS42IDEuOCAxLjlzLTIuNSA2LjYgMCA5LjFsNzUuNSA3NS41LTc1LjQgNzUuNGMtMi41IDIuNS0yLjUgNi42IDAgOS4xIDEuMiAxLjIgMi45IDEuOSA0LjUgMS45czMuMy0uNiA0LjUtMS45bDc1LjUtNzUuNSA3NS41IDc1LjVjMS4yIDEuMiAyLjkgMS45IDQuNSAxLjlzMy4zLS42IDQuNS0xLjljMi41LTIuNSAyLjUtNi42IDAtOS4xTDk1LjUgODYuNHoiIHN0eWxlPSJmaWxsOiNlODMzZDAiLz48L3N2Zz4=";
+.game-details {
+  transform: skew(-10deg);
+  background-color: rgba(#000, 0.8);
+  padding: 16px 44px;
+  &-wrap {
+    margin-bottom: 20px;
+    margin-top: 200px;
+    margin-inline-start: 49px;
+    margin-inline-end: 53px;
+    position: relative;
+  }
+  &-btn-close {
+    width: 84px;
+    height: 78px;
+    background: #000 url($icon-close) no-repeat center;
+    background-size: 60%;
+    border: solid 3px #e833d0;
+    position: absolute;
+    top: -180px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 -10px 30px 5px #000;
+  }
+  &-time {
+    max-width: calc-clamp(120);
+    padding: 0 calc-clamp(24);
+    text-align: center;
+    background-color: #662bc7;
+    transform: skew(351deg);
+    margin-inline-start: 43px;
+    &-text {
+      font-family: OpenSans, sans-serif;
+      font-size: calc-clamp(31);
+      font-weight: 700;
+      color: #fff;
+      transform: skew(-351deg);
+    }
+  }
+  &-content {
+    transform: skew(10deg);
+    position: relative;
+  }
+  &-header {
+    font-family: OpenSans, sans-serif;
+    font-weight: 700;
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    line-height: 1;
+    margin: 0px -44px 0 -13px;
+    padding: 0 20px 20px;
+    &-type {
+      font-size: 29px;
+      font-style: italic;
+    }
+    &-name {
+      font-size: 70px;
+    }
+  }
+  &-body {
+    min-height: 300px;
+  }
+  &-btn {
+    @include fade();
+    position: absolute;
+    bottom: calc-clamp(-35);
+    left: 50%;
+    z-index: 9;
+    padding: calc-clamp(9) calc-clamp(40);
+    background-color: #0d808a;
+    transform: skew(-10deg) translateX(-50%);
+    &-text {
+      display: block;
+      font-family: OpenSans, sans-serif;
+      font-size: calc-clamp(35);
+      font-weight: 700;
+      color: #fff;
+      text-transform: uppercase;
+      transform: skew(15deg);
+    }
+  }
+}
