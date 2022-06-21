@@ -9,7 +9,7 @@ import { BingoGameDetailsDialogComponent } from '../../../shared/components/bing
 })
 export class BingoGamesComponent implements OnInit {
   constructor(public dialog: MatDialog) {}
-  games = [1, 2, 3, 4];
+  games = [1, 2, 3, 4, 1, 2, 3, 4];
 
   ngOnInit(): void {}
 

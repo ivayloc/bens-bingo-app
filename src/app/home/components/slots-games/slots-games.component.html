@@ -16,18 +16,30 @@
       </button>
     </div>
   </div>
-  <ul class="slots-games-list list-unstyled d-flex mb-0">
-    <li class="position-relative flex-fill" *ngFor="let item of slots">
-      <div class="slots-game-wrap">
-        <div class="slots-game">
-          <div class="slots-game-studio">
-            <div class="slots-game-studio-text">Elysium Studios</div>
-          </div>
-          <div class="slots-game-name d-flex">
-            <div class="slots-game-name-text">Law Of Gilgamesh</div>
+  <div class="slots-games-list">
+    <p-carousel
+      [value]="slots"
+      [numVisible]="5"
+      [numScroll]="1"
+      [circular]="true"
+      [showIndicators]="false"
+      [showNavigators]="true"
+    >
+      <!-- *ngFor="let item of slots" -->
+      <ng-template let-slot pTemplate="item">
+        <div class="slots-games-list-item position-relative">
+          <div class="slots-game-wrap">
+            <div class="slots-game">
+              <div class="slots-game-studio">
+                <div class="slots-game-studio-text">Elysium Studios</div>
+              </div>
+              <div class="slots-game-name d-flex">
+                <div class="slots-game-name-text">Law Of Gilgamesh</div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </li>
-  </ul>
+      </ng-template>
+    </p-carousel>
+  </div>
 </div>

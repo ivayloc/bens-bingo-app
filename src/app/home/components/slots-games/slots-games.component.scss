@@ -45,7 +45,7 @@
     }
   }
   &-list {
-    li {
+    &-item {
       &:nth-child(1) {
         .slots-game-wrap {
           background-image: url("/assets/images/games/slot-1.jpg");

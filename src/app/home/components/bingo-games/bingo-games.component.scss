@@ -1,5 +1,4 @@
 @import "../../../../styles/functions/calc-clamp";
-@import "../../../../styles/mixins/btn-clear";
 @import "../../../../styles/vendors/hovercss";
 @import "/node_modules/hover.css/scss/effects/background-transitions/fade";
 
@@ -161,36 +160,5 @@
       text-transform: uppercase;
       transform: skew(15deg);
     }
-  }
-}
-$arrow-left: "data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjEyIiB3aWR0aD0iOSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCiAgICA8cGF0aCBkPSJNNy45IDEuNCA2LjUgMGwtNiA2IDYgNiAxLjQtMS40TDMuMyA2bDQuNi00LjZaIiBmaWxsPSIjMGQ4MDhhIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIC8+DQo8L3N2Zz4=";
-$arrow-right: "data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjEyIiB3aWR0aD0iOSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMS41IDAgLjEgMS40IDQuNyA2IC4xIDEwLjYgMS41IDEybDYtNi02LTZaIiBmaWxsPSIjMGQ4MDhhIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4=";
-:host ::ng-deep {
-  .p-carousel-items-content,
-  .p-carousel-content {
-    overflow: unset;
-  }
-  .p-carousel-container {
-    display: block;
-    position: relative;
-  }
-  .p-carousel-prev,
-  .p-carousel-next {
-    @include btn-clear;
-    width: calc-clamp(35);
-    position: absolute;
-    z-index: 9;
-    top: 0;
-    bottom: 0;
-  }
-  .p-carousel-prev {
-    background: rgba(#000, 0.6) url($arrow-left) center no-repeat;
-    background-size: 70%;
-    left: 0;
-  }
-  .p-carousel-next {
-    background: rgba(#000, 0.6) url($arrow-right) center no-repeat;
-    background-size: 70%;
-    right: 0;
   }
 }
