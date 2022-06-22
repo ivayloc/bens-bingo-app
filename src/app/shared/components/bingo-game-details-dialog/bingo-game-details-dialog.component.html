@@ -1,4 +1,7 @@
-<div class="game-details-wrap">
+<div
+  class="game-details-wrap"
+  [ngStyle]="{ 'background-image': 'url(' + game.image + ')' }"
+>
   <button
     class="btn-clear game-details-btn-close"
     (click)="closeDialog()"
