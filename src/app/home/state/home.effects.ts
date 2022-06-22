@@ -39,4 +39,34 @@ export class HomeEffects {
       )
     );
   });
+
+  loadJackpots$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(HomePageActions.loadJackpots),
+      mergeMap(() =>
+        this.homeService.getJackpots().pipe(
+          map((jackpots) => HomeApiActions.loadJackpotsSuccess({ jackpots })),
+          catchError((error) =>
+            of(HomeApiActions.loadJackpotsFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  loadRecentWinners$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(HomePageActions.loadRecentWinners),
+      mergeMap(() =>
+        this.homeService.getRecentWinners().pipe(
+          map((recentWinners) =>
+            HomeApiActions.loadRecentWinnersSuccess({ recentWinners })
+          ),
+          catchError((error) =>
+            of(HomeApiActions.loadRecentWinnersFailure({ error }))
+          )
+        )
+      )
+    );
+  });
 }

@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BingoGame } from '../models/bingo-game';
+import { Jackpot } from '../models/jackpots';
+import { RecentWinners } from '../models/recent-winners';
 import { SlotsGame } from '../models/slots-game';
 
 @Injectable({
@@ -16,5 +18,13 @@ export class HomeService {
 
   getSlotsGames(): Observable<SlotsGame[]> {
     return this.http.get<SlotsGame[]>('/assets/mock/hot-slots.json');
+  }
+
+  getJackpots(): Observable<Jackpot[]> {
+    return this.http.get<Jackpot[]>('/assets/mock/jackpots.json');
+  }
+
+  getRecentWinners(): Observable<RecentWinners[]> {
+    return this.http.get<RecentWinners[]>('/assets/mock/recent-winners.json');
   }
 }

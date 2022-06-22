@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SlotsGame } from '../../models/slots-game';
 
 @Component({
@@ -6,10 +6,6 @@ import { SlotsGame } from '../../models/slots-game';
   templateUrl: './slots-games.component.html',
   styleUrls: ['./slots-games.component.scss'],
 })
-export class SlotsGamesComponent implements OnInit {
+export class SlotsGamesComponent {
   @Input() games: SlotsGame[] = [];
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }

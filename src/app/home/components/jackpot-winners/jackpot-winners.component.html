@@ -9,12 +9,15 @@
           <ul class="jackpots-list list-unstyled mb-0">
             <li
               class="jackpots-list-item d-flex align-items-end jackpots-list-item"
+              *ngFor="let jackpot of jackpots"
             >
               <div class="jackpots-list-item-game flex-fill">
-                <div class="jackpots-list-item-game-studio">Progressive</div>
-                UNO
+                <div class="jackpots-list-item-game-studio">
+                  {{ jackpot.studio }}
+                </div>
+                {{ jackpot.game }}
               </div>
-              <div class="jackpots-list-item-sum">$ 143,67</div>
+              <div class="jackpots-list-item-sum">$ {{ jackpot.sum }}</div>
             </li>
           </ul>
         </div>
@@ -31,21 +34,15 @@
           <ul class="winners-list list-unstyled mb-0">
             <li
               class="winners-list-item d-flex align-items-end winners-list-item"
+              *ngFor="let winner of recentWinners"
             >
               <div class="winners-list-item-game flex-fill">
-                <div class="winners-list-item-game-username">ELENA 25</div>
-                PUPP PAWS
+                <div class="winners-list-item-game-username">
+                  {{ winner.name }}
+                </div>
+                {{ winner.game }}
               </div>
-              <div class="winners-list-item-sum">$ 35</div>
-            </li>
-            <li
-              class="winners-list-item d-flex align-items-end winners-list-item"
-            >
-              <div class="winners-list-item-game flex-fill">
-                <div class="winners-list-item-game-username">ELENA 25</div>
-                PUPP PAWS
-              </div>
-              <div class="winners-list-item-sum">$ 35</div>
+              <div class="winners-list-item-sum">$ {{ winner.sum }}</div>
             </li>
           </ul>
         </div>

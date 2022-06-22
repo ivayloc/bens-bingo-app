@@ -5,5 +5,8 @@
   <app-header-character></app-header-character>
 </div>
 <app-bingo-games [games]="$any(getBingoGames$ | async)"></app-bingo-games>
-<app-jackpot-winners></app-jackpot-winners>
+<app-jackpot-winners
+  [jackpots]="$any(getJackpots$ | async)"
+  [recentWinners]="$any(getRecentWinners$ | async)"
+></app-jackpot-winners>
 <app-slots-games [games]="$any(getSlotsGames$ | async)"></app-slots-games>

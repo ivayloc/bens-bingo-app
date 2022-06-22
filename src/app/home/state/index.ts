@@ -17,3 +17,13 @@ export const getSlotsGames = createSelector(
   getHomeDetailsState,
   (state) => state.slotsGames
 );
+
+export const getJackpots = createSelector(
+  getHomeDetailsState,
+  (state) => state.jackpots
+);
+
+export const getRecentWinners = createSelector(
+  getHomeDetailsState,
+  (state) => state.recentWinners
+);
