@@ -1,5 +1,7 @@
 {
   "css.validate": true,
   "scss.validate": false,
-  "stylelint.validate": ["css", "less", "postcss", "scss"]
+  "stylelint.validate": ["css", "less", "postcss", "scss"],
+  "tabnine.experimentalAutoImports": true,
+  "angular.forceStrictTemplates": true
 }
