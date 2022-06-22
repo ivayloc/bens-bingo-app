@@ -10,17 +10,14 @@ import { BingoGameDetailsDialogComponent } from '../../../shared/components/bing
 export class BingoGamesComponent implements OnInit {
   @Input() games: any[] = [];
   constructor(public dialog: MatDialog) {}
-  // games = [1, 2, 3, 4, 1, 2, 3, 4];
 
-  ngOnInit(): void {
-    // this.showBingoGameDetails();
-  }
+  ngOnInit(): void {}
 
-  showBingoGameDetails() {
-    const dialogRef = this.dialog.open(BingoGameDetailsDialogComponent, {
+  showBingoGameDetails(game: any): void {
+    this.dialog.open(BingoGameDetailsDialogComponent, {
       minWidth: '56.25vw',
       maxWidth: 'unset',
-      // data: {name: this.name, animal: this.animal},
+      data: game,
     });
   }
 }
