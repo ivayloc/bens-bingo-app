@@ -16,26 +16,26 @@ $arrow-right: "data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjEyIiB3aWR0aD0iOSIgeG1
     overflow: unset;
   }
   .p-carousel-container {
-    display: block;
     position: relative;
+    display: block;
   }
   .p-carousel-prev,
   .p-carousel-next {
-    @include btn-clear;
-    width: calc-clamp(35);
+    @include btn-clear ();
     position: absolute;
-    z-index: 9;
     top: 0;
     bottom: 0;
+    z-index: 9;
+    width: calc-clamp(35);
   }
   .p-carousel-prev {
-    background: rgba(#000, 0.6) url($arrow-left) center no-repeat;
-    background-size: 70%;
     left: 0;
+    background: rgba(#000, .6) url($arrow-left) center no-repeat;
+    background-size: 70%;
   }
   .p-carousel-next {
-    background: rgba(#000, 0.6) url($arrow-right) center no-repeat;
-    background-size: 70%;
     right: 0;
+    background: rgba(#000, .6) url($arrow-right) center no-repeat;
+    background-size: 70%;
   }
 }

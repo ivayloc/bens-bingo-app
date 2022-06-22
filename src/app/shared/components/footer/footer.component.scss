@@ -18,12 +18,13 @@
 }
 .page-footer {
   color: #6b5e74;
-  background: url("/assets/images/bg-with-mask-2/bg-with-mask-2.webp") no-repeat
+  background:
+    url("/assets/images/bg-with-mask-2/bg-with-mask-2.webp") no-repeat
     center 0;
   background-size: contain;
   &-content {
     padding: calc-clamp(60) calc-clamp(80) calc-clamp(50);
-    background-color: rgba(#000, 0.6);
+    background-color: rgba(#000, .6);
   }
 
   &-link {
@@ -45,7 +46,7 @@
     margin-top: calc-clamp(40);
     margin-bottom: calc-clamp(45);
     background-color: #6b5e74;
-    opacity: 0.5;
+    opacity: .5;
   }
 
   &-18-plus {

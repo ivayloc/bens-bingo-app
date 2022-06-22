@@ -5,7 +5,7 @@
 .coming-up {
   z-index: 1;
   margin-inline-start: calc-clamp(-60);
-  background-color: rgba(#000, 0.7);
+  background-color: rgba(#000, .7);
   transform: skew(-20deg);
   &-body {
     transform: skew(20deg);
@@ -101,12 +101,12 @@
       left: calc-clamp(-18);
     }
     .p-scrollpanel-bar {
-      background: #000;
       width: calc-clamp(6);
+      background: #000;
     }
     &:hover {
       .p-scrollpanel-bar-y {
-        opacity: 0.5;
+        opacity: .5;
       }
     }
     .p-scrollpanel-content {

@@ -1,20 +1,21 @@
 @import "../../../../styles/functions/calc-clamp";
 :host {
+  display: block;
   background: url("/assets/images/header-bg.webp") no-repeat 0 0;
   background-size: content;
-  display: block;
 }
 .top-bar {
   padding: 0 calc-clamp(48);
   line-height: normal;
   background: #401784;
-  background: linear-gradient(
-    to right,
-    #401784 16%,
-    #652ac5 51%,
-    #431888 79%,
-    #5321a4 100%
-  );
+  background:
+    linear-gradient(
+      to right,
+      #401784 16%,
+      #652ac5 51%,
+      #431888 79%,
+      #5321a4 100%
+    );
   &-username {
     margin-top: calc-clamp(-2);
     margin-bottom: calc-clamp(5);
