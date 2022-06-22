@@ -1,0 +1,58 @@
+[
+  {
+    "image": "/assets/images/games/game-1.webp",
+    "jackpot": [1302.57, 110.76],
+    "name": "1001-10",
+    "time": "1:43",
+    "type": "game"
+  },
+  {
+    "image": "/assets/images/games/game-2.webp",
+    "jackpot": [311.18],
+    "name": "Uno",
+    "time": "3:15",
+    "type": "Game"
+  },
+  {
+    "image": "/assets/images/games/game-3.webp",
+    "jackpot": [1302.57, 110.76],
+    "name": "1001 XL",
+    "time": "4:45",
+    "type": "Game"
+  },
+  {
+    "image": "/assets/images/games/game-4.webp",
+    "jackpot": [1302.57, 60.76],
+    "name": "Freja",
+    "time": "0:45",
+    "type": "Game"
+  },
+  {
+    "image": "/assets/images/games/game-1.webp",
+    "jackpot": [1302.57, 110.76],
+    "name": "1001-10",
+    "time": "1:43",
+    "type": "game"
+  },
+  {
+    "image": "/assets/images/games/game-2.webp",
+    "jackpot": [311.18],
+    "name": "Uno",
+    "time": "3:15",
+    "type": "Game"
+  },
+  {
+    "image": "/assets/images/games/game-3.webp",
+    "jackpot": [1302.57, 110.76],
+    "name": "1001 XL",
+    "time": "4:45",
+    "type": "Game"
+  },
+  {
+    "image": "/assets/images/games/game-4.webp",
+    "jackpot": [1302.57, 60.76],
+    "name": "Freja",
+    "time": "0:45",
+    "type": "Game"
+  }
+]
