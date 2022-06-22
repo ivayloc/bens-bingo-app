@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, tap } from 'rxjs';
+import { BingoGame } from '../../models/bingo-game';
 import { getBingoGames, State } from '../../state';
 import { HomePageActions } from '../../state/actions';
 
@@ -10,7 +11,7 @@ import { HomePageActions } from '../../state/actions';
   styleUrls: ['./home-layout.component.scss'],
 })
 export class HomeLayoutComponent implements OnInit {
-  getBingoGames$ = new Observable<any[]>();
+  getBingoGames$ = new Observable<BingoGame[]>();
 
   constructor(private store: Store<State>) {}
 

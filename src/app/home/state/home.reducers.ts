@@ -1,8 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
+import { BingoGame } from '../models/bingo-game';
 import { HomeApiActions } from './actions';
 
 export interface HomeState {
-  bingoGames: any[];
+  bingoGames: BingoGame[];
   slotsGames: any[];
   newGames: any[];
   error: string;
