@@ -6,4 +6,4 @@
 </div>
 <app-bingo-games [games]="$any(getBingoGames$ | async)"></app-bingo-games>
 <app-jackpot-winners></app-jackpot-winners>
-<app-slots-games></app-slots-games>
+<app-slots-games [games]="$any(getSlotsGames$ | async)"></app-slots-games>

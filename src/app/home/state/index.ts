@@ -12,3 +12,8 @@ export const getBingoGames = createSelector(
   getHomeDetailsState,
   (state) => state.bingoGames
 );
+
+export const getSlotsGames = createSelector(
+  getHomeDetailsState,
+  (state) => state.slotsGames
+);

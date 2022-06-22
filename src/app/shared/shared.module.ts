@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { BingoGamesComponent } from '../home/components/bingo-games/bingo-games.component';
 import { BingoGameDetailsDialogComponent } from './components/bingo-game-details-dialog/bingo-game-details-dialog.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -19,7 +18,6 @@ import { PrimeNgModule } from './modules/prime-ng.module';
     LanguageSelectorComponent,
     LoginComponent,
     MainNavigationComponent,
-    BingoGamesComponent,
     FooterComponent,
   ],
   imports: [
@@ -34,7 +32,6 @@ import { PrimeNgModule } from './modules/prime-ng.module';
     ShrinkFontSizeDirective,
     HeaderComponent,
     MainNavigationComponent,
-    BingoGamesComponent,
     FooterComponent,
   ],
 })

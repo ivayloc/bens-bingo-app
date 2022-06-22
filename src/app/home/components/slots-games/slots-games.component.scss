@@ -49,31 +49,6 @@
     &-item {
       @include grow();
       display: block;
-      &:nth-child(1) {
-        .slots-game-wrap {
-          background-image: url("/assets/images/games/slot-1.jpg");
-        }
-      }
-      &:nth-child(2) {
-        .slots-game-wrap {
-          background-image: url("/assets/images/games/slot-2.jpg");
-        }
-      }
-      &:nth-child(3) {
-        .slots-game-wrap {
-          background-image: url("/assets/images/games/slot-3.jpg");
-        }
-      }
-      &:nth-child(4) {
-        .slots-game-wrap {
-          background-image: url("/assets/images/games/slot-4.jpg");
-        }
-      }
-      &:nth-child(5) {
-        .slots-game-wrap {
-          background-image: url("/assets/images/games/slot-5.jpg");
-        }
-      }
     }
   }
 }
@@ -111,7 +86,7 @@
     left: 0;
     height: calc-clamp(125);
     padding: 0 calc-clamp(20);
-    background-color: rgba(#000, .8);
+    background-color: rgba(#000, 0.8);
     &-text {
       position: absolute;
       top: 50%;

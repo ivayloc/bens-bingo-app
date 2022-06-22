@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { SlotsGame } from '../../models/slots-game';
 
 @Component({
   selector: 'app-slots-games',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./slots-games.component.scss'],
 })
 export class SlotsGamesComponent implements OnInit {
-  slots = [1, 2, 3, 4, 5];
+  @Input() games: SlotsGame[] = [];
 
   constructor() {}
 

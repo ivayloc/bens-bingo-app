@@ -23,4 +23,20 @@ export class HomeEffects {
       )
     );
   });
+
+  loadSlotsGames$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(HomePageActions.loadSlotsGames),
+      mergeMap(() =>
+        this.homeService.getSlotsGames().pipe(
+          map((slotsGames) =>
+            HomeApiActions.loadSlotsGamesSuccess({ slotsGames })
+          ),
+          catchError((error) =>
+            of(HomeApiActions.loadSlotsGamesFailure({ error }))
+          )
+        )
+      )
+    );
+  });
 }

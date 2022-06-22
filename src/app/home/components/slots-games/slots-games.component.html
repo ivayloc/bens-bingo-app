@@ -11,30 +11,36 @@
         alt="fox head"
       />
       <div class="slots-games-header-text">Hot Slots</div>
-      <button class="btn-clear slots-games-header-btn-more" matRipple>
+      <button
+        class="btn-clear slots-games-header-btn-more"
+        [routerLink]="['/slots-games']"
+        matRipple
+      >
         <span class="slots-games-header-btn-more-text">More games</span>
       </button>
     </div>
   </div>
   <div class="slots-games-list">
     <p-carousel
-      [value]="slots"
+      [value]="games"
       [numVisible]="5"
       [numScroll]="1"
       [circular]="true"
       [showIndicators]="false"
       [showNavigators]="true"
     >
-      <!-- *ngFor="let item of slots" -->
-      <ng-template let-slot pTemplate="item">
+      <ng-template let-game pTemplate="item">
         <div class="slots-games-list-item position-relative">
-          <div class="slots-game-wrap">
+          <div
+            class="slots-game-wrap"
+            [ngStyle]="{ 'background-image': 'url(' + game.image + ')' }"
+          >
             <div class="slots-game">
               <div class="slots-game-studio">
-                <div class="slots-game-studio-text">Elysium Studios</div>
+                <div class="slots-game-studio-text">{{ game.studio }}</div>
               </div>
               <div class="slots-game-name d-flex">
-                <div class="slots-game-name-text">Law Of Gilgamesh</div>
+                <div class="slots-game-name-text">{{ game.game }}</div>
               </div>
             </div>
           </div>

@@ -31,5 +31,19 @@ export const homeReducer = createReducer<HomeState>(
       bingoGames: [],
       error: action.error,
     };
+  }),
+  on(HomeApiActions.loadSlotsGamesSuccess, (state, action): HomeState => {
+    return {
+      ...state,
+      slotsGames: action.slotsGames,
+      error: '',
+    };
+  }),
+  on(HomeApiActions.loadSlotsGamesFailure, (state, action): HomeState => {
+    return {
+      ...state,
+      slotsGames: [],
+      error: action.error,
+    };
   })
 );
