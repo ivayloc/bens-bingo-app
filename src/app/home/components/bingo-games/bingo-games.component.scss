@@ -1,6 +1,7 @@
 @import "../../../../styles/functions/calc-clamp";
 @import "../../../../styles/vendors/hovercss";
 @import "/node_modules/hover.css/scss/effects/background-transitions/fade";
+@import "/node_modules/hover.css/scss/effects/2d-transitions/grow";
 
 .bingo-games {
   margin-bottom: calc-clamp(238);
@@ -46,6 +47,8 @@
   }
   &-list {
     &-item {
+      @include grow();
+      display: block;
       &:nth-child(1) {
         .bingo-game-wrap {
           background-image: url("/assets/images/games/game-1.webp");

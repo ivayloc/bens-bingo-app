@@ -17,7 +17,8 @@ export class BingoGamesComponent implements OnInit {
 
   showBingoGameDetails() {
     const dialogRef = this.dialog.open(BingoGameDetailsDialogComponent, {
-      width: '56.25vw',
+      minWidth: '56.25vw',
+      maxWidth: 'unset',
       // data: {name: this.name, animal: this.animal},
     });
   }
