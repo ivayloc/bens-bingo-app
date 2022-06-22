@@ -10,7 +10,8 @@ import { BingoGame } from '../../models/bingo-game';
 })
 export class BingoGamesComponent {
   @Input() games: BingoGame[] = [];
-  constructor(public dialog: MatDialog) {}
+
+  constructor(private dialog: MatDialog) {}
 
   showBingoGameDetails(game: BingoGame): void {
     this.dialog.open(BingoGameDetailsDialogComponent, {
