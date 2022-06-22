@@ -49,26 +49,6 @@
     &-item {
       @include grow();
       display: block;
-      &:nth-child(1) {
-        .bingo-game-wrap {
-          background-image: url("/assets/images/games/game-1.webp");
-        }
-      }
-      &:nth-child(2) {
-        .bingo-game-wrap {
-          background-image: url("/assets/images/games/game-2.webp");
-        }
-      }
-      &:nth-child(3) {
-        .bingo-game-wrap {
-          background-image: url("/assets/images/games/game-3.webp");
-        }
-      }
-      &:nth-child(4) {
-        .bingo-game-wrap {
-          background-image: url("/assets/images/games/game-4.webp");
-        }
-      }
     }
   }
 }
@@ -126,7 +106,7 @@
     height: calc-clamp(200);
     padding-bottom: calc-clamp(90);
     color: #fff;
-    background-color: rgba(#000, .8);
+    background-color: rgba(#000, 0.8);
 
     &-title {
       padding-inline-start: calc-clamp(35);

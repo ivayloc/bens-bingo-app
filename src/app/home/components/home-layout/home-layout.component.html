@@ -4,6 +4,6 @@
   <app-coming-up></app-coming-up>
   <app-header-character></app-header-character>
 </div>
-<app-bingo-games></app-bingo-games>
+<app-bingo-games [games]="$any(getBingoGames$ | async)"></app-bingo-games>
 <app-jackpot-winners></app-jackpot-winners>
 <app-slots-games></app-slots-games>

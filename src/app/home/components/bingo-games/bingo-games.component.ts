@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BingoGameDetailsDialogComponent } from '../../../shared/components/bingo-game-details-dialog/bingo-game-details-dialog.component';
 
@@ -8,8 +8,9 @@ import { BingoGameDetailsDialogComponent } from '../../../shared/components/bing
   styleUrls: ['./bingo-games.component.scss'],
 })
 export class BingoGamesComponent implements OnInit {
+  @Input() games: any[] = [];
   constructor(public dialog: MatDialog) {}
-  games = [1, 2, 3, 4, 1, 2, 3, 4];
+  // games = [1, 2, 3, 4, 1, 2, 3, 4];
 
   ngOnInit(): void {
     // this.showBingoGameDetails();

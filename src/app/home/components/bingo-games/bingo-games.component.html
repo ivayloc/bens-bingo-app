@@ -16,7 +16,6 @@
       </button>
     </div>
   </div>
-
   <div class="bingo-games-list">
     <p-carousel
       [value]="games"
@@ -29,23 +28,30 @@
     >
       <ng-template let-game pTemplate="item">
         <div class="bingo-games-list-item position-relative">
-          <!-- *ngFor="let item of games" -->
-          <div class="bingo-game-wrap">
+          <div
+            class="bingo-game-wrap"
+            [ngStyle]="{ 'background-image': 'url(' + game.image + ')' }"
+          >
             <div class="bingo-game">
               <div class="bingo-game-time">
-                <div class="bingo-game-time-text">1:43</div>
+                <div class="bingo-game-time-text">{{ game.time }}</div>
               </div>
-              <div class="bingo-game-type">Game</div>
-              <div class="bingo-game-name" appShrinkFontSize>1001-10</div>
+              <div class="bingo-game-type">{{ game.type }}</div>
+              <div class="bingo-game-name" appShrinkFontSize>
+                {{ game.name }}
+              </div>
               <div class="bingo-game-jackpot">
                 <div class="bingo-game-jackpot-title">JACKPOT</div>
                 <div
                   class="align-items-center d-flex justify-content-center h-100"
                 >
                   <div class="bingo-game-jackpot-sum">
-                    $ 1.302,57
-                    <div></div>
-                    $ 110,76
+                    <ng-container
+                      *ngFor="let jackpot of game.jackpot; last as isLast"
+                    >
+                      $ {{ jackpot }}
+                      <div *ngIf="!isLast"></div>
+                    </ng-container>
                   </div>
                 </div>
               </div>
