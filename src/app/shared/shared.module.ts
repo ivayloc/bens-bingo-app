@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { BingoGameDetailsDialogComponent } from './components/bingo-game-details-dialog/bingo-game-details-dialog.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -22,6 +23,7 @@ import { PrimeNgModule } from './modules/prime-ng.module';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     AngularMaterialModule,
     AngularMaterialModule,
     PrimeNgModule,
