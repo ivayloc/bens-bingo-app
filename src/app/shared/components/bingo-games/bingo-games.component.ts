@@ -9,5 +9,4 @@ import { BingoGame } from '../../../home/models/bingo-game';
 export class BingoGamesComponent {
   @Input() games: BingoGame[] = [];
   @Input() showInCarousel = true;
-  @Input() showAllGames = false;
 }
