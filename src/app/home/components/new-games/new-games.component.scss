@@ -9,7 +9,6 @@
   min-height: calc-clamp(548);
   margin-bottom: calc-clamp(8);
   overflow: hidden;
-  clip-path: polygon(0 0, 99.1% 0%, 86% 100%, 0% 100%);
   &-banner {
     width: calc-clamp(1568);
   }
@@ -23,13 +22,12 @@
     padding-top: calc-clamp(40);
     padding-bottom: calc-clamp(40);
     text-align: center;
-    background:
-      linear-gradient(
-        to top,
-        rgba(0, 0, 0, 1) 0%,
-        rgba(0, 0, 0, .6) 65%,
-        rgb(0 0 0 / 0%) 100%
-      );
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.6) 65%,
+      rgb(0 0 0 / 0%) 100%
+    );
   }
   &-btn-more {
     @include fade();

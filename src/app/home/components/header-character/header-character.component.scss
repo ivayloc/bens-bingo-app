@@ -3,6 +3,7 @@
   position: absolute;
   top: calc-clamp(-87);
   right: 0;
+  pointer-events: none;
 }
 .header-character {
   &-girl {

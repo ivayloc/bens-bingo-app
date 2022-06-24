@@ -10,6 +10,7 @@ import { MainNavigationComponent } from './components/main-navigation/main-navig
 import { ShrinkFontSizeDirective } from './directives/shrink-font-size.directive';
 import { AngularMaterialModule } from './modules/angular-material.module';
 import { PrimeNgModule } from './modules/prime-ng.module';
+import { SubNavigationComponent } from './components/sub-navigation/sub-navigation.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { PrimeNgModule } from './modules/prime-ng.module';
     LoginComponent,
     MainNavigationComponent,
     FooterComponent,
+    SubNavigationComponent,
   ],
   imports: [
     CommonModule,
@@ -35,6 +37,7 @@ import { PrimeNgModule } from './modules/prime-ng.module';
     HeaderComponent,
     MainNavigationComponent,
     FooterComponent,
+    SubNavigationComponent,
   ],
 })
 export class SharedModule {}

@@ -1,0 +1,8 @@
+@import "../../../../styles/functions/calc-clamp";
+@import "../../../../styles/vendors/hovercss";
+
+.main-navigation-submenus {
+  margin-right: calc-clamp(-7);
+  margin-left: calc-clamp(-24);
+  background-color: #5d26b7;
+}
