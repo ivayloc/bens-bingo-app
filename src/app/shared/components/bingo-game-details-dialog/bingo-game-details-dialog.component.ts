@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { BingoGame } from 'src/app/home/models/bingo-game';
 
 @Component({
   selector: 'app-bingo-game-details-dialog',
@@ -8,8 +9,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class BingoGameDetailsDialogComponent {
   constructor(
-    public dialogRef: MatDialogRef<BingoGameDetailsDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public game: any
+    public dialogRef: MatDialogRef<BingoGameDetailsDialogComponent, BingoGame>,
+    @Inject(MAT_DIALOG_DATA) public game: BingoGame
   ) {}
 
   closeDialog() {

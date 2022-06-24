@@ -28,10 +28,7 @@ export class HomeLayoutComponent implements OnInit {
   constructor(private store: Store<State>) {}
 
   ngOnInit(): void {
-    this.store.dispatch(HomePageActions.loadBingoGames());
-    this.store.dispatch(HomePageActions.loadSlotsGames());
-    this.store.dispatch(HomePageActions.loadJackpots());
-    this.store.dispatch(HomePageActions.loadRecentWinners());
+    this.store.dispatch(HomePageActions.loadHomeDetails());
 
     this.getBingoGames$ = this.store.select(getBingoGames);
     this.getSlotsGames$ = this.store.select(getSlotsGames);

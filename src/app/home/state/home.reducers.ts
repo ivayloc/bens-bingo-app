@@ -2,11 +2,12 @@ import { createReducer, on } from '@ngrx/store';
 import { BingoGame } from '../models/bingo-game';
 import { Jackpot } from '../models/jackpots';
 import { RecentWinners } from '../models/recent-winners';
+import { SlotsGame } from '../models/slots-game';
 import { HomeApiActions } from './actions';
 
 export interface HomeState {
   bingoGames: BingoGame[];
-  slotsGames: any[];
+  slotsGames: SlotsGame[];
   newGames: any[];
   jackpots: Jackpot[];
   recentWinners: RecentWinners[];
@@ -24,59 +25,17 @@ const initialState: HomeState = {
 
 export const homeReducer = createReducer<HomeState>(
   initialState,
-  on(HomeApiActions.loadBingoGamesSuccess, (state, action): HomeState => {
+  on(HomeApiActions.loadHomeDetailsSuccess, (state, action): HomeState => {
     return {
       ...state,
-      bingoGames: action.bingoGames,
+      ...action.homeDetails,
       error: '',
     };
   }),
-  on(HomeApiActions.loadBingoGamesFailure, (state, action): HomeState => {
+  on(HomeApiActions.loadHomeDetailsFailure, (state, action): HomeState => {
     return {
       ...state,
-      bingoGames: [],
-      error: action.error,
-    };
-  }),
-  on(HomeApiActions.loadSlotsGamesSuccess, (state, action): HomeState => {
-    return {
-      ...state,
-      slotsGames: action.slotsGames,
-      error: '',
-    };
-  }),
-  on(HomeApiActions.loadSlotsGamesFailure, (state, action): HomeState => {
-    return {
-      ...state,
-      slotsGames: [],
-      error: action.error,
-    };
-  }),
-  on(HomeApiActions.loadJackpotsSuccess, (state, action): HomeState => {
-    return {
-      ...state,
-      jackpots: action.jackpots,
-      error: '',
-    };
-  }),
-  on(HomeApiActions.loadJackpotsFailure, (state, action): HomeState => {
-    return {
-      ...state,
-      jackpots: [],
-      error: action.error,
-    };
-  }),
-  on(HomeApiActions.loadRecentWinnersSuccess, (state, action): HomeState => {
-    return {
-      ...state,
-      recentWinners: action.recentWinners,
-      error: '',
-    };
-  }),
-  on(HomeApiActions.loadRecentWinnersFailure, (state, action): HomeState => {
-    return {
-      ...state,
-      recentWinners: [],
+      ...initialState,
       error: action.error,
     };
   })
