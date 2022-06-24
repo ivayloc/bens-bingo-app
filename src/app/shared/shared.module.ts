@@ -11,6 +11,8 @@ import { ShrinkFontSizeDirective } from './directives/shrink-font-size.directive
 import { AngularMaterialModule } from './modules/angular-material.module';
 import { PrimeNgModule } from './modules/prime-ng.module';
 import { SubNavigationComponent } from './components/sub-navigation/sub-navigation.component';
+import { BingoGameComponent } from './components/bingo-game/bingo-game.component';
+import { BingoGamesComponent } from './components/bingo-games/bingo-games.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { SubNavigationComponent } from './components/sub-navigation/sub-navigati
     MainNavigationComponent,
     FooterComponent,
     SubNavigationComponent,
+    BingoGamesComponent,
+    BingoGameComponent,
   ],
   imports: [
     CommonModule,
@@ -38,6 +42,8 @@ import { SubNavigationComponent } from './components/sub-navigation/sub-navigati
     MainNavigationComponent,
     FooterComponent,
     SubNavigationComponent,
+    BingoGamesComponent,
+    BingoGameComponent,
   ],
 })
 export class SharedModule {}

@@ -1,0 +1,32 @@
+<div
+  class="bingo-game-wrap"
+  [ngStyle]="{ 'background-image': 'url(' + game.image + ')' }"
+>
+  <div class="bingo-game">
+    <div class="bingo-game-time">
+      <div class="bingo-game-time-text">{{ game.time }}</div>
+    </div>
+    <div class="bingo-game-type">{{ game.type }}</div>
+    <div class="bingo-game-name" appShrinkFontSize>
+      {{ game.name }}
+    </div>
+    <div class="bingo-game-jackpot">
+      <div class="bingo-game-jackpot-title">JACKPOT</div>
+      <div class="align-items-center d-flex justify-content-center h-100">
+        <div class="bingo-game-jackpot-sum">
+          <ng-container *ngFor="let jackpot of game.jackpot; last as isLast">
+            $ {{ jackpot }}
+            <div *ngIf="!isLast"></div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<button
+  class="btn-clear bingo-game-btn"
+  (click)="showBingoGameDetails(game)"
+  matRipple
+>
+  <span class="bingo-game-btn-text">Register</span>
+</button>

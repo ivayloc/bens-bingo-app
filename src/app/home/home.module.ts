@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { SharedModule } from '../shared/shared.module';
-import { BingoGamesComponent } from './components/bingo-games/bingo-games.component';
 import { ComingUpComponent } from './components/coming-up/coming-up.component';
 import { HeaderCharacterComponent } from './components/header-character/header-character.component';
 import { HomeLayoutComponent } from './components/home-layout/home-layout.component';
@@ -23,7 +22,6 @@ import { homeReducer } from './state/home.reducers';
     JackpotWinnersComponent,
     SlotsGamesComponent,
     HomeLayoutComponent,
-    BingoGamesComponent,
   ],
   imports: [
     CommonModule,

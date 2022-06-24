@@ -1,57 +1,7 @@
 @import "../../../../styles/functions/calc-clamp";
 @import "../../../../styles/vendors/hovercss";
 @import "/node_modules/hover.css/scss/effects/background-transitions/fade";
-@import "/node_modules/hover.css/scss/effects/2d-transitions/grow";
 
-.bingo-games {
-  margin-bottom: calc-clamp(238);
-  &-header {
-    position: relative;
-    top: calc-clamp(-45);
-    padding-inline-start: calc-clamp(225);
-    margin-bottom: calc-clamp(-15);
-    background: linear-gradient(148deg, #401784 9%, #652ac5 55%, #401784 72%);
-    &-text {
-      margin-inline-end: calc-clamp(360);
-      font-family: OpenSans, sans-serif;
-      font-size: calc-clamp(60);
-      font-weight: 700;
-      color: #fff;
-      text-transform: uppercase;
-    }
-    .fox-icon {
-      position: absolute;
-      top: 33%;
-      left: calc-clamp(-20);
-      z-index: 9;
-      width: calc-clamp(244);
-      transform: translateY(-50%);
-    }
-    &-btn-more {
-      @include fade();
-      min-width: calc-clamp(282);
-      min-width: calc-clamp(358);
-      margin-inline-end: calc-clamp(-10);
-      background-color: #0d808a;
-      transform: skew(-10deg);
-      &-text {
-        display: block;
-        font-family: OpenSans, sans-serif;
-        font-size: calc-clamp(35);
-        font-weight: 700;
-        color: #fff;
-        text-transform: uppercase;
-        transform: skew(10deg);
-      }
-    }
-  }
-  &-list {
-    &-item {
-      @include grow();
-      display: block;
-    }
-  }
-}
 .bingo-game {
   &-wrap {
     margin: 0 calc-clamp(-32);
