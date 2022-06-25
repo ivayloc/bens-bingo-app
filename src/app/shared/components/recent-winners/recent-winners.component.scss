@@ -1,0 +1,37 @@
+@import "../../../../styles/functions/calc-clamp";
+
+.winners-list {
+  transform: skew(10deg);
+  &-item {
+    position: relative;
+    padding-bottom: calc-clamp(30);
+    font-family: OpenSans, sans-serif;
+    font-size: calc-clamp(47);
+    font-weight: 700;
+    line-height: 1;
+    &::after {
+      position: absolute;
+      bottom: calc-clamp(15);
+      left: -6%;
+      width: 112%;
+      height: calc-clamp(2);
+      content: "";
+      background-color: #826c6c;
+    }
+    &:last-child {
+      padding-bottom: 0;
+      &::after {
+        content: none;
+      }
+    }
+    &-game {
+      &-username {
+        font-family: OpenSans, sans-serif;
+        font-size: calc-clamp(17);
+        font-style: italic;
+        font-weight: 700;
+        line-height: 1;
+      }
+    }
+  }
+}

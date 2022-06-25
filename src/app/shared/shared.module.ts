@@ -14,6 +14,7 @@ import { SubNavigationComponent } from './components/sub-navigation/sub-navigati
 import { BingoGameComponent } from './components/bingo-game/bingo-game.component';
 import { BingoGamesComponent } from './components/bingo-games/bingo-games.component';
 import { ContentBoxComponent } from './components/content-box/content-box.component';
+import { RecentWinnersComponent } from './components/recent-winners/recent-winners.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ContentBoxComponent } from './components/content-box/content-box.compon
     BingoGamesComponent,
     BingoGameComponent,
     ContentBoxComponent,
+    RecentWinnersComponent,
   ],
   imports: [
     CommonModule,
@@ -47,6 +49,7 @@ import { ContentBoxComponent } from './components/content-box/content-box.compon
     BingoGamesComponent,
     BingoGameComponent,
     ContentBoxComponent,
+    RecentWinnersComponent,
   ],
 })
 export class SharedModule {}

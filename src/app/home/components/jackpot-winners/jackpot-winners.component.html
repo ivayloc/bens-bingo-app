@@ -19,22 +19,6 @@
     </app-content-box>
   </div>
   <div class="box-winners flex-fill">
-    <app-content-box>
-      <div id="title">Recent Winners</div>
-      <ul class="winners-list list-unstyled mb-0">
-        <li
-          class="winners-list-item d-flex align-items-end winners-list-item"
-          *ngFor="let winner of recentWinners"
-        >
-          <div class="winners-list-item-game flex-fill">
-            <div class="winners-list-item-game-username">
-              {{ winner.name }}
-            </div>
-            {{ winner.game }}
-          </div>
-          <div class="winners-list-item-sum">$ {{ winner.sum }}</div>
-        </li>
-      </ul>
-    </app-content-box>
+    <app-recent-winners [recentWinners]="recentWinners"></app-recent-winners>
   </div>
 </div>
