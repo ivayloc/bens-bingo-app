@@ -10,6 +10,10 @@ $arrow-right: "data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjEyIiB3aWR0aD0iOSIgeG1
   background-size: cover;
 }
 
+.bingo-games {
+  margin-bottom: calc-clamp(166);
+}
+
 :host ::ng-deep {
   .p-carousel-items-content,
   .p-carousel-content {

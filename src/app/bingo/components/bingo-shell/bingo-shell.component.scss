@@ -1,0 +1,18 @@
+@import "../../../../styles/functions/calc-clamp";
+
+.bingo-games {
+  margin-bottom: calc-clamp(72);
+}
+.box-chat-moderators {
+  margin-top: calc-clamp(42);
+}
+.box-coming-up {
+  padding-inline-end: calc-clamp(20);
+  margin-inline-start: calc-clamp(-40);
+  margin-top: calc-clamp(-45);
+}
+.box-winners {
+  padding-inline-start: calc-clamp(20);
+  margin-inline-end: calc-clamp(-20);
+  margin-bottom: calc-clamp(40);
+}

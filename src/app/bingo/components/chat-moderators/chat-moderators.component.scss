@@ -1,0 +1,29 @@
+@import "../../../../styles/functions/calc-clamp";
+
+:host {
+  display: block;
+  margin: 0 calc-clamp(-50);
+}
+
+.moderators {
+  &-wrap {
+    padding-top: calc-clamp(30);
+    padding-bottom: calc-clamp(14);
+  }
+  &-moderator {
+    &-link {
+      display: block;
+      width: 98px;
+      height: 98px;
+      margin: 0 calc-clamp(75) calc-clamp(20);
+      border: solid 3px #974869;
+      border-radius: 50%;
+    }
+  }
+}
+
+.separator {
+  height: calc-clamp(2);
+  margin: calc-clamp(40) 0;
+  background-color: #6b5e74;
+}

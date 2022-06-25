@@ -3,11 +3,13 @@
     <div class="box-pink">
       <div class="box-pink-header">
         <div class="box-pink-header-text">
-          <ng-content select="#title"></ng-content>
+          {{ title }}
         </div>
       </div>
       <div class="box-pink-body">
-        <ng-content></ng-content>
+        <div class="transform-skew-10">
+          <ng-content></ng-content>
+        </div>
       </div>
     </div>
   </div>

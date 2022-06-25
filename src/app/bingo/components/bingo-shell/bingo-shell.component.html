@@ -1,6 +1,17 @@
 <app-sub-navigation></app-sub-navigation>
 <app-bingo-new-games></app-bingo-new-games>
 <app-bingo-games
+  class="d-block bingo-games"
   [showInCarousel]="false"
   [games]="$any(getBingoGames$ | async)"
 ></app-bingo-games>
+<div class="d-flex align-items-start">
+  <div class="box-coming-up flex-fill w-50">
+    <app-bingo-coming-up></app-bingo-coming-up>
+  </div>
+  <div class="box-winners flex-fill w-50">
+    <app-recent-winners></app-recent-winners>
+  </div>
+</div>
+
+<app-chat-moderators class="d-block box-chat-moderators"></app-chat-moderators>

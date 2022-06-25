@@ -1,3 +1,13 @@
+@import "./functions/calc-clamp";
+
 .line-height-normal {
   line-height: normal !important;
+}
+
+.fz-24 {
+  font-size: calc-clamp(24);
+}
+
+.fz-31 {
+  font-size: calc-clamp(31);
 }

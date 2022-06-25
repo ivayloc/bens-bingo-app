@@ -1,0 +1,7 @@
+@import "../../../../styles/functions/calc-clamp";
+
+:host ::ng-deep {
+  .coming-up-scroll {
+    height: calc-clamp(232);
+  }
+}

@@ -1,7 +1,6 @@
 @import "../../../../styles/functions/calc-clamp";
 
 .winners-list {
-  transform: skew(10deg);
   &-item {
     position: relative;
     padding-bottom: calc-clamp(30);

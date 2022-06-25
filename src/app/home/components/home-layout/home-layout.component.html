@@ -3,7 +3,10 @@
   <app-coming-up></app-coming-up>
   <app-header-character></app-header-character>
 </div>
-<app-bingo-games [games]="$any(getBingoGames$ | async)"></app-bingo-games>
+<app-bingo-games
+  [games]="$any(getBingoGames$ | async)"
+  class="bingo-games"
+></app-bingo-games>
 <app-jackpot-winners
   [jackpots]="$any(getJackpots$ | async)"
   [recentWinners]="$any(getRecentWinners$ | async)"

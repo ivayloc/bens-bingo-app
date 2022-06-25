@@ -4,6 +4,12 @@
 .clip-path-1 {
   clip-path: polygon(0 0, 99.1% 0%, 86% 100%, 0% 100%);
 }
+.transform-skew-10 {
+  transform: skew(10deg);
+}
+.transform-skew-n10 {
+  transform: skew(-10deg);
+}
 .transform-skew-20 {
   transform: skew(20deg);
 }
