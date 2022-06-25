@@ -46,12 +46,13 @@
     }
   }
   &-list {
+    margin: 0 calc-clamp(-10);
     &-item {
       @include grow();
       display: block;
       margin-bottom: calc-clamp(72);
       &-25 {
-        width: 24.779vw;
+        width: 25vw;
       }
     }
   }

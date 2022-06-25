@@ -1,52 +1,40 @@
 <div class="bg-jackpot-winners d-flex align-items-start">
-  <div class="box-pink-left flex-fill">
-    <div class="box-pink-wrap">
-      <div class="box-pink">
-        <div class="box-pink-header">
-          <div class="box-pink-header-text">JACKPOTS</div>
-        </div>
-        <div class="box-pink-body">
-          <ul class="jackpots-list list-unstyled mb-0">
-            <li
-              class="jackpots-list-item d-flex align-items-end jackpots-list-item"
-              *ngFor="let jackpot of jackpots"
-            >
-              <div class="jackpots-list-item-game flex-fill">
-                <div class="jackpots-list-item-game-studio">
-                  {{ jackpot.studio }}
-                </div>
-                {{ jackpot.game }}
-              </div>
-              <div class="jackpots-list-item-sum">$ {{ jackpot.sum }}</div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
+  <div class="box-jackpots flex-fill">
+    <app-content-box>
+      <div id="title">Jackpots</div>
+      <ul id="content" class="jackpots-list list-unstyled mb-0">
+        <li
+          class="jackpots-list-item d-flex align-items-end jackpots-list-item"
+          *ngFor="let jackpot of jackpots"
+        >
+          <div class="jackpots-list-item-game flex-fill">
+            <div class="jackpots-list-item-game-studio">
+              {{ jackpot.studio }}
+            </div>
+            {{ jackpot.game }}
+          </div>
+          <div class="jackpots-list-item-sum">$ {{ jackpot.sum }}</div>
+        </li>
+      </ul>
+    </app-content-box>
   </div>
-  <div class="box-pink-right flex-fill">
-    <div class="box-pink-wrap">
-      <div class="box-pink">
-        <div class="box-pink-header">
-          <div class="box-pink-header-text">RECENT WINNERS</div>
-        </div>
-        <div class="box-pink-body">
-          <ul class="winners-list list-unstyled mb-0">
-            <li
-              class="winners-list-item d-flex align-items-end winners-list-item"
-              *ngFor="let winner of recentWinners"
-            >
-              <div class="winners-list-item-game flex-fill">
-                <div class="winners-list-item-game-username">
-                  {{ winner.name }}
-                </div>
-                {{ winner.game }}
-              </div>
-              <div class="winners-list-item-sum">$ {{ winner.sum }}</div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
+  <div class="box-winners flex-fill">
+    <app-content-box>
+      <div id="title">Recent Winners</div>
+      <ul class="winners-list list-unstyled mb-0">
+        <li
+          class="winners-list-item d-flex align-items-end winners-list-item"
+          *ngFor="let winner of recentWinners"
+        >
+          <div class="winners-list-item-game flex-fill">
+            <div class="winners-list-item-game-username">
+              {{ winner.name }}
+            </div>
+            {{ winner.game }}
+          </div>
+          <div class="winners-list-item-sum">$ {{ winner.sum }}</div>
+        </li>
+      </ul>
+    </app-content-box>
   </div>
 </div>

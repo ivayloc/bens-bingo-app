@@ -13,6 +13,7 @@ import { PrimeNgModule } from './modules/prime-ng.module';
 import { SubNavigationComponent } from './components/sub-navigation/sub-navigation.component';
 import { BingoGameComponent } from './components/bingo-game/bingo-game.component';
 import { BingoGamesComponent } from './components/bingo-games/bingo-games.component';
+import { ContentBoxComponent } from './components/content-box/content-box.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { BingoGamesComponent } from './components/bingo-games/bingo-games.compon
     SubNavigationComponent,
     BingoGamesComponent,
     BingoGameComponent,
+    ContentBoxComponent,
   ],
   imports: [
     CommonModule,
@@ -44,6 +46,7 @@ import { BingoGamesComponent } from './components/bingo-games/bingo-games.compon
     SubNavigationComponent,
     BingoGamesComponent,
     BingoGameComponent,
+    ContentBoxComponent,
   ],
 })
 export class SharedModule {}

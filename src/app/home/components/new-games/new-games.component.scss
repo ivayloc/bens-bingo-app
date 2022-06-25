@@ -52,29 +52,3 @@
     }
   }
 }
-
-:host ::ng-deep {
-  .p-carousel-indicators {
-    position: absolute;
-    bottom: calc-clamp(20);
-    left: 50%;
-    padding: 0;
-    padding-inline-end: calc-clamp(172);
-    margin: 0;
-    list-style: none;
-    transform: translateX(-50%);
-    .p-link {
-      @include btn-clear();
-      width: calc-clamp(10);
-      height: calc-clamp(10);
-      margin: 0 calc-clamp(5);
-      background-color: #fff;
-      border-radius: 50%;
-    }
-    /* stylelint-disable-next-line selector-max-compound-selectors */
-    .p-highlight .p-link {
-      background-color: #000;
-      border: 1px solid #fff;
-    }
-  }
-}

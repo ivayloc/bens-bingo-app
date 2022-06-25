@@ -21,7 +21,7 @@ $arrow-right: "data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjEyIiB3aWR0aD0iOSIgeG1
   }
   .p-carousel-prev,
   .p-carousel-next {
-    @include btn-clear ();
+    @include btn-clear();
     position: absolute;
     top: 0;
     bottom: 0;
@@ -30,12 +30,12 @@ $arrow-right: "data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjEyIiB3aWR0aD0iOSIgeG1
   }
   .p-carousel-prev {
     left: 0;
-    background: rgba(#000, .6) url($arrow-left) center no-repeat;
+    background: rgba(#000, 0.6) url($arrow-left) center no-repeat;
     background-size: 70%;
   }
   .p-carousel-next {
     right: 0;
-    background: rgba(#000, .6) url($arrow-right) center no-repeat;
+    background: rgba(#000, 0.6) url($arrow-right) center no-repeat;
     background-size: 70%;
   }
 }
