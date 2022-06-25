@@ -1,4 +1,4 @@
-import { BingoGame } from './bingo-game';
+import { BingoGame } from '../../shared/models/bingo-game';
 import { Jackpot } from './jackpots';
 import { RecentWinners } from './recent-winners';
 import { SlotsGame } from './slots-game';

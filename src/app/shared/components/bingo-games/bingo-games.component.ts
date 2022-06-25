@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { BingoGame } from '../../../home/models/bingo-game';
+import { BingoGame } from '../../models/bingo-game';
 
 @Component({
   selector: 'app-bingo-games',

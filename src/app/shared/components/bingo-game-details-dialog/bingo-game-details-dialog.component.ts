@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { BingoGame } from 'src/app/home/models/bingo-game';
+import { BingoGame } from 'src/app/shared/models/bingo-game';
 
 @Component({
   selector: 'app-bingo-game-details-dialog',

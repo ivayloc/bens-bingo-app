@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { BingoGame } from '../models/bingo-game';
+import { BingoGame } from '../../shared/models/bingo-game';
 import { Jackpot } from '../models/jackpots';
 import { RecentWinners } from '../models/recent-winners';
 import { SlotsGame } from '../models/slots-game';

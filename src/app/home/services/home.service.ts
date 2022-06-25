@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BingoGame } from '../models/bingo-game';
+import { BingoGame } from '../../shared/models/bingo-game';
 import { Jackpot } from '../models/jackpots';
 import { RecentWinners } from '../models/recent-winners';
 import { SlotsGame } from '../models/slots-game';

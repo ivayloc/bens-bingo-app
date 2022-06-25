@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { BingoGame } from 'src/app/home/models/bingo-game';
+import { BingoGame } from 'src/app/shared/models/bingo-game';
 import { BingoGameDetailsDialogComponent } from '../bingo-game-details-dialog/bingo-game-details-dialog.component';
 
 @Component({

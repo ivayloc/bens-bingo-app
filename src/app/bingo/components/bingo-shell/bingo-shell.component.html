@@ -1,3 +1,6 @@
 <app-sub-navigation></app-sub-navigation>
 
-<!-- <app-bingo-games [showInCarousel]="false"></app-bingo-games> -->
+<app-bingo-games
+  [showInCarousel]="false"
+  [games]="$any(getBingoGames$ | async)"
+></app-bingo-games>
