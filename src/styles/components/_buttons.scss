@@ -1,5 +1,25 @@
 @import "../mixins/btn-clear";
+@import "../functions/calc-clamp";
+@import "../vendors/hovercss";
+@import "/node_modules/hover.css/scss/effects/background-transitions/fade";
 
 .btn-clear {
   @include btn-clear();
+}
+
+.btn-main {
+  @include fade();
+  min-width: calc-clamp(287);
+  background-color: #0d808a;
+  transform: skew(-20deg);
+  &-text {
+    display: block;
+    font-family: OpenSans, sans-serif;
+    font-size: calc-clamp(35);
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    transform: skew(20deg);
+  }
 }

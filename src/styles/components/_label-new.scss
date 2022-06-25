@@ -1,0 +1,16 @@
+.label-new {
+  z-index: 1;
+  min-width: calc-clamp(447);
+  padding-inline-end: calc-clamp(50);
+  text-align: end;
+  background: linear-gradient(148deg, #401784 22%, #652ac5 61%);
+  transform: skew(-20deg);
+  > * {
+    font-family: OpenSans, sans-serif;
+    font-size: calc-clamp(60);
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    transform: skew(20deg);
+  }
+}
