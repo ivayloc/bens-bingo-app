@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BingoGame } from '../../shared/models/bingo-game';
 import { Jackpot } from '../models/jackpots';
-import { RecentWinners } from '../models/recent-winners';
+import { RecentWinners } from '../../shared/models/recent-winners';
 import { SlotsGame } from '../models/slots-game';
 
 @Injectable({

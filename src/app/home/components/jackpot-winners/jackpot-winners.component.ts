@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Jackpot } from '../../models/jackpots';
-import { RecentWinners } from '../../models/recent-winners';
+import { RecentWinners } from '../../../shared/models/recent-winners';
 
 @Component({
   selector: 'app-jackpot-winners',

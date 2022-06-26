@@ -12,15 +12,15 @@ export class HomeEffects {
     return this.actions$.pipe(
       ofType(HomePageActions.loadHomeDetails),
       mergeMap(() =>
-        forkJoin([
-          this.homeService.getBingoGames(),
-          this.homeService.getSlotsGames(),
-          this.homeService.getJackpots(),
-          this.homeService.getRecentWinners(),
-        ]).pipe(
-          map(([bingoGames, slotsGames, jackpots, recentWinners]) =>
+        forkJoin({
+          bingoGames: this.homeService.getBingoGames(),
+          slotsGames: this.homeService.getSlotsGames(),
+          jackpots: this.homeService.getJackpots(),
+          recentWinners: this.homeService.getRecentWinners(),
+        }).pipe(
+          map((homeDetails) =>
             HomeApiActions.loadHomeDetailsSuccess({
-              homeDetails: { bingoGames, slotsGames, jackpots, recentWinners },
+              homeDetails,
             })
           ),
           catchError((error) =>

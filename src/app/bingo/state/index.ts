@@ -12,3 +12,8 @@ export const getBingoGames = createSelector(
   getBingoGamesState,
   (state) => state.bingoGames
 );
+
+export const getRecentWinners = createSelector(
+  getBingoGamesState,
+  (state) => state.recentWinners
+);

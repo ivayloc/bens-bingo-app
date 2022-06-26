@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { BingoGame } from '../../shared/models/bingo-game';
 import { Jackpot } from '../models/jackpots';
-import { RecentWinners } from '../models/recent-winners';
+import { RecentWinners } from '../../shared/models/recent-winners';
 import { SlotsGame } from '../models/slots-game';
 import { HomeApiActions } from './actions';
 

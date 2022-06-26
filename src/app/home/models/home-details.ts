@@ -1,6 +1,6 @@
 import { BingoGame } from '../../shared/models/bingo-game';
 import { Jackpot } from './jackpots';
-import { RecentWinners } from './recent-winners';
+import { RecentWinners } from '../../shared/models/recent-winners';
 import { SlotsGame } from './slots-game';
 
 export interface HomeDetails {

@@ -1,3 +1,3 @@
 import { createAction } from '@ngrx/store';
 
-export const loadBingoGames = createAction('[Bingo Page] Load Bingo Games');
+export const loadBingoDetails = createAction('[Bingo Page] Load Bingo Details');

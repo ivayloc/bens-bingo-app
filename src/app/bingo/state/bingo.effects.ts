@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, mergeMap, of } from 'rxjs';
+import { catchError, forkJoin, map, mergeMap, of } from 'rxjs';
 import { BingoService } from '../services/bingo.service';
 import { BingoApiActions, BingoPageActions } from './actions';
 
@@ -8,18 +8,23 @@ import { BingoApiActions, BingoPageActions } from './actions';
 export class BingoEffects {
   constructor(private actions$: Actions, private bingoService: BingoService) {}
 
-  loadBingoGames$ = createEffect(() => {
+  loadBingoDetails$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(BingoPageActions.loadBingoGames),
+      ofType(BingoPageActions.loadBingoDetails),
       mergeMap(() =>
-        this.bingoService.getBingoGames().pipe(
-          map((bingoGames) =>
-            BingoApiActions.loadBingoGamesSuccess({
-              bingoGames,
+        forkJoin({
+          bingoGames: this.bingoService.getBingoGames(),
+          comingUp: this.bingoService.getComingUp(),
+          recentWinners: this.bingoService.getRecentWinners(),
+          chatModerators: this.bingoService.getChatModerators(),
+        }).pipe(
+          map((bingoDetails) =>
+            BingoApiActions.loadBingoDetailsSuccess({
+              bingoDetails,
             })
           ),
           catchError((error) =>
-            of(BingoApiActions.loadBingoGamesFailure({ error }))
+            of(BingoApiActions.loadBingoDetailsFailure({ error }))
           )
         )
       )

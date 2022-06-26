@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { RecentWinners } from 'src/app/home/models/recent-winners';
+import { RecentWinners } from 'src/app/shared/models/recent-winners';
 
 @Component({
   selector: 'app-recent-winners',
@@ -7,7 +7,7 @@ import { RecentWinners } from 'src/app/home/models/recent-winners';
   styleUrls: ['./recent-winners.component.scss'],
 })
 export class RecentWinnersComponent implements OnInit {
-  @Input() recentWinners: RecentWinners[] = [];
+  @Input() recentWinners: RecentWinners[] | null = [];
 
   constructor() {}
 
