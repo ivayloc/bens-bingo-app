@@ -24,6 +24,16 @@
   }
   &-body {
     padding: calc-clamp(28) calc-clamp(88);
-    background-color: #000;
+    // background-color: #322c36;
+    background: #322c36
+      linear-gradient(
+        135deg,
+        rgba(31, 27, 33, 0) 0%,
+        rgba(31, 27, 33, 1) 25%,
+        rgba(31, 27, 33, 1) 43%,
+        rgba(31, 27, 33, 0) 75%,
+        rgba(31, 27, 33, 1) 87%,
+        rgba(31, 27, 33, 1) 100%
+      );
   }
 }

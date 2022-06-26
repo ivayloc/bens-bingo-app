@@ -17,3 +17,32 @@
   margin-inline-end: calc-clamp(-30);
   margin-bottom: calc-clamp(40);
 }
+
+:host ::ng-deep {
+  .box-coming-up .box-pink-header {
+    background: linear-gradient(
+      135deg,
+      #981177 1%,
+      #981177 11%,
+      #e311af 17%,
+      #e311af 32%,
+      #981177 33%,
+      #e311af 71%,
+      #e311af 76%,
+      #981177 91%,
+      #e311af 100%
+    );
+  }
+  .box-winners .box-pink-header {
+    background: linear-gradient(
+      135deg,
+      #e311af 6%,
+      #981177 20%,
+      #e311af 22%,
+      #e311af 58%,
+      #981177 74%,
+      #981177 85%,
+      #e311af 87%
+    );
+  }
+}
