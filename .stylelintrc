@@ -1,5 +1,5 @@
 {
-  "extends": ["stylelint-config-twbs-bootstrap"],
+  "extends": ["stylelint-config-twbs-bootstrap", "stylelint-config-prettier"],
   "rules": {
     "declaration-property-value-disallowed-list": {
       "border": "none",
@@ -19,6 +19,10 @@
       {
         "ignore": "local"
       }
+    ],
+    "selector-pseudo-element-no-unknown": [
+      true,
+      { "ignorePseudoElements": ["ng-deep"] }
     ]
   }
 }
