@@ -1,4 +1,6 @@
 @import "../../../../styles/functions/calc-clamp";
+@import "../../../../styles/vendors/hovercss";
+@import "/node_modules/hover.css/scss/effects/2d-transitions/pulse";
 
 :host {
   display: block;
@@ -11,13 +13,14 @@
     padding-bottom: calc-clamp(14);
   }
   &-moderator {
+    @include pulse();
     &-link {
       display: block;
-      width: 98px;
-      height: 98px;
+      width: calc-clamp(98);
+      height: calc-clamp(98);
       margin: 0 calc-clamp(75) calc-clamp(20);
       overflow: hidden;
-      border: solid 3px #974869;
+      border: solid calc-clamp(3) #974869;
       border-radius: 50%;
     }
   }
