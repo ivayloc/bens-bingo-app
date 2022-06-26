@@ -1,30 +1,10 @@
 @import "../../../../styles/functions/calc-clamp";
-.bens-bingo-ads {
-  position: relative;
-  min-height: calc-clamp(226);
 
-  &-text {
-    font-family: OpenSans, sans-serif;
-    font-size: calc-clamp(72);
-    font-weight: 700;
-    color: #fff;
-  }
-  &-stones {
-    position: absolute;
-    top: calc-clamp(-130);
-    right: calc-clamp(-120);
-    width: calc-clamp(439);
-  }
-}
 .page-footer {
   color: #6b5e74;
-  background:
-    url("/assets/images/bg-with-mask-2/bg-with-mask-2.webp") no-repeat
-    center 0;
-  background-size: contain;
   &-content {
     padding: calc-clamp(60) calc-clamp(80) calc-clamp(50);
-    background-color: rgba(#000, .6);
+    background-color: rgba(#000, 0.6);
   }
 
   &-link {
@@ -46,7 +26,7 @@
     margin-top: calc-clamp(40);
     margin-bottom: calc-clamp(45);
     background-color: #6b5e74;
-    opacity: .5;
+    opacity: 0.5;
   }
 
   &-18-plus {

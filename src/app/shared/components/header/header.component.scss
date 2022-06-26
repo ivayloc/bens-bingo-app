@@ -1,8 +1,6 @@
 @import "../../../../styles/functions/calc-clamp";
 :host {
   display: block;
-  background: url("/assets/images/header-bg.webp") no-repeat 0 0;
-  background-size: content;
 }
 .top-bar {
   padding: 0 calc-clamp(48);
