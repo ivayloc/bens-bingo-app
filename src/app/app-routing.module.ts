@@ -12,7 +12,7 @@ const routes: Routes = [
       import('./bingo/bingo.module').then((m) => m.BingoModule),
   },
   {
-    path: 'slots-games',
+    path: 'casino-games',
     loadChildren: () =>
       import('./slots/slots.module').then((m) => m.SlotsModule),
   },

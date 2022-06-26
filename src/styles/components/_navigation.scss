@@ -11,8 +11,8 @@
   &-link {
     @include fade();
     display: block;
-    padding-inline-start: calc-clamp(40);
-    padding-inline-end: calc-clamp(40);
+    padding-inline-start: calc-clamp(37);
+    padding-inline-end: calc-clamp(37);
     text-decoration: none;
     text-transform: uppercase;
     &.active {

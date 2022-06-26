@@ -5,17 +5,14 @@ import { SlotsRoutingModule } from './slots-routing.module';
 import { SlotsNewGamesComponent } from './components/slots-new-games/slots-new-games.component';
 import { SlotsGamesComponent } from './components/slots-games/slots-games.component';
 import { SlotsShellComponent } from './components/slots-shell/slots-shell.component';
-
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
     SlotsNewGamesComponent,
     SlotsGamesComponent,
-    SlotsShellComponent
+    SlotsShellComponent,
   ],
-  imports: [
-    CommonModule,
-    SlotsRoutingModule
-  ]
+  imports: [CommonModule, SlotsRoutingModule, SharedModule],
 })
-export class SlotsModule { }
+export class SlotsModule {}

@@ -13,14 +13,14 @@ import { BingoPageActions } from '../../state/actions';
   styleUrls: ['./bingo-shell.component.scss'],
 })
 export class BingoShellComponent implements OnInit {
-  getBingoGames$ = new Observable<BingoGame[]>();
-  getRecentWinners$ = new Observable<RecentWinners[]>();
   navigationLinks: NavigationItem[] = [
     { url: '/bingo-games', title: 'Current Games' },
     { url: '/casino-games', title: 'How to Play' },
     { url: '/register', title: 'Chat' },
     { url: '/help', title: 'Coming Up' },
   ];
+  getBingoGames$ = new Observable<BingoGame[]>();
+  getRecentWinners$ = new Observable<RecentWinners[]>();
 
   constructor(private store: Store<State>) {}
 
