@@ -5,15 +5,19 @@
   [showInCarousel]="false"
   [games]="$any(getBingoGames$ | async)"
 ></app-bingo-games>
-<div class="d-flex align-items-start">
-  <div class="box-coming-up flex-fill w-50">
-    <app-bingo-coming-up></app-bingo-coming-up>
+<div class="bingo-games-bg">
+  <div class="d-flex align-items-start">
+    <div class="box-coming-up flex-fill w-50">
+      <app-bingo-coming-up></app-bingo-coming-up>
+    </div>
+    <div class="box-winners flex-fill w-50">
+      <app-recent-winners
+        [recentWinners]="getRecentWinners$ | async"
+      ></app-recent-winners>
+    </div>
   </div>
-  <div class="box-winners flex-fill w-50">
-    <app-recent-winners
-      [recentWinners]="getRecentWinners$ | async"
-    ></app-recent-winners>
-  </div>
-</div>
 
-<app-chat-moderators class="d-block box-chat-moderators"></app-chat-moderators>
+  <app-chat-moderators
+    class="d-block box-chat-moderators"
+  ></app-chat-moderators>
+</div>
