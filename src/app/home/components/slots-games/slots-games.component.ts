@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { SlotsGame } from '../../models/slots-game';
+import { SlotsGame } from '../../../shared/models/slots-game';
 
 @Component({
   selector: 'app-slots-games',

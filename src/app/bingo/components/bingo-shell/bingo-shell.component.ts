@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { BingoGame } from 'src/app/shared/models/bingo-game';
+import { NavigationItem } from 'src/app/shared/models/navigation-item';
 import { RecentWinners } from 'src/app/shared/models/recent-winners';
 import { getBingoGames, getRecentWinners, State } from '../../state';
 import { BingoPageActions } from '../../state/actions';
@@ -14,6 +15,12 @@ import { BingoPageActions } from '../../state/actions';
 export class BingoShellComponent implements OnInit {
   getBingoGames$ = new Observable<BingoGame[]>();
   getRecentWinners$ = new Observable<RecentWinners[]>();
+  navigationLinks: NavigationItem[] = [
+    { url: '/bingo-games', title: 'Current Games' },
+    { url: '/casino-games', title: 'How to Play' },
+    { url: '/register', title: 'Chat' },
+    { url: '/help', title: 'Coming Up' },
+  ];
 
   constructor(private store: Store<State>) {}
 

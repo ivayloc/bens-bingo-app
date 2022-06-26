@@ -11,6 +11,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./bingo/bingo.module').then((m) => m.BingoModule),
   },
+  {
+    path: 'slots-games',
+    loadChildren: () =>
+      import('./slots/slots.module').then((m) => m.SlotsModule),
+  },
 ];
 
 @NgModule({
