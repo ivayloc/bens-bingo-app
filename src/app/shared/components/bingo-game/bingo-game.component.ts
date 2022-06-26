@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { BingoGame } from 'src/app/shared/models/bingo-game';
-import { BingoGameDetailsDialogComponent } from '../bingo-game-details-dialog/bingo-game-details-dialog.component';
+import { GamesService } from '../../services/games.service';
 
 @Component({
   selector: 'app-bingo-game',
@@ -11,13 +10,9 @@ import { BingoGameDetailsDialogComponent } from '../bingo-game-details-dialog/bi
 export class BingoGameComponent {
   @Input() game = {} as BingoGame;
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private gamesService: GamesService) {}
 
-  showBingoGameDetails(game: BingoGame): void {
-    this.dialog.open(BingoGameDetailsDialogComponent, {
-      minWidth: '56.25vw',
-      maxWidth: 'unset',
-      data: game,
-    });
+  showBingoGameDetails(game: BingoGame) {
+    this.gamesService.showBingoGameDetails(game);
   }
 }

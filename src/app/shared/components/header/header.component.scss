@@ -8,14 +8,13 @@
   padding: 0 calc-clamp(48);
   line-height: normal;
   background: #401784;
-  background:
-    linear-gradient(
-      to right,
-      #401784 16%,
-      #652ac5 51%,
-      #431888 79%,
-      #5321a4 100%
-    );
+  background: linear-gradient(
+    to right,
+    #401784 16%,
+    #652ac5 51%,
+    #431888 79%,
+    #5321a4 100%
+  );
   &-username {
     margin-top: calc-clamp(-2);
     margin-bottom: calc-clamp(5);
@@ -36,5 +35,6 @@
     font-size: calc-clamp(72);
     font-weight: 700;
     color: #fff;
+    text-decoration: none;
   }
 }
