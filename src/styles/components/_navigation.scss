@@ -3,6 +3,8 @@
 @import "/node_modules/hover.css/scss/effects/background-transitions/fade";
 
 .main-navigation {
+  position: relative;
+  z-index: 1;
   width: calc-clamp(1670);
   padding: 0 calc-clamp(60) 0 calc-clamp(160);
   margin: 0 calc-clamp(-24) 0 calc-clamp(-8);
@@ -11,8 +13,8 @@
   &-link {
     @include fade();
     display: block;
-    padding-inline-start: calc-clamp(37);
-    padding-inline-end: calc-clamp(37);
+    padding-inline-start: calc-clamp(40);
+    padding-inline-end: calc-clamp(40);
     text-decoration: none;
     text-transform: uppercase;
     &.active {

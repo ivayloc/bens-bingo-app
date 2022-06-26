@@ -1,0 +1,62 @@
+@import "../../../../styles/functions/calc-clamp";
+@import "../../../../styles/mixins/btn-clear";
+
+.casino-new-games {
+  &-label {
+    position: absolute;
+    top: calc-clamp(544);
+    left: calc-clamp(-20);
+    &-text {
+      font-size: calc-clamp(60);
+    }
+  }
+  &-character {
+    position: absolute;
+    top: calc-clamp(-47);
+    right: 0;
+    z-index: 9;
+    width: calc-clamp(491);
+  }
+}
+.casino-new-game {
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: contain;
+  &-name {
+    position: absolute;
+    top: calc-clamp(539);
+    right: calc-clamp(350);
+    left: calc-clamp(450);
+    z-index: 9;
+    &-text {
+      margin-inline-end: calc-clamp(25);
+      font-size: calc-clamp(95);
+      font-weight: 700;
+      line-height: 1;
+      color: #fff;
+      text-align: center;
+    }
+  }
+  &-btn {
+    margin: 0 calc-clamp(10);
+    &-text {
+      font-size: calc-clamp(30);
+      text-transform: unset;
+    }
+  }
+  &-shadow {
+    min-height: calc-clamp(912);
+    background-image: linear-gradient(
+      to top,
+      #000 10%,
+      rgba(0, 0, 0, 0.6) 35%,
+      rgba(0, 0, 0, 0) 50%
+    );
+  }
+}
+:host ::ng-deep {
+  .p-carousel-indicators {
+    bottom: calc-clamp(100);
+    margin-left: calc-clamp(115);
+  }
+}

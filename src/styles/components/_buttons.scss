@@ -7,7 +7,8 @@
   @include btn-clear();
 }
 
-.btn-main {
+.btn-main,
+.btn-secondary {
   @include fade();
   min-width: calc-clamp(287);
   background-color: #0d808a;
@@ -17,9 +18,13 @@
     font-family: OpenSans, sans-serif;
     font-size: calc-clamp(35);
     font-weight: 700;
+    line-height: calc-clamp(50);
     color: #fff;
     text-align: center;
     text-transform: uppercase;
     transform: skew(20deg);
   }
+}
+.btn-secondary {
+  background-color: #e833d0;
 }

@@ -6,4 +6,8 @@
   margin-right: calc-clamp(-7);
   margin-left: calc-clamp(-24);
   background-color: #5d26b7;
+  .main-navigation-link {
+    padding-inline-start: calc-clamp(30);
+    padding-inline-end: calc-clamp(30);
+  }
 }

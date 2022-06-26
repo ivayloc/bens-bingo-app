@@ -14,7 +14,7 @@ const routes: Routes = [
   {
     path: 'casino-games',
     loadChildren: () =>
-      import('./slots/slots.module').then((m) => m.SlotsModule),
+      import('./casino/casino.module').then((m) => m.CasinoModule),
   },
 ];
 
