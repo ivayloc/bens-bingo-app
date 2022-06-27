@@ -12,3 +12,10 @@
   [games]="getCategoryAllGames$ | async"
   [showInCarousel]="false"
 ></app-slots-games>
+
+<app-slots-games
+  *ngIf="gameCategories['all-slots'] !== gameCategory"
+  [title]="gameCategoriesNames['all-slots']"
+  [games]="getCategoryAllGames$ | async"
+  [category]="gameCategories['all-slots']"
+></app-slots-games>

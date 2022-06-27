@@ -12,6 +12,7 @@ import {
   getNewReleasesGames,
   State,
 } from '../../state';
+import { CasinoPageActions } from '../../state/actions';
 
 @Component({
   selector: 'app-casino-game-category',
@@ -21,6 +22,7 @@ import {
 export class CasinoGameCategoryComponent implements OnInit {
   navigationLinks = this.casinoService.navigationLinks;
   gameCategoriesNames = this.casinoService.gameCategoriesNames;
+  gameCategories = CasinoGameCategory;
   gameCategory: CasinoGameCategories = CasinoGameCategory['hot-slots'];
 
   getCategoryAllGames$ = new Observable<SlotsGame[]>();
@@ -32,18 +34,19 @@ export class CasinoGameCategoryComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.store.dispatch(CasinoPageActions.loadCasinoDetails());
     this.route.params.subscribe((params) => {
       this.gameCategory = params['gameCategory'];
-    });
 
-    if (this.gameCategory === CasinoGameCategory['hot-slots']) {
-      this.getCategoryAllGames$ = this.store.select(getHotSlotsGames);
-    }
-    if (this.gameCategory === CasinoGameCategory['new-releases']) {
-      this.getCategoryAllGames$ = this.store.select(getNewReleasesGames);
-    }
-    if (this.gameCategory === CasinoGameCategory['jackpot-games']) {
-      this.getCategoryAllGames$ = this.store.select(getJackpotGames);
-    }
+      if (this.gameCategory === CasinoGameCategory['hot-slots']) {
+        this.getCategoryAllGames$ = this.store.select(getHotSlotsGames);
+      }
+      if (this.gameCategory === CasinoGameCategory['new-releases']) {
+        this.getCategoryAllGames$ = this.store.select(getNewReleasesGames);
+      }
+      if (this.gameCategory === CasinoGameCategory['jackpot-games']) {
+        this.getCategoryAllGames$ = this.store.select(getJackpotGames);
+      }
+    });
   }
 }

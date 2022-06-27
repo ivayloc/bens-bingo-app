@@ -20,6 +20,9 @@
     &-jackpot-games {
       background: linear-gradient(148deg, #885900 9%, #d68c00 55%, #885900 72%);
     }
+    &-all-slots {
+      background: linear-gradient(148deg, #083a7f 9%, #155dc0 55%, #083a7f 72%);
+    }
     &-text {
       margin-inline-end: calc-clamp(340);
       font-family: OpenSans, sans-serif;
@@ -61,6 +64,7 @@
       display: block;
       &-20 {
         width: 20vw;
+        margin-bottom: calc-clamp(85);
       }
     }
   }
