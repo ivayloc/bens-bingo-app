@@ -6,6 +6,7 @@ import { BingoGame } from 'src/app/shared/models/bingo-game';
 import { NavigationItem } from 'src/app/shared/models/navigation-item';
 import { SlotsGame } from 'src/app/shared/models/slots-game';
 import { CasinoGameCategory } from '../../models/casino-game-category';
+import { CasinoService } from '../../services/casino.service';
 import {
   getHotSlotsGames,
   getJackpotGames,
@@ -21,20 +22,17 @@ import { CasinoPageActions } from '../../state/actions';
   styleUrls: ['./casino-shell.component.scss'],
 })
 export class CasinoShellComponent implements OnInit {
-  navigationLinks: NavigationItem[] = [
-    { url: '/hot-casino', title: 'Hot Casino' },
-    { url: '/new-releases', title: 'New Releases' },
-    { url: '/jackpot-games', title: 'Jackpot Games' },
-    { url: '/all-casino', title: 'All Casino' },
-    { url: '/table-games', title: 'Table Games' },
-  ];
+  navigationLinks = this.casinoService.navigationLinks;
   newGames = [{}, {}, {}] as SlotsGame[];
   slotsCategories = CasinoGameCategory;
   getHotSlotsGames$ = new Observable<SlotsGame[]>();
   getNewReleasesGames$ = new Observable<SlotsGame[]>();
   getJackpotGames$ = new Observable<SlotsGame[]>();
 
-  constructor(private store: Store<State>) {}
+  constructor(
+    private store: Store<State>,
+    private casinoService: CasinoService
+  ) {}
 
   ngOnInit(): void {
     this.store.dispatch(CasinoPageActions.loadCasinoDetails());

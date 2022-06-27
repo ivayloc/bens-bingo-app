@@ -2,20 +2,18 @@
   <div class="d-flex">
     <div
       class="slots-games-header transform-skew-n20"
-      [ngClass]="'slots-games-header-' + categoryCssClass"
+      [ngClass]="'slots-games-header-' + categoryName"
     >
       <div class="transform-skew-20 d-flex">
         <img
           [src]="
-            '/assets/images/casino-header-icons/icon-' +
-            categoryCssClass +
-            '.webp'
+            '/assets/images/casino-header-icons/icon-' + categoryName + '.webp'
           "
           [srcset]="
             '/assets/images/casino-header-icons/icon-' +
-            categoryCssClass +
+            categoryName +
             '@2x.webp 2x, /assets/images/casino-header-icons/icon-' +
-            categoryCssClass +
+            categoryName +
             '@3x.webp 3x'
           "
           class="slots-games-header-icon"
@@ -25,7 +23,7 @@
         <button
           *ngIf="showInCarousel"
           class="btn-clear slots-games-header-btn-more"
-          [routerLink]="['/casino-games']"
+          [routerLink]="[categoryName]"
           matRipple
         >
           <span class="slots-games-header-btn-more-text">More games</span>

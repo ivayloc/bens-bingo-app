@@ -10,12 +10,14 @@ import { CasinoNewGamesComponent } from './components/casino-new-games/casino-ne
 import { CasinoShellComponent } from './components/casino-shell/casino-shell.component';
 import { CasinoEffects } from './state/casino.effects';
 import { casinoReducer } from './state/casino.reducers';
+import { CasinoGameCategoryComponent } from './components/casino-game-category/casino-game-category.component';
 
 @NgModule({
   declarations: [
     CasinoNewGamesComponent,
     CasinoGamesComponent,
     CasinoShellComponent,
+    CasinoGameCategoryComponent,
   ],
   imports: [
     CommonModule,

@@ -15,7 +15,8 @@ export class SlotsGamesComponent {
   @Input() title = 'Hot Slots';
 
   casinoGameCategory = CasinoGameCategory;
-  public get categoryCssClass(): string {
+
+  public get categoryName(): string {
     return CasinoGameCategory[this.category];
   }
 }
