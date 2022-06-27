@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 5500",
+    "start": "node server.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "build:container": "docker-build-container.sh",
@@ -26,6 +26,8 @@
     "@ngrx/effects": "^13.2.0",
     "@ngrx/store": "^13.2.0",
     "@ngrx/store-devtools": "^13.2.0",
+    "express": "^4.18.1",
+    "path": "^0.12.7",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
