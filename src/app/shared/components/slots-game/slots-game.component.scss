@@ -15,6 +15,7 @@
     min-width: calc-clamp(200);
     padding: 0 calc-clamp(10);
     margin-inline-start: calc-clamp(60);
+    vertical-align: top;
     background-color: #000;
     transform: skew(351deg);
     &-text {
