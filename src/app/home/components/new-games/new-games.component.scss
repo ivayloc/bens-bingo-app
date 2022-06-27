@@ -29,6 +29,9 @@
       rgba(0, 0, 0, 0.6) 65%,
       rgb(0 0 0 / 0%) 100%
     );
+    &-logo {
+      width: calc-clamp(241);
+    }
   }
   &-btn-more {
     @include fade();
