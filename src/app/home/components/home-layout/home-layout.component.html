@@ -3,15 +3,21 @@
   <app-coming-up></app-coming-up>
   <app-header-character></app-header-character>
 </div>
+
 <app-bingo-games
   [games]="$any(getBingoGames$ | async)"
   class="bingo-games"
 ></app-bingo-games>
+
 <app-jackpot-winners
   [jackpots]="$any(getJackpots$ | async)"
   [recentWinners]="$any(getRecentWinners$ | async)"
 ></app-jackpot-winners>
-<app-slots-games [games]="$any(getSlotsGames$ | async)"></app-slots-games>
+
+<app-slots-games
+  title="Hot Slots!"
+  [games]="$any(getSlotsGames$ | async)"
+></app-slots-games>
 
 <div class="bens-bingo-ads d-flex justify-content-center align-items-center">
   <div class="bens-bingo-ads-text">BEN’s Bingo</div>
