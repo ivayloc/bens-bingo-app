@@ -2,3 +2,13 @@
   class="sub-navigation"
   [navigationLinks]="navigationLinks"
 ></app-sub-navigation>
+
+<app-casino-game-category-header
+  [title]="gameCategoriesNames[gameCategory]"
+  [gameCategory]="gameCategory"
+></app-casino-game-category-header>
+
+<app-slots-games
+  [games]="getCategoryAllGames$ | async"
+  [showInCarousel]="false"
+></app-slots-games>

@@ -1,5 +1,5 @@
 <div class="slots-games">
-  <div class="d-flex">
+  <div class="d-flex" *ngIf="title.length">
     <div
       class="slots-games-header transform-skew-n20"
       [ngClass]="'slots-games-header-' + categoryName"

@@ -11,6 +11,7 @@ import { CasinoShellComponent } from './components/casino-shell/casino-shell.com
 import { CasinoEffects } from './state/casino.effects';
 import { casinoReducer } from './state/casino.reducers';
 import { CasinoGameCategoryComponent } from './components/casino-game-category/casino-game-category.component';
+import { CasinoGameCategoryHeaderComponent } from './components/casino-game-category-header/casino-game-category-header.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { CasinoGameCategoryComponent } from './components/casino-game-category/c
     CasinoGamesComponent,
     CasinoShellComponent,
     CasinoGameCategoryComponent,
+    CasinoGameCategoryHeaderComponent,
   ],
   imports: [
     CommonModule,

@@ -12,7 +12,7 @@ export class SlotsGamesComponent {
   @Input() games: SlotsGame[] | null = [];
   @Input() showInCarousel = true;
   @Input() category: CasinoGameCategories = CasinoGameCategory['hot-slots'];
-  @Input() title = 'Hot Slots';
+  @Input() title = '';
 
   casinoGameCategory = CasinoGameCategory;
 

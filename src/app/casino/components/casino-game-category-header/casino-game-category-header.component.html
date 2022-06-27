@@ -1,0 +1,36 @@
+<div class="game-category-header">
+  <img
+    [src]="
+      '/assets/images/casino-category-header-bg/bg-' + gameCategory + '.png'
+    "
+    [srcset]="
+      '/assets/images/casino-category-header-bg/bg-' +
+      gameCategory +
+      '@2x.png 2x, /assets/images/casino-category-header-bg/bg-' +
+      gameCategory +
+      '@3x.png 3x'
+    "
+    [alt]="title"
+  />
+  <img
+    [src]="
+      '/assets/images/casino-category-header-icon/icon-' + gameCategory + '.png'
+    "
+    [srcset]="
+      '/assets/images/casino-category-header-icon/icon-' +
+      gameCategory +
+      '@2x.png 2x, /assets/images/casino-category-header-icon/icon-' +
+      gameCategory +
+      '@3x.png 3x'
+    "
+    class="game-category-header-icon absolute-center"
+    [ngClass]="'game-category-header-icon-' + gameCategory"
+    [alt]="title"
+  />
+</div>
+<div
+  class="game-category-header-title text-white text-uppercase fw-bold text-center"
+  [ngClass]="'game-category-header-title-' + gameCategory"
+>
+  {{ title }}
+</div>

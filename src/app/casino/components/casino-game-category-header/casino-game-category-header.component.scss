@@ -1,0 +1,39 @@
+@import "../../../../styles/functions/calc-clamp";
+
+.game-category-header {
+  position: relative;
+  z-index: 1;
+  min-height: calc-clamp(300);
+  margin-top: calc-clamp(36);
+  margin-bottom: calc-clamp(47);
+  &-icon {
+    width: calc-clamp(382);
+    margin-top: calc-clamp(50);
+    &-table-games {
+      width: calc-clamp(697);
+      margin-top: calc-clamp(20);
+    }
+  }
+  &-title {
+    min-height: calc-clamp(104);
+    padding: calc-clamp(14) 0;
+    margin-bottom: calc-clamp(47);
+    font-size: calc-clamp(75);
+    line-height: 1;
+    &-hot-slots {
+      background: linear-gradient(148deg, #401784 9%, #652ac5 55%, #401784 72%);
+    }
+    &-new-releases {
+      background: linear-gradient(148deg, #96046f 9%, #ea06ad 55%, #96046f 72%);
+    }
+    &-jackpot-games {
+      background: linear-gradient(148deg, #885900 9%, #d68c00 55%, #885900 72%);
+    }
+    &-all-slots {
+      background: linear-gradient(148deg, #083a7f 9%, #155dc0 55%, #083a7f 72%);
+    }
+    &-table-games {
+      background: linear-gradient(148deg, #4a5c00 9%, #728e00 55%, #4a5c00 72%);
+    }
+  }
+}
