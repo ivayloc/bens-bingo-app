@@ -17,7 +17,7 @@
   <app-slots-games
     class="slots-games"
     title="New Releases"
-    [games]="getHotSlotsGames$ | async"
+    [games]="getNewReleasesGames$ | async"
     [category]="slotsCategories['new-releases']"
   ></app-slots-games>
 </div>
@@ -25,7 +25,7 @@
 <div class="bg-jackpot">
   <app-slots-games
     title="Jackpot Games"
-    [games]="getHotSlotsGames$ | async"
+    [games]="getJackpotGames$ | async"
     [category]="slotsCategories['jackpot']"
   ></app-slots-games>
 </div>

@@ -1,11 +1,11 @@
 import { createReducer, on } from '@ngrx/store';
 import { SlotsGame } from 'src/app/shared/models/slots-game';
-import { NewGame } from '../models/new-game';
+import { CasinoNewGame } from '../models/casino-new-game';
 import { CasinoApiActions } from './actions';
 
 export interface CasinoState {
   slotsGames: SlotsGame[];
-  newGames: NewGame[];
+  newGames: CasinoNewGame[];
   error: string;
 }
 
