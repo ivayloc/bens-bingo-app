@@ -4,8 +4,29 @@
   position: relative;
   z-index: 1;
 }
+
 .casino-new-games {
   position: relative;
   display: block;
   margin-top: calc-clamp(-93);
+}
+
+.slots-games {
+  display: block;
+  margin-bottom: calc-clamp(105);
+}
+
+.bg-new-releases,
+.bg-jackpot {
+  padding-top: calc-clamp(105);
+}
+
+.bg-new-releases {
+  background: url("/assets/images/casino-header-bg/bg-new-releases.webp")
+    no-repeat center 0;
+}
+
+.bg-jackpot {
+  background: url("/assets/images/casino-header-bg/bg-jackpot.webp") no-repeat
+    center 0;
 }

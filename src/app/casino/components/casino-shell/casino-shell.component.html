@@ -6,3 +6,26 @@
   class="casino-new-games"
   [newGames]="newGames"
 ></app-casino-new-games>
+
+<app-slots-games
+  class="slots-games"
+  title="Hot Slots"
+  [games]="getHotSlotsGames$ | async"
+></app-slots-games>
+
+<div class="bg-new-releases">
+  <app-slots-games
+    class="slots-games"
+    title="New Releases"
+    [games]="getHotSlotsGames$ | async"
+    [category]="slotsCategories['new-releases']"
+  ></app-slots-games>
+</div>
+
+<div class="bg-jackpot">
+  <app-slots-games
+    title="Jackpot Games"
+    [games]="getHotSlotsGames$ | async"
+    [category]="slotsCategories['jackpot']"
+  ></app-slots-games>
+</div>

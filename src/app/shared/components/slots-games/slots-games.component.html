@@ -1,0 +1,62 @@
+<div class="slots-games">
+  <div class="d-flex">
+    <div
+      class="slots-games-header transform-skew-n20"
+      [ngClass]="'slots-games-header-' + categoryCssClass"
+    >
+      <div class="transform-skew-20 d-flex">
+        <img
+          [src]="
+            '/assets/images/casino-header-icons/icon-' +
+            categoryCssClass +
+            '.webp'
+          "
+          [srcset]="
+            '/assets/images/casino-header-icons/icon-' +
+            categoryCssClass +
+            '@2x.webp 2x, /assets/images/casino-header-icons/icon-' +
+            categoryCssClass +
+            '@3x.webp 3x'
+          "
+          class="slots-games-header-icon"
+          alt="fox head"
+        />
+        <div class="slots-games-header-text">{{ title }}</div>
+        <button
+          *ngIf="showInCarousel"
+          class="btn-clear slots-games-header-btn-more"
+          [routerLink]="['/casino-games']"
+          matRipple
+        >
+          <span class="slots-games-header-btn-more-text">More games</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="slots-games-list" *ngIf="showInCarousel">
+    <p-carousel
+      [value]="$any(games)"
+      [numVisible]="5"
+      [numScroll]="1"
+      [circular]="true"
+      [showIndicators]="false"
+      [showNavigators]="true"
+      styleClass="custom-carousel"
+    >
+      <ng-template let-game pTemplate="item">
+        <div class="slots-games-list-item position-relative">
+          <app-slots-game [game]="game"></app-slots-game>
+        </div>
+      </ng-template>
+    </p-carousel>
+  </div>
+
+  <div class="slots-games-list d-flex flex-wrap" *ngIf="!showInCarousel">
+    <div
+      class="slots-games-list-item slots-games-list-item-20 position-relative"
+      *ngFor="let game of games"
+    >
+      <app-slots-game [game]="game"></app-slots-game>
+    </div>
+  </div>
+</div>

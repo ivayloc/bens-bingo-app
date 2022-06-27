@@ -4,13 +4,13 @@ import { NewGame } from '../models/new-game';
 import { CasinoApiActions } from './actions';
 
 export interface CasinoState {
-  casinoGames: SlotsGame[];
+  slotsGames: SlotsGame[];
   newGames: NewGame[];
   error: string;
 }
 
 const initialState: CasinoState = {
-  casinoGames: [],
+  slotsGames: [],
   newGames: [],
   error: '',
 };

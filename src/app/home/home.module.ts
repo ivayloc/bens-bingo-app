@@ -9,7 +9,6 @@ import { HeaderCharacterComponent } from './components/header-character/header-c
 import { HomeLayoutComponent } from './components/home-layout/home-layout.component';
 import { JackpotWinnersComponent } from './components/jackpot-winners/jackpot-winners.component';
 import { NewGamesComponent } from './components/new-games/new-games.component';
-import { SlotsGamesComponent } from './components/slots-games/slots-games.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeEffects } from './state/home.effects';
 import { homeReducer } from './state/home.reducers';
@@ -20,7 +19,6 @@ import { homeReducer } from './state/home.reducers';
     ComingUpComponent,
     HeaderCharacterComponent,
     JackpotWinnersComponent,
-    SlotsGamesComponent,
     HomeLayoutComponent,
   ],
   imports: [

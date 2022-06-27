@@ -1,0 +1,49 @@
+@import "../../../../styles/functions/calc-clamp";
+
+.slots-game {
+  &-wrap {
+    margin: 0 calc-clamp(-23);
+    clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+  position: relative;
+  min-height: calc-clamp(500);
+  &-studio {
+    display: inline-block;
+    min-width: calc-clamp(200);
+    padding: 0 calc-clamp(10);
+    margin-inline-start: calc-clamp(60);
+    background-color: #000;
+    transform: skew(351deg);
+    &-text {
+      font-family: OpenSans, sans-serif;
+      font-size: calc-clamp(21);
+      font-style: italic;
+      color: #fff;
+      transform: skew(-351deg);
+    }
+  }
+
+  &-name {
+    position: absolute;
+    right: calc-clamp(38);
+    bottom: 0;
+    left: 0;
+    height: calc-clamp(125);
+    padding: 0 calc-clamp(20);
+    background-color: rgba(#000, 0.8);
+    &-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-family: OpenSans, sans-serif;
+      font-size: calc-clamp(50);
+      font-weight: 700;
+      line-height: 1;
+      color: #fff;
+      transform: translate(-50%, -50%);
+    }
+  }
+}

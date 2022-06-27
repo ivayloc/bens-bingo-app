@@ -1,11 +1,15 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { CasinoRoutingModule } from './casino-routing.module';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 import { SharedModule } from '../shared/shared.module';
-import { CasinoShellComponent } from './components/casino-shell/casino-shell.component';
+import { CasinoRoutingModule } from './casino-routing.module';
 import { CasinoGamesComponent } from './components/casino-games/casino-games.component';
 import { CasinoNewGamesComponent } from './components/casino-new-games/casino-new-games.component';
+import { CasinoShellComponent } from './components/casino-shell/casino-shell.component';
+import { CasinoEffects } from './state/casino.effects';
+import { casinoReducer } from './state/casino.reducers';
 
 @NgModule({
   declarations: [
@@ -13,6 +17,12 @@ import { CasinoNewGamesComponent } from './components/casino-new-games/casino-ne
     CasinoGamesComponent,
     CasinoShellComponent,
   ],
-  imports: [CommonModule, CasinoRoutingModule, SharedModule],
+  imports: [
+    CommonModule,
+    CasinoRoutingModule,
+    SharedModule,
+    StoreModule.forFeature('casino-games', casinoReducer),
+    EffectsModule.forFeature([CasinoEffects]),
+  ],
 })
 export class CasinoModule {}
