@@ -13,9 +13,9 @@
   &-character {
     position: absolute;
     top: calc-clamp(-47);
-    right: 0;
+    right: calc-clamp(-40);
     z-index: 9;
-    width: calc-clamp(491);
+    width: calc-clamp(530);
   }
 }
 .casino-new-game {
