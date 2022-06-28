@@ -10,12 +10,12 @@ import { SlotsGame } from '../models/slots-game';
 })
 export class GamesService {
   private readonly defaultCarouselOptions: OwlOptions = {
-    autoplay: true,
+    // autoplay: true,
     loop: true,
     mouseDrag: false,
     nav: true,
     navSpeed: 700,
-    navText: ['1111', '1111'],
+    navText: ['previous', 'next'],
     pullDrag: false,
     touchDrag: false,
   };

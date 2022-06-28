@@ -1,5 +1,7 @@
 @import "../functions/calc-clamp";
 @import "../mixins/btn-clear";
+@import "../vendors/hovercss";
+@import "/node_modules/hover.css/scss/effects/background-transitions/fade";
 
 $arrow-left: "data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjEyIiB3aWR0aD0iOSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCiAgICA8cGF0aCBkPSJNNy45IDEuNCA2LjUgMGwtNiA2IDYgNiAxLjQtMS40TDMuMyA2bDQuNi00LjZaIiBmaWxsPSIjMGQ4MDhhIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIC8+DQo8L3N2Zz4=" !default;
 $arrow-right: "data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjEyIiB3aWR0aD0iOSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMS41IDAgLjEgMS40IDQuNyA2IC4xIDEwLjYgMS41IDEybDYtNi02LTZaIiBmaWxsPSIjMGQ4MDhhIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4=" !default;
@@ -9,8 +11,77 @@ $arrow-right: "data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjEyIiB3aWR0aD0iOSIgeG1
     width: inherit;
   }
 }
-.carousel-games {
-  .owl-carousel .owl-stage-outer {
+.owl-dots,
+.owl-nav {
+  position: absolute;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+}
+.owl-nav {
+  bottom: calc-clamp(90);
+  .owl-prev,
+  .owl-next {
+    position: relative;
+    padding: calc-clamp(5) calc-clamp(10);
+    margin: 0 calc-clamp(10);
     overflow: unset;
+    font-family: OpenSans, sans-serif;
+    font-size: calc-clamp(14);
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    background-color: #401784;
+
+    &::after,
+    &::before {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: calc-clamp(10);
+      content: "";
+      background-color: #401784;
+      transform: skew(-20deg);
+    }
+    &::after {
+      right: calc-clamp(-5);
+    }
+    &::before {
+      left: calc-clamp(-5);
+    }
+    &:hover {
+      &,
+      &::after,
+      &::before {
+        background-color: #5220a3;
+      }
+    }
+  }
+}
+.owl-dots {
+  bottom: calc-clamp(140);
+  .owl-dot {
+    width: calc-clamp(10);
+    height: calc-clamp(10);
+    margin: 0 calc-clamp(5);
+    background-color: #fff;
+    border-radius: 50%;
+    &.active {
+      background-color: #401784;
+      border: calc-clamp(1) solid #fff;
+    }
+  }
+}
+
+.carousel-games {
+  .owl-carousel {
+    .owl-stage-outer {
+      overflow: unset;
+    }
+    .owl-nav {
+      bottom: calc-clamp(-50);
+    }
   }
 }
