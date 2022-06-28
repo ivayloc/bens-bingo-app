@@ -7,6 +7,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 export class CarouselService {
   private readonly defaultCarouselOptions: OwlOptions = {
     autoplay: true,
+    autoWidth: true,
     loop: true,
     mouseDrag: false,
     nav: true,
@@ -28,7 +29,6 @@ export class CarouselService {
     dots: true,
     animateIn: 'animate__fadeIn',
     animateOut: 'animate__fadeOut',
-    autoWidth: true,
     items: 1,
     responsive: {
       0: {

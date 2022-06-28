@@ -1,7 +1,7 @@
 <div class="new-game position-relative">
   <owl-carousel-o [options]="carouselOptions" class="carousel-new-games">
     <ng-container *ngFor="let newGame of newGames">
-      <ng-template carouselSlide>
+      <ng-template carouselSlide autoWidth="true">
         <div class="position-relative">
           <img
             alt="what's new"

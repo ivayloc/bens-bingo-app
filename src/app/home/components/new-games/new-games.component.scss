@@ -11,7 +11,9 @@
   overflow: hidden;
   clip-path: polygon(0 0, 99.1% 0%, 86% 100%, 0% 100%);
   &-banner {
-    width: calc-clamp(1568);
+    // Fixes an issue in ngx-owl-carousel
+    /* stylelint-disable-next-line declaration-no-important */
+    width: calc-clamp(1568) !important;
   }
   &-studio {
     position: absolute;
@@ -30,7 +32,9 @@
       rgb(0 0 0 / 0%) 100%
     );
     &-logo {
-      width: calc-clamp(241);
+      // Fixes an issue in ngx-owl-carousel
+      /* stylelint-disable-next-line declaration-no-important */
+      width: calc-clamp(241) !important;
     }
   }
   &-btn-more {
