@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { OwlOptions } from 'ngx-owl-carousel-o';
 import { BingoGame } from '../../models/bingo-game';
-import { GamesService } from '../../services/games.service';
+import { CarouselService } from '../../services/carousel.service';
 
 @Component({
   selector: 'app-bingo-games',
@@ -12,7 +11,7 @@ export class BingoGamesComponent {
   @Input() games: BingoGame[] = [];
   @Input() showInCarousel = true;
 
-  carouselOptions = this.gamesService.getGamesCarouselOptions(4);
+  carouselOptions = this.carouselService.getGamesCarouselOptions(4);
 
-  constructor(private gamesService: GamesService) {}
+  constructor(private carouselService: CarouselService) {}
 }

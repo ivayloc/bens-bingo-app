@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { OwlOptions } from 'ngx-owl-carousel-o';
-import { GamesService } from 'src/app/shared/services/games.service';
+import { Component } from '@angular/core';
+import { CarouselService } from 'src/app/shared/services/carousel.service';
 
 @Component({
   selector: 'app-new-games',
@@ -9,7 +8,7 @@ import { GamesService } from 'src/app/shared/services/games.service';
 })
 export class NewGamesComponent {
   newGames = [1, 2, 3, 4];
-  carouselOptions = this.gamesService.getNewGamesCarouselOptions();
+  carouselOptions = this.carouselService.getNewGamesCarouselOptions();
 
-  constructor(private gamesService: GamesService) {}
+  constructor(private carouselService: CarouselService) {}
 }

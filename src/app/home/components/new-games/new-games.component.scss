@@ -21,7 +21,7 @@
     z-index: 9;
     padding-inline-end: calc-clamp(17);
     padding-top: calc-clamp(40);
-    padding-bottom: calc-clamp(40);
+    padding-bottom: calc-clamp(70);
     text-align: center;
     background: linear-gradient(
       to top,
@@ -53,5 +53,16 @@
       text-transform: uppercase;
       transform: skew(20deg);
     }
+  }
+}
+
+:host ::ng-deep {
+  .owl-nav {
+    right: calc-clamp(170);
+    bottom: 0;
+  }
+  .owl-dots {
+    right: calc-clamp(170);
+    bottom: calc-clamp(45);
   }
 }
