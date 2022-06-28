@@ -32,21 +32,15 @@
     </div>
   </div>
   <div class="slots-games-list" *ngIf="showInCarousel">
-    <p-carousel
-      [value]="$any(games)"
-      [numVisible]="5"
-      [numScroll]="1"
-      [circular]="true"
-      [showIndicators]="false"
-      [showNavigators]="true"
-      styleClass="custom-carousel"
-    >
-      <ng-template let-game pTemplate="item">
-        <div class="slots-games-list-item position-relative">
-          <app-slots-game [game]="game"></app-slots-game>
-        </div>
-      </ng-template>
-    </p-carousel>
+    <owl-carousel-o [options]="carouselOptions" class="carousel-games">
+      <ng-container *ngFor="let game of games">
+        <ng-template carouselSlide
+          ><div class="slots-games-list-item position-relative">
+            <app-slots-game [game]="game"></app-slots-game>
+          </div>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
   </div>
 
   <div class="slots-games-list d-flex flex-wrap" *ngIf="!showInCarousel">

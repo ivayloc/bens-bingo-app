@@ -26,21 +26,15 @@
 
   <!-- Games in carousel -->
   <div class="bingo-games-list" *ngIf="showInCarousel">
-    <p-carousel
-      [value]="games"
-      styleClass="custom-carousel"
-      [numVisible]="4"
-      [numScroll]="1"
-      [circular]="true"
-      [showIndicators]="false"
-      [showNavigators]="true"
-    >
-      <ng-template let-game pTemplate="item">
-        <div class="bingo-games-list-item position-relative">
-          <app-bingo-game [game]="game"></app-bingo-game>
-        </div>
-      </ng-template>
-    </p-carousel>
+    <owl-carousel-o [options]="carouselOptions" class="carousel-games">
+      <ng-container *ngFor="let game of games">
+        <ng-template carouselSlide
+          ><div class="bingo-games-list-item position-relative">
+            <app-bingo-game [game]="game"></app-bingo-game>
+          </div>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
   </div>
   <!-- All Games -->
   <div class="bingo-games-list d-flex flex-wrap" *ngIf="!showInCarousel">

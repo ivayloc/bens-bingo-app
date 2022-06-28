@@ -17,6 +17,7 @@ import { ShrinkFontSizeDirective } from './directives/shrink-font-size.directive
 import { AngularMaterialModule } from './modules/angular-material.module';
 import { PrimeNgModule } from './modules/prime-ng.module';
 import { SlotsGameComponent } from './components/slots-game/slots-game.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { SlotsGameComponent } from './components/slots-game/slots-game.component
     AngularMaterialModule,
     AngularMaterialModule,
     PrimeNgModule,
+    CarouselModule,
   ],
   exports: [
     AngularMaterialModule,
@@ -55,6 +57,7 @@ import { SlotsGameComponent } from './components/slots-game/slots-game.component
     ContentBoxComponent,
     RecentWinnersComponent,
     SlotsGamesComponent,
+    CarouselModule,
   ],
 })
 export class SharedModule {}

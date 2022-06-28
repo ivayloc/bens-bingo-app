@@ -1,40 +1,42 @@
 <div class="casino-new-games position-relative">
-  <p-carousel [value]="newGames" [showNavigators]="false">
-    <ng-template let-newGame pTemplate="item">
-      <div
-        class="casino-new-game position-relative"
-        [ngStyle]="{
-          'background-image': 'url(/assets/images/temp/casino-new-game.webp)'
-        }"
-      >
-        <div class="casino-new-game-shadow">
-          <div class="casino-new-game-name d-flex justify-content-center">
-            <div class="casino-new-game-name-text">
-              1001 XL
-              <div>
-                <button
-                  class="btn-clear btn-main casino-new-game-btn"
-                  (click)="showBingoGameDetails(newGame)"
-                >
-                  <span class="btn-main-text casino-new-game-btn-text"
-                    >Play For Real</span
+  <owl-carousel-o [options]="carouselOptions" class="carousel-new-games">
+    <ng-container *ngFor="let newGame of newGames">
+      <ng-template carouselSlide>
+        <div
+          class="casino-new-game position-relative"
+          [ngStyle]="{
+            'background-image': 'url(/assets/images/temp/casino-new-game.webp)'
+          }"
+        >
+          <div class="casino-new-game-shadow">
+            <div class="casino-new-game-name d-flex justify-content-center">
+              <div class="casino-new-game-name-text">
+                1001 XL
+                <div>
+                  <button
+                    class="btn-clear btn-main casino-new-game-btn"
+                    (click)="showBingoGameDetails(newGame)"
                   >
-                </button>
-                <button
-                  class="btn-clear btn-secondary casino-new-game-btn"
-                  (click)="showBingoGameDetails(newGame)"
-                >
-                  <span class="btn-main-text casino-new-game-btn-text"
-                    >Play For Fun</span
+                    <span class="btn-main-text casino-new-game-btn-text"
+                      >Play For Real</span
+                    >
+                  </button>
+                  <button
+                    class="btn-clear btn-secondary casino-new-game-btn"
+                    (click)="showBingoGameDetails(newGame)"
                   >
-                </button>
+                    <span class="btn-main-text casino-new-game-btn-text"
+                      >Play For Fun</span
+                    >
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </ng-template>
-  </p-carousel>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
   <div class="casino-new-games-label label-new">
     <div class="casino-new-games-label-text">New</div>
   </div>

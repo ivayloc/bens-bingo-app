@@ -1,10 +1,9 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
-import { CarouselModule } from 'primeng/carousel';
 @NgModule({
   declarations: [],
   imports: [CommonModule],
-  exports: [CarouselModule, ScrollPanelModule],
+  exports: [ScrollPanelModule],
 })
 export class PrimeNgModule {}

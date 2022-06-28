@@ -1,32 +1,36 @@
 <div class="bingo-new-games position-relative">
-  <p-carousel [value]="newGames" [showNavigators]="false">
-    <ng-template let-newGame pTemplate="item">
-      <div
-        class="bingo-new-game position-relative"
-        [ngStyle]="{
-          'background-image':
-            'url(/assets/images/temp/bingo-games-new-game.webp)'
-        }"
-      >
-        <div class="bingo-new-game-shadow">
-          <div class="bingo-new-game-name d-flex align-items-start">
-            <div class="bingo-new-game-name-text">1001 XL</div>
-            <div class="">
-              <div class="bingo-new-game-jackpots transform-skew-n20">
-                <div class="transform-skew-20">Jackpots: $100,56 / $245,78</div>
+  <owl-carousel-o [options]="carouselOptions" class="carousel-new-games">
+    <ng-container *ngFor="let newGame of newGames">
+      <ng-template carouselSlide>
+        <div
+          class="bingo-new-game position-relative"
+          [ngStyle]="{
+            'background-image':
+              'url(/assets/images/temp/bingo-games-new-game.webp)'
+          }"
+        >
+          <div class="bingo-new-game-shadow">
+            <div class="bingo-new-game-name d-flex align-items-start">
+              <div class="bingo-new-game-name-text">1001 XL</div>
+              <div class="">
+                <div class="bingo-new-game-jackpots transform-skew-n20">
+                  <div class="transform-skew-20">
+                    Jackpots: $100,56 / $245,78
+                  </div>
+                </div>
+                <button
+                  class="btn-clear btn-main"
+                  (click)="showBingoGameDetails(newGame)"
+                >
+                  <span class="btn-main-text">Register</span>
+                </button>
               </div>
-              <button
-                class="btn-clear btn-main"
-                (click)="showBingoGameDetails(newGame)"
-              >
-                <span class="btn-main-text">Register</span>
-              </button>
             </div>
           </div>
         </div>
-      </div>
-    </ng-template>
-  </p-carousel>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
   <div class="bingo-new-games-label label-new">
     <div class="bingo-new-games-label-text">New</div>
   </div>

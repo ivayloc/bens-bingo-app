@@ -1,27 +1,29 @@
 <div class="new-game position-relative">
-  <p-carousel [value]="newGames" [showNavigators]="false">
-    <ng-template let-newGame pTemplate="item">
-      <div class="position-relative">
-        <img
-          alt="what's new"
-          src="/assets/images/what-s-new-banner-box/what-s-new-banner-box.webp"
-          class="new-game-banner"
-          srcset="
-            /assets/images/what-s-new-banner-box/what-s-new-banner-box@2x.webp 2x,
-            /assets/images/what-s-new-banner-box/what-s-new-banner-box@3x.webp 3x
-          "
-        />
-        <div class="new-game-studio">
+  <owl-carousel-o [options]="carouselOptions" class="carousel-new-games">
+    <ng-container *ngFor="let newGame of newGames">
+      <ng-template carouselSlide>
+        <div class="position-relative">
           <img
-            src="/assets/images/temp/logo-elysium.png"
-            alt="elysium"
-            class="new-game-studio-logo"
+            alt="what's new"
+            src="/assets/images/what-s-new-banner-box/what-s-new-banner-box.webp"
+            class="new-game-banner"
+            srcset="
+              /assets/images/what-s-new-banner-box/what-s-new-banner-box@2x.webp 2x,
+              /assets/images/what-s-new-banner-box/what-s-new-banner-box@3x.webp 3x
+            "
           />
+          <div class="new-game-studio">
+            <img
+              src="/assets/images/temp/logo-elysium.png"
+              alt="elysium"
+              class="new-game-studio-logo"
+            />
+          </div>
+          <button class="btn-clear new-game-btn-more" matRipple>
+            <span class="new-game-btn-more-text">More!</span>
+          </button>
         </div>
-        <button class="btn-clear new-game-btn-more" matRipple>
-          <span class="new-game-btn-more-text">More!</span>
-        </button>
-      </div>
-    </ng-template>
-  </p-carousel>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
 </div>
