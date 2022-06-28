@@ -24,6 +24,7 @@ $arrow-right: "data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjEyIiB3aWR0aD0iOSIgeG1
   .owl-prev,
   .owl-next {
     position: relative;
+    min-width: calc-clamp(90);
     padding: calc-clamp(5) calc-clamp(10);
     margin: 0 calc-clamp(10);
     overflow: unset;
