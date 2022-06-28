@@ -20,15 +20,13 @@ export class CarouselService {
   private readonly gamesCarouselOptions: OwlOptions = {
     ...this.defaultCarouselOptions,
     dots: false,
-    animateIn: 'animate__slideOutRight',
-    animateOut: 'animate__slideInLeft',
   };
 
   private readonly newGamesCarouselOptions: OwlOptions = {
     ...this.defaultCarouselOptions,
     dots: true,
-    animateIn: 'animate__fadeIn',
-    animateOut: 'animate__fadeOut',
+    animateIn: 'fadeIn',
+    animateOut: 'fadeOut',
     items: 1,
     responsive: {
       0: {
