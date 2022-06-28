@@ -10,8 +10,8 @@ import { SlotsGame } from '../models/slots-game';
 })
 export class GamesService {
   private readonly defaultCarouselOptions: OwlOptions = {
-    // autoplay: true,
-    // loop: true,
+    autoplay: true,
+    loop: true,
     mouseDrag: false,
     nav: true,
     navSpeed: 700,
@@ -24,7 +24,6 @@ export class GamesService {
     ...this.defaultCarouselOptions,
     animateIn: 'animate__slideOutRight',
     animateOut: 'animate__slideInLeft',
-    autoWidth: true,
   };
 
   private readonly newGamesCarouselOptions: OwlOptions = {
@@ -32,7 +31,7 @@ export class GamesService {
     dots: true,
     animateIn: 'animate__fadeIn',
     animateOut: 'animate__fadeOut',
-    // autoWidth: true,
+    autoWidth: true,
     items: 1,
     responsive: {
       0: {
@@ -56,6 +55,11 @@ export class GamesService {
     return {
       ...this.gamesCarouselOptions,
       items: itemsCount,
+      responsive: {
+        0: {
+          items: itemsCount,
+        },
+      },
     };
   }
 
