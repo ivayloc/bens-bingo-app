@@ -5,23 +5,27 @@
   right: 0;
   pointer-events: none;
 }
+.parallax-layer {
+  display: block;
+}
 .header-character {
+  z-index: 11;
   &-girl {
     position: relative;
-    z-index: 10;
+    z-index: 1;
     width: calc-clamp(609);
     margin-inline-end: calc-clamp(-20);
   }
   &-mask {
     position: absolute;
-    bottom: calc-clamp(80);
+    top: calc-clamp(763);
     left: calc-clamp(-315);
     z-index: 0;
     width: calc-clamp(606);
   }
   &-s-green {
     position: absolute;
-    bottom: calc-clamp(500);
+    top: calc-clamp(608);
     left: 0;
     width: calc-clamp(152);
   }
