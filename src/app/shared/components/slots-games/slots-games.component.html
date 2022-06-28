@@ -4,21 +4,28 @@
       class="slots-games-header transform-skew-n20"
       [ngClass]="'slots-games-header-' + categoryName"
     >
-      <div class="transform-skew-20 d-flex">
-        <img
-          [src]="
-            '/assets/images/casino-header-icons/icon-' + categoryName + '.webp'
-          "
-          [srcset]="
-            '/assets/images/casino-header-icons/icon-' +
-            categoryName +
-            '@2x.webp 2x, /assets/images/casino-header-icons/icon-' +
-            categoryName +
-            '@3x.webp 3x'
-          "
-          class="slots-games-header-icon"
-          alt="fox head"
-        />
+      <div class="d-flex transform-skew-20">
+        <div class="slots-games-header-icon" #parallaxScene>
+          <div>
+            <img
+              data-depth="1.2"
+              [src]="
+                '/assets/images/casino-header-icons/icon-' +
+                categoryName +
+                '.webp'
+              "
+              [srcset]="
+                '/assets/images/casino-header-icons/icon-' +
+                categoryName +
+                '@2x.webp 2x, /assets/images/casino-header-icons/icon-' +
+                categoryName +
+                '@3x.webp 3x'
+              "
+              class="parallax-layer w-100"
+              alt="fox head"
+            />
+          </div>
+        </div>
         <div class="slots-games-header-text">{{ title }}</div>
         <button
           *ngIf="showInCarousel"

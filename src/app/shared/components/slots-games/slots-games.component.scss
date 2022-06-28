@@ -8,7 +8,7 @@
   &-header {
     position: relative;
     top: calc-clamp(-45);
-    z-index: 1;
+    z-index: 9;
     padding-inline-start: calc-clamp(245);
     margin-bottom: calc-clamp(-15);
     &-hot-slots {
@@ -33,9 +33,8 @@
     }
     &-icon {
       position: absolute;
-      top: 33%;
+      top: calc-clamp(-120);
       left: calc-clamp(-265);
-      z-index: 9;
       width: calc-clamp(244);
       transform: translateY(-50%);
     }

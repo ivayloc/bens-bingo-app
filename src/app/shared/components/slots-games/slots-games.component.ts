@@ -1,15 +1,23 @@
-import { Component, Input } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  ViewChild,
+} from '@angular/core';
 import { CasinoGameCategories } from 'src/app/casino/models/casino-game-categories';
 import { CasinoGameCategory } from 'src/app/casino/models/casino-game-category';
 import { SlotsGame } from '../../models/slots-game';
 import { CarouselService } from '../../services/carousel.service';
+import Parallax from 'parallax-js';
 
 @Component({
   selector: 'app-slots-games',
   templateUrl: './slots-games.component.html',
   styleUrls: ['./slots-games.component.scss'],
 })
-export class SlotsGamesComponent {
+export class SlotsGamesComponent implements AfterViewInit {
+  @ViewChild('parallaxScene') parallaxScene!: ElementRef<HTMLDivElement>;
   @Input() games: SlotsGame[] | null = [];
   @Input() showInCarousel = true;
   @Input() category: CasinoGameCategories = CasinoGameCategory['hot-slots'];
@@ -22,4 +30,10 @@ export class SlotsGamesComponent {
     return CasinoGameCategory[this.category];
   }
   constructor(private carouselService: CarouselService) {}
+
+  ngAfterViewInit(): void {
+    new Parallax(this.parallaxScene.nativeElement, {
+      selector: '.parallax-layer',
+    });
+  }
 }
