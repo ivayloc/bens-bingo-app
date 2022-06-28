@@ -12,8 +12,8 @@ $icon-close: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
   &-wrap {
     position: relative;
     padding-top: calc-clamp(200);
-    margin-inline-start: calc-clamp(49);
-    margin-inline-end: calc-clamp(53);
+    // margin-inline-start: calc-clamp(49);
+    // margin-inline-end: calc-clamp(53);
     margin-bottom: calc-clamp(30);
     background-repeat: no-repeat;
     background-position: top;
@@ -85,6 +85,15 @@ $icon-close: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
       color: #fff;
       text-transform: uppercase;
       transform: skew(15deg);
+    }
+  }
+}
+
+::ng-deep {
+  .game-details-dialog {
+    padding: calc-clamp(0);
+    .mat-dialog-container {
+      overflow: unset;
     }
   }
 }

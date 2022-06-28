@@ -13,6 +13,7 @@ export class GamesService {
     this.dialog.open(BingoGameDetailsDialogComponent, {
       minWidth: '56.25vw',
       maxWidth: 'unset',
+      panelClass: 'game-details-dialog',
       data: game,
     });
   }
