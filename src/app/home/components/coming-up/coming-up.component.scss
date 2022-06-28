@@ -103,11 +103,7 @@
     .p-scrollpanel-bar {
       width: calc-clamp(6);
     }
-    &:hover {
-      .p-scrollpanel-bar-y {
-        opacity: 0.5;
-      }
-    }
+
     .p-scrollpanel-content {
       padding: 0;
     }
