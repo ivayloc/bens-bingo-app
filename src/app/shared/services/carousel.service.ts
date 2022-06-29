@@ -19,12 +19,15 @@ export class CarouselService {
 
   private readonly gamesCarouselOptions: OwlOptions = {
     ...this.defaultCarouselOptions,
+    autoplayTimeout: 2000,
     dots: false,
   };
 
   readonly newGamesCarouselOptions: OwlOptions = {
     ...this.defaultCarouselOptions,
+    autoplayTimeout: 3000,
     dots: true,
+    dotsEach: true,
     animateIn: 'fadeIn',
     animateOut: 'fadeOut',
     items: 1,
