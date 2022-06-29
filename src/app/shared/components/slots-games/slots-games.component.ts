@@ -3,7 +3,9 @@ import {
   Component,
   ElementRef,
   Input,
+  QueryList,
   ViewChild,
+  ViewChildren,
 } from '@angular/core';
 import { CasinoGameCategories } from 'src/app/casino/models/casino-game-categories';
 import { CasinoGameCategory } from 'src/app/casino/models/casino-game-category';
@@ -32,8 +34,10 @@ export class SlotsGamesComponent implements AfterViewInit {
   constructor(private carouselService: CarouselService) {}
 
   ngAfterViewInit(): void {
-    new Parallax(this.parallaxScene.nativeElement, {
-      selector: '.parallax-layer',
-    });
+    if (this.parallaxScene) {
+      new Parallax(this.parallaxScene.nativeElement, {
+        selector: '.parallax-layer',
+      });
+    }
   }
 }

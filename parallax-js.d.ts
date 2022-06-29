@@ -1,5 +1,5 @@
 export default class Parallax {
-  constructor(element: any, options?: ParallaxOptions);
+  constructor(element: HTMLElement, options?: ParallaxOptions);
   element: any;
   inputElement: any;
   calibrationTimer: any;

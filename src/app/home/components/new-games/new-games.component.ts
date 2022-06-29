@@ -8,7 +8,7 @@ import { CarouselService } from 'src/app/shared/services/carousel.service';
 })
 export class NewGamesComponent {
   newGames = [1, 2, 3, 4];
-  carouselOptions = this.carouselService.getNewGamesCarouselOptions();
+  carouselOptions = this.carouselService.newGamesCarouselOptions;
 
   constructor(private carouselService: CarouselService) {}
 }

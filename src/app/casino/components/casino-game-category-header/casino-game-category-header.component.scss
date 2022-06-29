@@ -6,8 +6,14 @@
   min-height: calc-clamp(300);
   margin-top: calc-clamp(36);
   margin-bottom: calc-clamp(47);
+  &-bg {
+    width: 100%;
+    height: calc-clamp(300);
+    overflow: hidden;
+  }
   &-icon {
     width: calc-clamp(382);
+    height: calc-clamp(448);
     margin-top: calc-clamp(50);
     &-table-games {
       width: calc-clamp(697);

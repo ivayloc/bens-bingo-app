@@ -22,7 +22,7 @@ export class CarouselService {
     dots: false,
   };
 
-  private readonly newGamesCarouselOptions: OwlOptions = {
+  readonly newGamesCarouselOptions: OwlOptions = {
     ...this.defaultCarouselOptions,
     dots: true,
     animateIn: 'fadeIn',

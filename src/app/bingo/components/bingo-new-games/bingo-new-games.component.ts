@@ -11,8 +11,7 @@ import { GamesService } from 'src/app/shared/services/games.service';
 })
 export class BingoNewGamesComponent {
   newGames = [{}, {}, {}] as BingoGame[];
-  carouselOptions: OwlOptions =
-    this.carouselService.getNewGamesCarouselOptions();
+  carouselOptions: OwlOptions = this.carouselService.newGamesCarouselOptions;
 
   constructor(
     private gamesService: GamesService,

@@ -1,35 +1,47 @@
-<div class="game-category-header">
-  <img
-    [src]="
-      '/assets/images/casino-category-header-bg/bg-' + gameCategory + '.webp'
-    "
-    [srcset]="
-      '/assets/images/casino-category-header-bg/bg-' +
-      gameCategory +
-      '@2x.webp 2x, /assets/images/casino-category-header-bg/bg-' +
-      gameCategory +
-      '@3x.webp 3x'
-    "
-    [alt]="title"
-    class="d-block w-100"
-  />
-  <img
-    [src]="
-      '/assets/images/casino-category-header-icon/icon-' +
-      gameCategory +
-      '.webp'
-    "
-    [srcset]="
-      '/assets/images/casino-category-header-icon/icon-' +
-      gameCategory +
-      '@2x.webp 2x, /assets/images/casino-category-header-icon/icon-' +
-      gameCategory +
-      '@3x.webp 3x'
-    "
+<div class="game-category-header position-relative" #parallaxScene>
+  <div class="game-category-header-bg position-relative">
+    <div data-depth-x="0.5" class="parallax-layer h-100">
+      <img
+        [src]="
+          '/assets/images/casino-category-header-bg/bg-' +
+          gameCategory +
+          '.webp'
+        "
+        [srcset]="
+          '/assets/images/casino-category-header-bg/bg-' +
+          gameCategory +
+          '@2x.webp 2x, /assets/images/casino-category-header-bg/bg-' +
+          gameCategory +
+          '@3x.webp 3x'
+        "
+        [alt]="title"
+        width="120%"
+        class="d-block absolute-center"
+      />
+    </div>
+  </div>
+  <div
     class="game-category-header-icon absolute-center"
     [ngClass]="'game-category-header-icon-' + gameCategory"
-    [alt]="title"
-  />
+  >
+    <img
+      data-depth="1"
+      [src]="
+        '/assets/images/casino-category-header-icon/icon-' +
+        gameCategory +
+        '.webp'
+      "
+      [srcset]="
+        '/assets/images/casino-category-header-icon/icon-' +
+        gameCategory +
+        '@2x.webp 2x, /assets/images/casino-category-header-icon/icon-' +
+        gameCategory +
+        '@3x.webp 3x'
+      "
+      class="parallax-layer d-block w-100"
+      [alt]="title"
+    />
+  </div>
 </div>
 <div
   class="game-category-header-title text-white text-uppercase fw-bold text-center"
