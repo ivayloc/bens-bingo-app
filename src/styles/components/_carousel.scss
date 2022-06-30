@@ -1,68 +1,68 @@
 @import "../functions/calc-clamp";
 @import "../mixins/btn-clear";
 @import "../vendors/hovercss";
+@import "/node_modules/hover.css/scss/effects/2d-transitions/forward";
+@import "/node_modules/hover.css/scss/effects/2d-transitions/backward";
 @import "/node_modules/hover.css/scss/effects/background-transitions/fade";
+@import "../../assets/fonts/bens-bingo-iconfont-v1.0/variables";
 
-$arrow-left: "data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjEyIiB3aWR0aD0iOSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCiAgICA8cGF0aCBkPSJNNy45IDEuNCA2LjUgMGwtNiA2IDYgNiAxLjQtMS40TDMuMyA2bDQuNi00LjZaIiBmaWxsPSIjMGQ4MDhhIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIC8+DQo8L3N2Zz4=" !default;
-$arrow-right: "data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjEyIiB3aWR0aD0iOSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMS41IDAgLjEgMS40IDQuNyA2IC4xIDEwLjYgMS41IDEybDYtNi02LTZaIiBmaWxsPSIjMGQ4MDhhIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4=" !default;
 .carousel-new-games {
   .owl-carousel .owl-item img {
     display: unset;
     width: inherit;
   }
-}
-.owl-dots,
-.owl-nav {
-  position: absolute;
-  right: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-}
-.owl-nav {
-  bottom: calc-clamp(90);
   .owl-prev,
   .owl-next {
-    position: relative;
-    min-width: calc-clamp(90);
-    padding: calc-clamp(5) calc-clamp(10);
-    margin: 0 calc-clamp(10);
-    overflow: unset;
-    font-family: OpenSans, sans-serif;
-    font-size: calc-clamp(14);
-    font-weight: 700;
-    color: #fff;
-    text-align: center;
-    text-transform: uppercase;
-    background-color: #401784;
-
-    &::after,
-    &::before {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: calc-clamp(10);
-      content: "";
-      background-color: #401784;
-      transform: skew(-20deg);
-    }
-    &::after {
-      right: calc-clamp(-5);
-    }
-    &::before {
-      left: calc-clamp(-5);
-    }
-    &:hover {
-      &,
-      &::after,
-      &::before {
-        background-color: #5220a3;
-      }
+    visibility: hidden;
+  }
+  .owl-next {
+    right: 130px;
+  }
+  .owl-prev {
+    left: 10px;
+  }
+  &:hover {
+    .owl-prev,
+    .owl-next {
+      visibility: visible;
     }
   }
 }
+
+.owl-prev {
+  @include backward();
+  left: 20px;
+  &::before {
+    content: $icon-chevron-left;
+  }
+}
+.owl-next {
+  @include forward();
+  right: 20px;
+  &::before {
+    content: $icon-chevron-right;
+  }
+}
+
+.owl-prev,
+.owl-next {
+  position: absolute;
+  top: 50%;
+  margin-top: -20px;
+  font-family: $icomoon-font-family;
+  font-size: 40px;
+  color: #fff;
+  text-shadow: 0 0 10px #000;
+  background-size: contain;
+}
+
 .owl-dots {
+  position: absolute;
+  right: 0;
   bottom: calc-clamp(140);
+  left: 0;
+  display: flex;
+  justify-content: center;
   .owl-dot {
     width: calc-clamp(10);
     height: calc-clamp(10);

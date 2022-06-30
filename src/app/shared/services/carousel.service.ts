@@ -12,7 +12,7 @@ export class CarouselService {
     mouseDrag: false,
     nav: true,
     navSpeed: 700,
-    navText: ['previous', 'next'],
+    navText: ['', ''],
     pullDrag: false,
     touchDrag: false,
   };

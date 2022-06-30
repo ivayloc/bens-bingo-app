@@ -1,0 +1,33 @@
+@font-face {
+  font-family: 'bens-bingo-iconfont';
+  src:  url('fonts/bens-bingo-iconfont.eot?z5ax0z');
+  src:  url('fonts/bens-bingo-iconfont.eot?z5ax0z#iefix') format('embedded-opentype'),
+    url('fonts/bens-bingo-iconfont.ttf?z5ax0z') format('truetype'),
+    url('fonts/bens-bingo-iconfont.woff?z5ax0z') format('woff'),
+    url('fonts/bens-bingo-iconfont.svg?z5ax0z#bens-bingo-iconfont') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'bens-bingo-iconfont' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-chevron-right:before {
+  content: "\e900";
+}
+.icon-chevron-left:before {
+  content: "\e901";
+}
