@@ -9,6 +9,7 @@ export interface BingoState {
   bingoGames: BingoGame[];
   chatModerators: ChatModerators[];
   comingUp: ComingUp[];
+  newGames: BingoGame[];
   recentWinners: RecentWinners[];
   error: string;
 }
@@ -17,6 +18,7 @@ const initialState: BingoState = {
   bingoGames: [],
   chatModerators: [],
   comingUp: [],
+  newGames: [],
   recentWinners: [],
   error: '',
 };

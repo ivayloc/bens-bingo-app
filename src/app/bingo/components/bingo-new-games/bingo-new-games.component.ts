@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { BingoGame } from 'src/app/shared/models/bingo-game';
 import { CarouselService } from 'src/app/shared/services/carousel.service';
@@ -10,7 +10,7 @@ import { GamesService } from 'src/app/shared/services/games.service';
   styleUrls: ['./bingo-new-games.component.scss'],
 })
 export class BingoNewGamesComponent {
-  newGames = [{}, {}, {}] as BingoGame[];
+  @Input() games: BingoGame[] | null = [];
   carouselOptions: OwlOptions = this.carouselService.newGamesCarouselOptions;
 
   constructor(

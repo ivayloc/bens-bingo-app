@@ -5,13 +5,13 @@
         <div
           class="casino-new-game position-relative"
           [ngStyle]="{
-            'background-image': 'url(/assets/images/temp/casino-new-game.webp)'
+            'background-image': 'url(' + newGame.image + ')'
           }"
         >
           <div class="casino-new-game-shadow">
             <div class="casino-new-game-name d-flex justify-content-center">
               <div class="casino-new-game-name-text">
-                1001 XL
+                {{ newGame.name }}
                 <div>
                   <button
                     class="btn-clear btn-main casino-new-game-btn"

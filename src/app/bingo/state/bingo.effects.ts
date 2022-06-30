@@ -17,6 +17,7 @@ export class BingoEffects {
           comingUp: this.bingoService.getComingUp(),
           recentWinners: this.bingoService.getRecentWinners(),
           chatModerators: this.bingoService.getChatModerators(),
+          newGames: this.bingoService.getNewGames(),
         }).pipe(
           map((bingoDetails) =>
             BingoApiActions.loadBingoDetailsSuccess({

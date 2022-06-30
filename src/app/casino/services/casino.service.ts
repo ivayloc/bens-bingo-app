@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { NavigationItem } from 'src/app/shared/models/navigation-item';
 import { SlotsGame } from 'src/app/shared/models/slots-game';
 import { GameCategoriesNames } from '../models/game-categories-names';
@@ -29,5 +29,7 @@ export class CasinoService {
   getSlotsGames(): Observable<SlotsGame[]> {
     return this.http.get<SlotsGame[]>('/assets/mock/hot-slots.json');
   }
-  getNewGames() {}
+  getNewGames(): Observable<SlotsGame[]> {
+    return this.http.get<SlotsGame[]>('/assets/mock/new-games.json');
+  }
 }

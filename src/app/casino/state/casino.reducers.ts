@@ -5,7 +5,7 @@ import { CasinoApiActions } from './actions';
 
 export interface CasinoState {
   slotsGames: SlotsGame[];
-  newGames: CasinoNewGame[];
+  newGames: SlotsGame[];
   error: string;
 }
 

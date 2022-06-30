@@ -1,5 +1,5 @@
 export interface SlotsGame {
   image: string;
-  game: string;
+  name: string;
   studio: string;
 }

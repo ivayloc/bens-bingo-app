@@ -1,17 +1,16 @@
 <div class="bingo-new-games position-relative">
   <owl-carousel-o [options]="carouselOptions" class="carousel-new-games">
-    <ng-container *ngFor="let newGame of newGames">
+    <ng-container *ngFor="let game of games">
       <ng-template carouselSlide>
         <div
           class="bingo-new-game position-relative"
           [ngStyle]="{
-            'background-image':
-              'url(/assets/images/temp/bingo-games-new-game.webp)'
+            'background-image': 'url(' + game.image + ')'
           }"
         >
           <div class="bingo-new-game-shadow">
             <div class="bingo-new-game-name d-flex align-items-start">
-              <div class="bingo-new-game-name-text">1001 XL</div>
+              <div class="bingo-new-game-name-text">{{ game.name }}</div>
               <div class="">
                 <div class="bingo-new-game-jackpots transform-skew-n20">
                   <div class="transform-skew-20">
@@ -20,7 +19,7 @@
                 </div>
                 <button
                   class="btn-clear btn-main"
-                  (click)="showBingoGameDetails(newGame)"
+                  (click)="showBingoGameDetails(game)"
                 >
                   <span class="btn-main-text">Register</span>
                 </button>

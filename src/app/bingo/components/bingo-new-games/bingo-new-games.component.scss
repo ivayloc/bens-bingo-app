@@ -16,6 +16,7 @@
     right: calc-clamp(-10);
     z-index: 9;
     width: calc-clamp(508);
+    pointer-events: none;
   }
 }
 .bingo-new-game {
@@ -55,7 +56,10 @@
   }
 }
 :host ::ng-deep {
-  .p-carousel-indicators {
-    bottom: calc-clamp(100);
+  .owl-next {
+    right: calc-clamp(390);
+  }
+  .owl-prev {
+    left: calc-clamp(20);
   }
 }

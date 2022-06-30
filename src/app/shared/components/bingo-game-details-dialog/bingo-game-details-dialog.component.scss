@@ -22,11 +22,11 @@ $icon-close: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
     position: absolute;
     top: calc-clamp(-24);
     left: 50%;
-    width: calc-clamp(84);
-    height: calc-clamp(78);
+    width: calc-clamp(42);
+    height: calc-clamp(39);
     background: #000 url($icon-close) no-repeat center;
     background-size: 60%;
-    border: solid calc-clamp(3) #e833d0;
+    border: solid calc-clamp(2) #e833d0;
     box-shadow: 0 calc-clamp(-10) calc-clamp(30) calc-clamp(5) #000;
     transform: translateX(-50%);
   }

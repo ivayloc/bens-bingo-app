@@ -23,7 +23,6 @@ import { CasinoPageActions } from '../../state/actions';
 })
 export class CasinoShellComponent implements OnInit {
   navigationLinks = this.casinoService.navigationLinks;
-  newGames = [{}, {}, {}] as SlotsGame[];
   slotsCategories = CasinoGameCategory;
   getHotSlotsGames$ = new Observable<SlotsGame[]>();
   getNewReleasesGames$ = new Observable<SlotsGame[]>();

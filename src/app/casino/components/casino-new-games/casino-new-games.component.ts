@@ -18,7 +18,7 @@ import { GamesService } from 'src/app/shared/services/games.service';
 })
 export class CasinoNewGamesComponent implements AfterViewInit {
   @ViewChild('parallaxScene') parallaxScene!: ElementRef<HTMLDivElement>;
-  @Input() newGames = [] as SlotsGame[];
+  @Input() newGames: SlotsGame[] | null = [];
   carouselOptions: OwlOptions = this.carouselService.newGamesCarouselOptions;
 
   constructor(

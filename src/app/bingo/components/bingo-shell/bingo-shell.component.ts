@@ -4,7 +4,12 @@ import { Observable } from 'rxjs';
 import { BingoGame } from 'src/app/shared/models/bingo-game';
 import { NavigationItem } from 'src/app/shared/models/navigation-item';
 import { RecentWinners } from 'src/app/shared/models/recent-winners';
-import { getBingoGames, getRecentWinners, State } from '../../state';
+import {
+  getBingoGames,
+  getNewGames,
+  getRecentWinners,
+  State,
+} from '../../state';
 import { BingoPageActions } from '../../state/actions';
 
 @Component({
@@ -20,6 +25,7 @@ export class BingoShellComponent implements OnInit {
     { url: '/help', title: 'Coming Up' },
   ];
   getBingoGames$ = new Observable<BingoGame[]>();
+  getNewGames$ = new Observable<BingoGame[]>();
   getRecentWinners$ = new Observable<RecentWinners[]>();
 
   constructor(private store: Store<State>) {}
@@ -27,6 +33,7 @@ export class BingoShellComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(BingoPageActions.loadBingoDetails());
     this.getBingoGames$ = this.store.select(getBingoGames);
+    this.getNewGames$ = this.store.select(getNewGames);
     this.getRecentWinners$ = this.store.select(getRecentWinners);
   }
 }

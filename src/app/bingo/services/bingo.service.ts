@@ -27,4 +27,8 @@ export class BingoService {
   getChatModerators() {
     return this.http.get<ChatModerators[]>('/assets/mock/bingo-games.json');
   }
+
+  getNewGames() {
+    return this.http.get<BingoGame[]>('/assets/mock/new-games.json');
+  }
 }
