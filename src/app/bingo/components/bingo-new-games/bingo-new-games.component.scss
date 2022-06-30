@@ -2,6 +2,7 @@
 @import "../../../../styles/mixins/btn-clear";
 
 .bingo-new-games {
+  min-height: calc-clamp(824);
   &-label {
     position: absolute;
     top: calc-clamp(451);

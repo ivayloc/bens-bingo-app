@@ -16,10 +16,10 @@
     visibility: hidden;
   }
   .owl-next {
-    right: 130px;
+    right: calc-clamp(130);
   }
   .owl-prev {
-    left: 10px;
+    left: calc-clamp(10);
   }
   &:hover {
     .owl-prev,
@@ -31,14 +31,14 @@
 
 .owl-prev {
   @include backward();
-  left: 20px;
+  left: calc-clamp(20);
   &::before {
     content: $icon-chevron-left;
   }
 }
 .owl-next {
   @include forward();
-  right: 20px;
+  right: calc-clamp(20);
   &::before {
     content: $icon-chevron-right;
   }
@@ -48,11 +48,11 @@
 .owl-next {
   position: absolute;
   top: 50%;
-  margin-top: -20px;
+  margin-top: calc-clamp(-20);
   font-family: $icomoon-font-family;
-  font-size: 40px;
+  font-size: calc-clamp(40);
   color: #fff;
-  text-shadow: 0 0 10px #000;
+  text-shadow: 0 0 calc-clamp(10) #000;
   background-size: contain;
 }
 

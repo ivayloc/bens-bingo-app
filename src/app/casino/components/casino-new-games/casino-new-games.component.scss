@@ -2,6 +2,7 @@
 @import "../../../../styles/mixins/btn-clear";
 
 .casino-new-games {
+  min-height: calc-clamp(912);
   &-label {
     position: absolute;
     top: calc-clamp(544);
@@ -55,8 +56,10 @@
   }
 }
 :host ::ng-deep {
-  .p-carousel-indicators {
-    bottom: calc-clamp(100);
-    margin-left: calc-clamp(115);
+  .owl-next {
+    right: calc-clamp(390);
+  }
+  .owl-prev {
+    left: calc-clamp(20);
   }
 }

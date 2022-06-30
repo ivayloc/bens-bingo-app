@@ -12,10 +12,11 @@ export class GamesService {
 
   showBingoGameDetails(game: BingoGame | SlotsGame): void {
     this.dialog.open(BingoGameDetailsDialogComponent, {
-      minWidth: '56.25vw',
+      minWidth: '',
       maxWidth: 'unset',
       panelClass: 'game-details-dialog',
       data: game,
     });
   }
 }
+// 1462px

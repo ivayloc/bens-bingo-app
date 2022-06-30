@@ -6,17 +6,18 @@
 $icon-close: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNzIuOCAxNzIuOCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTcyLjggMTcyLjgiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwYXRoIGQ9Ik05NS41IDg2LjQgMTcxIDEwLjljMi41LTIuNSAyLjUtNi42IDAtOS4xcy02LjYtMi41LTkuMSAwTDg2LjQgNzcuMyAxMC45IDEuOUM4LjQtLjYgNC4zLS42IDEuOCAxLjlzLTIuNSA2LjYgMCA5LjFsNzUuNSA3NS41LTc1LjQgNzUuNGMtMi41IDIuNS0yLjUgNi42IDAgOS4xIDEuMiAxLjIgMi45IDEuOSA0LjUgMS45czMuMy0uNiA0LjUtMS45bDc1LjUtNzUuNSA3NS41IDc1LjVjMS4yIDEuMiAyLjkgMS45IDQuNSAxLjlzMy4zLS42IDQuNS0xLjljMi41LTIuNSAyLjUtNi42IDAtOS4xTDk1LjUgODYuNHoiIHN0eWxlPSJmaWxsOiNlODMzZDAiLz48L3N2Zz4=" !default;
 
 .game-details {
+  max-width: calc-clamp(1032);
   padding: calc-clamp(16) calc-clamp(44);
+  margin: 0 auto;
   background-color: rgba(#000, 0.8);
   transform: skew(-10deg);
   &-wrap {
     position: relative;
     padding-top: calc-clamp(200);
-    // margin-inline-start: calc-clamp(49);
-    // margin-inline-end: calc-clamp(53);
     margin-bottom: calc-clamp(30);
     background-repeat: no-repeat;
     background-position: top;
+    background-size: cover;
   }
   &-btn-close {
     position: absolute;
@@ -67,6 +68,7 @@ $icon-close: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
   }
   &-body {
     min-height: calc-clamp(300);
+    padding-top: calc-clamp(46);
   }
   &-btn {
     @include fade();
@@ -91,7 +93,8 @@ $icon-close: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
 
 ::ng-deep {
   .game-details-dialog {
-    padding: calc-clamp(0);
+    min-width: calc-clamp(1462);
+    padding: 0;
     .mat-dialog-container {
       overflow: unset;
     }
