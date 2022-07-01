@@ -1,52 +1,52 @@
 [
   {
     "image": "/assets/images/games/slot-1.jpg",
-    "game": "Wizardz World",
+    "name": "Wizardz World",
     "studio": "Elysium Studio"
   },
   {
     "image": "/assets/images/games/slot-2.jpg",
-    "game": "Fox Tale",
+    "name": "Fox Tale",
     "studio": "Elysium Studio"
   },
   {
     "image": "/assets/images/games/slot-3.jpg",
-    "game": "Low Of Gilgamesh",
+    "name": "Low Of Gilgamesh",
     "studio": "Elysium Studio"
   },
   {
     "image": "/assets/images/games/slot-4.jpg",
-    "game": "Spirit Hunters",
+    "name": "Spirit Hunters",
     "studio": "Elysium Studio"
   },
   {
     "image": "/assets/images/games/slot-5.jpg",
-    "game": "Supa Crew",
+    "name": "Supa Crew",
     "studio": "Elysium Studio"
   },
   {
     "image": "/assets/images/games/slot-1.jpg",
-    "game": "Wizardz World",
+    "name": "Wizardz World",
     "studio": "Elysium Studio"
   },
   {
     "image": "/assets/images/games/slot-2.jpg",
-    "game": "Fox Tale",
+    "name": "Fox Tale",
     "studio": "Elysium Studio"
   },
   {
     "image": "/assets/images/games/slot-3.jpg",
-    "game": "Low Of Gilgamesh",
+    "name": "Low Of Gilgamesh",
     "studio": "Elysium Studio"
   },
   {
     "image": "/assets/images/games/slot-4.jpg",
-    "game": "Spirit Hunters",
+    "name": "Spirit Hunters",
     "studio": "Elysium Studio"
   },
   {
     "image": "/assets/images/games/slot-5.jpg",
-    "game": "Supa Crew",
+    "name": "Supa Crew",
     "studio": "Elysium Studio"
   }
 ]

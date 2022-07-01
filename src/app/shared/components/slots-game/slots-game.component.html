@@ -2,7 +2,7 @@
   class="slots-game-wrap"
   [ngStyle]="{ 'background-image': 'url(' + game.image + ')' }"
 >
-  <div class="slots-game">
+  <div class="slots-game" (click)="showBingoGameDetails(game)">
     <div class="slots-game-studio">
       <div class="slots-game-studio-text">{{ game.studio }}</div>
     </div>

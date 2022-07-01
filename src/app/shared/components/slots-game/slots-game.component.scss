@@ -10,6 +10,7 @@
   }
   position: relative;
   min-height: calc-clamp(500);
+  cursor: pointer;
   &-studio {
     display: inline-block;
     min-width: calc-clamp(200);
@@ -34,7 +35,7 @@
     left: 0;
     height: calc-clamp(125);
     padding: 0 calc-clamp(20);
-    background-color: rgba(#000, 0.8);
+    background-color: rgba(#000, 0.7);
     &-text {
       position: absolute;
       top: 50%;
