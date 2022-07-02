@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { TextContentLayoutComponent } from './shared/text-content-layout/text-content-layout.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./casino/casino.module').then((m) => m.CasinoModule),
   },
+  { path: 'coming-up', component: TextContentLayoutComponent },
 ];
 
 @NgModule({

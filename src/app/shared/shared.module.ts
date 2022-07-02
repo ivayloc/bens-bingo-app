@@ -18,6 +18,7 @@ import { AngularMaterialModule } from './modules/angular-material.module';
 import { PrimeNgModule } from './modules/prime-ng.module';
 import { SlotsGameComponent } from './components/slots-game/slots-game.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { TextContentLayoutComponent } from './text-content-layout/text-content-layout.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     RecentWinnersComponent,
     SlotsGamesComponent,
     SlotsGameComponent,
+    TextContentLayoutComponent,
   ],
   imports: [
     CommonModule,
@@ -58,6 +60,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     RecentWinnersComponent,
     SlotsGamesComponent,
     CarouselModule,
+    TextContentLayoutComponent,
   ],
 })
 export class SharedModule {}
