@@ -19,4 +19,3 @@ export class GamesService {
     });
   }
 }
-// 1462px

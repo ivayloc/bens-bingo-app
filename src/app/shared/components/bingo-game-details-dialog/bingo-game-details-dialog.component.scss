@@ -1,13 +1,10 @@
 @import "../../../../styles/functions/calc-clamp";
-@import "../../../../styles/vendors/hovercss";
-@import "/node_modules/hover.css/scss/effects/background-transitions/fade";
-@import "/node_modules/hover.css/scss/effects/2d-transitions/shrink";
 
 $icon-close: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNzIuOCAxNzIuOCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTcyLjggMTcyLjgiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwYXRoIGQ9Ik05NS41IDg2LjQgMTcxIDEwLjljMi41LTIuNSAyLjUtNi42IDAtOS4xcy02LjYtMi41LTkuMSAwTDg2LjQgNzcuMyAxMC45IDEuOUM4LjQtLjYgNC4zLS42IDEuOCAxLjlzLTIuNSA2LjYgMCA5LjFsNzUuNSA3NS41LTc1LjQgNzUuNGMtMi41IDIuNS0yLjUgNi42IDAgOS4xIDEuMiAxLjIgMi45IDEuOSA0LjUgMS45czMuMy0uNiA0LjUtMS45bDc1LjUtNzUuNSA3NS41IDc1LjVjMS4yIDEuMiAyLjkgMS45IDQuNSAxLjlzMy4zLS42IDQuNS0xLjljMi41LTIuNSAyLjUtNi42IDAtOS4xTDk1LjUgODYuNHoiIHN0eWxlPSJmaWxsOiNlODMzZDAiLz48L3N2Zz4=" !default;
 
 .game-details {
   max-width: calc-clamp(1032);
-  padding: calc-clamp(16) calc-clamp(44);
+  padding: calc-clamp(16) calc-clamp(44) 0;
   margin: 0 auto;
   background-color: rgba(#000, 0.8);
   transform: skew(-10deg);
@@ -34,7 +31,7 @@ $icon-close: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
   &-time {
     max-width: calc-clamp(120);
     padding: 0 calc-clamp(24);
-    margin-inline-start: calc-clamp(43);
+    margin-inline-start: calc-clamp(237);
     text-align: center;
     background-color: #662bc7;
     transform: skew(351deg);
@@ -67,27 +64,14 @@ $icon-close: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
     }
   }
   &-body {
-    min-height: calc-clamp(300);
     padding-top: calc-clamp(46);
   }
+  &-btns {
+    position: relative;
+    bottom: calc-clamp(-32);
+  }
   &-btn {
-    @include fade();
-    position: absolute;
-    bottom: calc-clamp(-35);
-    left: 50%;
-    z-index: 9;
-    padding: calc-clamp(9) calc-clamp(40);
-    background-color: #0d808a;
-    transform: skew(-10deg) translateX(-50%);
-    &-text {
-      display: block;
-      font-family: OpenSans, sans-serif;
-      font-size: calc-clamp(35);
-      font-weight: 700;
-      color: #fff;
-      text-transform: uppercase;
-      transform: skew(15deg);
-    }
+    margin: 0 10px;
   }
 }
 

@@ -11,6 +11,7 @@
 .btn-secondary {
   @include fade();
   min-width: calc-clamp(287);
+  padding: 0 calc-clamp(30);
   background-color: #0d808a;
   transform: skew(-20deg);
   &-text {
@@ -27,4 +28,9 @@
 }
 .btn-secondary {
   background-color: #e833d0;
+}
+
+.btn-md {
+  padding-top: calc-clamp(11);
+  padding-bottom: calc-clamp(11);
 }

@@ -8,6 +8,7 @@
   }"
 >
   <button
+    tabindex="-1"
     class="btn-clear game-details-btn-close"
     (click)="closeDialog()"
   ></button>
@@ -24,14 +25,14 @@
         <div class="d-flex">
           <div class="flex-fill">
             <div class="fz-31">JACKPOT</div>
-            <ul class="list-unstyled fz-56">
+            <ul class="list-unstyled fz-56 mb-0">
               <li>$ 1.302,57</li>
               <li>$ 110,76</li>
             </ul>
           </div>
           <div class="flex-fill">
             <div class="fz-31">Other Stats</div>
-            <ul class="list-unstyled fz-56">
+            <ul class="list-unstyled fz-56 mb-0">
               <li>$ 1.302,57</li>
               <li>$ 110,76</li>
             </ul>
@@ -39,8 +40,20 @@
         </div>
       </div>
     </div>
-    <button class="btn-clear game-details-btn">
-      <span class="game-details-btn-text">Register</span>
-    </button>
+    <div class="game-details-btns d-flex justify-content-center">
+      <ng-container *ngIf="game.type === 'bingo'">
+        <button class="btn-clear btn-main btn-md game-details-btn">
+          <span class="btn-main-text">Register</span>
+        </button>
+      </ng-container>
+      <ng-container *ngIf="game.type === 'casino'">
+        <button class="btn-clear btn-main btn-md game-details-btn">
+          <span class="btn-main-text">Play For Real</span>
+        </button>
+        <button class="btn-clear btn-secondary btn-md game-details-btn">
+          <span class="btn-main-text">Play For Fun</span>
+        </button>
+      </ng-container>
+    </div>
   </div>
 </div>

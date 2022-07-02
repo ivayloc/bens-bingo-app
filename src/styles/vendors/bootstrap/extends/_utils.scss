@@ -1,0 +1,13 @@
+$utilities: map-merge(
+  $utilities,
+  (
+    "min-height": (
+      property: min-height,
+      class: min-h,
+      values: (
+        100: 100%,
+        auto: auto,
+      ),
+    ),
+  )
+);

@@ -1,8 +1,14 @@
-<div class="overflow-hidden">
-  <app-header></app-header>
-  <app-main-navigation></app-main-navigation>
+<div class="overflow-hidden d-flex flex-column">
+  <div>
+    <app-header></app-header>
+    <app-main-navigation></app-main-navigation>
+  </div>
 
-  <router-outlet></router-outlet>
+  <div class="">
+    <router-outlet></router-outlet>
+  </div>
 
-  <app-footer></app-footer>
+  <div>
+    <app-footer></app-footer>
+  </div>
 </div>
