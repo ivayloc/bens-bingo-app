@@ -20,7 +20,7 @@ export const getHotSlotsGames = createSelector(
 
 export const getNewReleasesGames = createSelector(
   getCasinoGamesState,
-  (state) => state.newGames
+  (state) => state.slotsGames
 );
 
 export const getJackpotGames = createSelector(

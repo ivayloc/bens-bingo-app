@@ -71,7 +71,7 @@ $icon-close: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
     bottom: calc-clamp(-32);
   }
   &-btn {
-    margin: 0 10px;
+    margin: 0 calc-clamp(10);
   }
 }
 

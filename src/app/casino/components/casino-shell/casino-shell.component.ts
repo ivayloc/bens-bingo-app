@@ -10,6 +10,7 @@ import { CasinoService } from '../../services/casino.service';
 import {
   getHotSlotsGames,
   getJackpotGames,
+  getNewGames,
   getNewReleasesGames,
   getSlotsGames,
   State,
@@ -24,6 +25,7 @@ import { CasinoPageActions } from '../../state/actions';
 export class CasinoShellComponent implements OnInit {
   navigationLinks = this.casinoService.navigationLinks;
   slotsCategories = CasinoGameCategory;
+  getNewGames$ = new Observable<SlotsGame[]>();
   getHotSlotsGames$ = new Observable<SlotsGame[]>();
   getNewReleasesGames$ = new Observable<SlotsGame[]>();
   getJackpotGames$ = new Observable<SlotsGame[]>();
@@ -35,6 +37,7 @@ export class CasinoShellComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(CasinoPageActions.loadCasinoDetails());
+    this.getNewGames$ = this.store.select(getNewGames);
     this.getHotSlotsGames$ = this.store.select(getHotSlotsGames);
     this.getNewReleasesGames$ = this.store.select(getNewReleasesGames);
     this.getJackpotGames$ = this.store.select(getJackpotGames);

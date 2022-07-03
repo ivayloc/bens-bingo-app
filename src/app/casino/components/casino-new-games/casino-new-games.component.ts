@@ -9,7 +9,6 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import Parallax from 'parallax-js';
 import { SlotsGame } from 'src/app/shared/models/slots-game';
 import { CarouselService } from 'src/app/shared/services/carousel.service';
-import { GamesService } from 'src/app/shared/services/games.service';
 
 @Component({
   selector: 'app-casino-new-games',
@@ -21,18 +20,11 @@ export class CasinoNewGamesComponent implements AfterViewInit {
   @Input() newGames: SlotsGame[] | null = [];
   carouselOptions: OwlOptions = this.carouselService.newGamesCarouselOptions;
 
-  constructor(
-    private gamesService: GamesService,
-    private carouselService: CarouselService
-  ) {}
+  constructor(private carouselService: CarouselService) {}
 
   ngAfterViewInit(): void {
     new Parallax(this.parallaxScene.nativeElement, {
       selector: '.parallax-layer',
     });
-  }
-
-  showBingoGameDetails(game: SlotsGame) {
-    this.gamesService.showBingoGameDetails(game);
   }
 }
