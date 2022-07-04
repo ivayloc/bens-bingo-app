@@ -14,6 +14,7 @@ import { SlotsGame } from '../../../shared/models/slots-game';
 import {
   getBingoGames,
   getJackpots,
+  getNewGames,
   getRecentWinners,
   getSlotsGames,
   State,
@@ -32,6 +33,7 @@ export class HomeLayoutComponent implements OnInit, AfterViewInit {
   getSlotsGames$ = new Observable<SlotsGame[]>();
   getJackpots$ = new Observable<Jackpot[]>();
   getRecentWinners$ = new Observable<RecentWinners[]>();
+  getNewGames$ = new Observable<SlotsGame[]>();
 
   constructor(private store: Store<State>) {}
 
@@ -42,6 +44,7 @@ export class HomeLayoutComponent implements OnInit, AfterViewInit {
     this.getSlotsGames$ = this.store.select(getSlotsGames);
     this.getJackpots$ = this.store.select(getJackpots);
     this.getRecentWinners$ = this.store.select(getRecentWinners);
+    this.getNewGames$ = this.store.select(getNewGames);
   }
 
   ngAfterViewInit(): void {

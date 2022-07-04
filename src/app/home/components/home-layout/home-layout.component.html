@@ -1,5 +1,5 @@
 <div class="header-top position-relative">
-  <app-new-games></app-new-games>
+  <app-new-games [games]="getNewGames$ | async"></app-new-games>
   <app-coming-up></app-coming-up>
   <app-header-character></app-header-character>
 </div>

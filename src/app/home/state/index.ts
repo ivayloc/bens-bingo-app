@@ -27,3 +27,8 @@ export const getRecentWinners = createSelector(
   getHomeDetailsState,
   (state) => state.recentWinners
 );
+
+export const getNewGames = createSelector(
+  getHomeDetailsState,
+  (state) => state.newGames
+);

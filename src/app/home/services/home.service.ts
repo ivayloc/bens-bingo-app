@@ -27,4 +27,8 @@ export class HomeService {
   getRecentWinners(): Observable<RecentWinners[]> {
     return this.http.get<RecentWinners[]>('/assets/mock/recent-winners.json');
   }
+
+  getNewGames(): Observable<SlotsGame[]> {
+    return this.http.get<SlotsGame[]>('/assets/mock/new-games.json');
+  }
 }

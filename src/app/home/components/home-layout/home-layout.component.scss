@@ -27,12 +27,6 @@
       color: #fff;
     }
   }
-  // &-stones {
-  //   position: absolute;
-  //   top: calc-clamp(-130);
-  //   right: calc-clamp(-120);
-  //   width: calc-clamp(439);
-  // }
   &-gems {
     position: absolute;
     top: calc-clamp(-150);
@@ -63,5 +57,11 @@
     top: calc-clamp(310);
     left: calc-clamp(240);
     width: calc-clamp(70);
+  }
+}
+
+::ng-deep {
+  .main-navigation {
+    width: calc-clamp(1568);
   }
 }

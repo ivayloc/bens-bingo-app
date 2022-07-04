@@ -8,7 +8,7 @@ import { HomeApiActions } from './actions';
 export interface HomeState {
   bingoGames: BingoGame[];
   slotsGames: SlotsGame[];
-  newGames: any[];
+  newGames: SlotsGame[];
   jackpots: Jackpot[];
   recentWinners: RecentWinners[];
   error: string;

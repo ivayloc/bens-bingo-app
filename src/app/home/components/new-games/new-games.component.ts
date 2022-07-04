@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { SlotsGame } from 'src/app/shared/models/slots-game';
 import { CarouselService } from 'src/app/shared/services/carousel.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { CarouselService } from 'src/app/shared/services/carousel.service';
   styleUrls: ['./new-games.component.scss'],
 })
 export class NewGamesComponent {
-  newGames = [1, 2, 3, 4];
+  @Input() games: SlotsGame[] | null = [];
   carouselOptions = this.carouselService.newGamesCarouselOptions;
 
   constructor(private carouselService: CarouselService) {}

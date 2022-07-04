@@ -17,6 +17,7 @@ export class HomeEffects {
           slotsGames: this.homeService.getSlotsGames(),
           jackpots: this.homeService.getJackpots(),
           recentWinners: this.homeService.getRecentWinners(),
+          newGames: this.homeService.getNewGames(),
         }).pipe(
           map((homeDetails) =>
             HomeApiActions.loadHomeDetailsSuccess({
