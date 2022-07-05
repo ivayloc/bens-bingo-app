@@ -1,6 +1,6 @@
 @import "../../../../styles/functions/calc-clamp";
 @import "../../../../styles/vendors/hovercss";
-@import "/node_modules/hover.css/scss/effects/2d-transitions/pulse";
+@import "/node_modules/hover.css/scss/effects/2d-transitions/grow";
 
 .content-box {
   margin-inline-end: calc-clamp(-40);
@@ -26,5 +26,5 @@
 }
 
 .hover-pulse {
-  @include pulse();
+  @include grow();
 }
