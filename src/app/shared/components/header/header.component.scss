@@ -5,8 +5,8 @@
   display: block;
 }
 .top-bar {
-  padding: 0 calc-clamp(48);
-  line-height: normal;
+  padding: calc-clamp(3) calc-clamp(48);
+  line-height: 1;
   background: #401784;
   background: linear-gradient(
     to right,
@@ -16,10 +16,11 @@
     #5321a4 100%
   );
   &-username {
-    margin-top: calc-clamp(-2);
-    margin-bottom: calc-clamp(5);
+    // margin-top: calc-clamp(-2);
+    // margin-bottom: calc-clamp(5);
+    padding-bottom: 6px;
     font-size: calc-clamp(27);
-    line-height: normal;
+    line-height: 1;
   }
 }
 
