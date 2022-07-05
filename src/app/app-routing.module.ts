@@ -17,6 +17,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./casino/casino.module').then((m) => m.CasinoModule),
   },
+  {
+    path: 'account',
+    loadChildren: () =>
+      import('./customer-portal/customer-portal.module').then(
+        (m) => m.CustomerPortalModule
+      ),
+  },
   { path: 'coming-up', component: TextContentLayoutComponent },
 ];
 

@@ -19,6 +19,7 @@ import { PrimeNgModule } from './modules/prime-ng.module';
 import { SlotsGameComponent } from './components/slots-game/slots-game.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { TextContentLayoutComponent } from './text-content-layout/text-content-layout.component';
+import { ChatModeratorsComponent } from './components/chat-moderators/chat-moderators.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { TextContentLayoutComponent } from './text-content-layout/text-content-l
     SlotsGamesComponent,
     SlotsGameComponent,
     TextContentLayoutComponent,
+    ChatModeratorsComponent,
   ],
   imports: [
     CommonModule,
@@ -61,6 +63,7 @@ import { TextContentLayoutComponent } from './text-content-layout/text-content-l
     SlotsGamesComponent,
     CarouselModule,
     TextContentLayoutComponent,
+    ChatModeratorsComponent,
   ],
 })
 export class SharedModule {}

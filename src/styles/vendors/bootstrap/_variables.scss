@@ -1,5 +1,7 @@
 /* stylelint-disable scss/dollar-variable-default */
 @import "node_modules/bootstrap/scss/functions";
+@import "../../functions/calc-clamp";
+@import "../../functions/calc-rem";
 // Variables
 //
 // Variables should follow the `$component-state-property-size` formula for
@@ -374,7 +376,7 @@ $gradient: linear-gradient(180deg, rgba($white, 0.15), rgba($white, 0));
 // You can add more entries to the $spacers map, should you need more variation.
 
 // scss-docs-start spacer-variables-maps
-$spacer: 1rem;
+$spacer: 0.8294453084499741vw; // 1rem
 $spacers: (
   0: 0,
   1: $spacer * 0.25,
@@ -403,8 +405,8 @@ $position-values: (
 //
 // Settings for the `<body>` element.
 
-$body-bg: $white;
-$body-color: $gray-900;
+$body-bg: $black;
+$body-color: $white;
 $body-text-align: null;
 
 // Utilities maps
@@ -444,7 +446,7 @@ $utilities-bg-colors: map-loop($utilities-bg, rgba-css-var, "$key", "bg");
 //
 // Style anchor elements.
 
-$link-color: $primary;
+$link-color: #da15a9;
 $link-decoration: underline;
 $link-shade-percentage: 20%;
 $link-hover-color: shift-color($link-color, $link-shade-percentage);
@@ -572,10 +574,9 @@ $aspect-ratios: (
 
 // scss-docs-start font-variables
 // stylelint-disable value-keyword-case
-$font-family-sans-serif: "OpenSans", system-ui, -apple-system,
-  "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans",
-  sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-  "Noto Color Emoji";
+$font-family-sans-serif: "OpenSans", system-ui, -apple-system, "Segoe UI",
+  Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
+  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 $font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
   "Liberation Mono", "Courier New", monospace;
 // stylelint-enable value-keyword-case

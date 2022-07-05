@@ -1,17 +1,34 @@
+/* stylelint-disable declaration-no-important */
 @import "./functions/calc-clamp";
 
 .line-height-normal {
   line-height: normal !important;
 }
 
+.fz-16 {
+  font-size: calc-clamp(16) !important;
+}
+
+.fz-18 {
+  font-size: calc-clamp(18) !important;
+}
+
+.fz-22 {
+  font-size: calc-clamp(22) !important;
+}
+
 .fz-24 {
-  font-size: calc-clamp(24);
+  font-size: calc-clamp(24) !important;
 }
 
 .fz-31 {
-  font-size: calc-clamp(31);
+  font-size: calc-clamp(31) !important;
+}
+
+.fz-45 {
+  font-size: calc-clamp(45) !important;
 }
 
 .fz-56 {
-  font-size: calc-clamp(56);
+  font-size: calc-clamp(56) !important;
 }

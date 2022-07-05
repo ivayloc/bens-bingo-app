@@ -1,5 +1,8 @@
 @import "../../../../styles/functions/calc-clamp";
 
+:host {
+  display: block;
+}
 .box-pink {
   padding: calc-clamp(7);
   padding-top: 0;
@@ -10,6 +13,7 @@
   }
 
   &-header {
+    min-height: calc-clamp(82);
     margin: 0 calc-clamp(-7);
     &-text {
       font-family: OpenSans, sans-serif;

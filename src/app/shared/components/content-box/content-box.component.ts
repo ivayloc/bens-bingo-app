@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ContentBoxComponent implements OnInit {
   @Input() title = '';
+  @Input() titleClass = '';
 
   constructor() {}
 

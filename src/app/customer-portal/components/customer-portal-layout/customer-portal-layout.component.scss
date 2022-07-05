@@ -1,0 +1,14 @@
+@import "../../../../styles/functions/calc-clamp";
+
+:host ::ng-deep {
+  .main-navigation.main-navigation.main-navigation-submenus {
+    padding-inline-end: calc-clamp(30);
+    .main-navigation-link {
+      padding-inline-start: calc-clamp(15);
+      padding-inline-end: calc-clamp(15);
+    }
+    .main-navigation-link-text {
+      font-size: calc-clamp(29);
+    }
+  }
+}

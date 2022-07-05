@@ -3,8 +3,8 @@
 
 .main-navigation-submenus {
   padding-inline-end: calc-clamp(120);
-  margin-right: calc-clamp(-7);
-  margin-left: calc-clamp(-24);
+  margin-inline-start: calc-clamp(-24);
+  margin-inline-end: calc-clamp(-7);
   background-color: #5d26b7;
   .main-navigation-link {
     padding-inline-start: calc-clamp(30);

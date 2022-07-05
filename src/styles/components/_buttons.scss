@@ -34,3 +34,11 @@
   padding-top: calc-clamp(11);
   padding-bottom: calc-clamp(11);
 }
+
+.btn-sm {
+  min-width: unset;
+  > * {
+    font-size: calc-clamp(24);
+    line-height: normal;
+  }
+}

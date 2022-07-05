@@ -8,7 +8,6 @@ import { BingoRoutingModule } from './bingo-routing.module';
 import { BingoComingUpComponent } from './components/bingo-coming-up/bingo-coming-up.component';
 import { BingoNewGamesComponent } from './components/bingo-new-games/bingo-new-games.component';
 import { BingoShellComponent } from './components/bingo-shell/bingo-shell.component';
-import { ChatModeratorsComponent } from './components/chat-moderators/chat-moderators.component';
 import { BingoEffects } from './state/bingo.effects';
 import { bingoReducer } from './state/bingo.reducers';
 
@@ -17,7 +16,6 @@ import { bingoReducer } from './state/bingo.reducers';
     BingoShellComponent,
     BingoNewGamesComponent,
     BingoComingUpComponent,
-    ChatModeratorsComponent,
   ],
   imports: [
     CommonModule,

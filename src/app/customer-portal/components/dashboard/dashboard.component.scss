@@ -1,0 +1,30 @@
+@import "../../../../styles/functions/calc-clamp";
+@import "../../../../styles/vendors/hovercss";
+@import "/node_modules/hover.css/scss/effects/2d-transitions/pulse";
+
+.content-box {
+  margin-inline-end: calc-clamp(-40);
+  margin-bottom: calc-clamp(60);
+  &-start {
+    margin-inline-start: calc-clamp(-40);
+    margin-inline-end: 0;
+    margin-top: calc-clamp(-40);
+  }
+}
+.dashboard-container {
+  padding-top: calc-clamp(100);
+}
+
+.table-fixed {
+  table-layout: fixed;
+}
+
+:host ::ng-deep {
+  .coming-up-content-scroll {
+    height: calc-clamp(240);
+  }
+}
+
+.hover-pulse {
+  @include pulse();
+}
