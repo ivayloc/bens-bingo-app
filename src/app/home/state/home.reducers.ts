@@ -4,14 +4,15 @@ import { Jackpot } from '../models/jackpots';
 import { RecentWinners } from '../../shared/models/recent-winners';
 import { SlotsGame } from '../../shared/models/slots-game';
 import { HomeApiActions } from './actions';
+import { Game } from 'src/app/shared/models/game';
 
 export interface HomeState {
   bingoGames: BingoGame[];
-  slotsGames: SlotsGame[];
-  newGames: SlotsGame[];
+  slotsGames: Game[];
+  newGames: Game[];
   jackpots: Jackpot[];
   recentWinners: RecentWinners[];
-  error: string;
+  error: any;
 }
 
 const initialState: HomeState = {
@@ -20,7 +21,7 @@ const initialState: HomeState = {
   newGames: [],
   jackpots: [],
   recentWinners: [],
-  error: '',
+  error: {},
 };
 
 export const homeReducer = createReducer<HomeState>(

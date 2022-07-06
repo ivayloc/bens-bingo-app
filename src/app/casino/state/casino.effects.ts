@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, forkJoin, map, mergeMap, of } from 'rxjs';
-import { CasinoService } from '../services/casino.service';
+import { CasinoService } from 'src/app/shared/services/casino.service';
 import { CasinoApiActions, CasinoPageActions } from './actions';
 
 @Injectable()

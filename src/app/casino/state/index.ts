@@ -8,24 +8,22 @@ export interface State extends AppState.State {
 
 const getCasinoGamesState = createFeatureSelector<CasinoState>('casino-games');
 
-export const getSlotsGames = createSelector(
-  getCasinoGamesState,
-  (state) => state.slotsGames
+export const getAllGames = createSelector(getCasinoGamesState, (state) =>
+  state.slotsGames.slice(0, 10)
 );
 
-export const getHotSlotsGames = createSelector(
-  getCasinoGamesState,
-  (state) => state.slotsGames
+export const getHotSlotsGames = createSelector(getCasinoGamesState, (state) =>
+  state.slotsGames.slice(0, 20)
 );
 
 export const getNewReleasesGames = createSelector(
   getCasinoGamesState,
-  (state) => state.slotsGames
+  (state) => state.newReleases
 );
 
 export const getJackpotGames = createSelector(
   getCasinoGamesState,
-  (state) => state.slotsGames
+  (state) => state.jackpotGames
 );
 
 export const getNewGames = createSelector(

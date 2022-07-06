@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Game } from '../../models/game';
 import { SlotsGame } from '../../models/slots-game';
 import { GamesService } from '../../services/games.service';
 
@@ -8,7 +9,7 @@ import { GamesService } from '../../services/games.service';
   styleUrls: ['./slots-game.component.scss'],
 })
 export class SlotsGameComponent {
-  @Input() game = {} as SlotsGame;
+  @Input() game = {} as Game;
 
   constructor(private gamesService: GamesService) {}
 

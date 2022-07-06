@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { TranslocoRootModule } from './shared/modules/transloco-root.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule } from './shared/shared.module';
-import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { CoreModule } from './core/core.module';
+import { TranslocoRootModule } from './shared/modules/transloco-root.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +19,7 @@ import { RouterModule } from '@angular/router';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    CoreModule,
     TranslocoRootModule,
     BrowserAnimationsModule,
     SharedModule,

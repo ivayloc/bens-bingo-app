@@ -13,10 +13,12 @@ export const getBingoGames = createSelector(
   (state) => state.bingoGames
 );
 
-export const getSlotsGames = createSelector(
-  getHomeDetailsState,
-  (state) => state.slotsGames
-);
+export const getSlotsGames = createSelector(getHomeDetailsState, (state) => {
+  if (state.slotsGames.length) {
+    return state.slotsGames.slice(0, 10);
+  }
+  return state.slotsGames;
+});
 
 export const getJackpots = createSelector(
   getHomeDetailsState,

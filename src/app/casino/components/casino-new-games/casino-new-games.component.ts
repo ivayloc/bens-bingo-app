@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import Parallax from 'parallax-js';
+import { Game } from 'src/app/shared/models/game';
 import { SlotsGame } from 'src/app/shared/models/slots-game';
 import { CarouselService } from 'src/app/shared/services/carousel.service';
 
@@ -17,7 +18,7 @@ import { CarouselService } from 'src/app/shared/services/carousel.service';
 })
 export class CasinoNewGamesComponent implements AfterViewInit {
   @ViewChild('parallaxScene') parallaxScene!: ElementRef<HTMLDivElement>;
-  @Input() newGames: SlotsGame[] | null = [];
+  @Input() newGames: Game[] | null = [];
   carouselOptions: OwlOptions = this.carouselService.newGamesCarouselOptions;
 
   constructor(private carouselService: CarouselService) {}

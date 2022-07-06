@@ -21,6 +21,7 @@ import {
 } from '../../state';
 import { HomePageActions } from '../../state/actions';
 import Parallax from 'parallax-js';
+import { Game } from 'src/app/shared/models/game';
 
 @Component({
   selector: 'app-home-layout',
@@ -30,10 +31,10 @@ import Parallax from 'parallax-js';
 export class HomeLayoutComponent implements OnInit, AfterViewInit {
   @ViewChild('parallaxScene') parallaxScene!: ElementRef<HTMLDivElement>;
   getBingoGames$ = new Observable<BingoGame[]>();
-  getSlotsGames$ = new Observable<SlotsGame[]>();
+  getSlotsGames$ = new Observable<Game[]>();
   getJackpots$ = new Observable<Jackpot[]>();
   getRecentWinners$ = new Observable<RecentWinners[]>();
-  getNewGames$ = new Observable<SlotsGame[]>();
+  getNewGames$ = new Observable<Game[]>();
 
   constructor(private store: Store<State>) {}
 

@@ -20,6 +20,7 @@ import { SlotsGameComponent } from './components/slots-game/slots-game.component
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { TextContentLayoutComponent } from './text-content-layout/text-content-layout.component';
 import { ChatModeratorsComponent } from './components/chat-moderators/chat-moderators.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { ChatModeratorsComponent } from './components/chat-moderators/chat-moder
     AngularMaterialModule,
     PrimeNgModule,
     CarouselModule,
+    ReactiveFormsModule,
   ],
   exports: [
     AngularMaterialModule,

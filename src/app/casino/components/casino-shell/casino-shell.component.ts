@@ -1,18 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { getBingoGames } from 'src/app/home/state';
-import { BingoGame } from 'src/app/shared/models/bingo-game';
-import { NavigationItem } from 'src/app/shared/models/navigation-item';
+import { Game } from 'src/app/shared/models/game';
 import { SlotsGame } from 'src/app/shared/models/slots-game';
+import { CasinoService } from 'src/app/shared/services/casino.service';
 import { CasinoGameCategory } from '../../models/casino-game-category';
-import { CasinoService } from '../../services/casino.service';
 import {
   getHotSlotsGames,
   getJackpotGames,
   getNewGames,
   getNewReleasesGames,
-  getSlotsGames,
   State,
 } from '../../state';
 import { CasinoPageActions } from '../../state/actions';
@@ -25,10 +22,10 @@ import { CasinoPageActions } from '../../state/actions';
 export class CasinoShellComponent implements OnInit {
   navigationLinks = this.casinoService.navigationLinks;
   slotsCategories = CasinoGameCategory;
-  getNewGames$ = new Observable<SlotsGame[]>();
-  getHotSlotsGames$ = new Observable<SlotsGame[]>();
-  getNewReleasesGames$ = new Observable<SlotsGame[]>();
-  getJackpotGames$ = new Observable<SlotsGame[]>();
+  getNewGames$ = new Observable<Game[]>();
+  getHotSlotsGames$ = new Observable<Game[]>();
+  getNewReleasesGames$ = new Observable<Game[]>();
+  getJackpotGames$ = new Observable<Game[]>();
 
   constructor(
     private store: Store<State>,

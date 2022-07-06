@@ -1,6 +1,7 @@
+import { Game } from 'src/app/shared/models/game';
 import { SlotsGame } from 'src/app/shared/models/slots-game';
 
 export interface CasinoDetails {
-  newGames: SlotsGame[];
-  slotsGames: SlotsGame[];
+  newGames: Game[];
+  slotsGames: Game[];
 }

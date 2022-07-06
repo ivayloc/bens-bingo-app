@@ -1,17 +1,22 @@
 import { createReducer, on } from '@ngrx/store';
+import { Game } from 'src/app/shared/models/game';
 import { SlotsGame } from 'src/app/shared/models/slots-game';
 import { CasinoNewGame } from '../models/casino-new-game';
 import { CasinoApiActions } from './actions';
 
 export interface CasinoState {
-  slotsGames: SlotsGame[];
-  newGames: SlotsGame[];
+  jackpotGames: Game[];
+  newGames: Game[];
+  newReleases: Game[];
+  slotsGames: Game[];
   error: string;
 }
 
 const initialState: CasinoState = {
-  slotsGames: [],
+  jackpotGames: [],
   newGames: [],
+  newReleases: [],
+  slotsGames: [],
   error: '',
 };
 

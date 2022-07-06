@@ -1,13 +1,14 @@
 <div
   class="slots-game-wrap"
-  [ngStyle]="{ 'background-image': 'url(' + game.image + ')' }"
+  [ngStyle]="{ 'background-image': 'url(' + game.tileUrl + ')' }"
 >
+  <img [src]="game.tileUrl" alt="" class="d-none" />
   <div class="slots-game" (click)="showBingoGameDetails(game)">
     <div class="slots-game-studio">
-      <div class="slots-game-studio-text">{{ game.studio }}</div>
+      <div class="slots-game-studio-text">{{ game.provider }}</div>
     </div>
     <div class="slots-game-name d-flex">
-      <div class="slots-game-name-text">{{ game.name }}</div>
+      <div class="slots-game-name-text" appShrinkFontSize>{{ game.name }}</div>
     </div>
   </div>
 </div>
