@@ -222,9 +222,10 @@
   <div class="row">
     <div class="col-8">
       <app-content-box class="content-box content-box-start" title="Top 5!">
-        <div class="d-flex fz-16">
+        <div class="d-flex fz-16 py-3">
           <div class="flex-fill">
-            <ng-container *ngFor="let game of top5Games">
+            <h3 class="fz-31 fw-bold mb-4 pb-2">Newest</h3>
+            <ng-container *ngFor="let game of top5Games; last as isLast">
               <div class="d-flex cursor-pointer hover-pulse">
                 <div class="me-4">
                   <img
@@ -241,11 +242,12 @@
                   <div class="fst-italic">Date Added: 2022-07-05</div>
                 </div>
               </div>
-              <hr class="hr" />
+              <hr class="hr" *ngIf="!isLast" />
             </ng-container>
           </div>
           <div class="flex-fill">
-            <ng-container *ngFor="let game of top5Games">
+            <h3 class="fz-31 fw-bold mb-4 pb-2">Most Played</h3>
+            <ng-container *ngFor="let game of top5Games; last as isLast">
               <div class="d-flex cursor-pointer hover-pulse">
                 <div class="me-4">
                   <img
@@ -262,11 +264,12 @@
                   <div class="fst-italic">Date Added: 2022-07-05</div>
                 </div>
               </div>
-              <hr class="hr" />
+              <hr class="hr" *ngIf="!isLast" />
             </ng-container>
           </div>
           <div class="flex-fill">
-            <ng-container *ngFor="let game of top5Games">
+            <h3 class="fz-31 fw-bold mb-4 pb-2">Jackpots</h3>
+            <ng-container *ngFor="let game of top5Games; last as isLast">
               <div class="d-flex cursor-pointer hover-pulse">
                 <div class="me-4">
                   <img
@@ -283,7 +286,7 @@
                   <div class="fst-italic">Date Added: 2022-07-05</div>
                 </div>
               </div>
-              <hr class="hr" />
+              <hr class="hr" *ngIf="!isLast" />
             </ng-container>
           </div>
         </div>
