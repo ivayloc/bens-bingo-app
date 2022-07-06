@@ -18,7 +18,7 @@
   &-username {
     // margin-top: calc-clamp(-2);
     // margin-bottom: calc-clamp(5);
-    padding-bottom: 6px;
+    padding-bottom: calc-clamp(6);
     font-size: calc-clamp(27);
     line-height: 1;
   }
