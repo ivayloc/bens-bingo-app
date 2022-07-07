@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { shareReplay, switchMap, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { LoginResponse } from '../models/login-response';
 
 @Injectable({
@@ -13,11 +14,14 @@ export class AuthService {
   login(username: string, password: string): Observable<LoginResponse> {
     return this.apiLogin().pipe(
       switchMap(() => {
-        return this.http.post<LoginResponse>('api/slim/v1/user/login', {
-          username,
-          password,
-          siteid: 95,
-        });
+        return this.http.post<LoginResponse>(
+          `${environment.apiDomain}/api/slim/v1/user/login`,
+          {
+            username,
+            password,
+            siteid: 95,
+          }
+        );
       }),
 
       shareReplay()

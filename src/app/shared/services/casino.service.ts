@@ -4,6 +4,7 @@ import { iif, map, Observable, switchMap } from 'rxjs';
 import { AuthService } from 'src/app/core/service/auth.service';
 import { Game } from 'src/app/shared/models/game';
 import { NavigationItem } from 'src/app/shared/models/navigation-item';
+import { environment } from 'src/environments/environment';
 import { GameCategoriesNames } from '../models/game-categories-names';
 import { GamesResponse } from '../models/games-response';
 
@@ -37,7 +38,7 @@ export class CasinoService {
     });
 
     const getGames$ = this.http.get<GamesResponse>(
-      '/api/slim/v1/instantgames/slots',
+      `${environment.apiDomain}/api/slim/v1/instantgames/slots`,
       { params }
     );
 
