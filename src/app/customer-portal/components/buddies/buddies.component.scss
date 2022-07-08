@@ -1,0 +1,9 @@
+.content-box {
+  &-start {
+    margin-inline-start: -50px;
+  }
+  &-end {
+    margin-inline-end: -50px;
+    margin-top: -40px;
+  }
+}

@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-buddies',
   templateUrl: './buddies.component.html',
-  styleUrls: ['./buddies.component.scss']
+  styleUrls: ['./buddies.component.scss'],
 })
-export class BuddiesComponent implements OnInit {
+export class BuddiesComponent {
+  searchBuddyField = this.fb.control('');
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  constructor(private fb: FormBuilder) {}
 }

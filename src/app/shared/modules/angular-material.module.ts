@@ -7,28 +7,22 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { enGB } from 'date-fns/locale';
 
 @NgModule({
   declarations: [],
   imports: [CommonModule],
   exports: [
-    MatDialogModule,
-    MatRippleModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatDatepickerModule,
-    MatDateFnsModule,
     MatCheckboxModule,
+    MatDateFnsModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRippleModule,
+    MatSelectModule,
   ],
-  providers: [
-    { provide: MAT_DATE_LOCALE, useValue: enGB },
-    // {
-    //   provide: DateAdapter,
-    //   useClass: MomentDateAdapter,
-    //   deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
-    // },
-    // { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
-  ],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: enGB }],
 })
 export class AngularMaterialModule {}

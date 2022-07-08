@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-8">
       <app-content-box
-        class="content-box content-box-start"
+        class="content-box content-box-start hovercss-float-shadow"
         title="Top Bingo Rooms"
       >
         <table class="table w-100 table-fixed align-middle">
@@ -117,18 +117,21 @@
       </app-content-box>
     </div>
     <div class="col-4">
-      <app-account-funds></app-account-funds>
+      <app-account-funds class="hovercss-float-shadow"></app-account-funds>
     </div>
   </div>
   <div class="row mb-5">
     <div class="col-6">
       <app-recent-winners
-        class="content-box content-box-start d-block"
+        class="content-box content-box-start d-block hovercss-float-shadow"
         [recentWinners]="recentWinners"
       ></app-recent-winners>
     </div>
     <div class="col-6">
-      <app-content-box class="content-box" title="Coming Up">
+      <app-content-box
+        class="content-box hovercss-float-shadow"
+        title="Coming Up"
+      >
         <p-scrollPanel styleClass="coming-up-content-scroll fz-24">
           You're a VIP member and always get 20% on every deposit!
           <br /><br />
@@ -194,7 +197,10 @@
   </div>
   <div class="row">
     <div class="col-8">
-      <app-content-box class="content-box content-box-start" title="Top 5!">
+      <app-content-box
+        class="content-box content-box-start hovercss-float-shadow"
+        title="Top 5!"
+      >
         <div class="d-flex fz-16 py-3">
           <div class="flex-fill">
             <h3 class="fz-31 fw-bold mb-4 pb-2">Newest</h3>
@@ -267,7 +273,7 @@
     </div>
     <div class="col-4">
       <app-content-box
-        class="content-box fz-24"
+        class="content-box fz-24 hovercss-float-shadow"
         titleClass="fz-45"
         title="Responsible Gaming"
       >

@@ -1,1 +1,34 @@
-<p>buddies works!</p>
+<!--  -->
+<div class="row">
+  <div class="col-8">
+    <app-content-box
+      class="content-box content-box-start w-100"
+      title="Buddy Search"
+    >
+      <div class="row fz-24 py-4">
+        <div class="col-8">
+          <mat-form-field class="d-block" appearance="fill">
+            <mat-label>Buddy Name</mat-label>
+            <input matInput [formControl]="searchBuddyField" />
+          </mat-form-field>
+        </div>
+        <div class="col-auto">
+          <button
+            type="button"
+            class="btn-clear btn-main btn-field py-1 mx-2 min-w-auto"
+          >
+            <span class="btn-main-text">Find</span>
+          </button>
+        </div>
+      </div>
+    </app-content-box>
+  </div>
+  <div class="col-4">
+    <app-content-box
+      class="content-box content-box-end hovercss-float-shadow"
+      title="Buddy Count"
+    >
+      <div class="fz-24">00</div>
+    </app-content-box>
+  </div>
+</div>
