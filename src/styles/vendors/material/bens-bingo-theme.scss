@@ -16,6 +16,22 @@ cdk.$overlay-backdrop-color: rgba(0, 0, 0, 0.89);
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
+$bens-bingo-palette: map-merge(
+  mat.$pink-palette,
+  (
+    50: #fbe4f2,
+    100: #f4bae0,
+    200: #ed8acc,
+    300: #e355b8,
+    400: #da15a9,
+    500: #da15a9,
+    600: #c10098,
+    700: #af0092,
+    800: #9f008d,
+    900: #810084,
+  )
+);
+
 // Define a custom typography config that overrides the font-family as well as the
 // `headlines` and `body-1` levels.
 $my-custom-level: mat.define-typography-level(
@@ -32,15 +48,19 @@ $my-custom-level: mat.define-typography-level(
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$bens-bingo-app-primary: mat.define-palette(mat.$indigo-palette);
-$bens-bingo-app-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-
+$bens-bingo-app-primary: mat.define-palette($bens-bingo-palette);
+$bens-bingo-app-accent: mat.define-palette(
+  mat.$blue-grey-palette,
+  A200,
+  A100,
+  A400
+);
 // The warn palette is optional (defaults to red).
 $bens-bingo-app-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$bens-bingo-app-theme: mat.define-light-theme(
+$bens-bingo-app-theme: mat.define-dark-theme(
   (
     color: (
       primary: $bens-bingo-app-primary,
@@ -53,9 +73,10 @@ $bens-bingo-app-theme: mat.define-light-theme(
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-// @include mat.all-component-themes($bens-bingo-app-theme);
-@include mat.ripple-theme($bens-bingo-app-theme);
-@include mat.input-theme($bens-bingo-app-theme);
-@include mat.form-field-theme($bens-bingo-app-theme);
-@include mat.datepicker-theme($bens-bingo-app-theme);
-@include mat.checkbox-theme($bens-bingo-app-theme);
+// @include mat.core-theme($bens-bingo-app-theme);
+@include mat.all-component-themes($bens-bingo-app-theme);
+// @include mat.ripple-theme($bens-bingo-app-theme);
+// @include mat.input-theme($bens-bingo-app-theme);
+// @include mat.form-field-theme($bens-bingo-app-theme);
+// @include mat.datepicker-theme($bens-bingo-app-theme);
+// @include mat.checkbox-theme($bens-bingo-app-theme);
