@@ -12,6 +12,7 @@ import { PublicProfileComponent } from './components/public-profile/public-profi
 import { CustomerPortalLayoutComponent } from './components/customer-portal-layout/customer-portal-layout.component';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AccountFundsComponent } from './components/account-funds/account-funds.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     LimitsComponent,
     PublicProfileComponent,
     CustomerPortalLayoutComponent,
+    AccountFundsComponent,
   ],
   imports: [
     CommonModule,

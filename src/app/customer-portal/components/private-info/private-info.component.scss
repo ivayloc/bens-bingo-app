@@ -1,0 +1,23 @@
+.content-box {
+  margin-inline-end: -50px;
+
+  &-start {
+    margin-inline-start: -58px;
+    margin-inline-end: 0;
+  }
+  &-account {
+    margin-inline-start: -90px;
+    margin-top: -40px;
+  }
+  &-funds {
+    margin-inline-start: -58px;
+  }
+}
+
+:host ::ng-deep {
+  .content-box-account {
+    .box-pink-body {
+      padding-inline-start: 140px;
+    }
+  }
+}
