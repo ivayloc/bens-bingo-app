@@ -30,7 +30,7 @@ export class AuthService {
 
   apiLogin() {
     return this.http
-      .post<LoginResponse>('/api/slim/login', {
+      .post<LoginResponse>(`${environment.apiDomain}/api/slim/login`, {
         username: 'api_test',
         password: 'test1234a',
       })
