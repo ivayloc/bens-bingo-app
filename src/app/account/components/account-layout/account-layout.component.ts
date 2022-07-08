@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationItem } from 'src/app/shared/models/navigation-item';
 
 @Component({
-  selector: 'app-customer-portal-layout',
-  templateUrl: './customer-portal-layout.component.html',
-  styleUrls: ['./customer-portal-layout.component.scss'],
+  selector: 'app-account-layout',
+  templateUrl: './account-layout.component.html',
+  styleUrls: ['./account-layout.component.scss'],
 })
 export class CustomerPortalLayoutComponent {
   navigationLinks: NavigationItem[] = [

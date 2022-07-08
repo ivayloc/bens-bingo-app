@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BuddiesComponent } from './components/buddies/buddies.component';
-import { CustomerPortalLayoutComponent } from './components/customer-portal-layout/customer-portal-layout.component';
+import { CustomerPortalLayoutComponent } from './components/account-layout/account-layout.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { GameHistoryComponent } from './components/game-history/game-history.component';
 import { LimitsComponent } from './components/limits/limits.component';

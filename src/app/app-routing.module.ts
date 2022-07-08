@@ -20,9 +20,7 @@ const routes: Routes = [
   {
     path: 'account',
     loadChildren: () =>
-      import('./customer-portal/customer-portal.module').then(
-        (m) => m.CustomerPortalModule
-      ),
+      import('./account/account.module').then((m) => m.CustomerPortalModule),
   },
   { path: 'coming-up', component: TextContentLayoutComponent },
 ];
