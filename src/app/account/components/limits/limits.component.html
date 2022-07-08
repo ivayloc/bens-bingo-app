@@ -1,31 +1,35 @@
-<app-content-box class="content-box" title="Take a break">
-  <div class="fz-24 pt-4">
-    <div class="mb-3">
-      You will not be able to log in to your account, deposit, make a withdrawal
-      or play.
-    </div>
-    <div class="mb-5">
-      Please note that we will not inform you when the self-exclusion has been
-      removed.
-    </div>
-    <div class="d-flex">
-      <mat-form-field appearance="fill">
-        <mat-label>Type</mat-label>
-        <mat-select [formControl]="timeFrameField">
-          <mat-option value="24">24 hours</mat-option>
-          <mat-option value="168">7 days</mat-option>
-          <mat-option value="720">30 days</mat-option>
-          <mat-option value="2880">120 days</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <div class="px-4">
-        <button
-          type="button"
-          class="btn-clear btn-main py-1 mx-2 min-w-auto btn-field"
-        >
-          <span class="btn-main-text">Go</span>
-        </button>
+<div class="row justify-content-center">
+  <div class="col-6">
+    <app-content-box class="content-box" title="Take a break">
+      <div class="fz-24">
+        <div class="mb-3">
+          You will not be able to log in to your account, deposit, make a
+          withdrawal or play.
+        </div>
+        <div class="mb-5">
+          Please note that we will not inform you when the self-exclusion has
+          been removed.
+        </div>
+        <div class="d-flex justify-content-center">
+          <mat-form-field appearance="fill">
+            <mat-label>Type</mat-label>
+            <mat-select [formControl]="timeFrameField">
+              <mat-option value="24">24 hours</mat-option>
+              <mat-option value="168">7 days</mat-option>
+              <mat-option value="720">30 days</mat-option>
+              <mat-option value="2880">120 days</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div class="px-4">
+            <button
+              type="button"
+              class="btn-clear btn-main py-1 mx-2 min-w-auto btn-field"
+            >
+              <span class="btn-main-text">Go</span>
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
+    </app-content-box>
   </div>
-</app-content-box>
+</div>

@@ -1,38 +1,42 @@
-<app-content-box class="content-box" title="Set Deposit Limit">
-  <form [formGroup]="depositLimitForm" class="fz-24 pt-4">
-    <div class="mb-3">
-      You will not be able to log in to your account, deposit, make a withdrawal
-      or play.
-    </div>
-    <div class="mb-5">
-      Please note that we will not inform you when the self-exclusion has been
-      removed.
-    </div>
-    <div class="row">
-      <div class="col-auto">
-        <mat-form-field appearance="fill">
-          <mat-label>Amount</mat-label>
-          <input matInput placeholder="" formControlName="amount" />
-        </mat-form-field>
-      </div>
-      <div class="col-auto">
-        <mat-form-field appearance="fill">
-          <mat-label>Time Frame</mat-label>
-          <mat-select formControlName="timeFrame">
-            <mat-option value="24">24 hours</mat-option>
-            <mat-option value="168">7 days</mat-option>
-            <mat-option value="720">30 days</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="col-auto">
-        <button
-          type="button"
-          class="btn-clear btn-main py-1 mx-2 min-w-auto btn-field"
-        >
-          <span class="btn-main-text">Go</span>
-        </button>
-      </div>
-    </div>
-  </form>
-</app-content-box>
+<div class="row justify-content-center">
+  <div class="col-6">
+    <app-content-box class="content-box" title="Set Deposit Limit">
+      <form [formGroup]="depositLimitForm" class="fz-24">
+        <div class="mb-3">
+          You will not be able to log in to your account, deposit, make a
+          withdrawal or play.
+        </div>
+        <div class="mb-5">
+          Please note that we will not inform you when the self-exclusion has
+          been removed.
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-auto">
+            <mat-form-field appearance="fill">
+              <mat-label>Amount</mat-label>
+              <input matInput placeholder="" formControlName="amount" />
+            </mat-form-field>
+          </div>
+          <div class="col-auto">
+            <mat-form-field appearance="fill">
+              <mat-label>Time Frame</mat-label>
+              <mat-select formControlName="timeFrame">
+                <mat-option value="24">24 hours</mat-option>
+                <mat-option value="168">7 days</mat-option>
+                <mat-option value="720">30 days</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-auto">
+            <button
+              type="button"
+              class="btn-clear btn-main py-1 mx-2 min-w-auto btn-field"
+            >
+              <span class="btn-main-text">Go</span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </app-content-box>
+  </div>
+</div>
