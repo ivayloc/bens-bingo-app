@@ -22,7 +22,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./account/account.module').then((m) => m.CustomerPortalModule),
   },
-  { path: 'coming-up', component: TextContentLayoutComponent },
+  {
+    path: 'cashier',
+    loadChildren: () =>
+      import('./cashier/cashier.module').then((m) => m.CashierModule),
+  },
 ];
 
 @NgModule({
