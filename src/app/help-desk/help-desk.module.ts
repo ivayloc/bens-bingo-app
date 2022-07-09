@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { HelpRoutingModule } from './help-routing.module';
-import { HelpLayoutComponent } from './components/help-layout/help-layout.component';
+import { HelpRoutingModule } from './help-desk-routing.module';
+import { HelpDeskLayoutComponent } from './components/help-desk-layout/help-desk-layout.component';
 import { NewTicketComponent } from './components/new-ticket/new-ticket.component';
 import { FaqComponent } from './components/faq/faq.component';
 import { CustomerServiceComponent } from './components/customer-service/customer-service.component';
@@ -13,7 +13,7 @@ import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
-    HelpLayoutComponent,
+    HelpDeskLayoutComponent,
     NewTicketComponent,
     FaqComponent,
     CustomerServiceComponent,

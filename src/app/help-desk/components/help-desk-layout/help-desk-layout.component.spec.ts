@@ -1,20 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HelpLayoutComponent } from './help-layout.component';
+import { HelpDeskLayoutComponent } from './help-desk-layout.component';
 
 describe('HelpLayoutComponent', () => {
-  let component: HelpLayoutComponent;
-  let fixture: ComponentFixture<HelpLayoutComponent>;
+  let component: HelpDeskLayoutComponent;
+  let fixture: ComponentFixture<HelpDeskLayoutComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HelpLayoutComponent ]
-    })
-    .compileComponents();
+      declarations: [HelpDeskLayoutComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HelpLayoutComponent);
+    fixture = TestBed.createComponent(HelpDeskLayoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

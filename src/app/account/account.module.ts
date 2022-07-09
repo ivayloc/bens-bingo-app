@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
-import { CustomerPortalRoutingModule } from './account-routing.module';
+import { AccountRoutingModule } from './account-routing.module';
 import { AccountFundsComponent } from './components/account-funds/account-funds.component';
 import { CustomerPortalLayoutComponent } from './components/account-layout/account-layout.component';
 import { BuddiesComponent } from './components/buddies/buddies.component';
@@ -28,9 +28,9 @@ import { TransactionHistoryComponent } from './components/transaction-history/tr
   ],
   imports: [
     CommonModule,
-    CustomerPortalRoutingModule,
+    AccountRoutingModule,
     SharedModule,
     ReactiveFormsModule,
   ],
 })
-export class CustomerPortalModule {}
+export class AccountModule {}

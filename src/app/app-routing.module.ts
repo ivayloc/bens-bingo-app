@@ -20,7 +20,7 @@ const routes: Routes = [
   {
     path: 'account',
     loadChildren: () =>
-      import('./account/account.module').then((m) => m.CustomerPortalModule),
+      import('./account/account.module').then((m) => m.AccountModule),
   },
   {
     path: 'cashier',
@@ -28,8 +28,9 @@ const routes: Routes = [
       import('./cashier/cashier.module').then((m) => m.CashierModule),
   },
   {
-    path: 'help',
-    loadChildren: () => import('./help/help.module').then((m) => m.HelpModule),
+    path: 'help-desk',
+    loadChildren: () =>
+      import('./help-desk/help-desk.module').then((m) => m.HelpModule),
   },
 ];
 
