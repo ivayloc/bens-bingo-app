@@ -32,6 +32,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./help-desk/help-desk.module').then((m) => m.HelpModule),
   },
+  {
+    path: 'site',
+    loadChildren: () =>
+      import('./info/info.module').then((m) => m.SiteInfoModule),
+  },
 ];
 
 @NgModule({
