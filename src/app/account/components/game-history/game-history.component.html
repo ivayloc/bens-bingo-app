@@ -1,49 +1,54 @@
 <app-content-box class="content-box" title="Transaction History">
   <div class="fz-24">
-    <form [formGroup]="searchGameHistoryForm">
-      <div class="row mb-4">
-        <div class="col-auto">
-          <mat-form-field appearance="fill" class="d-block">
-            <mat-label>Start Date</mat-label>
-            <input
-              matInput
-              [matDatepicker]="startDatePicker"
-              formControlName="startdate"
-            />
-            <mat-datepicker-toggle
-              matSuffix
-              [for]="startDatePicker"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #startDatePicker></mat-datepicker>
-          </mat-form-field>
-        </div>
-        <div class="col-auto">
-          <mat-form-field appearance="fill" class="d-block">
-            <mat-label>End Date</mat-label>
-            <input
-              matInput
-              [matDatepicker]="endDatePicker"
-              formControlName="enddate"
-            />
-            <mat-datepicker-toggle
-              matSuffix
-              [for]="endDatePicker"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #endDatePicker></mat-datepicker>
-          </mat-form-field>
-        </div>
-        <div class="col-auto">
-          <button
-            type="button"
-            class="btn-clear btn-main py-1 mx-2 min-w-auto btn-field"
-          >
-            <span class="btn-main-text">Go</span>
-          </button>
-        </div>
-      </div>
-    </form>
-    <hr class="hr" />
+    <div class="row justify-content-center">
+      <div class="col-8">
+        <form [formGroup]="searchGameHistoryForm">
+          <div class="row mb-4">
+            <div class="col-auto">
+              <mat-form-field appearance="fill" class="d-block">
+                <mat-label>Start Date</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="startDatePicker"
+                  formControlName="startdate"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="startDatePicker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #startDatePicker></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="col-auto">
+              <mat-form-field appearance="fill" class="d-block">
+                <mat-label>End Date</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="endDatePicker"
+                  formControlName="enddate"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="endDatePicker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #endDatePicker></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="col-auto">
+              <button
+                type="button"
+                class="btn-clear btn-main py-1 mx-2 min-w-auto btn-field"
+              >
+                <span class="btn-main-text">Go</span>
+              </button>
+            </div>
+          </div>
+        </form>
 
-    No Transaction Data
+        <hr class="hr" />
+
+        No Transaction Data
+      </div>
+    </div>
   </div>
 </app-content-box>
