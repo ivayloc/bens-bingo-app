@@ -1,9 +1,11 @@
+@import "../../../../styles/functions/calc-clamp";
+
 .content-box {
   &-start {
-    margin-inline-start: -50px;
+    margin-inline-start: calc-clamp(-50);
   }
   &-end {
-    margin-inline-end: -50px;
-    margin-top: -40px;
+    margin-inline-end: calc-clamp(-50);
+    margin-top: calc-clamp(-40);
   }
 }
