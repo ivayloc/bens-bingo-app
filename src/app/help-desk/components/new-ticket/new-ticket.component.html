@@ -1,0 +1,83 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <app-content-box title="New Ticket" class="mb-5">
+      <form [formGroup]="newTicketForm" class="fz-24">
+        <mat-form-field class="d-block mb-3" appearance="fill">
+          <textarea matInput></textarea>
+        </mat-form-field>
+        <input
+          type="file"
+          name=""
+          id=""
+          formControlName="attachments"
+          class="mb-4"
+        />
+        <div class="text-center">
+          <button type="button" class="btn-clear btn-main py-1 mx-2 btn-field">
+            <span class="btn-main-text">Submit</span>
+          </button>
+        </div>
+      </form>
+    </app-content-box>
+
+    <app-content-box title="Quick Question" class="mb-5">
+      <div class="fz-24 mb-3">
+        <mat-form-field appearance="fill" class="d-block">
+          <mat-label>Select a question</mat-label>
+          <mat-select [formControl]="quickQuestionField">
+            <mat-option value="70"
+              >What are the rules regarding bonus money and bonus
+              winnings?</mat-option
+            >
+            <mat-option value="71">How do I play? </mat-option>
+            <mat-option value="72"
+              >How do I withdraw money and how long does it take?</mat-option
+            >
+            <mat-option value="73"
+              >What happened with my bonus when I made a withdrawal?</mat-option
+            >
+            <mat-option value="74"
+              >Why do I receive the newsletter in different language than I
+              chose?</mat-option
+            >
+            <mat-option value="75"
+              >How do you draw the winners and why do some players win more
+              often?</mat-option
+            >
+            <mat-option value="76"
+              >What can I do when the game is not starting? / What can I do when
+              the gamelist is not loading?
+            </mat-option>
+            <mat-option value="77">How much do you pay back?</mat-option>
+            <mat-option value="78">I have a suggestion!</mat-option>
+            <mat-option value="79"
+              >I don't want to receive newsletters.</mat-option
+            >
+            <mat-option value="80"
+              >I want to close my account. How shall I proceed?</mat-option
+            >
+            <mat-option value="84"
+              >I am not VIP 4, when can I play in IV and Dudette?</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="text-center">
+        <button type="button" class="btn-clear btn-main py-1 mx-2 btn-field">
+          <span class="btn-main-text">Submit</span>
+        </button>
+      </div>
+    </app-content-box>
+
+    <app-content-box title="Call Us" class="mb-5">
+      <div class="fz-31 d-flex justify-content-center">
+        <div class="fw-bold">Phone support</div>
+        <div class="ps-3">
+          <a href="tel:+442032900024" class="text-white text-decoration-none"
+            >+442032900024</a
+          >
+        </div>
+      </div>
+    </app-content-box>
+  </div>
+</div>

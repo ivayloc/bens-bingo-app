@@ -1,0 +1,5 @@
+@import "../../../../styles/functions/calc-clamp";
+
+.content-box {
+  margin: 0 calc-clamp(-50);
+}

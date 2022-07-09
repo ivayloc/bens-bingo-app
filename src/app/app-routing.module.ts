@@ -20,11 +20,18 @@ const routes: Routes = [
   {
     path: 'account',
     loadChildren: () =>
-      import('./customer-portal/customer-portal.module').then(
-        (m) => m.CustomerPortalModule
-      ),
+      import('./account/account.module').then((m) => m.AccountModule),
   },
-  { path: 'coming-up', component: TextContentLayoutComponent },
+  {
+    path: 'cashier',
+    loadChildren: () =>
+      import('./cashier/cashier.module').then((m) => m.CashierModule),
+  },
+  {
+    path: 'help-desk',
+    loadChildren: () =>
+      import('./help-desk/help-desk.module').then((m) => m.HelpModule),
+  },
 ];
 
 @NgModule({

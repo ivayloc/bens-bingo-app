@@ -51,6 +51,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
   ],
   exports: [
+    ReactiveFormsModule,
     AngularMaterialModule,
     PrimeNgModule,
     ShrinkFontSizeDirective,

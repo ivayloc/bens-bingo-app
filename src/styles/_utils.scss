@@ -1,41 +1,45 @@
+/* stylelint-disable declaration-no-important */
 @import "vendors/hovercss";
 @import "/node_modules/hover.css/scss/effects/shadow-and-glow-transitions/float-shadow";
 
 .clip-path-1 {
-  clip-path: polygon(0 0, 99.1% 0%, 86% 100%, 0% 100%);
+  clip-path: polygon(0 0, 99.1% 0%, 86% 100%, 0% 100%) !important;
 }
 .transform-skew-10 {
-  transform: skew(10deg);
+  transform: skew(10deg) !important;
 }
 .transform-skew-n10 {
-  transform: skew(-10deg);
+  transform: skew(-10deg) !important;
 }
 .transform-skew-20 {
-  transform: skew(20deg);
+  transform: skew(20deg) !important;
 }
 .transform-skew-n20 {
-  transform: skew(-20deg);
+  transform: skew(-20deg) !important;
 }
 .hovercss-float-shadow {
   @include float-shadow();
 }
 .absolute-horizontal-center {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  position: absolute !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
 }
 .absolute-vertical-center {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
 }
 .absolute-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
 }
 
 .cursor-pointer {
-  cursor: pointer;
+  cursor: pointer !important;
+}
+.min-w-auto {
+  min-width: auto !important;
 }

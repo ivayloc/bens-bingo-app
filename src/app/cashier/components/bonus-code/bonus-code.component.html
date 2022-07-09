@@ -1,0 +1,22 @@
+<div class="row justify-content-center">
+  <div class="col-6">
+    <app-content-box class="content-box" title="Redeem your bonus">
+      <div class="d-flex fz-24">
+        <div class="flex-fill">
+          <mat-form-field class="d-block" appearance="fill">
+            <mat-label>Enter your bonus code</mat-label>
+            <input matInput [formControl]="bonusCodeField" />
+          </mat-form-field>
+        </div>
+        <div class="ps-4">
+          <button
+            type="button"
+            class="btn-clear btn-main py-1 mx-2 min-w-auto btn-field"
+          >
+            <span class="btn-main-text">Submit</span>
+          </button>
+        </div>
+      </div>
+    </app-content-box>
+  </div>
+</div>

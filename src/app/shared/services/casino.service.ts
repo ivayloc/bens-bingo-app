@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { iif, map, Observable, switchMap } from 'rxjs';
+import { iif, map, Observable, switchMap, tap } from 'rxjs';
 import { AuthService } from 'src/app/core/service/auth.service';
 import { Game } from 'src/app/shared/models/game';
 import { NavigationItem } from 'src/app/shared/models/navigation-item';
@@ -46,7 +46,25 @@ export class CasinoService {
       () => !!localStorage.getItem('jwt'),
       getGames$,
       this.authService.apiLogin().pipe(switchMap(() => getGames$))
-    ).pipe(map(({ data }) => data.items));
+    ).pipe(
+      tap(({ data }) => {
+        const groups = {} as Record<string, Map<string, Game>>;
+
+        data.groups.forEach((group) => {
+          groups[group.name] = new Map<string, Game>();
+          data.items.forEach((item) => {
+            if (group.games.includes(item.skinbase)) {
+              if (!groups[group.name].has(item.skinbase)) {
+                groups[group.name].set(item.skinbase, item);
+              }
+            }
+          });
+        });
+
+        console.log(groups);
+      }),
+      map(({ data }) => data.items)
+    );
   }
 
   getNewGames(): Observable<Game[]> {
