@@ -1,7 +1,6 @@
 /* stylelint-disable scss/dollar-variable-default */
 @import "node_modules/bootstrap/scss/functions";
 @import "../../functions/calc-clamp";
-@import "../../functions/calc-rem";
 // Variables
 //
 // Variables should follow the `$component-state-property-size` formula for
@@ -376,7 +375,7 @@ $gradient: linear-gradient(180deg, rgba($white, 0.15), rgba($white, 0));
 // You can add more entries to the $spacers map, should you need more variation.
 
 // scss-docs-start spacer-variables-maps
-$spacer: 0.8294453084499741vw; // 1rem
+$spacer: 0.8294453084499741vw; // calc-clamp(1rem)
 $spacers: (
   0: 0,
   1: $spacer * 0.25,
@@ -459,7 +458,7 @@ $stretched-link-z-index: 1;
 //
 // Style p element.
 
-$paragraph-margin-bottom: 1rem;
+$paragraph-margin-bottom: calc-clamp(1rem);
 
 // Grid breakpoints
 //
@@ -501,7 +500,7 @@ $container-max-widths: (
 // Set the number of columns and specify the width of the gutters.
 
 $grid-columns: 12;
-$grid-gutter-width: 1.5rem;
+$grid-gutter-width: calc-clamp(1.5rem);
 $grid-row-columns: 6;
 
 $gutters: $spacers;
@@ -515,29 +514,29 @@ $container-padding-x: $grid-gutter-width * 0.5;
 // Define common padding and border radius sizes and more.
 
 // scss-docs-start border-variables
-$border-width: 1px;
+$border-width: calc-clamp(1);
 $border-widths: (
-  1: 1px,
-  2: 2px,
-  3: 3px,
-  4: 4px,
-  5: 5px,
+  1: calc-clamp(1),
+  2: calc-clamp(2),
+  3: calc-clamp(3),
+  4: calc-clamp(4),
+  5: calc-clamp(5),
 );
 
 $border-color: $gray-300;
 // scss-docs-end border-variables
 
 // scss-docs-start border-radius-variables
-$border-radius: 0.25rem;
-$border-radius-sm: 0.2rem;
-$border-radius-lg: 0.3rem;
-$border-radius-pill: 50rem;
+$border-radius: calc-clamp(0.25rem);
+$border-radius-sm: calc-clamp(0.2rem);
+$border-radius-lg: calc-clamp(0.3rem);
+$border-radius-pill: calc-clamp(50rem);
 // scss-docs-end border-radius-variables
 
 // scss-docs-start box-shadow-variables
-$box-shadow: 0 0.5rem 1rem rgba($black, 0.15);
-$box-shadow-sm: 0 0.125rem 0.25rem rgba($black, 0.075);
-$box-shadow-lg: 0 1rem 3rem rgba($black, 0.175);
+$box-shadow: 0 calc-clamp(0.5rem) calc-clamp(1rem) rgba($black, 0.15);
+$box-shadow-sm: 0 calc-clamp(0.125rem) calc-clamp(0.25rem) rgba($black, 0.075);
+$box-shadow-lg: 0 calc-clamp(1rem) calc-clamp(3rem) rgba($black, 0.175);
 $box-shadow-inset: inset 0 1px 2px rgba($black, 0.075);
 // scss-docs-end box-shadow-variables
 
@@ -583,10 +582,12 @@ $font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
 $font-family-base: var(--#{$variable-prefix}font-sans-serif);
 $font-family-code: var(--#{$variable-prefix}font-monospace);
 
-// $font-size-root affects the value of `rem`, which is used for as well font sizes, paddings, and margins
+// $font-size-root affects the value of `calc-clamp(rem)`, which is used for as well font sizes, paddings, and margins
 // $font-size-base affects the font size of the body text
 $font-size-root: null;
-$font-size-base: 1rem; // Assumes the browser default, typically `16px`
+$font-size-base: calc-clamp(
+  1rem
+); // Assumes the browser default, typically `16px`
 $font-size-sm: $font-size-base * 0.875;
 $font-size-lg: $font-size-base * 1.25;
 
@@ -632,12 +633,12 @@ $headings-color: null;
 
 // scss-docs-start display-headings
 $display-font-sizes: (
-  1: 5rem,
-  2: 4.5rem,
-  3: 4rem,
-  4: 3.5rem,
-  5: 3rem,
-  6: 2.5rem,
+  1: calc-clamp(5rem),
+  2: calc-clamp(4.5rem),
+  3: calc-clamp(4rem),
+  4: calc-clamp(3.5rem),
+  5: calc-clamp(3rem),
+  6: calc-clamp(2.5rem),
 );
 
 $display-font-weight: 300;
@@ -666,8 +667,8 @@ $hr-color: inherit;
 $hr-height: $border-width;
 $hr-opacity: 0.25;
 
-$legend-margin-bottom: 0.5rem;
-$legend-font-size: 1.5rem;
+$legend-margin-bottom: calc-clamp(0.5rem);
+$legend-font-size: calc-clamp(1.5rem);
 $legend-font-weight: null;
 
 $mark-padding: 0.2em;
@@ -676,7 +677,7 @@ $dt-font-weight: $font-weight-bold;
 
 $nested-kbd-font-weight: $font-weight-bold;
 
-$list-inline-padding: 0.5rem;
+$list-inline-padding: calc-clamp(0.5rem);
 
 $mark-bg: #fcf8e3;
 // scss-docs-end type-variables
@@ -686,10 +687,10 @@ $mark-bg: #fcf8e3;
 // Customizes the `.table` component with basic values, each used across all table variations.
 
 // scss-docs-start table-variables
-$table-cell-padding-y: 0.5rem;
-$table-cell-padding-x: 0.5rem;
-$table-cell-padding-y-sm: 0.25rem;
-$table-cell-padding-x-sm: 0.25rem;
+$table-cell-padding-y: calc-clamp(0.5rem);
+$table-cell-padding-x: calc-clamp(0.5rem);
+$table-cell-padding-y-sm: calc-clamp(0.25rem);
+$table-cell-padding-x-sm: calc-clamp(0.25rem);
 
 $table-cell-vertical-align: top;
 
@@ -742,13 +743,13 @@ $table-variants: (
 // Shared variables that are reassigned to `$input-` and `$btn-` specific variables.
 
 // scss-docs-start input-btn-variables
-$input-btn-padding-y: 0.375rem;
-$input-btn-padding-x: 0.75rem;
+$input-btn-padding-y: calc-clamp(0.375rem);
+$input-btn-padding-x: calc-clamp(0.75rem);
 $input-btn-font-family: null;
 $input-btn-font-size: $font-size-base;
 $input-btn-line-height: $line-height-base;
 
-$input-btn-focus-width: 0.25rem;
+$input-btn-focus-width: calc-clamp(0.25rem);
 $input-btn-focus-color-opacity: 0.25;
 $input-btn-focus-color: rgba(
   $component-active-bg,
@@ -758,12 +759,12 @@ $input-btn-focus-blur: 0;
 $input-btn-focus-box-shadow: 0 0 $input-btn-focus-blur $input-btn-focus-width
   $input-btn-focus-color;
 
-$input-btn-padding-y-sm: 0.25rem;
-$input-btn-padding-x-sm: 0.5rem;
+$input-btn-padding-y-sm: calc-clamp(0.25rem);
+$input-btn-padding-x-sm: calc-clamp(0.5rem);
 $input-btn-font-size-sm: $font-size-sm;
 
-$input-btn-padding-y-lg: 0.5rem;
-$input-btn-padding-x-lg: 1rem;
+$input-btn-padding-y-lg: calc-clamp(0.5rem);
+$input-btn-padding-x-lg: calc-clamp(1rem);
 $input-btn-font-size-lg: $font-size-lg;
 
 $input-btn-border-width: $border-width;
@@ -823,7 +824,7 @@ $btn-active-border-tint-amount: 10%;
 // Forms
 
 // scss-docs-start form-text-variables
-$form-text-margin-top: 0.25rem;
+$form-text-margin-top: calc-clamp(0.25rem);
 $form-text-font-size: $small-font-size;
 $form-text-font-style: null;
 $form-text-font-weight: null;
@@ -831,7 +832,7 @@ $form-text-color: $text-muted;
 // scss-docs-end form-text-variables
 
 // scss-docs-start form-label-variables
-$form-label-margin-bottom: 0.5rem;
+$form-label-margin-bottom: calc-clamp(0.5rem);
 $form-label-font-size: null;
 $form-label-font-style: null;
 $form-label-font-weight: null;
@@ -900,14 +901,14 @@ $input-height-lg: add(
 
 $input-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
-$form-color-width: 3rem;
+$form-color-width: calc-clamp(3rem);
 // scss-docs-end form-input-variables
 
 // scss-docs-start form-check-variables
 $form-check-input-width: 1em;
 $form-check-min-height: $font-size-base * $line-height-base;
 $form-check-padding-start: $form-check-input-width + 0.5em;
-$form-check-margin-bottom: 0.125rem;
+$form-check-margin-bottom: calc-clamp(0.125rem);
 $form-check-label-color: null;
 $form-check-label-cursor: null;
 $form-check-transition: null;
@@ -936,7 +937,7 @@ $form-check-input-disabled-opacity: 0.5;
 $form-check-label-disabled-opacity: $form-check-input-disabled-opacity;
 $form-check-btn-check-disabled-opacity: $btn-disabled-opacity;
 
-$form-check-inline-margin-end: 1rem;
+$form-check-inline-margin-end: calc-clamp(1rem);
 // scss-docs-end form-check-variables
 
 // scss-docs-start form-switch-variables
@@ -1013,18 +1014,19 @@ $form-select-transition: $input-transition;
 
 // scss-docs-start form-range-variables
 $form-range-track-width: 100%;
-$form-range-track-height: 0.5rem;
+$form-range-track-height: calc-clamp(0.5rem);
 $form-range-track-cursor: pointer;
 $form-range-track-bg: $gray-300;
-$form-range-track-border-radius: 1rem;
+$form-range-track-border-radius: calc-clamp(1rem);
 $form-range-track-box-shadow: $box-shadow-inset;
 
-$form-range-thumb-width: 1rem;
+$form-range-thumb-width: calc-clamp(1rem);
 $form-range-thumb-height: $form-range-thumb-width;
 $form-range-thumb-bg: $component-active-bg;
 $form-range-thumb-border: 0;
-$form-range-thumb-border-radius: 1rem;
-$form-range-thumb-box-shadow: 0 0.1rem 0.25rem rgba($black, 0.1);
+$form-range-thumb-border-radius: calc-clamp(1rem);
+$form-range-thumb-box-shadow: 0 calc-clamp(0.1rem) calc-clamp(0.25rem)
+  rgba($black, 0.1);
 $form-range-thumb-focus-box-shadow: 0 0 0 1px $body-bg, $input-focus-box-shadow;
 $form-range-thumb-focus-box-shadow-width: $input-focus-width; // For focus box shadow issue in Edge
 $form-range-thumb-active-bg: tint-color($component-active-bg, 70%);
@@ -1040,15 +1042,15 @@ $form-file-button-hover-bg: shade-color($form-file-button-bg, 5%);
 // scss-docs-end form-file-variables
 
 // scss-docs-start form-floating-variables
-$form-floating-height: add(3.5rem, $input-height-border);
+$form-floating-height: add(calc-clamp(3.5rem), $input-height-border);
 $form-floating-line-height: 1.25;
 $form-floating-padding-x: $input-padding-x;
-$form-floating-padding-y: 1rem;
-$form-floating-input-padding-t: 1.625rem;
-$form-floating-input-padding-b: 0.625rem;
+$form-floating-padding-y: calc-clamp(1rem);
+$form-floating-input-padding-t: calc-clamp(1.625rem);
+$form-floating-input-padding-b: calc-clamp(0.625rem);
 $form-floating-label-opacity: 0.65;
-$form-floating-label-transform: scale(0.85) translateY(-0.5rem)
-  translateX(0.15rem);
+$form-floating-label-transform: scale(0.85) translateY(calc-clamp(-0.5rem))
+  translateX(calc-clamp(0.15rem));
 $form-floating-transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
 // scss-docs-end form-floating-variables
 
@@ -1100,8 +1102,8 @@ $zindex-tooltip: 1080;
 // Navs
 
 // scss-docs-start nav-variables
-$nav-link-padding-y: 0.5rem;
-$nav-link-padding-x: 1rem;
+$nav-link-padding-y: calc-clamp(0.5rem);
+$nav-link-padding-x: calc-clamp(1rem);
 $nav-link-font-size: null;
 $nav-link-font-weight: null;
 $nav-link-color: $link-color;
@@ -1129,17 +1131,17 @@ $nav-pills-link-active-bg: $component-active-bg;
 $navbar-padding-y: $spacer * 0.5;
 $navbar-padding-x: null;
 
-$navbar-nav-link-padding-x: 0.5rem;
+$navbar-nav-link-padding-x: calc-clamp(0.5rem);
 
 $navbar-brand-font-size: $font-size-lg;
 // Compute the navbar-brand padding-y so the navbar-brand will have the same height as navbar-text and nav-link
 $nav-link-height: $font-size-base * $line-height-base + $nav-link-padding-y * 2;
 $navbar-brand-height: $navbar-brand-font-size * $line-height-base;
 $navbar-brand-padding-y: ($nav-link-height - $navbar-brand-height) * 0.5;
-$navbar-brand-margin-end: 1rem;
+$navbar-brand-margin-end: calc-clamp(1rem);
 
-$navbar-toggler-padding-y: 0.25rem;
-$navbar-toggler-padding-x: 0.75rem;
+$navbar-toggler-padding-y: calc-clamp(0.25rem);
+$navbar-toggler-padding-x: calc-clamp(0.75rem);
 $navbar-toggler-font-size: $font-size-lg;
 $navbar-toggler-border-radius: $btn-border-radius;
 $navbar-toggler-focus-width: $btn-focus-width;
@@ -1172,10 +1174,10 @@ $navbar-dark-brand-hover-color: $navbar-dark-active-color;
 // Dropdown menu container and contents.
 
 // scss-docs-start dropdown-variables
-$dropdown-min-width: 10rem;
+$dropdown-min-width: calc-clamp(10rem);
 $dropdown-padding-x: 0;
-$dropdown-padding-y: 0.5rem;
-$dropdown-spacer: 0.125rem;
+$dropdown-padding-y: calc-clamp(0.5rem);
+$dropdown-spacer: calc-clamp(0.125rem);
 $dropdown-font-size: $font-size-base;
 $dropdown-color: $body-color;
 $dropdown-bg: $white;
@@ -1224,12 +1226,12 @@ $dropdown-dark-header-color: $gray-500;
 // Pagination
 
 // scss-docs-start pagination-variables
-$pagination-padding-y: 0.375rem;
-$pagination-padding-x: 0.75rem;
-$pagination-padding-y-sm: 0.25rem;
-$pagination-padding-x-sm: 0.5rem;
-$pagination-padding-y-lg: 0.75rem;
-$pagination-padding-x-lg: 1.5rem;
+$pagination-padding-y: calc-clamp(0.375rem);
+$pagination-padding-x: calc-clamp(0.75rem);
+$pagination-padding-y-sm: calc-clamp(0.25rem);
+$pagination-padding-x-sm: calc-clamp(0.5rem);
+$pagination-padding-y-lg: calc-clamp(0.75rem);
+$pagination-padding-x-lg: calc-clamp(1.5rem);
 
 $pagination-color: $link-color;
 $pagination-bg: $white;
@@ -1295,8 +1297,8 @@ $card-group-margin: $grid-gutter-width * 0.5;
 // Accordion
 
 // scss-docs-start accordion-variables
-$accordion-padding-y: 1rem;
-$accordion-padding-x: 1.25rem;
+$accordion-padding-y: calc-clamp(1rem);
+$accordion-padding-x: calc-clamp(1.25rem);
 $accordion-color: $body-color;
 $accordion-bg: $body-bg;
 $accordion-border-width: $border-width;
@@ -1321,7 +1323,7 @@ $accordion-button-active-color: shade-color($primary, 10%);
 $accordion-button-focus-border-color: $input-focus-border-color;
 $accordion-button-focus-box-shadow: $btn-focus-box-shadow;
 
-$accordion-icon-width: 1.25rem;
+$accordion-icon-width: calc-clamp(1.25rem);
 $accordion-icon-color: $accordion-button-color;
 $accordion-icon-active-color: $accordion-button-active-color;
 $accordion-icon-transition: transform 0.2s ease-in-out;
@@ -1344,8 +1346,8 @@ $tooltip-padding-y: $spacer * 0.25;
 $tooltip-padding-x: $spacer * 0.5;
 $tooltip-margin: 0;
 
-$tooltip-arrow-width: 0.8rem;
-$tooltip-arrow-height: 0.4rem;
+$tooltip-arrow-width: calc-clamp(0.8rem);
+$tooltip-arrow-height: calc-clamp(0.4rem);
 $tooltip-arrow-color: $tooltip-bg;
 // scss-docs-end tooltip-variables
 
@@ -1376,15 +1378,15 @@ $popover-box-shadow: $box-shadow;
 
 $popover-header-bg: shade-color($popover-bg, 6%);
 $popover-header-color: $headings-color;
-$popover-header-padding-y: 0.5rem;
+$popover-header-padding-y: calc-clamp(0.5rem);
 $popover-header-padding-x: $spacer;
 
 $popover-body-color: $body-color;
 $popover-body-padding-y: $spacer;
 $popover-body-padding-x: $spacer;
 
-$popover-arrow-width: 1rem;
-$popover-arrow-height: 0.5rem;
+$popover-arrow-width: calc-clamp(1rem);
+$popover-arrow-height: calc-clamp(0.5rem);
 $popover-arrow-color: $popover-bg;
 
 $popover-arrow-outer-color: fade-in($popover-border-color, 0.05);
@@ -1394,9 +1396,9 @@ $popover-arrow-outer-color: fade-in($popover-border-color, 0.05);
 
 // scss-docs-start toast-variables
 $toast-max-width: 350px;
-$toast-padding-x: 0.75rem;
-$toast-padding-y: 0.5rem;
-$toast-font-size: 0.875rem;
+$toast-padding-x: calc-clamp(0.75rem);
+$toast-padding-y: calc-clamp(0.5rem);
+$toast-font-size: calc-clamp(0.875rem);
 $toast-color: null;
 $toast-background-color: rgba($white, 0.85);
 $toast-border-width: 1px;
@@ -1426,10 +1428,10 @@ $badge-border-radius: $border-radius;
 // scss-docs-start modal-variables
 $modal-inner-padding: $spacer;
 
-$modal-footer-margin-between: 0.5rem;
+$modal-footer-margin-between: calc-clamp(0.5rem);
 
-$modal-dialog-margin: 0.5rem;
-$modal-dialog-margin-y-sm-up: 1.75rem;
+$modal-dialog-margin: calc-clamp(0.5rem);
+$modal-dialog-margin-y-sm-up: calc-clamp(1.75rem);
 
 $modal-title-line-height: $line-height-base;
 
@@ -1473,7 +1475,7 @@ $modal-scale-transform: scale(1.02);
 // scss-docs-start alert-variables
 $alert-padding-y: $spacer;
 $alert-padding-x: $spacer;
-$alert-margin-bottom: 1rem;
+$alert-margin-bottom: calc-clamp(1rem);
 $alert-border-radius: $border-radius;
 $alert-link-font-weight: $font-weight-bold;
 $alert-border-width: $border-width;
@@ -1486,7 +1488,7 @@ $alert-dismissible-padding-r: $alert-padding-x * 3; // 3x covers width of x plus
 // Progress bars
 
 // scss-docs-start progress-variables
-$progress-height: 1rem;
+$progress-height: calc-clamp(1rem);
 $progress-font-size: $font-size-base * 0.75;
 $progress-bg: $gray-200;
 $progress-border-radius: $border-radius;
@@ -1529,7 +1531,7 @@ $list-group-action-active-bg: $gray-200;
 // Image thumbnails
 
 // scss-docs-start thumbnail-variables
-$thumbnail-padding: 0.25rem;
+$thumbnail-padding: calc-clamp(0.25rem);
 $thumbnail-bg: $body-bg;
 $thumbnail-border-width: $border-width;
 $thumbnail-border-color: $gray-300;
@@ -1550,8 +1552,8 @@ $figure-caption-color: $gray-600;
 $breadcrumb-font-size: null;
 $breadcrumb-padding-y: 0;
 $breadcrumb-padding-x: 0;
-$breadcrumb-item-padding-x: 0.5rem;
-$breadcrumb-margin-bottom: 1rem;
+$breadcrumb-item-padding-x: calc-clamp(0.5rem);
+$breadcrumb-margin-bottom: calc-clamp(1rem);
 $breadcrumb-bg: null;
 $breadcrumb-divider-color: $gray-600;
 $breadcrumb-active-color: $gray-600;
@@ -1580,10 +1582,10 @@ $carousel-indicator-transition: opacity 0.6s ease;
 
 $carousel-caption-width: 70%;
 $carousel-caption-color: $white;
-$carousel-caption-padding-y: 1.25rem;
-$carousel-caption-spacer: 1.25rem;
+$carousel-caption-padding-y: calc-clamp(1.25rem);
+$carousel-caption-spacer: calc-clamp(1.25rem);
 
-$carousel-control-icon-width: 2rem;
+$carousel-control-icon-width: calc-clamp(2rem);
 
 $carousel-control-prev-icon-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$carousel-control-color}'><path d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/></svg>");
 $carousel-control-next-icon-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$carousel-control-color}'><path d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/></svg>");
@@ -1599,13 +1601,13 @@ $carousel-dark-control-icon-filter: invert(1) grayscale(100);
 // Spinners
 
 // scss-docs-start spinner-variables
-$spinner-width: 2rem;
+$spinner-width: calc-clamp(2rem);
 $spinner-height: $spinner-width;
 $spinner-vertical-align: -0.125em;
 $spinner-border-width: 0.25em;
 $spinner-animation-speed: 0.75s;
 
-$spinner-width-sm: 1rem;
+$spinner-width-sm: calc-clamp(1rem);
 $spinner-height-sm: $spinner-width-sm;
 $spinner-border-width-sm: 0.2em;
 // scss-docs-end spinner-variables
@@ -1650,8 +1652,8 @@ $offcanvas-backdrop-opacity: $modal-backdrop-opacity;
 $code-font-size: $small-font-size;
 $code-color: $pink;
 
-$kbd-padding-y: 0.2rem;
-$kbd-padding-x: 0.4rem;
+$kbd-padding-y: calc-clamp(0.2rem);
+$kbd-padding-x: calc-clamp(0.4rem);
 $kbd-font-size: $code-font-size;
 $kbd-color: $white;
 $kbd-bg: $gray-900;

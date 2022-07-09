@@ -49,6 +49,7 @@
     "@angular-eslint/template-parser": "13.5.0",
     "@angular/cli": "~13.3.7",
     "@angular/compiler-cli": "~13.3.0",
+    "@sass-collective/strip-unit": "^3.1.2",
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
     "@typescript-eslint/eslint-plugin": "5.27.1",

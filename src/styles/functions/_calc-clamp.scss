@@ -1,15 +1,11 @@
 @use "sass:math";
-@import "./calc-rem";
+@use "@sass-collective/strip-unit";
 
 @function calc-clamp($max-width, $min-width: 0) {
-  $dynamic-width: #{math.div($max-width, 1920) * 100};
-  @if $max-width < 0 {
-    // $dynamic-width: #{(math.div($max-width, 1920) * 100) * -1};
+  @if unit($max-width) == "rem" {
+    $max-width: strip-unit.strip($max-width) * 16;
   }
-  // @return clamp(
-  //   #{calc-rem($min-width)},
-  //   #{$dynamic-width}vw,
-  //   #{calc-rem($max-width)}
-  // );
-  @return #{$dynamic-width}vw;
+  $dynamic-width: math.div($max-width, 1920) * 100;
+
+  @return $dynamic-width * 1vw;
 }
