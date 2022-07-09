@@ -16,12 +16,16 @@
   table-layout: fixed;
 }
 
-:host ::ng-deep {
-  .coming-up-content-scroll {
-    height: calc-clamp(240);
-  }
+.top5-game-thumbnail {
+  width: calc-clamp(100);
 }
 
 .hover-pulse {
   @include grow();
+}
+
+:host ::ng-deep {
+  .coming-up-content-scroll {
+    height: calc-clamp(240);
+  }
 }

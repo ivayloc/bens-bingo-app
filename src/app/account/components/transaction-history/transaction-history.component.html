@@ -4,8 +4,8 @@
       <div class="col-8">
         <form [formGroup]="searchTransactionsForm">
           <div class="row mb-4">
-            <div class="col-auto">
-              <mat-form-field appearance="fill">
+            <div class="col-3">
+              <mat-form-field appearance="fill" class="d-block">
                 <mat-label>Type</mat-label>
                 <mat-select formControlName="type">
                   <mat-option value="credits"> Credits </mat-option>
@@ -13,7 +13,7 @@
                 </mat-select>
               </mat-form-field>
             </div>
-            <div class="col-auto">
+            <div class="col-3">
               <mat-form-field appearance="fill" class="d-block">
                 <mat-label>Start Date</mat-label>
                 <input
@@ -28,7 +28,7 @@
                 <mat-datepicker #startDatePicker></mat-datepicker>
               </mat-form-field>
             </div>
-            <div class="col-auto">
+            <div class="col-3">
               <mat-form-field appearance="fill" class="d-block">
                 <mat-label>End Date</mat-label>
                 <input
@@ -43,10 +43,10 @@
                 <mat-datepicker #endDatePicker></mat-datepicker>
               </mat-form-field>
             </div>
-            <div class="col-auto">
+            <div class="col-3">
               <button
                 type="button"
-                class="btn-clear btn-main py-1 mx-2 min-w-auto btn-field"
+                class="btn-clear btn-main py-1 mx-2 btn-field"
               >
                 <span class="btn-main-text">Go</span>
               </button>

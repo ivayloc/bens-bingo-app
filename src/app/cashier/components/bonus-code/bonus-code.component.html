@@ -1,14 +1,14 @@
 <div class="row justify-content-center">
   <div class="col-6">
     <app-content-box class="content-box" title="Redeem your bonus">
-      <div class="d-flex fz-24">
-        <div class="flex-fill">
+      <div class="row mt-4 fz-24">
+        <div class="col-8 col-auto">
           <mat-form-field class="d-block" appearance="fill">
             <mat-label>Enter your bonus code</mat-label>
             <input matInput [formControl]="bonusCodeField" />
           </mat-form-field>
         </div>
-        <div class="ps-4">
+        <div class="col-auto">
           <button
             type="button"
             class="btn-clear btn-main py-1 mx-2 min-w-auto btn-field"
