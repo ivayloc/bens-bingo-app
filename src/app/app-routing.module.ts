@@ -27,6 +27,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./cashier/cashier.module').then((m) => m.CashierModule),
   },
+  {
+    path: 'help',
+    loadChildren: () => import('./help/help.module').then((m) => m.HelpModule),
+  },
 ];
 
 @NgModule({
