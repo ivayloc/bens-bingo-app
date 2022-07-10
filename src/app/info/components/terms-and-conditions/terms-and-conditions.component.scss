@@ -4,14 +4,14 @@
   article {
     margin-bottom: calc-clamp(40);
     h2 {
-      margin-bottom: 40px;
-      font-size: 38px;
+      margin-bottom: calc-clamp(40);
+      font-size: calc-clamp(38);
       font-weight: 700;
     }
     h3 {
-      margin-top: 20px;
-      margin-bottom: 20px;
-      font-size: 31px;
+      margin-top: calc-clamp(20);
+      margin-bottom: calc-clamp(20);
+      font-size: calc-clamp(31);
       font-weight: 700;
     }
   }
