@@ -10,6 +10,16 @@
     margin-inline-end: 0;
     margin-top: calc-clamp(-40);
   }
+  &-bingo-rooms {
+    margin-inline-start: calc-clamp(-50);
+    margin-inline-end: 0;
+    margin-top: calc-clamp(-40);
+  }
+  &-top5 {
+    margin-inline-start: calc-clamp(-50);
+    margin-inline-end: 0;
+    margin-top: calc-clamp(-40);
+  }
 }
 
 .table-fixed {
