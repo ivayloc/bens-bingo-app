@@ -1,0 +1,18 @@
+@import "../../../../styles/functions/calc-clamp";
+
+:host ::ng-deep {
+  article {
+    margin-bottom: calc-clamp(40);
+    h2 {
+      margin-bottom: 40px;
+      font-size: 38px;
+      font-weight: 700;
+    }
+    h3 {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      font-size: 31px;
+      font-weight: 700;
+    }
+  }
+}

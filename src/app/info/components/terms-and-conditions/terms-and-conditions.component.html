@@ -1,1 +1,9 @@
-<p>terms-and-conditions works!</p>
+<app-content-box
+  title="Terms and Conditions"
+  [isFluid]="true"
+  class="mt-5 pt-5"
+>
+  <div class="row justify-content-center">
+    <div class="col-8 fz-24" [innerHtml]="getTermsAndConditions$ | async"></div>
+  </div>
+</app-content-box>

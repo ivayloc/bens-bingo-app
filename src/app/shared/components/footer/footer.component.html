@@ -4,23 +4,51 @@
       <ul class="list-unstyled align-self-start mb-0">
         <li><a class="page-footer-link" href="">About Us</a></li>
         <li>
-          <a class="page-footer-link" href="">Terms And Conditions</a>
+          <a class="page-footer-link" routerLink="/site/terms"
+            >Terms And Conditions</a
+          >
         </li>
         <li>
           <a class="page-footer-link" href="">Responsible Gaming</a>
         </li>
         <li><a class="page-footer-link" href="">Privacy Policy</a></li>
-        <li><a class="page-footer-link" href="">AML Policy</a></li>
         <li>
-          <a class="page-footer-link" href="">Payout and Bonuses</a>
+          <a
+            class="page-footer-link"
+            [routerLink]="['/site/terms']"
+            fragment="aml"
+            >AML Policy</a
+          >
         </li>
-        <li><a class="page-footer-link" href="">KYC Policy</a></li>
+        <li>
+          <a
+            class="page-footer-link"
+            [routerLink]="['/site/terms']"
+            fragment="payouts-and-bonuses"
+            >Payout and Bonuses</a
+          >
+        </li>
+        <li>
+          <a
+            class="page-footer-link"
+            [routerLink]="['/site/terms']"
+            fragment="kyc-policy"
+            >KYC Policy</a
+          >
+        </li>
       </ul>
       <ul class="list-unstyled align-self-start mb-0">
         <li><a class="page-footer-link" href="">Contact</a></li>
         <li><a class="page-footer-link" href="">Security</a></li>
         <li><a class="page-footer-link" href="">Self-exclusion</a></li>
-        <li><a class="page-footer-link" href="">Complaints</a></li>
+        <li>
+          <a
+            class="page-footer-link"
+            [routerLink]="['/site/terms']"
+            fragment="complaints"
+            >Complaints</a
+          >
+        </li>
         <li><a class="page-footer-link" href="">Fair Play</a></li>
         <li><a class="page-footer-link" href="">Tell a Friend</a></li>
       </ul>

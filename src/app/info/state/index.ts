@@ -6,9 +6,9 @@ export interface State extends AppState.State {
   siteInfo: SiteInfoState;
 }
 
-const getSiteInfoState = createFeatureSelector<SiteInfoState>('casino-games');
+const getSiteInfoState = createFeatureSelector<SiteInfoState>('site-info');
 
 export const getTermsAndConditions = createSelector(
   getSiteInfoState,
-  (state) => state.termsAndConditions
+  (state) => state.termsAndConditions.text
 );

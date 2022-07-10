@@ -9,9 +9,12 @@
   &-wrap {
     color: #fff;
     background-color: #da15a9;
-    transform: skew(-10deg);
+    // transform: skew(-10deg);
   }
-
+  &-fluid {
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+  }
   &-header {
     min-height: calc-clamp(82);
     margin: 0 calc-clamp(-7);
@@ -23,7 +26,7 @@
       line-height: normal;
       text-align: center;
       text-transform: uppercase;
-      transform: skew(10deg);
+      // transform: skew(10deg);
     }
   }
   &-body {

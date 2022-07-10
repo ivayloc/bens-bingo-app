@@ -1,13 +1,14 @@
 import { createReducer, on } from '@ngrx/store';
+import { TermsAndConditions } from '../models/terms-and-conditions';
 import { SiteInfoApiActions } from './actions';
 
 export interface SiteInfoState {
-  termsAndConditions: string;
+  termsAndConditions: TermsAndConditions;
   error: string;
 }
 
 const initialState: SiteInfoState = {
-  termsAndConditions: '',
+  termsAndConditions: { text: '' },
   error: '',
 };
 

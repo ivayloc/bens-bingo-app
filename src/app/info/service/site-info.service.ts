@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { TermsAndConditions } from '../models/terms-and-conditions';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,9 @@ import { Observable } from 'rxjs';
 export class SiteInfoService {
   constructor(private http: HttpClient) {}
 
-  getTermsAndConditions(): Observable<string> {
-    return this.http.get<string>('/assets/mock/terms-and-conditions.json');
+  getTermsAndConditions(): Observable<TermsAndConditions> {
+    return this.http.get<TermsAndConditions>(
+      '/assets/mock/terms-and-conditions.json'
+    );
   }
 }

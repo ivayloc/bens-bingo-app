@@ -1,15 +1,20 @@
 <div class="d-block">
-  <div class="box-pink-wrap">
-    <div class="box-pink">
+  <div
+    class="box-pink-wrap"
+    [ngClass]="{
+      'transform-skew-n10': !isFluid
+    }"
+  >
+    <div class="box-pink" [ngClass]="{ 'box-pink-fluid': isFluid }">
       <div
         class="box-pink-header d-flex align-items-center justify-content-center"
       >
         <div class="box-pink-header-text" [ngClass]="titleClass">
-          {{ title }}
+          <div [ngClass]="{ 'transform-skew-10': !isFluid }">{{ title }}</div>
         </div>
       </div>
       <div class="box-pink-body">
-        <div class="transform-skew-10 py-4">
+        <div class="py-4" [ngClass]="{ 'transform-skew-10': !isFluid }">
           <ng-content></ng-content>
         </div>
       </div>
