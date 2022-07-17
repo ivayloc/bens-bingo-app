@@ -5,7 +5,10 @@ import { map, Observable, switchMap } from 'rxjs';
 import { AuthService } from 'src/app/core/service/auth.service';
 import { ResponseOf } from 'src/app/shared/models/response-of';
 import { environment } from 'src/environments/environment';
+import { GameHistory } from '../models/game-history';
+import { BingoHistoryRequest } from '../models/bingo-history-request';
 import { Transaction } from '../models/transaction';
+import { TransactionsHistoryRequest } from '../models/transactions-history-request';
 
 @Injectable({
   providedIn: 'root',
@@ -13,11 +16,11 @@ import { Transaction } from '../models/transaction';
 export class AccountService {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-  getTransactionsHistory(
-    startdate: Date,
-    enddate: Date,
-    type?: string
-  ): Observable<Transaction[]> {
+  getTransactionsHistory({
+    startdate,
+    enddate,
+    type,
+  }: TransactionsHistoryRequest): Observable<Transaction[]> {
     const params = new HttpParams({
       fromObject: {
         startdate: format(startdate, 'yyy-MM-dd'),
@@ -37,6 +40,35 @@ export class AccountService {
       .pipe(switchMap(() => this.authService.login()))
       .pipe(
         switchMap(() => getTransactionsHistory$),
+        map(({ data }) => data.items)
+      );
+  }
+
+  getGameHistory({
+    startdate,
+    enddate,
+    gametype,
+  }: BingoHistoryRequest): Observable<GameHistory[]> {
+    const params = new HttpParams({
+      fromObject: {
+        startdate: format(startdate, 'yyy-MM-dd'),
+        enddate: format(enddate, 'yyy-MM-dd'),
+        numrecords: '100',
+        gametype,
+      },
+    });
+
+    const getBingoHistory$ = this.http.get<ResponseOf<GameHistory[]>>(
+      `${environment.apiDomain}/api/slim/v1//user/current/history/game`,
+      {
+        params,
+      }
+    );
+    return this.authService
+      .apiLogin()
+      .pipe(switchMap(() => this.authService.login()))
+      .pipe(
+        switchMap(() => getBingoHistory$),
         map(({ data }) => data.items)
       );
   }

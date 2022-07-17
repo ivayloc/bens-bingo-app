@@ -13,18 +13,35 @@ export class AccountEffects {
     private casinoService: CasinoService
   ) {}
 
-  loadBingoGames$ = createEffect(() => {
+  loadTransactions$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(AccountPageActions.loadAccountDetails),
-      mergeMap(({ startdate, enddate }) =>
-        this.accountService.getTransactionsHistory(startdate, enddate).pipe(
+      ofType(AccountPageActions.loadTransactionsHistory),
+      mergeMap(({ payload }) =>
+        this.accountService.getTransactionsHistory(payload).pipe(
           map((transactionsHistory) =>
-            AccountApiActions.loadAccountDetailsSuccess({
+            AccountApiActions.loadTransactionsHistorySuccess({
               transactionsHistory,
             })
           ),
           catchError((error) =>
-            of(AccountApiActions.loadAccountDetailsFailure({ error }))
+            of(AccountApiActions.loadTransactionsHistoryFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+  loadGameHistory$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AccountPageActions.loadGameHistory),
+      mergeMap(({ payload }) =>
+        this.accountService.getGameHistory(payload).pipe(
+          map((gameHistory) =>
+            AccountApiActions.loadGameHistorySuccess({
+              gameHistory,
+            })
+          ),
+          catchError((error) =>
+            of(AccountApiActions.loadGameHistoryFailure({ error }))
           )
         )
       )

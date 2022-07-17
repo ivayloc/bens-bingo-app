@@ -21,6 +21,9 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { TextContentLayoutComponent } from './text-content-layout/text-content-layout.component';
 import { ChatModeratorsComponent } from './components/chat-moderators/chat-moderators.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoaderService } from './services/loader.service';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     SlotsGameComponent,
     TextContentLayoutComponent,
     ChatModeratorsComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     CommonModule,
@@ -67,6 +71,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     CarouselModule,
     TextContentLayoutComponent,
     ChatModeratorsComponent,
+    LoadingSpinnerComponent,
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useExisting: LoaderService, multi: true },
   ],
 })
 export class SharedModule {}

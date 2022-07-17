@@ -1,17 +1,17 @@
 <app-content-box
-  class="content-box"
+  class="position-relative"
   title="Transaction History"
   [isFluid]="true"
 >
   <div class="fz-24">
     <div class="row justify-content-center">
-      <div class="col-8">
+      <div class="col-10">
         <form
           [formGroup]="searchTransactionsForm"
           (ngSubmit)="getTransactionsHistory()"
         >
           <div class="row">
-            <div class="col-3">
+            <div class="col-3 col-md-auto">
               <mat-form-field appearance="fill" class="d-block">
                 <mat-label>Type</mat-label>
                 <mat-select formControlName="type">
@@ -20,7 +20,7 @@
                 </mat-select>
               </mat-form-field>
             </div>
-            <div class="col-3">
+            <div class="col-3 col-md-auto">
               <mat-form-field appearance="fill" class="d-block">
                 <mat-label>Start Date</mat-label>
                 <input
@@ -35,7 +35,7 @@
                 <mat-datepicker #startDatePicker></mat-datepicker>
               </mat-form-field>
             </div>
-            <div class="col-3">
+            <div class="col-3 col-md-auto">
               <mat-form-field appearance="fill" class="d-block">
                 <mat-label>End Date</mat-label>
                 <input
@@ -50,21 +50,17 @@
                 <mat-datepicker #endDatePicker></mat-datepicker>
               </mat-form-field>
             </div>
-            <div class="col-3">
+            <div class="col-3 col-md-auto">
               <button
                 type="submit"
-                class="btn-clear btn-main py-1 mx-2 btn-field"
+                class="btn-clear btn-main py-1 mx-2 min-w-auto btn-field"
               >
                 <span class="btn-main-text">Go</span>
               </button>
             </div>
           </div>
         </form>
-      </div>
-    </div>
-    <hr class="hr mb-5" />
-    <div class="row justify-content-center">
-      <div class="col-10">
+        <hr class="hr mb-4" />
         <ng-container *ngIf="getTransactionsHistory$ | async as transactions">
           <table
             mat-table
@@ -72,6 +68,7 @@
             [dataSource]="transactions"
             matSort
             class="mat-elevation-z8 w-100"
+            *ngIf="showTable; else noResults"
           >
             <!-- [fixedLayout]="true" -->
             <!-- id Column -->
@@ -242,9 +239,14 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
           </table>
         </ng-container>
-
+        <ng-template #noResults> No Transaction Data </ng-template>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-10">
         <!-- <pre>{{ getTransactionsHistory$ | async | json }}</pre> -->
       </div>
     </div>
   </div>
+  <app-loading-spinner></app-loading-spinner>
 </app-content-box>

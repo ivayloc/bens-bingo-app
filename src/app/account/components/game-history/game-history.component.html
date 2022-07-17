@@ -1,10 +1,24 @@
-<app-content-box class="content-box" title="Transaction History">
+<app-content-box
+  class="position-relative"
+  title="Transaction History"
+  [isFluid]="true"
+>
   <div class="fz-24">
     <div class="row justify-content-center">
-      <div class="col-8">
-        <form [formGroup]="searchGameHistoryForm">
-          <div class="row mb-4">
-            <div class="col-4 col-md-auto">
+      <div class="col-10">
+        <form [formGroup]="searchGameHistoryForm" (ngSubmit)="getGameHistory()">
+          <div class="row">
+            <div class="col-3 col-md-auto">
+              <mat-form-field appearance="fill" class="d-block">
+                <mat-label>Type</mat-label>
+                <mat-select formControlName="gametype">
+                  <mat-option value="bingo"> Bingo </mat-option>
+                  <mat-option value="slots"> Slots </mat-option>
+                  <mat-option value="videopoker"> Video Poker </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-3 col-md-auto">
               <mat-form-field appearance="fill" class="d-block">
                 <mat-label>Start Date</mat-label>
                 <input
@@ -19,7 +33,7 @@
                 <mat-datepicker #startDatePicker></mat-datepicker>
               </mat-form-field>
             </div>
-            <div class="col-4 col-md-auto">
+            <div class="col-3 col-md-auto">
               <mat-form-field appearance="fill" class="d-block">
                 <mat-label>End Date</mat-label>
                 <input
@@ -34,9 +48,9 @@
                 <mat-datepicker #endDatePicker></mat-datepicker>
               </mat-form-field>
             </div>
-            <div class="col-4 col-md-auto">
+            <div class="col-3 col-md-auto">
               <button
-                type="button"
+                type="submit"
                 class="btn-clear btn-main py-1 mx-2 min-w-auto btn-field"
               >
                 <span class="btn-main-text">Go</span>
@@ -45,10 +59,177 @@
           </div>
         </form>
 
-        <hr class="hr" />
+        <hr class="hr mb-4" />
 
-        No Transaction Data
+        <ng-container *ngIf="getGamesHistory$ | async as gamesHistory">
+          <table
+            mat-table
+            aria-describedby="aa"
+            [dataSource]="gamesHistory"
+            matSort
+            class="mat-elevation-z8 w-100"
+            *ngIf="showTable; else noResults"
+          >
+            <!-- bet Column -->
+            <ng-container matColumnDef="bet">
+              <th
+                mat-header-cell
+                class="fz-24"
+                *matHeaderCellDef
+                mat-sort-header
+                sortActionDescription="Sort by bet"
+              >
+                Bet
+              </th>
+              <td class="fz-24" mat-cell *matCellDef="let element">
+                {{ element.bet }}
+              </td>
+            </ng-container>
+            <!-- cards_purchased Column -->
+            <ng-container matColumnDef="cards_purchased">
+              <th
+                mat-header-cell
+                class="fz-24"
+                *matHeaderCellDef
+                mat-sort-header
+                sortActionDescription="Sort by purchased cards"
+              >
+                Purchased Cards
+              </th>
+              <td class="fz-24" mat-cell *matCellDef="let element">
+                {{ element.cards_purchased }}
+              </td>
+            </ng-container>
+            <!-- currency Column -->
+            <ng-container matColumnDef="currency">
+              <th
+                mat-header-cell
+                class="fz-24"
+                *matHeaderCellDef
+                mat-sort-header
+                sortActionDescription="Sort by currency"
+              >
+                Currency
+              </th>
+              <td class="fz-24" mat-cell *matCellDef="let element">
+                {{ element.currency }}
+              </td>
+            </ng-container>
+            <!-- gameid Column -->
+            <ng-container matColumnDef="gameid">
+              <th
+                mat-header-cell
+                class="fz-24"
+                *matHeaderCellDef
+                mat-sort-header
+                sortActionDescription="Sort by game id"
+              >
+                Game ID
+              </th>
+              <td class="fz-24" mat-cell *matCellDef="let element">
+                {{ element.gameid }}
+              </td>
+            </ng-container>
+            <!-- gamename Column-->
+            <ng-container matColumnDef="gamename">
+              <th
+                mat-header-cell
+                class="fz-24"
+                *matHeaderCellDef
+                mat-sort-header
+                sortActionDescription="Sort by game name"
+              >
+                Game Name
+              </th>
+              <td class="fz-24" mat-cell *matCellDef="let element">
+                {{ element.gamename }}
+              </td>
+            </ng-container>
+            <!-- gameprice Column -->
+            <ng-container matColumnDef="gameprice">
+              <th
+                mat-header-cell
+                class="fz-24"
+                *matHeaderCellDef
+                mat-sort-header
+                sortActionDescription="Sort by game price"
+              >
+                Game Price
+              </th>
+              <td class="fz-24" mat-cell *matCellDef="let element">
+                {{ element.gameprice }}
+              </td>
+            </ng-container>
+            <!-- price Column -->
+            <ng-container matColumnDef="price">
+              <th
+                mat-header-cell
+                class="fz-24"
+                *matHeaderCellDef
+                mat-sort-header
+                sortActionDescription="Sort by price"
+              >
+                Price
+              </th>
+              <td class="fz-24" mat-cell *matCellDef="let element">
+                {{ element.price }}
+              </td>
+            </ng-container>
+            <!-- prize Column -->
+            <ng-container matColumnDef="prize">
+              <th
+                mat-header-cell
+                class="fz-24"
+                *matHeaderCellDef
+                mat-sort-header
+                sortActionDescription="Sort by prize"
+              >
+                <span class="fw-bold"> Prize </span>
+              </th>
+              <td class="fz-24" mat-cell *matCellDef="let element">
+                <span class="text-break">{{ element.prize }}</span>
+              </td>
+            </ng-container>
+            <!-- start_time Column -->
+            <ng-container matColumnDef="start_time">
+              <th
+                mat-header-cell
+                class="fz-24"
+                *matHeaderCellDef
+                mat-sort-header
+                sortActionDescription="Sort by start time"
+              >
+                Start Time
+              </th>
+              <td class="fz-24" mat-cell *matCellDef="let element">
+                {{ element.start_time | date: "yy-MM-dd, h:mm a" }}
+              </td>
+            </ng-container>
+            <!-- usersprize Column -->
+            <ng-container matColumnDef="usersprize">
+              <th
+                mat-header-cell
+                class="fz-24"
+                *matHeaderCellDef
+                mat-sort-header
+                sortActionDescription="Sort by users prize"
+              >
+                Users Prize
+              </th>
+              <td class="fz-24" mat-cell *matCellDef="let element">
+                <span class="fw-bold">
+                  {{ element.usersprize }}
+                </span>
+              </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+        </ng-container>
+
+        <ng-template #noResults> No Transaction Data </ng-template>
       </div>
     </div>
   </div>
+  <app-loading-spinner></app-loading-spinner>
 </app-content-box>

@@ -33,6 +33,7 @@ export class TransactionHistoryComponent implements OnInit {
   ];
   getTransactionsHistory$ = new Observable<MatTableDataSource<Transaction>>();
   @ViewChild(MatSort) sort!: MatSort;
+  showTable = false;
 
   constructor(private store: Store<State>, private fb: FormBuilder) {}
 
@@ -49,7 +50,10 @@ export class TransactionHistoryComponent implements OnInit {
 
   getTransactionsHistory() {
     this.store.dispatch(
-      AccountPageActions.loadAccountDetails(this.searchTransactionsForm.value)
+      AccountPageActions.loadTransactionsHistory({
+        payload: this.searchTransactionsForm.value,
+      })
     );
+    this.showTable = true;
   }
 }

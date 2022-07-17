@@ -13,3 +13,8 @@ export const getTransactionsHistory = createSelector(
   getAccountState,
   (state) => new MatTableDataSource(state.transactionsHistory)
 );
+
+export const getBingoHistory = createSelector(
+  getAccountState,
+  (state) => new MatTableDataSource(state.gameHistory)
+);

@@ -1,0 +1,14 @@
+<!-- <div *ngIf="showSpinner$ | async" [ngClass]="'appearance-' + appearance"></div> -->
+
+<div class="loader-overlay" *ngIf="showSpinner$ | async">
+  <div class="loader absolute-center">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>

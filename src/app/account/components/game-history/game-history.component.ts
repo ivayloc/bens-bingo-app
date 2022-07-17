@@ -1,16 +1,87 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { Store } from '@ngrx/store';
+import { map, Observable } from 'rxjs';
+import { GameHistory } from '../../models/game-history';
+import { GameType } from '../../models/game-type';
+import { getBingoHistory as getGameHistory, State } from '../../state';
+import { AccountPageActions } from '../../state/actions';
 
 @Component({
   selector: 'app-game-history',
   templateUrl: './game-history.component.html',
   styleUrls: ['./game-history.component.scss'],
 })
-export class GameHistoryComponent {
+export class GameHistoryComponent implements OnInit {
+  @ViewChild(MatSort) sort!: MatSort;
+
+  public get gameTypeFieldValue(): keyof typeof GameType {
+    return this.searchGameHistoryForm.get('gametype')?.value;
+  }
+
   searchGameHistoryForm = this.fb.group({
-    enddate: '2022-06-29',
-    startdate: '2022-04-01',
+    startdate: new Date('2022-04-01T21:00:00.000Z'),
+    enddate: new Date('2022-06-27T21:00:00.000Z'),
+    gametype: ['', Validators.required],
   });
 
-  constructor(private fb: FormBuilder) {}
+  showTable = false;
+  gameType = GameType;
+  displayedColumns = [''];
+
+  blockedDocument = false;
+
+  private displayedColumnsGames = [
+    'bet',
+    'currency',
+    'gameid',
+    'gamename',
+    'gameprice',
+    'price',
+    'prize',
+    'start_time',
+  ];
+  private displayedColumnsBingo = [
+    'cards_purchased',
+    'currency',
+    'gameid',
+    'gamename',
+    'gameprice',
+    'prize',
+    'start_time',
+    'usersprize',
+  ];
+
+  getGamesHistory$ = new Observable<MatTableDataSource<GameHistory>>();
+
+  constructor(private store: Store<State>, private fb: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.getGamesHistory$ = this.store.select(getGameHistory).pipe(
+      map((matTableDataSource) => {
+        matTableDataSource.sort = this.sort;
+        return matTableDataSource;
+      })
+    );
+  }
+
+  getGameHistory() {
+    if (this.searchGameHistoryForm.invalid) {
+      return;
+    }
+    this.blockedDocument = true;
+    if (this.gameTypeFieldValue === GameType.bingo) {
+      this.displayedColumns = this.displayedColumnsBingo;
+    } else {
+      this.displayedColumns = this.displayedColumnsGames;
+    }
+    this.store.dispatch(
+      AccountPageActions.loadGameHistory({
+        payload: this.searchGameHistoryForm.value,
+      })
+    );
+    this.showTable = true;
+  }
 }
