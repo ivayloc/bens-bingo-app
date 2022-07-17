@@ -9,8 +9,8 @@ $icon-close: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
   background-color: rgba(#000, 0.8);
   transform: skew(-10deg);
   &-wrap {
-    position: relative;
     padding-top: calc-clamp(310);
+    position: relative;
     margin-bottom: calc-clamp(30);
     background-repeat: no-repeat;
     background-position: top;

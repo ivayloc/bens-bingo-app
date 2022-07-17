@@ -1,5 +1,7 @@
 @import "../../../../styles/functions/calc-clamp";
 
-.content-box {
-  margin: 0 calc-clamp(-50);
+:host ::ng-deep {
+  .mat-row:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
 }

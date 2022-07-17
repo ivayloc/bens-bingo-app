@@ -11,7 +11,10 @@ import { LoginResponse } from '../models/login-response';
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  login(username: string, password: string): Observable<LoginResponse> {
+  login(
+    username: string = 'bencasino',
+    password: string = '123456abc'
+  ): Observable<LoginResponse> {
     return this.apiLogin().pipe(
       switchMap(() => {
         return this.http.post<LoginResponse>(

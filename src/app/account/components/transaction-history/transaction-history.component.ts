@@ -1,18 +1,55 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { Store } from '@ngrx/store';
+import { map, Observable, tap } from 'rxjs';
+import { Transaction } from '../../models/transaction';
+import { getTransactionsHistory, State } from '../../state';
+import { AccountPageActions } from '../../state/actions';
 
 @Component({
   selector: 'app-transaction-history',
   templateUrl: './transaction-history.component.html',
   styleUrls: ['./transaction-history.component.scss'],
 })
-export class TransactionHistoryComponent {
+export class TransactionHistoryComponent implements OnInit {
   searchTransactionsForm = this.fb.group({
-    enddate: '2022-06-29',
-    numrecords: 100,
-    startdate: '2022-04-01',
+    startdate: new Date('2022-03-31T21:00:00.000Z'),
+    enddate: new Date('2022-05-31T21:00:00.000Z'),
     type: '',
   });
+  displayedColumns = [
+    // 'id',
+    'transactionid',
+    'amount',
+    'method',
+    'type',
+    'action',
+    'result',
+    'merchant_transactionid',
+    // 'currency',
+    'date',
+  ];
+  getTransactionsHistory$ = new Observable<MatTableDataSource<Transaction>>();
+  @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private store: Store<State>, private fb: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.getTransactionsHistory$ = this.store
+      .select(getTransactionsHistory)
+      .pipe(
+        map((matTableDataSource) => {
+          matTableDataSource.sort = this.sort;
+          return matTableDataSource;
+        })
+      );
+  }
+
+  getTransactionsHistory() {
+    this.store.dispatch(
+      AccountPageActions.loadAccountDetails(this.searchTransactionsForm.value)
+    );
+  }
 }

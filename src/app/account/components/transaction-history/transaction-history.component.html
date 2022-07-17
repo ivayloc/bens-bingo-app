@@ -1,9 +1,16 @@
-<app-content-box class="content-box" title="Transaction History">
+<app-content-box
+  class="content-box"
+  title="Transaction History"
+  [isFluid]="true"
+>
   <div class="fz-24">
     <div class="row justify-content-center">
       <div class="col-8">
-        <form [formGroup]="searchTransactionsForm">
-          <div class="row mb-4">
+        <form
+          [formGroup]="searchTransactionsForm"
+          (ngSubmit)="getTransactionsHistory()"
+        >
+          <div class="row">
             <div class="col-3">
               <mat-form-field appearance="fill" class="d-block">
                 <mat-label>Type</mat-label>
@@ -45,7 +52,7 @@
             </div>
             <div class="col-3">
               <button
-                type="button"
+                type="submit"
                 class="btn-clear btn-main py-1 mx-2 btn-field"
               >
                 <span class="btn-main-text">Go</span>
@@ -53,10 +60,190 @@
             </div>
           </div>
         </form>
+      </div>
+    </div>
+    <hr class="hr mb-5" />
+    <div class="row justify-content-center">
+      <div class="col-10">
+        <ng-container *ngIf="getTransactionsHistory$ | async as transactions">
+          <table
+            mat-table
+            aria-describedby="aa"
+            [dataSource]="transactions"
+            matSort
+            class="mat-elevation-z8 w-100"
+          >
+            <!-- [fixedLayout]="true" -->
+            <!-- id Column -->
+            <!-- <ng-container matColumnDef="id">
+              <th
+                mat-header-cell
+                class="fz-24"
+                *matHeaderCellDef
+                mat-sort-header
+                sortActionDescription="Sort by ID"
+              >
+                ID
+              </th>
+              <td class="fz-24" mat-cell *matCellDef="let element">
+                {{ element.id }}
+              </td>
+            </ng-container> -->
+            <!-- transactionid Column -->
+            <ng-container matColumnDef="transactionid">
+              <th
+                mat-header-cell
+                class="fz-24"
+                *matHeaderCellDef
+                mat-sort-header
+                sortActionDescription="Sort by transaction id"
+              >
+                ID
+              </th>
+              <td class="fz-24" mat-cell *matCellDef="let element">
+                {{ element.transactionid }}
+              </td>
+            </ng-container>
+            <!-- amount Column -->
+            <ng-container matColumnDef="amount">
+              <th
+                mat-header-cell
+                class="fz-24"
+                *matHeaderCellDef
+                mat-sort-header
+                sortActionDescription="Sort by amount"
+              >
+                Amount
+              </th>
+              <td class="fz-24" mat-cell *matCellDef="let element">
+                <span class="fw-bold">
+                  {{ element.amount | currency: element.currency }}
+                </span>
+              </td>
+            </ng-container>
+            <!-- method Column -->
+            <ng-container matColumnDef="method">
+              <th
+                mat-header-cell
+                class="fz-24"
+                *matHeaderCellDef
+                mat-sort-header
+                sortActionDescription="Sort by method"
+              >
+                Method
+              </th>
+              <td class="fz-24" mat-cell *matCellDef="let element">
+                {{ element.method }}
+              </td>
+            </ng-container>
 
-        <hr class="hr" />
+            <!-- type Column-->
+            <ng-container matColumnDef="type">
+              <th
+                mat-header-cell
+                class="fz-24"
+                *matHeaderCellDef
+                mat-sort-header
+                sortActionDescription="Sort by type"
+              >
+                Type
+              </th>
+              <td class="fz-24" mat-cell *matCellDef="let element">
+                {{ element.type }}
+              </td>
+            </ng-container>
+            <!-- action Column -->
+            <ng-container matColumnDef="action">
+              <th
+                mat-header-cell
+                class="fz-24"
+                *matHeaderCellDef
+                mat-sort-header
+                sortActionDescription="Sort by action"
+              >
+                Action
+              </th>
+              <td class="fz-24" mat-cell *matCellDef="let element">
+                {{ element.action }}
+              </td>
+            </ng-container>
+            <!-- result Column -->
+            <ng-container matColumnDef="result">
+              <th
+                mat-header-cell
+                class="fz-24"
+                *matHeaderCellDef
+                mat-sort-header
+                sortActionDescription="Sort by result"
+              >
+                Result
+              </th>
+              <td class="fz-24" mat-cell *matCellDef="let element">
+                <span
+                  [ngClass]="{
+                    'text-success': element.result === 'success',
+                    'text-danger': element.result === 'failure',
+                    'text-warning': element.result === 'declined'
+                  }"
+                  >{{ element.result }}</span
+                >
+              </td>
+            </ng-container>
+            <!-- merchant_transactionid Column -->
+            <ng-container matColumnDef="merchant_transactionid">
+              <th
+                mat-header-cell
+                class="fz-24"
+                *matHeaderCellDef
+                mat-sort-header
+                sortActionDescription="Sort by merchant transaction id"
+              >
+                Merchant Transaction ID
+              </th>
+              <td class="fz-24" mat-cell *matCellDef="let element">
+                <span class="text-break">{{
+                  element.merchant_transactionid
+                }}</span>
+              </td>
+            </ng-container>
 
-        No Transaction Data
+            <!-- currency Column -->
+            <!-- <ng-container matColumnDef="currency">
+              <th
+                mat-header-cell
+                class="fz-24"
+                *matHeaderCellDef
+                mat-sort-header
+                sortActionDescription="Sort by currency"
+              >
+                Currency
+              </th>
+              <td class="fz-24" mat-cell *matCellDef="let element">
+                {{ element.currency }}
+              </td>
+            </ng-container> -->
+            <!-- date Column -->
+            <ng-container matColumnDef="date">
+              <th
+                mat-header-cell
+                class="fz-24"
+                *matHeaderCellDef
+                mat-sort-header
+                sortActionDescription="Sort by date"
+              >
+                Date
+              </th>
+              <td class="fz-24" mat-cell *matCellDef="let element">
+                {{ element.date | date: "yy-MM-dd" }}
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+        </ng-container>
+
+        <!-- <pre>{{ getTransactionsHistory$ | async | json }}</pre> -->
       </div>
     </div>
   </div>
