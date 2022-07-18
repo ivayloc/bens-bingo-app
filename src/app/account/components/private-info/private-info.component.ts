@@ -7,6 +7,7 @@ import { UserInfo } from '../../models/user-info';
 import { getUserInfo, getUserInfoBalance, State } from '../../state';
 import { AccountPageActions } from '../../state/actions';
 import parse from 'date-fns/parse';
+import { UserCurrency } from '../../models/user-currency';
 
 @Component({
   selector: 'app-private-info',
@@ -33,7 +34,10 @@ export class PrivateInfoComponent implements OnInit {
     siteid: 95,
   });
   getUserInfo$ = new Observable<UserInfo>();
-  getUserInfoBalance$ = new Observable<UserBalance>();
+  getUserInfoBalance$ = new Observable<{
+    balance: UserBalance;
+    currency: UserCurrency;
+  }>();
 
   constructor(private store: Store<State>, private fb: FormBuilder) {}
 
@@ -45,10 +49,6 @@ export class PrivateInfoComponent implements OnInit {
         if (!Object.keys(userInfo).length) {
           return;
         }
-        console.log(
-          userInfo.birthdate,
-          parse(userInfo.birthdate, 'yyyy-MM-dd', new Date())
-        );
 
         this.accountInfoForm.patchValue({
           userdata: {

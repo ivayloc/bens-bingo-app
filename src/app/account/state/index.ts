@@ -24,7 +24,7 @@ export const getUserInfo = createSelector(
   (state) => state.userInfo
 );
 
-export const getUserInfoBalance = createSelector(
-  getAccountState,
-  (state) => state.userInfo.balance
-);
+export const getUserInfoBalance = createSelector(getAccountState, (state) => ({
+  balance: state.userInfo.balance,
+  currency: state.userInfo.currency,
+}));

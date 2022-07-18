@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UserBalance } from '../../models/user-balance';
+import { UserInfo } from '../../models/user-info';
 
 @Component({
   selector: 'app-account-funds',
@@ -7,7 +8,7 @@ import { UserBalance } from '../../models/user-balance';
   styleUrls: ['./account-funds.component.scss'],
 })
 export class AccountFundsComponent implements OnInit {
-  @Input() funds = {} as UserBalance;
+  @Input() userInfo = {} as UserInfo | null;
 
   constructor() {}
 

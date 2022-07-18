@@ -102,13 +102,14 @@
   </div>
   <div class="col-4">
     <app-content-box
-      class="content-box mb-5 fz-24 hovercss-float-shadow"
+      class="content-box-vip mb-5 fz-24 hovercss-float-shadow"
       title="Vip"
     >
       1
     </app-content-box>
 
     <app-account-funds
+      [userInfo]="getUserInfo$ | async"
       class="content-box content-box-funds d-block hovercss-float-shadow"
     ></app-account-funds>
   </div>

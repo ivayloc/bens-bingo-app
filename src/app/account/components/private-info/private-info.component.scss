@@ -1,25 +1,23 @@
 @import "../../../../styles/functions/calc-clamp";
 
 .content-box {
-  margin-inline-end: calc-clamp(-50);
-
-  &-start {
-    margin-inline-start: calc-clamp(-58);
-    margin-inline-end: 0;
-  }
   &-account {
-    margin-inline-start: calc-clamp(-90);
+    margin-inline-start: calc-clamp(-105);
     margin-top: calc-clamp(-40);
   }
+  &-vip {
+    margin-inline-end: calc-clamp(-50);
+  }
   &-funds {
-    margin-inline-start: calc-clamp(-58);
+    margin-inline-start: calc-clamp(-93);
+    margin-inline-end: calc-clamp(-50);
   }
 }
 
 :host ::ng-deep {
   .content-box-account {
     .box-pink-body {
-      padding-inline-start: calc-clamp(140);
+      padding-inline-start: calc-clamp(155);
     }
   }
 }

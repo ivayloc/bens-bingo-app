@@ -1,28 +1,43 @@
 <app-content-box class="content-box" title="Funds">
-  <ul class="list-unstyled fz-24" *ngIf="funds.total">
-    <li class="d-flex justify-content-end mb-3">
-      <div class="fw-bold pe-4">Cash</div>
-      <div>€ 0,00</div>
+  <ul class="list-unstyled fz-24" *ngIf="userInfo">
+    <li class="row justify-content-end mb-3">
+      <div class="col-auto fw-bold pe-4">Cash</div>
+      <div class="col-3">
+        {{
+          userInfo.balance?.amounts?.bank | currency: userInfo.currency?.code
+        }}
+      </div>
     </li>
-    <li class="d-flex justify-content-end mb-3">
-      <div class="fw-bold pe-4">Cash Winnings</div>
-      <div>€ 0,00</div>
+    <li class="row justify-content-end mb-3">
+      <div class="col-auto fw-bold pe-4">Cash Winnings</div>
+      <div class="col-3">
+        {{
+          userInfo.balance?.amounts?.winnings
+            | currency: userInfo.currency?.code
+        }}
+      </div>
     </li>
-    <li class="d-flex justify-content-end mb-3">
-      <div class="fw-bold pe-4">Bonus</div>
-      <div>€ 0,00</div>
+    <li class="row justify-content-end mb-3">
+      <div class="col-auto fw-bold pe-4">Bonus</div>
+      <div class="col-3">
+        {{
+          userInfo.balance?.amounts?.comp | currency: userInfo.currency?.code
+        }}
+      </div>
     </li>
-    <li class="d-flex justify-content-end mb-3">
-      <div class="fw-bold pe-4">Bonus Winnings</div>
-      <div>€ 0,00</div>
+    <li class="row justify-content-end mb-3">
+      <div class="col-auto fw-bold pe-4">Bonus Winnings</div>
+      <div class="col-3">{{ userInfo.balance?.amounts?.comp_winnings }}</div>
     </li>
-    <li class="d-flex justify-content-end mb-3">
-      <div class="fw-bold pe-4">Bingo Bucks</div>
-      <div>€ 0,00</div>
+    <li class="row justify-content-end mb-3">
+      <div class="col-auto fw-bold pe-4">Bingo Bucks</div>
+      <div class="col-3">{{ userInfo.balance?.amounts?.bingobucks }}</div>
     </li>
-    <li class="d-flex justify-content-end">
-      <div class="fw-bold pe-4">Available for Withdrawal</div>
-      <div>€ 0,00</div>
+    <li class="row justify-content-end">
+      <div class="col-auto fw-bold pe-4">Available for Withdrawal</div>
+      <div class="col-3">
+        {{ userInfo.balance?.total | currency: userInfo.currency?.code }}
+      </div>
     </li>
   </ul>
 </app-content-box>
