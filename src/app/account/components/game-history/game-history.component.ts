@@ -31,8 +31,6 @@ export class GameHistoryComponent implements OnInit {
   gameType = GameType;
   displayedColumns = [''];
 
-  blockedDocument = false;
-
   private displayedColumnsGames = [
     'bet',
     'currency',
@@ -71,7 +69,6 @@ export class GameHistoryComponent implements OnInit {
     if (this.searchGameHistoryForm.invalid) {
       return;
     }
-    this.blockedDocument = true;
     if (this.gameTypeFieldValue === GameType.bingo) {
       this.displayedColumns = this.displayedColumnsBingo;
     } else {

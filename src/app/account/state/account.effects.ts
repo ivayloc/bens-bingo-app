@@ -47,4 +47,21 @@ export class AccountEffects {
       )
     );
   });
+  loadUserInfo$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AccountPageActions.loadUserInfo),
+      mergeMap(() =>
+        this.accountService.getUserInfo().pipe(
+          map((userInfo) =>
+            AccountApiActions.loadUserInfoSuccess({
+              userInfo,
+            })
+          ),
+          catchError((error) =>
+            of(AccountApiActions.loadUserInfoFailure({ error }))
+          )
+        )
+      )
+    );
+  });
 }

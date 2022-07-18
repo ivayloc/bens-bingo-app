@@ -11,3 +11,5 @@ export const loadGameHistory = createAction(
   '[Account Page] Load Bingo history',
   props<{ payload: BingoHistoryRequest }>()
 );
+
+export const loadUserInfo = createAction('[Account Page] Load user info');

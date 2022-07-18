@@ -1,5 +1,3 @@
 export interface ResponseOf<T> {
-  data: {
-    items: T;
-  };
+  data: T;
 }

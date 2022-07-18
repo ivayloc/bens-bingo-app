@@ -9,6 +9,9 @@ import { GameHistory } from '../models/game-history';
 import { BingoHistoryRequest } from '../models/bingo-history-request';
 import { Transaction } from '../models/transaction';
 import { TransactionsHistoryRequest } from '../models/transactions-history-request';
+import { UserInfo } from '../models/user-info';
+import { GamesHistory } from '../models/games-history';
+import { TransactionsHistory } from '../models/transactions-history';
 
 @Injectable({
   providedIn: 'root',
@@ -29,7 +32,9 @@ export class AccountService {
       },
     });
 
-    const getTransactionsHistory$ = this.http.get<ResponseOf<Transaction[]>>(
+    const getTransactionsHistory$ = this.http.get<
+      ResponseOf<TransactionsHistory>
+    >(
       `${environment.apiDomain}/api/slim/v1//user/current/history/transaction`,
       {
         params,
@@ -58,8 +63,8 @@ export class AccountService {
       },
     });
 
-    const getBingoHistory$ = this.http.get<ResponseOf<GameHistory[]>>(
-      `${environment.apiDomain}/api/slim/v1//user/current/history/game`,
+    const getBingoHistory$ = this.http.get<ResponseOf<GamesHistory>>(
+      `${environment.apiDomain}/api/slim/v1/user/current/history/game`,
       {
         params,
       }
@@ -70,6 +75,18 @@ export class AccountService {
       .pipe(
         switchMap(() => getBingoHistory$),
         map(({ data }) => data.items)
+      );
+  }
+  getUserInfo(): Observable<UserInfo> {
+    const getBingoHistory$ = this.http.get<ResponseOf<UserInfo>>(
+      `${environment.apiDomain}/api/slim/v1/user/current/info`
+    );
+    return this.authService
+      .apiLogin()
+      .pipe(switchMap(() => this.authService.login()))
+      .pipe(
+        switchMap(() => getBingoHistory$),
+        map(({ data }) => data)
       );
   }
 }
