@@ -2,12 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable, tap } from 'rxjs';
-import { UserBalance } from '../../models/user-balance';
 import { UserInfo } from '../../models/user-info';
-import { getUserInfo, getUserInfoBalance, State } from '../../state';
+import { getUserInfo, State } from '../../state';
 import { AccountPageActions } from '../../state/actions';
-import parse from 'date-fns/parse';
-import { UserCurrency } from '../../models/user-currency';
 
 @Component({
   selector: 'app-private-info',
@@ -33,11 +30,8 @@ export class PrivateInfoComponent implements OnInit {
     signuptype: 'update',
     siteid: 95,
   });
+
   getUserInfo$ = new Observable<UserInfo>();
-  getUserInfoBalance$ = new Observable<{
-    balance: UserBalance;
-    currency: UserCurrency;
-  }>();
 
   constructor(private store: Store<State>, private fb: FormBuilder) {}
 
@@ -46,24 +40,27 @@ export class PrivateInfoComponent implements OnInit {
 
     this.getUserInfo$ = this.store.select(getUserInfo).pipe(
       tap((userInfo) => {
-        if (!Object.keys(userInfo).length) {
-          return;
-        }
-
-        this.accountInfoForm.patchValue({
-          userdata: {
-            firstname: userInfo.firstname,
-            lastname: userInfo.lastname,
-            address: userInfo.address,
-            city: userInfo.city,
-            state: userInfo.state,
-            zip: userInfo.zip,
-            mobilephone: userInfo?.phoneNumbers[0].phone,
-            bday: userInfo.birthdate, // parse(userInfo.birthdate, 'yyyy-MM-dd', new Date()),
-          },
-        });
+        this.setUserInfo(userInfo);
       })
     );
-    this.getUserInfoBalance$ = this.store.select(getUserInfoBalance);
+  }
+
+  private setUserInfo(userInfo: UserInfo) {
+    if (!userInfo || !Object.keys(userInfo).length) {
+      return;
+    }
+
+    this.accountInfoForm.patchValue({
+      userdata: {
+        firstname: userInfo.firstname,
+        lastname: userInfo.lastname,
+        address: userInfo.address,
+        city: userInfo.city,
+        state: userInfo.state,
+        zip: userInfo.zip,
+        mobilephone: userInfo?.phoneNumbers[0].phone,
+        bday: userInfo.birthdate, // parse(userInfo.birthdate, 'yyyy-MM-dd', new Date()),
+      },
+    });
   }
 }
