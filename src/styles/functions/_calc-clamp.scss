@@ -5,7 +5,7 @@
   @if unit($max-width) == "rem" {
     $max-width: strip-unit.strip($max-width) * 16;
   }
-  $dynamic-width: math.div($max-width, 1920) * 100;
+  $dynamic-width: math.div($max-width, 2370) * 100;
 
   @return $dynamic-width * 1vw;
 }
