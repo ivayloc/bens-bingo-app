@@ -1,0 +1,31 @@
+@import "../../../../styles/functions/calc-clamp";
+
+.content-box {
+  &-account {
+    margin-inline-start: calc-clamp(-130);
+    margin-top: calc-clamp(-40);
+  }
+  &-vip {
+    margin-inline-end: calc-clamp(-50);
+  }
+  &-funds {
+    margin-inline-start: calc-clamp(-93);
+    margin-inline-end: calc-clamp(-50);
+  }
+}
+
+:host ::ng-deep {
+  .content-box-account {
+    .box-pink-body {
+      padding-inline-start: calc-clamp(180);
+    }
+  }
+  .mat-icon {
+    width: calc-clamp(36);
+    height: calc-clamp(36);
+    svg {
+      position: relative;
+      top: calc-clamp(-10);
+    }
+  }
+}
