@@ -31,12 +31,13 @@ export class LoginComponent implements OnInit {
 
   login() {
     const val = this.loginForm.value;
-
+    localStorage.removeItem('jwt');
     if (val.email && val.password) {
       this.authService
         .login(val.email, val.password)
         .subscribe(({ success }) => {
           if (success) {
+            this.toggleLoginPane();
             this.router.navigateByUrl('/account');
           }
         });
