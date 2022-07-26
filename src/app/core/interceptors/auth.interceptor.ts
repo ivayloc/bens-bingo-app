@@ -1,45 +1,62 @@
-import { Injectable } from '@angular/core';
 import {
-  HttpRequest,
-  HttpHandler,
+  HttpErrorResponse,
   HttpEvent,
+  HttpHandler,
   HttpInterceptor,
+  HttpRequest,
 } from '@angular/common/http';
-import { catchError, Observable, of, tap } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { isAfter } from 'date-fns';
+import { catchError, iif, Observable, switchMap, throwError } from 'rxjs';
+import { AuthService } from '../service/auth.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor() {}
+  static accessToken = localStorage.getItem('jwt');
+  refresh = false;
+
+  constructor(private router: Router, private authService: AuthService) {}
 
   intercept(
-    req: HttpRequest<unknown>,
+    request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    let jwt = localStorage.getItem('jwt');
-    const timeNow = new Date().getTime();
-    const jwtExpirationTime = +(
-      localStorage.getItem('jwtExpirationTime') || ''
-    );
+    const req = request.clone({
+      setHeaders: {
+        Authorization: `Bearer ${AuthInterceptor.accessToken}`,
+      },
+    });
 
-    // if (timeNow > jwtExpirationTime) {
-    //   localStorage.removeItem('jwt');
-    //   localStorage.removeItem('jwtExpirationTime');
-    //   jwt = '';
-    // }
+    return next.handle(req).pipe(
+      catchError((err: HttpErrorResponse) => {
+        if (err.status === 401 && !req.url.includes('refresh')) {
+          return iif(
+            () => !!AuthInterceptor.accessToken,
+            this.authService.apiRefreshToken(),
+            this.authService.apiLogin()
+          ).pipe(
+            switchMap(({ access_token }) => {
+              AuthInterceptor.accessToken = access_token;
 
-    if (jwt) {
-      const cloned = req.clone({
-        headers: req.headers.set('Authorization', 'Bearer ' + jwt),
-      });
+              localStorage.setItem('jwt', access_token);
+              return next.handle(
+                request.clone({
+                  setHeaders: {
+                    Authorization: `Bearer ${access_token}`,
+                  },
+                })
+              );
+            })
+          );
+        }
 
-      return next.handle(cloned).pipe(
-        catchError((error) => {
+        if (err.status === 401 && req.url.includes('refresh')) {
           localStorage.removeItem('jwt');
-          return of(error);
-        })
-      );
-    } else {
-      return next.handle(req);
-    }
+        }
+
+        return throwError(() => err);
+      })
+    );
   }
 }

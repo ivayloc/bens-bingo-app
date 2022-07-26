@@ -42,11 +42,7 @@ export class CasinoService {
       { params }
     );
 
-    return iif<GamesResponse, GamesResponse>(
-      () => !!localStorage.getItem('jwt'),
-      getGames$,
-      this.authService.apiLogin().pipe(switchMap(() => getGames$))
-    ).pipe(
+    return getGames$.pipe(
       tap(({ data }) => {
         const groups = {} as Record<string, Map<string, Game>>;
 

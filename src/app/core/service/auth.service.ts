@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { addSeconds, isAfter } from 'date-fns';
 import { Observable } from 'rxjs';
 import { shareReplay, switchMap, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -32,6 +33,10 @@ export class AuthService {
   }
 
   apiLogin() {
+    const expirationTime = localStorage.getItem('jwtExpirationTime');
+    if (expirationTime) {
+      isAfter(new Date(), new Date(expirationTime));
+    }
     return this.http
       .post<LoginResponse>(`${environment.apiDomain}/api/slim/login`, {
         username: 'api_test',
@@ -41,9 +46,19 @@ export class AuthService {
       .pipe(
         tap(({ access_token, expires_in }) => {
           localStorage.setItem('jwt', access_token);
-          const timeNow = new Date().getTime() + expires_in;
-          localStorage.setItem('jwtExpirationTime', timeNow.toString());
+          const jwtExpirationTime = addSeconds(new Date(), expires_in);
+          localStorage.setItem(
+            'jwtExpirationTime',
+            jwtExpirationTime.getTime().toString()
+          );
         })
       );
+  }
+
+  apiRefreshToken() {
+    return this.http.post<LoginResponse>(
+      `${environment.apiDomain}/api/slim/refresh`,
+      {}
+    );
   }
 }
