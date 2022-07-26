@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/service/auth.service';
 
@@ -9,7 +9,8 @@ import { AuthService } from 'src/app/core/service/auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  form = new FormGroup({});
+  loginForm = new FormGroup({});
+  isOpen = false;
 
   constructor(
     private fb: FormBuilder,
@@ -18,14 +19,18 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.form = this.fb.group({
+    this.loginForm = this.fb.group({
       email: ['bencasino', Validators.required],
       password: ['123456abc', Validators.required],
     });
   }
 
+  toggleLoginPane(): void {
+    this.isOpen = !this.isOpen;
+  }
+
   login() {
-    const val = this.form.value;
+    const val = this.loginForm.value;
 
     if (val.email && val.password) {
       this.authService

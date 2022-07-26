@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RegisterComponent } from './shared/components/register/register.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,10 @@ const routes: Routes = [
     path: 'site',
     loadChildren: () =>
       import('./info/info.module').then((m) => m.SiteInfoModule),
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
   },
 ];
 

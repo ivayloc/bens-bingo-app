@@ -12,9 +12,10 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { TranslocoRootModule } from './shared/modules/transloco-root.module';
 import { SharedModule } from './shared/shared.module';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LoginComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -36,6 +36,7 @@ export class AuthService {
       .post<LoginResponse>(`${environment.apiDomain}/api/slim/login`, {
         username: 'api_test',
         password: 'test1234a',
+        siteid: 95,
       })
       .pipe(
         tap(({ access_token, expires_in }) => {

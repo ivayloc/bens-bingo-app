@@ -5,18 +5,17 @@
 }
 .box-pink {
   padding: calc-clamp(7);
-  padding-top: 0;
   &-wrap {
     color: #fff;
     background-color: #da15a9;
-    // transform: skew(-10deg);
   }
   &-fluid {
     padding-inline-start: 0;
     padding-inline-end: 0;
   }
   &-header {
-    min-height: calc-clamp(82);
+    min-height: calc-clamp(75);
+    padding-bottom: 7px;
     margin: 0 calc-clamp(-7);
     &-text {
       font-family: OpenSans, sans-serif;
@@ -26,12 +25,10 @@
       line-height: normal;
       text-align: center;
       text-transform: uppercase;
-      // transform: skew(10deg);
     }
   }
   &-body {
     padding: calc-clamp(18) calc-clamp(88);
-    // background-color: #322c36;
     background: #322c36
       linear-gradient(
         135deg,
@@ -42,5 +39,8 @@
         rgba(31, 27, 33, 1) 87%,
         rgba(31, 27, 33, 1) 100%
       );
+    &-compact {
+      padding: calc-clamp(18) calc-clamp(44);
+    }
   }
 }

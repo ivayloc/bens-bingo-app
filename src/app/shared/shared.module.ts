@@ -9,21 +9,23 @@ import { ContentBoxComponent } from './components/content-box/content-box.compon
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LanguageSelectorComponent } from './components/language-selector/language-selector.component';
+// import { LoginComponent } from './components/login/login.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { ChatModeratorsComponent } from './components/chat-moderators/chat-moderators.component';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { LoginComponent } from './components/login/login.component';
 import { MainNavigationComponent } from './components/main-navigation/main-navigation.component';
 import { RecentWinnersComponent } from './components/recent-winners/recent-winners.component';
+import { SlotsGameComponent } from './components/slots-game/slots-game.component';
 import { SubNavigationComponent } from './components/sub-navigation/sub-navigation.component';
 import { ShrinkFontSizeDirective } from './directives/shrink-font-size.directive';
 import { AngularMaterialModule } from './modules/angular-material.module';
 import { PrimeNgModule } from './modules/prime-ng.module';
-import { SlotsGameComponent } from './components/slots-game/slots-game.component';
-import { CarouselModule } from 'ngx-owl-carousel-o';
-import { TextContentLayoutComponent } from './text-content-layout/text-content-layout.component';
-import { ChatModeratorsComponent } from './components/chat-moderators/chat-moderators.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoaderService } from './services/loader.service';
+import { TextContentLayoutComponent } from './text-content-layout/text-content-layout.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,7 @@ import { LoaderService } from './services/loader.service';
     ShrinkFontSizeDirective,
     HeaderComponent,
     LanguageSelectorComponent,
-    LoginComponent,
+    // LoginComponent,
     MainNavigationComponent,
     FooterComponent,
     SubNavigationComponent,
@@ -44,6 +46,8 @@ import { LoaderService } from './services/loader.service';
     TextContentLayoutComponent,
     ChatModeratorsComponent,
     LoadingSpinnerComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     CommonModule,

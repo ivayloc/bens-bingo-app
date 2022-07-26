@@ -6,9 +6,10 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./content-box.component.scss'],
 })
 export class ContentBoxComponent implements OnInit {
-  @Input() title = '';
+  @Input() headerText = '';
   @Input() titleClass = '';
   @Input() isFluid = false;
+  @Input() isCompact = false;
 
   constructor() {}
 

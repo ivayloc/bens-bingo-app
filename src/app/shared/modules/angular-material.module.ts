@@ -1,9 +1,7 @@
+import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import {
-  MatDateFnsModule,
-  MAT_DATE_FNS_FORMATS,
-} from '@angular/material-date-fns-adapter';
+import { MatDateFnsModule } from '@angular/material-date-fns-adapter';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import {
   MatRippleModule,
@@ -13,10 +11,13 @@ import {
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { DomSanitizer } from '@angular/platform-browser';
 import { enGB } from 'date-fns/locale';
 
 const dateFormats = {
@@ -45,6 +46,9 @@ const dateFormats = {
     MatSelectModule,
     MatTableModule,
     MatSortModule,
+    OverlayModule,
+    MatIconModule,
+    MatTooltipModule,
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: enGB },
@@ -54,4 +58,16 @@ const dateFormats = {
     },
   ],
 })
-export class AngularMaterialModule {}
+export class AngularMaterialModule {
+  constructor(
+    private iconRegistry: MatIconRegistry,
+    private sanitizer: DomSanitizer
+  ) {
+    this.iconRegistry.addSvgIcon(
+      'live-help',
+      this.sanitizer.bypassSecurityTrustResourceUrl(
+        'assets/images/site-icons/help-circled-icon.svg'
+      )
+    );
+  }
+}

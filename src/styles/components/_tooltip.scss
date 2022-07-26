@@ -1,0 +1,5 @@
+@import "./../functions/calc-clamp";
+
+.mat-tooltip {
+  font-size: calc-clamp(16) !important;
+}

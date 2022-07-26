@@ -8,13 +8,25 @@
     <div class="box-pink" [ngClass]="{ 'box-pink-fluid': isFluid }">
       <div
         class="box-pink-header d-flex align-items-center justify-content-center"
+        *ngIf="headerText"
       >
         <div class="box-pink-header-text" [ngClass]="titleClass">
-          <div [ngClass]="{ 'transform-skew-10': !isFluid }">{{ title }}</div>
+          <div [ngClass]="{ 'transform-skew-10': !isFluid }">
+            {{ headerText }}
+          </div>
         </div>
       </div>
-      <div class="box-pink-body">
-        <div class="py-4" [ngClass]="{ 'transform-skew-10': !isFluid }">
+      <div
+        class="box-pink-body"
+        [ngClass]="{ 'box-pink-body-compact': isCompact }"
+      >
+        <div
+          [ngClass]="{
+            'transform-skew-10': !isFluid,
+            'py-4': !isCompact,
+            'py-2': isCompact
+          }"
+        >
           <ng-content></ng-content>
         </div>
       </div>
