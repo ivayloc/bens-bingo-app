@@ -3,8 +3,10 @@ import { Injectable } from '@angular/core';
 import { addSeconds, isAfter } from 'date-fns';
 import { Observable } from 'rxjs';
 import { shareReplay, switchMap, tap } from 'rxjs/operators';
+import { ResponseOf } from 'src/app/shared/models/response-of';
 import { environment } from 'src/environments/environment';
 import { LoginResponse } from '../models/login-response';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -15,21 +17,27 @@ export class AuthService {
   login(
     username: string = 'bencasino',
     password: string = '123456abc'
-  ): Observable<LoginResponse> {
-    return this.apiLogin().pipe(
-      switchMap(() => {
-        return this.http.post<LoginResponse>(
-          `${environment.apiDomain}/api/slim/v1/user/login`,
-          {
-            username,
-            password,
-            siteid: 95,
-          }
-        );
-      }),
+  ): Observable<ResponseOf<User>> {
+    // return this.apiLogin().pipe(
+    // switchMap(() => {
+    return this.http
+      .post<ResponseOf<User>>(
+        `${environment.apiDomain}/api/slim/v1/user/login`,
+        {
+          username,
+          password,
+          siteid: 95,
+        }
+      )
+      .pipe(
+        tap(({ data }) => {
+          localStorage.setItem('', data.usersessionid);
+        })
+      );
+    // }),
 
-      shareReplay()
-    );
+    // shareReplay()
+    // );
   }
 
   apiLogin() {
