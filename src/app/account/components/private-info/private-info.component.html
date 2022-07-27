@@ -105,11 +105,12 @@
       class="content-box-vip mb-5 fz-24 hovercss-float-shadow"
       headerText="Vip"
     >
-      1
+      <ng-container *ngIf="getUserInfo$ | async as userInfo">
+        {{ userInfo?.vip?.level }}
+      </ng-container>
     </app-content-box>
 
     <app-account-funds
-      [userInfo]="getUserInfo$ | async"
       class="content-box content-box-funds d-block hovercss-float-shadow"
     ></app-account-funds>
   </div>

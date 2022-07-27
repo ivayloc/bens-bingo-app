@@ -32,23 +32,23 @@ export class GameHistoryComponent implements OnInit {
   displayedColumns = [''];
 
   private displayedColumnsGames = [
-    'bet',
-    'currency',
     'gameid',
+    // 'currency',
     'gamename',
-    'gameprice',
-    'price',
-    'prize',
     'start_time',
+    // 'gameprice',
+    'price',
+    'bet',
+    'prize',
   ];
   private displayedColumnsBingo = [
-    'cards_purchased',
-    'currency',
     'gameid',
     'gamename',
-    'gameprice',
-    'prize',
     'start_time',
+    'gameprice',
+    'price',
+    // 'currency',
+    'cards_purchased',
     'usersprize',
   ];
 

@@ -1,6 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { UserBalance } from '../../models/user-balance';
-import { UserInfo } from '../../models/user-info';
+import { UserCurrency } from '../../models/user-currency';
+import { getUserInfoBalance, State } from '../../state';
 
 @Component({
   selector: 'app-account-funds',
@@ -8,9 +11,14 @@ import { UserInfo } from '../../models/user-info';
   styleUrls: ['./account-funds.component.scss'],
 })
 export class AccountFundsComponent implements OnInit {
-  @Input() userInfo = {} as UserInfo | null;
+  getUserInfoBalance$ = new Observable<{
+    balance: UserBalance;
+    currency: UserCurrency;
+  }>();
 
-  constructor() {}
+  constructor(private store: Store<State>) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getUserInfoBalance$ = this.store.select(getUserInfoBalance);
+  }
 }

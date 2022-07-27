@@ -67,6 +67,8 @@
             aria-describedby="aa"
             [dataSource]="gamesHistory"
             matSort
+            matSortActive="gameid"
+            matSortDirection="asc"
             class="mat-elevation-z8 w-100"
             *ngIf="showTable; else noResults"
           >
@@ -94,14 +96,14 @@
                 mat-sort-header
                 sortActionDescription="Sort by purchased cards"
               >
-                Purchased Cards
+                Cards
               </th>
               <td class="fz-24" mat-cell *matCellDef="let element">
                 {{ element.cards_purchased }}
               </td>
             </ng-container>
             <!-- currency Column -->
-            <ng-container matColumnDef="currency">
+            <!-- <ng-container matColumnDef="currency">
               <th
                 mat-header-cell
                 class="fz-24"
@@ -114,7 +116,7 @@
               <td class="fz-24" mat-cell *matCellDef="let element">
                 {{ element.currency }}
               </td>
-            </ng-container>
+            </ng-container> -->
             <!-- gameid Column -->
             <ng-container matColumnDef="gameid">
               <th
@@ -124,7 +126,7 @@
                 mat-sort-header
                 sortActionDescription="Sort by game id"
               >
-                Game ID
+                ID
               </th>
               <td class="fz-24" mat-cell *matCellDef="let element">
                 {{ element.gameid }}
@@ -139,7 +141,7 @@
                 mat-sort-header
                 sortActionDescription="Sort by game name"
               >
-                Game Name
+                Name
               </th>
               <td class="fz-24" mat-cell *matCellDef="let element">
                 {{ element.gamename }}
@@ -154,10 +156,10 @@
                 mat-sort-header
                 sortActionDescription="Sort by game price"
               >
-                Game Price
+                Price22
               </th>
               <td class="fz-24" mat-cell *matCellDef="let element">
-                {{ element.gameprice }}
+                {{ element.gameprice | currency: element.currency }}
               </td>
             </ng-container>
             <!-- price Column -->
@@ -169,14 +171,14 @@
                 mat-sort-header
                 sortActionDescription="Sort by price"
               >
-                Price
+                Wagered
               </th>
               <td class="fz-24" mat-cell *matCellDef="let element">
-                {{ element.price }}
+                {{ element.price | currency: element.currency }}
               </td>
             </ng-container>
             <!-- prize Column -->
-            <ng-container matColumnDef="prize">
+            <ng-container matColumnDef="usersprize">
               <th
                 mat-header-cell
                 class="fz-24"
@@ -184,10 +186,12 @@
                 mat-sort-header
                 sortActionDescription="Sort by prize"
               >
-                <span class="fw-bold"> Prize </span>
+                Prize11
               </th>
               <td class="fz-24" mat-cell *matCellDef="let element">
-                <span class="text-break">{{ element.prize }}</span>
+                <span class="text-break">{{
+                  element.usersprize | currency: element.currency
+                }}</span>
               </td>
             </ng-container>
             <!-- start_time Column -->
@@ -199,14 +203,14 @@
                 mat-sort-header
                 sortActionDescription="Sort by start time"
               >
-                Start Time
+                Date
               </th>
               <td class="fz-24" mat-cell *matCellDef="let element">
-                {{ element.start_time | date: "yy-MM-dd, h:mm a" }}
+                {{ element.start_time | date: "yyy-MM-dd, h:mm a" }}
               </td>
             </ng-container>
             <!-- usersprize Column -->
-            <ng-container matColumnDef="usersprize">
+            <ng-container matColumnDef="prize">
               <th
                 mat-header-cell
                 class="fz-24"
@@ -214,11 +218,11 @@
                 mat-sort-header
                 sortActionDescription="Sort by users prize"
               >
-                Users Prize
+                Prize
               </th>
               <td class="fz-24" mat-cell *matCellDef="let element">
                 <span class="fw-bold">
-                  {{ element.usersprize }}
+                  {{ element.prize | currency: element.currency }}
                 </span>
               </td>
             </ng-container>

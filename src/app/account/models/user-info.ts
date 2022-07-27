@@ -3,6 +3,7 @@ import { UserCurrency } from './user-currency';
 import { UserEmail } from './user-email';
 import { UserPhoneNumber } from './user-phone-numbe';
 import { UserSubscription } from './user-subscription';
+import { UserVip } from './user-vip';
 
 export interface UserInfo {
   userid: number;
@@ -23,4 +24,5 @@ export interface UserInfo {
   phoneNumbers: UserPhoneNumber[];
   balance: UserBalance;
   currency: UserCurrency;
+  vip: UserVip;
 }

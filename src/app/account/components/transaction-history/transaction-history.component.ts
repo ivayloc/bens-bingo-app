@@ -20,16 +20,16 @@ export class TransactionHistoryComponent implements OnInit {
     type: '',
   });
   displayedColumns = [
-    // 'id',
-    'transactionid',
+    'id',
+    'date',
     'amount',
     'method',
     'type',
     'action',
+    'transactionid',
     'result',
-    'merchant_transactionid',
+    // 'merchant_transactionid',
     // 'currency',
-    'date',
   ];
   getTransactionsHistory$ = new Observable<MatTableDataSource<Transaction>>();
   @ViewChild(MatSort) sort!: MatSort;

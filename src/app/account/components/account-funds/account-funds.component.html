@@ -1,5 +1,8 @@
 <app-content-box class="content-box" headerText="Funds">
-  <ul class="list-unstyled fz-24" *ngIf="userInfo">
+  <ul
+    class="list-unstyled fz-24"
+    *ngIf="getUserInfoBalance$ | async as userInfo"
+  >
     <li class="row justify-content-end mb-3">
       <div class="col-auto fw-bold pe-4">Cash</div>
       <div class="col-3">
@@ -27,16 +30,26 @@
     </li>
     <li class="row justify-content-end mb-3">
       <div class="col-auto fw-bold pe-4">Bonus Winnings</div>
-      <div class="col-3">{{ userInfo.balance?.amounts?.comp_winnings }}</div>
+      <div class="col-3">
+        {{
+          userInfo.balance?.amounts?.comp_winnings
+            | currency: userInfo.currency?.code
+        }}
+      </div>
     </li>
     <li class="row justify-content-end mb-3">
       <div class="col-auto fw-bold pe-4">Bingo Bucks</div>
-      <div class="col-3">{{ userInfo.balance?.amounts?.bingobucks }}</div>
+      <div class="col-3">
+        {{
+          userInfo.balance?.amounts?.bingobucks
+            | currency: userInfo.currency?.code
+        }}
+      </div>
     </li>
     <li class="row justify-content-end">
       <div class="col-auto fw-bold pe-4">Available for Withdrawal</div>
       <div class="col-3">
-        {{ userInfo.balance?.total | currency: userInfo.currency?.code }}
+        {{ userInfo.balance?.cash | currency: userInfo.currency?.code }}
       </div>
     </li>
   </ul>

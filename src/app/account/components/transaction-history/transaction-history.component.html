@@ -67,12 +67,14 @@
             aria-describedby="aa"
             [dataSource]="transactions"
             matSort
+            matSortActive="date"
+            matSortDirection="desc"
             class="mat-elevation-z8 w-100"
             *ngIf="showTable; else noResults"
           >
             <!-- [fixedLayout]="true" -->
             <!-- id Column -->
-            <!-- <ng-container matColumnDef="id">
+            <ng-container matColumnDef="id">
               <th
                 mat-header-cell
                 class="fz-24"
@@ -85,7 +87,7 @@
               <td class="fz-24" mat-cell *matCellDef="let element">
                 {{ element.id }}
               </td>
-            </ng-container> -->
+            </ng-container>
             <!-- transactionid Column -->
             <ng-container matColumnDef="transactionid">
               <th
@@ -95,10 +97,25 @@
                 mat-sort-header
                 sortActionDescription="Sort by transaction id"
               >
-                ID
+                Trans ID
               </th>
               <td class="fz-24" mat-cell *matCellDef="let element">
                 {{ element.transactionid }}
+              </td>
+            </ng-container>
+            <!-- date Column -->
+            <ng-container matColumnDef="date">
+              <th
+                mat-header-cell
+                class="fz-24"
+                *matHeaderCellDef
+                mat-sort-header
+                sortActionDescription="Sort by date"
+              >
+                Date
+              </th>
+              <td class="fz-24" mat-cell *matCellDef="let element">
+                {{ element.date | date: "yyy-MM-dd, h:mm a" }}
               </td>
             </ng-container>
             <!-- amount Column -->
@@ -187,7 +204,7 @@
               </td>
             </ng-container>
             <!-- merchant_transactionid Column -->
-            <ng-container matColumnDef="merchant_transactionid">
+            <!-- <ng-container matColumnDef="merchant_transactionid">
               <th
                 mat-header-cell
                 class="fz-24"
@@ -202,7 +219,7 @@
                   element.merchant_transactionid
                 }}</span>
               </td>
-            </ng-container>
+            </ng-container> -->
 
             <!-- currency Column -->
             <!-- <ng-container matColumnDef="currency">
@@ -219,21 +236,6 @@
                 {{ element.currency }}
               </td>
             </ng-container> -->
-            <!-- date Column -->
-            <ng-container matColumnDef="date">
-              <th
-                mat-header-cell
-                class="fz-24"
-                *matHeaderCellDef
-                mat-sort-header
-                sortActionDescription="Sort by date"
-              >
-                Date
-              </th>
-              <td class="fz-24" mat-cell *matCellDef="let element">
-                {{ element.date | date: "yy-MM-dd" }}
-              </td>
-            </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
