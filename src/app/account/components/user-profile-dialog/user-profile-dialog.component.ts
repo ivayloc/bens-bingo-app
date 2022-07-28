@@ -3,7 +3,12 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Observable, switchMap } from 'rxjs';
 import { UserProfile } from '../../models/user-profile';
-import { getSelectedUserProfile, State } from '../../state';
+import { UserProfileDetails } from '../../models/user-profile-details';
+import {
+  getSelectedUserAlias,
+  getSelectedUserProfile,
+  State,
+} from '../../state';
 
 @Component({
   selector: 'app-user-profile-dialog',
@@ -11,15 +16,22 @@ import { getSelectedUserProfile, State } from '../../state';
   styleUrls: ['./user-profile-dialog.component.scss'],
 })
 export class UserProfileDialogComponent implements OnInit {
-  getSelectedUserProfile$ = new Observable<UserProfile>();
-  getSelectedUserAlias$ = new Observable<UserProfile>();
+  getSelectedUserProfile$ = new Observable<
+    UserProfile<Map<string, UserProfileDetails>>
+  >();
+  getSelectedUserAlias$ = new Observable<string>();
 
-  constructor(private store: Store<State>) {}
+  constructor(
+    private store: Store<State>,
+    public dialogRef: MatDialogRef<UserProfileDialogComponent>
+  ) {}
 
   ngOnInit(): void {
     this.getSelectedUserProfile$ = this.store.select(getSelectedUserProfile);
-    this.getSelectedUserAlias$ = this.store.select(getSelectedUserProfile);
+    this.getSelectedUserAlias$ = this.store.select(getSelectedUserAlias);
   }
 
-  closeDialog() {}
+  closeDialog() {
+    this.dialogRef.close();
+  }
 }

@@ -14,6 +14,8 @@ import { GamesHistory } from '../models/games-history';
 import { TransactionsHistory } from '../models/transactions-history';
 import { FriendsList } from '../models/friends-list-response';
 import { UserProfile } from '../models/user-profile';
+import { SearchUserResult } from '../models/search-user-result';
+import { SearchUserResponse } from '../models/search-user-response';
 
 @Injectable({
   providedIn: 'root',
@@ -135,5 +137,19 @@ export class AccountService {
         `${environment.apiDomain}/api/slim/v1/profile/${friendalias}`
       )
       .pipe(map(({ data }) => data));
+  }
+  searchUser(friendalias: string): Observable<SearchUserResult> {
+    const params = new HttpParams({
+      fromObject: {
+        friendalias,
+      },
+    });
+
+    return this.http
+      .get<ResponseOf<SearchUserResponse>>(
+        `${environment.apiDomain}/api/slim/v1/user/current/friends/search`,
+        { params }
+      )
+      .pipe(map(({ data }) => data.result));
   }
 }

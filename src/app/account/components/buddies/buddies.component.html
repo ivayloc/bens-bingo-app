@@ -1,23 +1,51 @@
 <!--  -->
-<div class="row mb-5">
-  <div class="col-8">
+<div class="row mb-5" *ngIf="getSearchUserResult$ | async as searchUserResult">
+  <div
+    class="col-4"
+    [ngClass]="{
+      'col-8': !searchUserResult.alias,
+      'col-4': searchUserResult.alias
+    }"
+  >
     <app-content-box
-      class="content-box content-box-start w-100"
+      class="content-box content-box-search w-100"
       headerText="Buddy Search"
     >
-      <div class="row fz-24">
-        <div class="col-8">
-          <mat-form-field class="d-block" appearance="fill">
-            <mat-label>Buddy Name</mat-label>
-            <input matInput [formControl]="searchBuddyField" />
-          </mat-form-field>
+      <form [formGroup]="searchFriendForm" (ngSubmit)="searchUser()">
+        <div class="row fz-24">
+          <div class="col-8">
+            <mat-form-field class="d-block" appearance="fill">
+              <mat-label>Buddy Name</mat-label>
+              <input matInput formControlName="search" />
+            </mat-form-field>
+          </div>
+          <div class="col-4">
+            <button class="btn-clear btn-main btn-field py-1 mx-2 min-w-auto">
+              <span class="btn-main-text">Find</span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </app-content-box>
+  </div>
+  <div class="col-4 animated bounce" *ngIf="searchUserResult.alias">
+    <app-content-box
+      class="content-box content-box-result w-100"
+      headerText="Search Results"
+    >
+      <div class="row">
+        <div class="col-2">
+          <img
+            src="/assets/images/site-icons/user-icon.svg"
+            class="w-100 d-block"
+            alt="user"
+          />
         </div>
         <div class="col-auto">
-          <button
-            type="button"
-            class="btn-clear btn-main btn-field py-1 mx-2 min-w-auto"
-          >
-            <span class="btn-main-text">Find</span>
+          <div class="fz-24 mb-3">{{ searchUserResult.alias }}</div>
+
+          <button type="button" class="btn-clear btn-main btn-sm py-1 mx-2">
+            <span class="btn-main-text">Add to friends</span>
           </button>
         </div>
       </div>
@@ -25,7 +53,7 @@
   </div>
   <div class="col-4">
     <app-content-box
-      class="content-box content-box-end hovercss-float-shadow"
+      class="content-box content-box-count hovercss-float-shadow"
       headerText="Buddy Count"
     >
       <div class="fz-31 fw-bold" *ngIf="getFriends$ | async as friendsList">
@@ -48,9 +76,7 @@
       [fixedLayout]="true"
       *ngIf="friendsList.data.length; else noFriends"
     >
-      <!-- *ngIf="showTable; else noResults" -->
-
-      <!-- username Column -->
+      <!-- username alias -->
       <ng-container matColumnDef="alias">
         <th
           mat-header-cell
@@ -62,11 +88,16 @@
           Username
         </th>
         <td class="fz-24" mat-cell *matCellDef="let element">
-          <a (click)="showUserProfile(element.alias)">{{ element.alias }}</a>
+          <button
+            class="btn btn-link fz-24 px-0 text-white"
+            (click)="showUserProfile(element.alias)"
+          >
+            {{ element.alias }}
+          </button>
         </td>
       </ng-container>
 
-      <!-- username Column -->
+      <!-- username online -->
       <ng-container matColumnDef="online">
         <th
           mat-header-cell
@@ -83,7 +114,7 @@
         </td>
       </ng-container>
 
-      <!-- username Column -->
+      <!-- username currentLocation -->
       <ng-container matColumnDef="currentLocation">
         <th
           mat-header-cell
@@ -99,7 +130,7 @@
         </td>
       </ng-container>
 
-      <!-- username Column -->
+      <!-- username action -->
       <ng-container matColumnDef="action">
         <th
           mat-header-cell

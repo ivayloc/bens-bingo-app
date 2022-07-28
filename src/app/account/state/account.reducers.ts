@@ -2,6 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import { Friend } from '../models/friend';
 import { FriendsList } from '../models/friends-list-response';
 import { GameHistory } from '../models/game-history';
+import { SearchUserResult } from '../models/search-user-result';
 
 import { Transaction } from '../models/transaction';
 import { UserInfo } from '../models/user-info';
@@ -17,6 +18,7 @@ export interface AccountState {
   friends: Friend[];
   selectedUserProfile: UserProfile;
   selectedUserAlias: string;
+  searchUserResult: SearchUserResult;
   error: any;
 }
 
@@ -29,6 +31,7 @@ const initialState: AccountState = {
   friends: {} as Friend[],
   selectedUserProfile: {} as UserProfile,
   selectedUserAlias: '',
+  searchUserResult: {} as SearchUserResult,
   error: {},
 };
 
@@ -178,5 +181,23 @@ export const accountReducer = createReducer<AccountState>(
         error: action.error,
       };
     }
-  )
+  ),
+  on(
+    AccountApiActions.searchUserSuccess,
+    (state, { searchUserResult }): AccountState => {
+      return {
+        ...state,
+        searchUserResult,
+        error: '',
+      };
+    }
+  ),
+  on(AccountApiActions.searchUserFailure, (state, action): AccountState => {
+    return {
+      ...state,
+      selectedUserProfile: {} as UserProfile,
+      searchUserResult: {} as SearchUserResult,
+      error: action.error,
+    };
+  })
 );

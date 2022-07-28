@@ -1,10 +1,14 @@
 @import "../../../../styles/functions/calc-clamp";
 
 .content-box {
-  &-start {
+  &-search {
     margin-inline-start: calc-clamp(-50);
   }
-  &-end {
+  &-result {
+    margin-inline-start: calc-clamp(-25);
+    margin-top: calc-clamp(-20);
+  }
+  &-count {
     margin-inline-end: calc-clamp(-50);
     margin-top: calc-clamp(-40);
   }

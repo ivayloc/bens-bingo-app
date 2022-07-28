@@ -22,9 +22,11 @@ export class AuthInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
+    const usersessionid = localStorage.getItem('usersessionid') || '';
     const req = request.clone({
       setHeaders: {
         Authorization: `Bearer ${AuthInterceptor.accessToken}`,
+        USERSESSIONID: usersessionid,
       },
     });
 
@@ -53,6 +55,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
         if (err.status === 401 && req.url.includes('refresh')) {
           localStorage.removeItem('jwt');
+          AuthInterceptor.accessToken = '';
         }
 
         return throwError(() => err);

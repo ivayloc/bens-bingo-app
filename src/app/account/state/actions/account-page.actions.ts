@@ -32,3 +32,8 @@ export const showUserProfile = createAction(
   '[Account/Buddy Page] Show user profile',
   props<{ friendalias: string }>()
 );
+
+export const searchUser = createAction(
+  '[Account/Buddy Page] Search for user profile',
+  props<{ friendalias: string }>()
+);

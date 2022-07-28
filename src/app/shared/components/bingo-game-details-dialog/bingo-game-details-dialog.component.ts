@@ -9,7 +9,7 @@ import { Game } from '../../models/game';
 })
 export class BingoGameDetailsDialogComponent {
   constructor(
-    public dialogRef: MatDialogRef<BingoGameDetailsDialogComponent, Game>,
+    private dialogRef: MatDialogRef<BingoGameDetailsDialogComponent, Game>,
     @Inject(MAT_DIALOG_DATA) public game: Game
   ) {}
 

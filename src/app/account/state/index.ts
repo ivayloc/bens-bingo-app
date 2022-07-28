@@ -41,10 +41,20 @@ export const getPendingFriends = createSelector(
 
 export const getSelectedUserProfile = createSelector(
   getAccountState,
-  (state) => state.selectedUserProfile
+  ({ selectedUserProfile }) => {
+    return {
+      ...selectedUserProfile,
+      profile: new Map(Object.entries(selectedUserProfile?.profile || {})),
+    };
+  }
 );
 
 export const getSelectedUserAlias = createSelector(
   getAccountState,
   (state) => state.selectedUserAlias
+);
+
+export const getSearchUserResult = createSelector(
+  getAccountState,
+  (state) => state.searchUserResult
 );

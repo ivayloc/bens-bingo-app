@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { FriendsList } from '../../models/friends-list-response';
 import { GameHistory } from '../../models/game-history';
+import { SearchUserResult } from '../../models/search-user-result';
 import { Transaction } from '../../models/transaction';
 import { UserInfo } from '../../models/user-info';
 import { UserProfile } from '../../models/user-profile';
@@ -71,5 +72,14 @@ export const showUserProfileSuccess = createAction(
 
 export const showUserProfileFailure = createAction(
   '[Account/Buddies API] Show user profile FAILURE',
+  props<{ error: string }>()
+);
+export const searchUserSuccess = createAction(
+  '[Account/Buddies API] Search for a user SUCCESS',
+  props<{ searchUserResult: SearchUserResult }>()
+);
+
+export const searchUserFailure = createAction(
+  '[Account/Buddies API] Search for a user FAILURE',
   props<{ error: string }>()
 );

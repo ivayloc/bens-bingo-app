@@ -1,12 +1,18 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { map, Observable, tap } from 'rxjs';
 import { Friend } from '../../models/friend';
-import { getFriends, getPendingFriends, State } from '../../state';
+import { SearchUserResult } from '../../models/search-user-result';
+import {
+  getFriends,
+  getPendingFriends,
+  getSearchUserResult,
+  State,
+} from '../../state';
 import { AccountPageActions } from '../../state/actions';
 import { UserProfileDialogComponent } from '../user-profile-dialog/user-profile-dialog.component';
 
@@ -17,11 +23,17 @@ import { UserProfileDialogComponent } from '../user-profile-dialog/user-profile-
 })
 export class FriendsComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
-  searchBuddyField = this.fb.control('');
+  searchFriendForm = this.fb.group({ search: ['', Validators.required] });
+
+  public get searchBuddyField(): FormControl {
+    return this.searchFriendForm.get('search') as FormControl;
+  }
+
   displayedColumns = ['alias', 'online', 'currentLocation', 'action'];
 
   getFriends$ = new Observable<MatTableDataSource<Friend>>();
   getPendingFriends$ = new Observable<MatTableDataSource<Friend>>();
+  getSearchUserResult$ = new Observable<SearchUserResult>();
 
   constructor(
     private store: Store<State>,
@@ -44,6 +56,8 @@ export class FriendsComponent implements OnInit {
         return matTableDataSource;
       })
     );
+
+    this.getSearchUserResult$ = this.store.select(getSearchUserResult);
   }
 
   removeFriend(friendalias: string) {
@@ -63,5 +77,14 @@ export class FriendsComponent implements OnInit {
       width: '52vw',
       panelClass: 'site-details-dialog',
     });
+  }
+
+  searchUser() {
+    this.searchBuddyField.markAsTouched();
+    if (this.searchBuddyField.invalid) {
+      return;
+    }
+    const friendalias: string = this.searchBuddyField.value;
+    this.store.dispatch(AccountPageActions.searchUser({ friendalias }));
   }
 }

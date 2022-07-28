@@ -125,4 +125,21 @@ export class AccountEffects {
       )
     );
   });
+  searchUser$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AccountPageActions.searchUser),
+      mergeMap(({ friendalias }) =>
+        this.accountService.searchUser(friendalias).pipe(
+          map((searchUserResult) =>
+            AccountApiActions.searchUserSuccess({
+              searchUserResult,
+            })
+          ),
+          catchError((error) =>
+            of(AccountApiActions.searchUserFailure({ error }))
+          )
+        )
+      )
+    );
+  });
 }

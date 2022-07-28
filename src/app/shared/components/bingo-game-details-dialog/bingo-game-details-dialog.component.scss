@@ -3,6 +3,10 @@
 $icon-close: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNzIuOCAxNzIuOCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTcyLjggMTcyLjgiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwYXRoIGQ9Ik05NS41IDg2LjQgMTcxIDEwLjljMi41LTIuNSAyLjUtNi42IDAtOS4xcy02LjYtMi41LTkuMSAwTDg2LjQgNzcuMyAxMC45IDEuOUM4LjQtLjYgNC4zLS42IDEuOCAxLjlzLTIuNSA2LjYgMCA5LjFsNzUuNSA3NS41LTc1LjQgNzUuNGMtMi41IDIuNS0yLjUgNi42IDAgOS4xIDEuMiAxLjIgMi45IDEuOSA0LjUgMS45czMuMy0uNiA0LjUtMS45bDc1LjUtNzUuNSA3NS41IDc1LjVjMS4yIDEuMiAyLjkgMS45IDQuNSAxLjlzMy4zLS42IDQuNS0xLjljMi41LTIuNSAyLjUtNi42IDAtOS4xTDk1LjUgODYuNHoiIHN0eWxlPSJmaWxsOiNlODMzZDAiLz48L3N2Zz4=" !default;
 
 .site-dialog {
+  max-width: calc-clamp(1032);
+  &-wrap {
+    padding-top: calc-clamp(310);
+  }
   &-time {
     max-width: calc-clamp(120);
     padding: 0 calc-clamp(24);
@@ -22,6 +26,8 @@ $icon-close: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
     &-type {
       font-size: calc-clamp(29);
       font-style: italic;
+      font-weight: 700;
+      line-height: 1;
     }
   }
 
