@@ -14,7 +14,7 @@ export class GamesService {
     this.dialog.open(BingoGameDetailsDialogComponent, {
       minWidth: '',
       maxWidth: 'unset',
-      panelClass: 'game-details-dialog',
+      panelClass: 'site-details-dialog',
       data: game,
     });
   }

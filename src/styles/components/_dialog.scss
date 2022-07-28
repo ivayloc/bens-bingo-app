@@ -1,0 +1,74 @@
+@import "../functions/calc-clamp";
+
+$icon-close: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNzIuOCAxNzIuOCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTcyLjggMTcyLjgiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwYXRoIGQ9Ik05NS41IDg2LjQgMTcxIDEwLjljMi41LTIuNSAyLjUtNi42IDAtOS4xcy02LjYtMi41LTkuMSAwTDg2LjQgNzcuMyAxMC45IDEuOUM4LjQtLjYgNC4zLS42IDEuOCAxLjlzLTIuNSA2LjYgMCA5LjFsNzUuNSA3NS41LTc1LjQgNzUuNGMtMi41IDIuNS0yLjUgNi42IDAgOS4xIDEuMiAxLjIgMi45IDEuOSA0LjUgMS45czMuMy0uNiA0LjUtMS45bDc1LjUtNzUuNSA3NS41IDc1LjVjMS4yIDEuMiAyLjkgMS45IDQuNSAxLjlzMy4zLS42IDQuNS0xLjljMi41LTIuNSAyLjUtNi42IDAtOS4xTDk1LjUgODYuNHoiIHN0eWxlPSJmaWxsOiNlODMzZDAiLz48L3N2Zz4=" !default;
+
+.site-dialog {
+  max-width: calc-clamp(1032);
+  padding: calc-clamp(16) calc-clamp(44) 0;
+  margin: 0 auto;
+  background-color: rgba(#000, 0.8);
+  transform: skew(-10deg);
+  &-wrap {
+    position: relative;
+    padding-top: calc-clamp(310);
+    margin-bottom: calc-clamp(30);
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+  }
+  &-btn-close {
+    position: absolute;
+    top: calc-clamp(-24);
+    left: 50%;
+    width: calc-clamp(42);
+    height: calc-clamp(39);
+    background: #000 url($icon-close) no-repeat center;
+    background-size: 60%;
+    border: solid calc-clamp(2) #e833d0;
+    box-shadow: 0 calc-clamp(-10) calc-clamp(30) calc-clamp(5) #000;
+    transform: translateX(-50%);
+  }
+  &-time {
+    max-width: calc-clamp(120);
+    padding: 0 calc-clamp(24);
+    margin-inline-start: calc-clamp(237);
+    text-align: center;
+    background-color: #662bc7;
+    transform: skew(351deg);
+    &-text {
+      font-family: OpenSans, sans-serif;
+      font-size: calc-clamp(31);
+      font-weight: 700;
+      color: #fff;
+      transform: skew(-351deg);
+    }
+  }
+  &-content {
+    position: relative;
+    transform: skew(10deg);
+  }
+  &-header {
+    padding: 0 calc-clamp(20) calc-clamp(20);
+    margin: 0 calc-clamp(-44) 0 calc-clamp(-13);
+    font-family: OpenSans, sans-serif;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    border-bottom: calc-clamp(1) solid #fff;
+
+    &-name {
+      font-size: calc-clamp(70);
+    }
+  }
+  &-body {
+    padding-top: calc-clamp(46);
+  }
+}
+
+.site-details-dialog {
+  min-width: calc-clamp(1462);
+  padding: 0;
+  .mat-dialog-container {
+    overflow: unset;
+  }
+}

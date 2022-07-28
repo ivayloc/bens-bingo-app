@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BuddiesComponent } from './components/buddies/buddies.component';
+import { FriendsComponent } from './components/buddies/buddies.component';
 import { CustomerPortalLayoutComponent } from './components/account-layout/account-layout.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { GameHistoryComponent } from './components/game-history/game-history.component';
@@ -20,7 +20,7 @@ const routes: Routes = [
       { path: 'public-profile', component: PublicProfileComponent },
       { path: 'transaction-history', component: TransactionHistoryComponent },
       { path: 'game-history', component: GameHistoryComponent },
-      { path: 'buddies', component: BuddiesComponent },
+      { path: 'buddies', component: FriendsComponent },
       { path: 'limits', component: LimitsComponent },
     ],
   },

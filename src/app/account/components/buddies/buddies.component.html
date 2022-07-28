@@ -1,5 +1,5 @@
 <!--  -->
-<div class="row">
+<div class="row mb-5">
   <div class="col-8">
     <app-content-box
       class="content-box content-box-start w-100"
@@ -28,7 +28,197 @@
       class="content-box content-box-end hovercss-float-shadow"
       headerText="Buddy Count"
     >
-      <div class="fz-24">00</div>
+      <div class="fz-31 fw-bold" *ngIf="getFriends$ | async as friendsList">
+        {{ friendsList.data.length }}
+      </div>
     </app-content-box>
   </div>
 </div>
+
+<app-content-box headerText="Buddies" [isFluid]="true" class="mb-5">
+  <ng-container *ngIf="getFriends$ | async as friendsList">
+    <table
+      mat-table
+      aria-describedby="aa"
+      [dataSource]="friendsList"
+      matSort
+      matSortActive="date"
+      matSortDirection="desc"
+      class="mat-elevation-z8 w-100"
+      [fixedLayout]="true"
+      *ngIf="friendsList.data.length; else noFriends"
+    >
+      <!-- *ngIf="showTable; else noResults" -->
+
+      <!-- username Column -->
+      <ng-container matColumnDef="alias">
+        <th
+          mat-header-cell
+          class="fz-24"
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by ID"
+        >
+          Username
+        </th>
+        <td class="fz-24" mat-cell *matCellDef="let element">
+          <a (click)="showUserProfile(element.alias)">{{ element.alias }}</a>
+        </td>
+      </ng-container>
+
+      <!-- username Column -->
+      <ng-container matColumnDef="online">
+        <th
+          mat-header-cell
+          class="fz-24"
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by ID"
+        >
+          Online
+        </th>
+        <td class="fz-24" mat-cell *matCellDef="let element">
+          <ng-container *ngIf="element.online"> YES </ng-container>
+          <ng-container *ngIf="!element.online"> NO </ng-container>
+        </td>
+      </ng-container>
+
+      <!-- username Column -->
+      <ng-container matColumnDef="currentLocation">
+        <th
+          mat-header-cell
+          class="fz-24"
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by ID"
+        >
+          Current Location
+        </th>
+        <td class="fz-24" mat-cell *matCellDef="let element">
+          {{ element.id }}
+        </td>
+      </ng-container>
+
+      <!-- username Column -->
+      <ng-container matColumnDef="action">
+        <th
+          mat-header-cell
+          class="fz-24"
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by ID"
+        >
+          Action
+        </th>
+        <td class="fz-24" mat-cell *matCellDef="let element">
+          <button
+            class="btn-clear btn-main btn-sm"
+            (click)="removeFriend(element.alias)"
+          >
+            <span class="btn-main-text">Remove</span>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <ng-template #noFriends>
+      <span class="fz-22">No friends</span>
+    </ng-template>
+  </ng-container>
+</app-content-box>
+
+<app-content-box headerText="Pending Buddies" [isFluid]="true">
+  <ng-container *ngIf="getPendingFriends$ | async as pendingFriends">
+    <table
+      mat-table
+      aria-describedby="aa"
+      [dataSource]="pendingFriends"
+      matSort
+      matSortActive="date"
+      matSortDirection="desc"
+      class="mat-elevation-z8 w-100"
+      [fixedLayout]="true"
+      *ngIf="pendingFriends.data.length; else noPendingFriends"
+    >
+      <!-- *ngIf="showTable; else noResults" -->
+
+      <!-- username Column -->
+      <ng-container matColumnDef="alias">
+        <th
+          mat-header-cell
+          class="fz-24"
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by ID"
+        >
+          Username
+        </th>
+        <td class="fz-24" mat-cell *matCellDef="let element">
+          <a (click)="showUserProfile(element.alias)">{{ element.alias }}</a>
+        </td>
+      </ng-container>
+
+      <!-- username Column -->
+      <ng-container matColumnDef="online">
+        <th
+          mat-header-cell
+          class="fz-24"
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by ID"
+        >
+          Online
+        </th>
+        <td class="fz-24" mat-cell *matCellDef="let element">
+          <ng-container *ngIf="element.online"> YES </ng-container>
+          <ng-container *ngIf="!element.online"> NO </ng-container>
+        </td>
+      </ng-container>
+
+      <!-- username Column -->
+      <ng-container matColumnDef="currentLocation">
+        <th
+          mat-header-cell
+          class="fz-24"
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by ID"
+        >
+          Current Location
+        </th>
+        <td class="fz-24" mat-cell *matCellDef="let element">
+          {{ element.id }}
+        </td>
+      </ng-container>
+
+      <!-- username Column -->
+      <ng-container matColumnDef="action">
+        <th
+          mat-header-cell
+          class="fz-24"
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by ID"
+        >
+          Action
+        </th>
+        <td class="fz-24" mat-cell *matCellDef="let element">
+          <button
+            class="btn-clear btn-main btn-sm"
+            (click)="declinePendingFriendRequest(element.alias)"
+          >
+            <span class="btn-main-text">Remove</span>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <ng-template #noPendingFriends>
+      <span class="fz-22">No pending friends</span>
+    </ng-template>
+  </ng-container>
+</app-content-box>

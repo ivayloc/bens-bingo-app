@@ -1,5 +1,5 @@
 <div
-  class="game-details-wrap"
+  class="site-dialog-wrap"
   [ngStyle]="{
     'background-image':
       'linear-gradient(to bottom, rgba(0,0,0,0) 1%,rgba(0,0,0,0) 9%,rgba(0,0,0,1) 88%,rgba(0,0,0,1) 100%), url(' +
@@ -9,19 +9,19 @@
 >
   <button
     tabindex="-1"
-    class="btn-clear game-details-btn-close"
+    class="btn-clear site-dialog-btn-close"
     (click)="closeDialog()"
   ></button>
-  <div class="game-details-time">
-    <div class="game-details-time-text">{{ game.time }}</div>
+  <div class="site-dialog-time">
+    <div class="site-dialog-time-text">{{ game.time }}</div>
   </div>
-  <div class="game-details">
-    <div class="game-details-content">
-      <div class="game-details-header">
-        <div class="game-details-header-type">{{ game.type }}</div>
-        <div class="game-details-header-name">{{ game.name }}</div>
+  <div class="site-dialog">
+    <div class="site-dialog-content">
+      <div class="site-dialog-header">
+        <div class="site-dialog-header-type">{{ game.type }}</div>
+        <div class="site-dialog-header-name">{{ game.name }}</div>
       </div>
-      <div class="game-details-body text-white fw-bold">
+      <div class="site-dialog-body text-white fw-bold">
         <div class="d-flex">
           <div class="flex-fill">
             <div class="fz-31">JACKPOT</div>
@@ -40,17 +40,19 @@
         </div>
       </div>
     </div>
-    <div class="game-details-btns d-flex justify-content-center">
+    <div
+      class="site-dialog-btns d-flex justify-content-center transform-skew-10"
+    >
       <ng-container *ngIf="game.type === 'bingo'">
-        <button class="btn-clear btn-main btn-md game-details-btn">
+        <button class="btn-clear btn-main btn-md site-dialog-btn">
           <span class="btn-main-text">Register</span>
         </button>
       </ng-container>
       <ng-container *ngIf="game.type === 'casino'">
-        <button class="btn-clear btn-main btn-md game-details-btn">
+        <button class="btn-clear btn-main btn-md site-dialog-btn">
           <span class="btn-main-text">Play For Real</span>
         </button>
-        <button class="btn-clear btn-secondary btn-md game-details-btn">
+        <button class="btn-clear btn-secondary btn-md site-dialog-btn">
           <span class="btn-main-text">Play For Fun</span>
         </button>
       </ng-container>

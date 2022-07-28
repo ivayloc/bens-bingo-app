@@ -13,7 +13,7 @@ export class CustomerPortalLayoutComponent {
     // { url: '/account/public-profile', title: 'Public Profile' },
     { url: '/account/transaction-history', title: 'Transaction History' },
     { url: '/account/game-history', title: 'Game History' },
-    { url: '/account/buddies', title: 'Buddies' },
+    { url: '/account/buddies', title: 'Friends' },
     { url: '/account/limits', title: 'Limits' },
   ];
 }

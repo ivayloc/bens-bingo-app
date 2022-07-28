@@ -28,3 +28,23 @@ export const getUserInfoBalance = createSelector(getAccountState, (state) => ({
   balance: state.userInfo.balance,
   currency: state.userInfo.currency,
 }));
+
+export const getFriends = createSelector(
+  getAccountState,
+  (state) => new MatTableDataSource(state.friends)
+);
+
+export const getPendingFriends = createSelector(
+  getAccountState,
+  (state) => new MatTableDataSource(state.pendingFriends)
+);
+
+export const getSelectedUserProfile = createSelector(
+  getAccountState,
+  (state) => state.selectedUserProfile
+);
+
+export const getSelectedUserAlias = createSelector(
+  getAccountState,
+  (state) => state.selectedUserAlias
+);

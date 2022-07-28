@@ -64,4 +64,65 @@ export class AccountEffects {
       )
     );
   });
+  loadFriends$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AccountPageActions.loadFriends),
+      mergeMap(() =>
+        this.accountService.getUserFriendsList().pipe(
+          map((userFriends) =>
+            AccountApiActions.loadUserFriendsSuccess({ userFriends })
+          ),
+          catchError((error) =>
+            of(AccountApiActions.loadUserFriendsFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+  removeFriend$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AccountPageActions.removeFriend),
+      mergeMap(({ friendalias }) =>
+        this.accountService.removeUserFriend(friendalias).pipe(
+          map(() => AccountApiActions.removeUserFriendSuccess({ friendalias })),
+          catchError((error) =>
+            of(AccountApiActions.removeUserFriendFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+  declinePendingFriend$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AccountPageActions.declinePendingFriendRequest),
+      mergeMap(({ friendalias }) =>
+        this.accountService.declinePendingFriendRequest(friendalias).pipe(
+          map(() =>
+            AccountApiActions.declinePendingFriendSuccess({ friendalias })
+          ),
+          catchError((error) =>
+            of(AccountApiActions.declinePendingFriendFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+  showUserProfile$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AccountPageActions.showUserProfile),
+      mergeMap(({ friendalias }) =>
+        this.accountService.showUserProfile(friendalias).pipe(
+          map((selectedUserProfile) =>
+            AccountApiActions.showUserProfileSuccess({
+              selectedUserProfile,
+              friendalias,
+            })
+          ),
+          catchError((error) =>
+            of(AccountApiActions.showUserProfileFailure({ error }))
+          )
+        )
+      )
+    );
+  });
 }

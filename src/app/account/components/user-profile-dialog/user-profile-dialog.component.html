@@ -1,0 +1,43 @@
+<div
+  class="site-dialog-wrap"
+  *ngIf="getSelectedUserProfile$ | async as userProfile"
+>
+  <button
+    tabindex="-1"
+    class="btn-clear site-dialog-btn-close"
+    (click)="closeDialog()"
+  ></button>
+
+  <div class="site-dialog">
+    <div class="site-dialog-content">
+      <img
+        src="https://functionalgames.cdn.bingolab.com/viewprofilepic.php?alias=moses&size=bigsquare&siteid=95"
+        alt=""
+        srcset=""
+      />
+      <div class="site-dialog-header">
+        <div class="site-dialog-header-name">
+          {{ userProfile?.profile?.realname }}
+        </div>
+      </div>
+      <div class="site-dialog-body text-white fw-bold">
+        <div class="d-flex">
+          <div class="flex-fill">
+            <div class="fz-31">JACKPOT</div>
+            <ul class="list-unstyled fz-56 mb-0">
+              <li>$ 1.302,57</li>
+              <li>$ 110,76</li>
+            </ul>
+          </div>
+          <div class="flex-fill">
+            <div class="fz-31">Other Stats</div>
+            <ul class="list-unstyled fz-56 mb-0">
+              <li>$ 1.302,57</li>
+              <li>$ 110,76</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

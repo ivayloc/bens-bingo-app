@@ -1,14 +1,22 @@
 import { createReducer, on } from '@ngrx/store';
+import { Friend } from '../models/friend';
+import { FriendsList } from '../models/friends-list-response';
 import { GameHistory } from '../models/game-history';
 
 import { Transaction } from '../models/transaction';
 import { UserInfo } from '../models/user-info';
+import { UserProfile } from '../models/user-profile';
 import { AccountApiActions } from './actions';
 
 export interface AccountState {
   transactionsHistory: Transaction[];
   gameHistory: GameHistory[];
   userInfo: UserInfo;
+  pendingFriends: Friend[];
+  pendingOutgoing: Friend[];
+  friends: Friend[];
+  selectedUserProfile: UserProfile;
+  selectedUserAlias: string;
   error: any;
 }
 
@@ -16,6 +24,11 @@ const initialState: AccountState = {
   transactionsHistory: [],
   gameHistory: [],
   userInfo: {} as UserInfo,
+  pendingFriends: {} as Friend[],
+  pendingOutgoing: {} as Friend[],
+  friends: {} as Friend[],
+  selectedUserProfile: {} as UserProfile,
+  selectedUserAlias: '',
   error: {},
 };
 
@@ -77,5 +90,93 @@ export const accountReducer = createReducer<AccountState>(
       userInfo: {} as UserInfo,
       error: action.error,
     };
-  })
+  }),
+  on(
+    AccountApiActions.loadUserFriendsSuccess,
+    (state, { userFriends }): AccountState => {
+      return {
+        ...state,
+        ...userFriends,
+        error: '',
+      };
+    }
+  ),
+  on(
+    AccountApiActions.loadUserFriendsFailure,
+    (state, action): AccountState => {
+      return {
+        ...state,
+        userInfo: {} as UserInfo,
+        error: action.error,
+      };
+    }
+  ),
+  on(
+    AccountApiActions.removeUserFriendSuccess,
+    (state, { friendalias }): AccountState => {
+      const friends = state.friends.filter(
+        (friend) => friend.alias !== friendalias
+      );
+
+      return {
+        ...state,
+        friends,
+        error: '',
+      };
+    }
+  ),
+  on(
+    AccountApiActions.removeUserFriendFailure,
+    (state, action): AccountState => {
+      return {
+        ...state,
+        error: action.error,
+      };
+    }
+  ),
+  on(
+    AccountApiActions.declinePendingFriendSuccess,
+    (state, { friendalias }): AccountState => {
+      const pendingFriends = state.pendingFriends.filter(
+        (friend) => friend.alias !== friendalias
+      );
+
+      return {
+        ...state,
+        pendingFriends,
+        error: '',
+      };
+    }
+  ),
+  on(
+    AccountApiActions.declinePendingFriendFailure,
+    (state, action): AccountState => {
+      return {
+        ...state,
+        error: action.error,
+      };
+    }
+  ),
+  on(
+    AccountApiActions.showUserProfileSuccess,
+    (state, { selectedUserProfile, friendalias }): AccountState => {
+      return {
+        ...state,
+        selectedUserProfile,
+        selectedUserAlias: friendalias,
+        error: '',
+      };
+    }
+  ),
+  on(
+    AccountApiActions.showUserProfileFailure,
+    (state, action): AccountState => {
+      return {
+        ...state,
+        selectedUserProfile: {} as UserProfile,
+        selectedUserAlias: '',
+        error: action.error,
+      };
+    }
+  )
 );

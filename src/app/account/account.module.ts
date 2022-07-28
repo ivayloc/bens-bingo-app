@@ -8,7 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { AccountRoutingModule } from './account-routing.module';
 import { AccountFundsComponent } from './components/account-funds/account-funds.component';
 import { CustomerPortalLayoutComponent } from './components/account-layout/account-layout.component';
-import { BuddiesComponent } from './components/buddies/buddies.component';
+import { FriendsComponent } from './components/buddies/buddies.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { GameHistoryComponent } from './components/game-history/game-history.component';
 import { LimitsComponent } from './components/limits/limits.component';
@@ -17,6 +17,7 @@ import { PublicProfileComponent } from './components/public-profile/public-profi
 import { TransactionHistoryComponent } from './components/transaction-history/transaction-history.component';
 import { AccountEffects } from './state/account.effects';
 import { accountReducer } from './state/account.reducers';
+import { UserProfileDialogComponent } from './components/user-profile-dialog/user-profile-dialog.component';
 
 @NgModule({
   declarations: [
@@ -24,11 +25,12 @@ import { accountReducer } from './state/account.reducers';
     PrivateInfoComponent,
     TransactionHistoryComponent,
     GameHistoryComponent,
-    BuddiesComponent,
+    FriendsComponent,
     LimitsComponent,
     PublicProfileComponent,
     CustomerPortalLayoutComponent,
     AccountFundsComponent,
+    UserProfileDialogComponent,
   ],
   imports: [
     CommonModule,

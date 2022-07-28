@@ -13,3 +13,22 @@ export const loadGameHistory = createAction(
 );
 
 export const loadUserInfo = createAction('[Account Page] Load user info');
+
+export const loadFriends = createAction(
+  '[Account/Buddy Page] Load user buddies'
+);
+
+export const removeFriend = createAction(
+  '[Account/Buddy Page] Remove user buddies',
+  props<{ friendalias: string }>()
+);
+
+export const declinePendingFriendRequest = createAction(
+  '[Account/Buddy Page] Decline pending friend request',
+  props<{ friendalias: string }>()
+);
+
+export const showUserProfile = createAction(
+  '[Account/Buddy Page] Show user profile',
+  props<{ friendalias: string }>()
+);

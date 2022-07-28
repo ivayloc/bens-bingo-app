@@ -1,7 +1,9 @@
 import { createAction, props } from '@ngrx/store';
+import { FriendsList } from '../../models/friends-list-response';
 import { GameHistory } from '../../models/game-history';
 import { Transaction } from '../../models/transaction';
 import { UserInfo } from '../../models/user-info';
+import { UserProfile } from '../../models/user-profile';
 
 export const loadTransactionsHistorySuccess = createAction(
   '[Account API] Load transaction history  SUCCESS',
@@ -30,5 +32,44 @@ export const loadUserInfoSuccess = createAction(
 
 export const loadUserInfoFailure = createAction(
   '[Account API] Load user info FAILURE',
+  props<{ error: string }>()
+);
+
+export const loadUserFriendsSuccess = createAction(
+  '[Account API] Load user buddies SUCCESS',
+  props<{ userFriends: FriendsList }>()
+);
+
+export const loadUserFriendsFailure = createAction(
+  '[Account API] Load user buddies FAILURE',
+  props<{ error: string }>()
+);
+
+export const removeUserFriendSuccess = createAction(
+  "[Account/Buddies API] Remove user's buddies SUCCESS",
+  props<{ friendalias: string }>()
+);
+
+export const removeUserFriendFailure = createAction(
+  "[Account/Buddies API] Remove user's buddies FAILURE",
+  props<{ error: string }>()
+);
+
+export const declinePendingFriendSuccess = createAction(
+  '[Account/Buddies API] Decline panding friend request SUCCESS',
+  props<{ friendalias: string }>()
+);
+
+export const declinePendingFriendFailure = createAction(
+  '[Account/Buddies API] Decline panding friend request FAILURE',
+  props<{ error: string }>()
+);
+export const showUserProfileSuccess = createAction(
+  '[Account/Buddies API] Show user profile SUCCESS',
+  props<{ selectedUserProfile: UserProfile; friendalias: string }>()
+);
+
+export const showUserProfileFailure = createAction(
+  '[Account/Buddies API] Show user profile FAILURE',
   props<{ error: string }>()
 );

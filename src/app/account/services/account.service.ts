@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import format from 'date-fns/format';
-import { map, Observable, switchMap } from 'rxjs';
+import { map, Observable, of, switchMap } from 'rxjs';
 import { AuthService } from 'src/app/core/service/auth.service';
 import { ResponseOf } from 'src/app/shared/models/response-of';
 import { environment } from 'src/environments/environment';
@@ -12,6 +12,8 @@ import { TransactionsHistoryRequest } from '../models/transactions-history-reque
 import { UserInfo } from '../models/user-info';
 import { GamesHistory } from '../models/games-history';
 import { TransactionsHistory } from '../models/transactions-history';
+import { FriendsList } from '../models/friends-list-response';
+import { UserProfile } from '../models/user-profile';
 
 @Injectable({
   providedIn: 'root',
@@ -81,12 +83,57 @@ export class AccountService {
     const getBingoHistory$ = this.http.get<ResponseOf<UserInfo>>(
       `${environment.apiDomain}/api/slim/v1/user/current/info`
     );
-    return this.authService
-      .apiLogin()
-      .pipe(switchMap(() => this.authService.login()))
-      .pipe(
-        switchMap(() => getBingoHistory$),
-        map(({ data }) => data)
-      );
+    return this.authService.login().pipe(
+      switchMap(() => getBingoHistory$),
+      map(({ data }) => data)
+    );
+  }
+  getUserFriendsList(): Observable<FriendsList> {
+    const params = new HttpParams({
+      fromObject: {
+        siteid: 95,
+      },
+    });
+
+    return this.http
+      .get<ResponseOf<FriendsList>>(
+        `${environment.apiDomain}/api/slim/v1/user/current/friends/list`
+      )
+      .pipe(map(({ data }) => data));
+  }
+  removeUserFriend(friendalias: string): Observable<FriendsList> {
+    const params = new HttpParams({
+      fromObject: {
+        friendalias,
+      },
+    });
+    return of({} as FriendsList);
+    return this.http
+      .get<ResponseOf<FriendsList>>(
+        `${environment.apiDomain}/api/slim/v1/user/current/friends/remove`,
+        { params }
+      )
+      .pipe(map(({ data }) => data));
+  }
+  declinePendingFriendRequest(friendalias: string): Observable<FriendsList> {
+    const params = new HttpParams({
+      fromObject: {
+        friendalias,
+      },
+    });
+    return of({} as FriendsList);
+    return this.http
+      .get<ResponseOf<FriendsList>>(
+        `${environment.apiDomain}/api/slim/v1/user/current/friends/decline`,
+        { params }
+      )
+      .pipe(map(({ data }) => data));
+  }
+  showUserProfile(friendalias: string): Observable<UserProfile> {
+    return this.http
+      .get<ResponseOf<UserProfile>>(
+        `${environment.apiDomain}/api/slim/v1/profile/${friendalias}`
+      )
+      .pipe(map(({ data }) => data));
   }
 }

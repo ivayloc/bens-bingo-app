@@ -26,12 +26,11 @@ export class AuthService {
         {
           username,
           password,
-          siteid: 95,
         }
       )
       .pipe(
         tap(({ data }) => {
-          localStorage.setItem('', data.usersessionid);
+          localStorage.setItem('usersessionid', data.usersessionid);
         })
       );
     // }),
