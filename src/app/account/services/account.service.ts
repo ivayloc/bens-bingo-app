@@ -16,6 +16,9 @@ import { FriendsList } from '../models/friends-list-response';
 import { UserProfile } from '../models/user-profile';
 import { SearchUserResult } from '../models/search-user-result';
 import { SearchUserResponse } from '../models/search-user-response';
+import { AddFriendResult } from '../models/add-friend-result';
+import { AddFriendResponse } from '../models/add-friend-response';
+import { CancelOutgoingFriendRequestResult } from '../models/cancel-outgoing-friend-request-result';
 
 @Injectable({
   providedIn: 'root',
@@ -151,5 +154,29 @@ export class AccountService {
         { params }
       )
       .pipe(map(({ data }) => data.result));
+  }
+  addFriend(friendalias: string): Observable<AddFriendResult> {
+    const body = {
+      friendalias,
+    };
+
+    return this.http
+      .post<ResponseOf<AddFriendResponse>>(
+        `${environment.apiDomain}/api/slim/v1/user/current/friends/invite`,
+        body
+      )
+      .pipe(map(({ data }) => data.result));
+  }
+  cancelOutgoingFriendRequest(
+    friendalias: string
+  ): Observable<CancelOutgoingFriendRequestResult> {
+    const body = {
+      friendalias,
+    };
+
+    return this.http.delete<CancelOutgoingFriendRequestResult>(
+      `${environment.apiDomain}/api/slim/v1/user/current/friends/cancel`,
+      { body }
+    );
   }
 }

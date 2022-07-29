@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
@@ -9,7 +9,8 @@ import { Friend } from '../../models/friend';
 import { SearchUserResult } from '../../models/search-user-result';
 import {
   getFriends,
-  getPendingFriends,
+  getPendingFriendsRequest,
+  getPendingOutgoingFriendsRequest,
   getSearchUserResult,
   State,
 } from '../../state';
@@ -23,6 +24,8 @@ import { UserProfileDialogComponent } from '../user-profile-dialog/user-profile-
 })
 export class FriendsComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild('outgoingFriendsRequest')
+  outgoingFriendsRequest!: ElementRef<HTMLDivElement>;
   searchFriendForm = this.fb.group({ search: ['', Validators.required] });
 
   public get searchBuddyField(): FormControl {
@@ -33,6 +36,9 @@ export class FriendsComponent implements OnInit {
 
   getFriends$ = new Observable<MatTableDataSource<Friend>>();
   getPendingFriends$ = new Observable<MatTableDataSource<Friend>>();
+  getPendingOutgoingFriendsRequest$ = new Observable<
+    MatTableDataSource<Friend>
+  >();
   getSearchUserResult$ = new Observable<SearchUserResult>();
 
   constructor(
@@ -44,17 +50,11 @@ export class FriendsComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(AccountPageActions.loadFriends());
 
-    this.getFriends$ = this.store.select(getFriends).pipe(
-      map((matTableDataSource) => {
-        matTableDataSource.sort = this.sort;
-        return matTableDataSource;
-      })
-    );
-    this.getPendingFriends$ = this.store.select(getPendingFriends).pipe(
-      map((matTableDataSource) => {
-        matTableDataSource.sort = this.sort;
-        return matTableDataSource;
-      })
+    this.getFriends$ = this.store.select(getFriends);
+    this.getPendingFriends$ = this.store.select(getPendingFriendsRequest);
+
+    this.getPendingOutgoingFriendsRequest$ = this.store.select(
+      getPendingOutgoingFriendsRequest
     );
 
     this.getSearchUserResult$ = this.store.select(getSearchUserResult);
@@ -86,5 +86,16 @@ export class FriendsComponent implements OnInit {
     }
     const friendalias: string = this.searchBuddyField.value;
     this.store.dispatch(AccountPageActions.searchUser({ friendalias }));
+  }
+
+  addFriend(friendalias: string) {
+    this.store.dispatch(AccountPageActions.addFriend({ friendalias }));
+    this.outgoingFriendsRequest.nativeElement.scrollIntoView();
+  }
+
+  cancelOutgoingFriendRequest(friendalias: string) {
+    this.store.dispatch(
+      AccountPageActions.cancelOutgoingFriendRequest({ friendalias })
+    );
   }
 }

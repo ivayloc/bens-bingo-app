@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, forkJoin, map, mergeMap, of } from 'rxjs';
+import { catchError, forkJoin, map, mergeMap, of, switchMap } from 'rxjs';
 import { CasinoService } from 'src/app/shared/services/casino.service';
 import { AccountService } from '../services/account.service';
 import { AccountApiActions, AccountPageActions } from './actions';
@@ -137,6 +137,35 @@ export class AccountEffects {
           ),
           catchError((error) =>
             of(AccountApiActions.searchUserFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+  addFriend$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AccountPageActions.addFriend),
+      mergeMap(({ friendalias }) =>
+        this.accountService.addFriend(friendalias).pipe(
+          switchMap(() => [
+            AccountPageActions.loadFriends(),
+            AccountPageActions.resetSearchUser(),
+          ]),
+          catchError((error) =>
+            of(AccountApiActions.addFriendFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+  cancelOutgoingFriendRequest$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AccountPageActions.cancelOutgoingFriendRequest),
+      mergeMap(({ friendalias }) =>
+        this.accountService.cancelOutgoingFriendRequest(friendalias).pipe(
+          map(() => AccountPageActions.loadFriends()),
+          catchError((error) =>
+            of(AccountApiActions.cancelOutgoingFriendRequestFailure({ error }))
           )
         )
       )

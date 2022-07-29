@@ -34,9 +34,14 @@ export const getFriends = createSelector(
   (state) => new MatTableDataSource(state.friends)
 );
 
-export const getPendingFriends = createSelector(
+export const getPendingFriendsRequest = createSelector(
   getAccountState,
   (state) => new MatTableDataSource(state.pendingFriends)
+);
+
+export const getPendingOutgoingFriendsRequest = createSelector(
+  getAccountState,
+  (state) => new MatTableDataSource(state.pendingOutgoing)
 );
 
 export const getSelectedUserProfile = createSelector(

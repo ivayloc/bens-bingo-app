@@ -7,7 +7,7 @@ import { SearchUserResult } from '../models/search-user-result';
 import { Transaction } from '../models/transaction';
 import { UserInfo } from '../models/user-info';
 import { UserProfile } from '../models/user-profile';
-import { AccountApiActions } from './actions';
+import { AccountApiActions, AccountPageActions } from './actions';
 
 export interface AccountState {
   transactionsHistory: Transaction[];
@@ -195,9 +195,14 @@ export const accountReducer = createReducer<AccountState>(
   on(AccountApiActions.searchUserFailure, (state, action): AccountState => {
     return {
       ...state,
-      selectedUserProfile: {} as UserProfile,
       searchUserResult: {} as SearchUserResult,
       error: action.error,
+    };
+  }),
+  on(AccountPageActions.resetSearchUser, (state): AccountState => {
+    return {
+      ...state,
+      searchUserResult: {} as SearchUserResult,
     };
   })
 );

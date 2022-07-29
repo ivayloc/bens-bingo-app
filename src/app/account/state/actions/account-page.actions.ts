@@ -37,3 +37,17 @@ export const searchUser = createAction(
   '[Account/Buddy Page] Search for user profile',
   props<{ friendalias: string }>()
 );
+
+export const resetSearchUser = createAction(
+  '[Account/Buddy Page] Reset search user'
+);
+
+export const addFriend = createAction(
+  '[Account/Buddy Page] Add friend',
+  props<{ friendalias: string }>()
+);
+
+export const cancelOutgoingFriendRequest = createAction(
+  '[Account/Buddy Page] Cancel pending outgoing friend request',
+  props<{ friendalias: string }>()
+);
