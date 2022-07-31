@@ -51,3 +51,8 @@ export const cancelOutgoingFriendRequest = createAction(
   '[Account/Buddy Page] Cancel pending outgoing friend request',
   props<{ friendalias: string }>()
 );
+
+export const approveFriendRequest = createAction(
+  '[Account/Buddy Page] Approve friend request',
+  props<{ friendalias: string }>()
+);

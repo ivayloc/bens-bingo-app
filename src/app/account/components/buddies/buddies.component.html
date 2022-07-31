@@ -179,7 +179,7 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell class="fz-24" *matHeaderCellDef>Action</th>
         <td class="fz-24" mat-cell *matCellDef="let element">
-          <button class="btn-clear btn-main btn-sm">
+          <button class="btn-clear btn-main btn-sm" (click)="approveFriendRequest(element.alias)">
             <span class="btn-main-text">Approve</span>
           </button>
         </td>

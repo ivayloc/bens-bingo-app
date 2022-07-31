@@ -3,5 +3,6 @@
   "scss.validate": false,
   "stylelint.validate": ["css", "less", "postcss", "scss"],
   "tabnine.experimentalAutoImports": true,
-  "angular.forceStrictTemplates": true
+  "angular.forceStrictTemplates": true,
+  "cSpell.enabled": true
 }

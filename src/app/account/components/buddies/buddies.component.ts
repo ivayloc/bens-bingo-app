@@ -45,7 +45,7 @@ export class FriendsComponent implements OnInit {
     private store: Store<State>,
     private fb: FormBuilder,
     public dialog: MatDialog
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.store.dispatch(AccountPageActions.loadFriends());
@@ -98,4 +98,12 @@ export class FriendsComponent implements OnInit {
       AccountPageActions.cancelOutgoingFriendRequest({ friendalias })
     );
   }
+
+  approveFriendRequest(friendalias: string) {
+    this.store.dispatch(
+      AccountPageActions.approveFriendRequest({ friendalias })
+    );
+  }
+
+
 }

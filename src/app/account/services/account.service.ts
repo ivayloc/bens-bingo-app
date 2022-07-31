@@ -18,13 +18,13 @@ import { SearchUserResult } from '../models/search-user-result';
 import { SearchUserResponse } from '../models/search-user-response';
 import { AddFriendResult } from '../models/add-friend-result';
 import { AddFriendResponse } from '../models/add-friend-response';
-import { CancelOutgoingFriendRequestResult } from '../models/cancel-outgoing-friend-request-result';
+import { FriendRequestResult } from '../models/friend-request-result';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AccountService {
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   getTransactionsHistory({
     startdate,
@@ -167,16 +167,30 @@ export class AccountService {
       )
       .pipe(map(({ data }) => data.result));
   }
+
   cancelOutgoingFriendRequest(
     friendalias: string
-  ): Observable<CancelOutgoingFriendRequestResult> {
+  ): Observable<FriendRequestResult> {
     const body = {
       friendalias,
     };
 
-    return this.http.delete<CancelOutgoingFriendRequestResult>(
+    return this.http.delete<FriendRequestResult>(
       `${environment.apiDomain}/api/slim/v1/user/current/friends/cancel`,
       { body }
+    );
+  }
+
+  approveFriendRequest(
+    friendalias: string
+  ): Observable<FriendRequestResult> {
+    const body = {
+      friendalias,
+    };
+
+    return this.http.post<FriendRequestResult>(
+      `${environment.apiDomain}/api/slim/v1/user/current/friends/approve`,
+      body
     );
   }
 }

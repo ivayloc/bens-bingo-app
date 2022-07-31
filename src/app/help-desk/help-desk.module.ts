@@ -10,6 +10,10 @@ import { InboxComponent } from './components/inbox/inbox.component';
 import { SentComponent } from './components/sent/sent.component';
 import { ArchivedComponent } from './components/archived/archived.component';
 import { SharedModule } from '../shared/shared.module';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { helpDeskReducer } from './state/help-desk.reducers';
+import { HelpDeskEffects } from './state/help-desk.effects';
 
 @NgModule({
   declarations: [
@@ -21,6 +25,10 @@ import { SharedModule } from '../shared/shared.module';
     SentComponent,
     ArchivedComponent,
   ],
-  imports: [CommonModule, HelpRoutingModule, SharedModule],
+  imports: [CommonModule, HelpRoutingModule, SharedModule,
+    StoreModule.forFeature('help-desk', helpDeskReducer),
+    EffectsModule.forFeature([HelpDeskEffects]),
+
+  ],
 })
-export class HelpModule {}
+export class HelpModule { }

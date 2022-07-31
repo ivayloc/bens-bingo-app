@@ -7,7 +7,7 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./limits.component.scss'],
 })
 export class LimitsComponent {
-  timeFrameField = this.fb.control('');
+  timeFrameField = this.fb.control('24');
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) { }
 }

@@ -78,5 +78,6 @@ $bens-bingo-app-theme: mat.define-dark-theme(
 @include mat.ripple-theme($bens-bingo-app-theme);
 @include mat.input-theme($bens-bingo-app-theme);
 @include mat.form-field-theme($bens-bingo-app-theme);
-@include mat.datepicker-theme($bens-bingo-app-theme);
+@include mat.select-theme($bens-bingo-app-theme);
+@include mat.table-theme($bens-bingo-app-theme);
 @include mat.table-theme($bens-bingo-app-theme);

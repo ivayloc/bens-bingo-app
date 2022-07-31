@@ -11,7 +11,7 @@ export class AccountEffects {
     private actions$: Actions,
     private accountService: AccountService,
     private casinoService: CasinoService
-  ) {}
+  ) { }
 
   loadTransactions$ = createEffect(() => {
     return this.actions$.pipe(
@@ -166,6 +166,19 @@ export class AccountEffects {
           map(() => AccountPageActions.loadFriends()),
           catchError((error) =>
             of(AccountApiActions.cancelOutgoingFriendRequestFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+  approveFriendRequest$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AccountPageActions.approveFriendRequest),
+      mergeMap(({ friendalias }) =>
+        this.accountService.approveFriendRequest(friendalias).pipe(
+          map(() => AccountPageActions.loadFriends()),
+          catchError((error) =>
+            of(AccountApiActions.approveFriendRequestFailure({ error }))
           )
         )
       )

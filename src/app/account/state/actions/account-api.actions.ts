@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { AddFriendResult } from '../../models/add-friend-result';
-import { CancelOutgoingFriendRequestResult } from '../../models/cancel-outgoing-friend-request-result';
+import { FriendRequestResult } from '../../models/friend-request-result';
 import { FriendsList } from '../../models/friends-list-response';
 import { GameHistory } from '../../models/game-history';
 import { SearchUserResult } from '../../models/search-user-result';
@@ -97,11 +97,22 @@ export const addFriendFailure = createAction(
 export const cancelOutgoingFriendRequestSuccess = createAction(
   '[Account/Buddies API] Cancel outgoing friend request SUCCESS',
   props<{
-    cancelOutgoingFriendRequestResult: CancelOutgoingFriendRequestResult;
+    cancelOutgoingFriendRequestResult: FriendRequestResult;
   }>()
 );
 
 export const cancelOutgoingFriendRequestFailure = createAction(
   '[Account/Buddies API] Cancel outgoing friend request FAILURE',
+  props<{ error: string }>()
+);
+export const approveFriendRequestSuccess = createAction(
+  '[Account/Buddies API] Approve friend request SUCCESS',
+  props<{
+    cancelOutgoingFriendRequestResult: FriendRequestResult;
+  }>()
+);
+
+export const approveFriendRequestFailure = createAction(
+  '[Account/Buddies API] Approve friend request FAILURE',
   props<{ error: string }>()
 );
