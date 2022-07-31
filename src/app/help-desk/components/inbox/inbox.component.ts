@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { HelpDeskMessage } from '../../models/help-desk-message';
@@ -16,7 +17,11 @@ export class InboxComponent implements OnInit {
 
   getInboxMessages$ = new Observable<MatTableDataSource<HelpDeskMessage>>();
 
-  constructor(private store: Store<State>) {}
+  constructor(
+    private store: Store<State>,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.store.dispatch(HelpDeskPageActions.loadInboxMessages());
@@ -24,5 +29,7 @@ export class InboxComponent implements OnInit {
     this.getInboxMessages$ = this.store.select(getInboxMessages);
   }
 
-  openMessage(id: number) {}
+  viewMessage(id: number) {
+    this.router.navigate([id], { relativeTo: this.route });
+  }
 }

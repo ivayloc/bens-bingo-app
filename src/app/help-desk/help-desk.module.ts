@@ -14,6 +14,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { helpDeskReducer } from './state/help-desk.reducers';
 import { HelpDeskEffects } from './state/help-desk.effects';
+import { HelpDeskMessageComponent } from './components/help-desk-message/help-desk-message.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { HelpDeskEffects } from './state/help-desk.effects';
     InboxComponent,
     SentComponent,
     ArchivedComponent,
+    HelpDeskMessageComponent,
   ],
   imports: [CommonModule, HelpRoutingModule, SharedModule,
     StoreModule.forFeature('help-desk', helpDeskReducer),
