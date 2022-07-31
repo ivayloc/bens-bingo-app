@@ -6,9 +6,9 @@
         aria-describedby="aa"
         [dataSource]="inboxMessages"
         class="mat-elevation-z8 w-100"
-        [fixedLayout]="true"
         *ngIf="inboxMessages.data.length; else noMessages"
       >
+        <!-- [fixedLayout]="true" -->
         <!-- column Time -->
         <ng-container matColumnDef="time">
           <th mat-header-cell class="fz-24" *matHeaderCellDef>Time</th>
@@ -30,10 +30,10 @@
           <th mat-header-cell class="fz-24" *matHeaderCellDef>Options</th>
           <td class="fz-24" mat-cell *matCellDef="let element">
             <button
-              class="btn btn-link fz-24 px-0 text-white"
+              class="btn-clear btn-main btn-sm"
               (click)="openMessage(element.id)"
             >
-              {{ element.id }}
+              <span class="btn-main-text">View</span>
             </button>
           </td>
         </ng-container>
