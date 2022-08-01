@@ -5,13 +5,13 @@ import { HelpDeskApiActions } from './actions';
 
 export interface HelpDeskState {
   inboxMessages: HelpDeskMessage[];
-  selectedInboxMessage: HelpDeskChat;
+  helpDeskChat: HelpDeskChat;
   error: any;
 }
 
 const initialState: HelpDeskState = {
   inboxMessages: [],
-  selectedInboxMessage: {} as HelpDeskChat,
+  helpDeskChat: {} as HelpDeskChat,
   error: {},
 };
 
@@ -38,21 +38,21 @@ export const helpDeskReducer = createReducer<HelpDeskState>(
     }
   ),
   on(
-    HelpDeskApiActions.loadSelectedInboxMessageSuccess,
-    (state, { selectedInboxMessage }): HelpDeskState => {
+    HelpDeskApiActions.loadHelpDeskChatSuccess,
+    (state, { helpDeskChat }): HelpDeskState => {
       return {
         ...state,
-        selectedInboxMessage,
+        helpDeskChat,
         error: '',
       };
     }
   ),
   on(
-    HelpDeskApiActions.loadSelectedInboxMessageFailure,
+    HelpDeskApiActions.loadHelpDeskChatFailure,
     (state, action): HelpDeskState => {
       return {
         ...state,
-        selectedInboxMessage: {} as HelpDeskChat,
+        helpDeskChat: {} as HelpDeskChat,
         error: action.error,
       };
     }

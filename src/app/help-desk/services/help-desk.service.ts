@@ -20,7 +20,7 @@ export class HelpDeskService {
       .pipe(map(({ data }) => data));
   }
 
-  getSelectedInboxMessage(id: number): Observable<HelpDeskChat> {
+  getHelpDeskChat(id: number): Observable<HelpDeskChat> {
     return this.http
       .get<ResponseOf<HelpDeskChat>>(
         `${environment.apiDomain}/api/slim/v1/user/current/help/ticket/${id}`

@@ -31,16 +31,16 @@ export class HelpDeskEffects {
 
   loadSelectedInboxMessage = createEffect(() => {
     return this.actions$.pipe(
-      ofType(HelpDeskPageActions.loadSelectedInboxMessage),
+      ofType(HelpDeskPageActions.loadHelpDeskChat),
       mergeMap(({ id }) =>
-        this.helpDeskService.getSelectedInboxMessage(id).pipe(
-          map((selectedInboxMessage) =>
-            HelpDeskApiActions.loadSelectedInboxMessageSuccess({
-              selectedInboxMessage,
+        this.helpDeskService.getHelpDeskChat(id).pipe(
+          map((helpDeskChat) =>
+            HelpDeskApiActions.loadHelpDeskChatSuccess({
+              helpDeskChat,
             })
           ),
           catchError((error) =>
-            of(HelpDeskApiActions.loadSelectedInboxMessageFailure({ error }))
+            of(HelpDeskApiActions.loadHelpDeskChatFailure({ error }))
           )
         )
       )

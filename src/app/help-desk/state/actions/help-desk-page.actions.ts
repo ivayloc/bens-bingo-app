@@ -4,7 +4,7 @@ export const loadInboxMessages = createAction(
   '[Help Desk/Inbox] Load inbox messages'
 );
 
-export const loadSelectedInboxMessage = createAction(
-  '[Help Desk/Inbox] Load inbox message',
+export const loadHelpDeskChat = createAction(
+  '[Help Desk/Inbox] Load help desk chat',
   props<{ id: number }>()
 );

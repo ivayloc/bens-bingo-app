@@ -14,7 +14,7 @@ export const getInboxMessages = createSelector(
   (state) => new MatTableDataSource(state.inboxMessages)
 );
 
-export const getSelectedInboxMessage = createSelector(
+export const getHelpDeskChat = createSelector(
   getHelpDeskState,
-  (state) => state.selectedInboxMessage
+  (state) => state.helpDeskChat
 );

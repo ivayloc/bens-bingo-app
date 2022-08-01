@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { HelpDeskChat } from '../../models/help-desk-chat';
-import { getSelectedInboxMessage, State } from '../../state';
+import { getHelpDeskChat, State } from '../../state';
 import { HelpDeskPageActions } from '../../state/actions';
 
 @Component({
@@ -28,11 +28,11 @@ export class HelpDeskMessageComponent implements OnInit {
     this.route.params.subscribe((params) => {
       if (params['id']) {
         this.store.dispatch(
-          HelpDeskPageActions.loadSelectedInboxMessage({ id: +params['id'] })
+          HelpDeskPageActions.loadHelpDeskChat({ id: +params['id'] })
         );
       }
     });
 
-    this.getInboxMessage$ = this.store.select(getSelectedInboxMessage);
+    this.getInboxMessage$ = this.store.select(getHelpDeskChat);
   }
 }
