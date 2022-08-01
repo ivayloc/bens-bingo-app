@@ -21,3 +21,13 @@ export const loadHelpDeskChatFailure = createAction(
   '[HelpDesk/Inbox API] Get help desk chat FAILURE',
   props<{ error: string }>()
 );
+
+export const archiveHelpDeskChatSuccess = createAction(
+  '[HelpDesk/Inbox API] Archive help desk chat SUCCESS',
+  props<{ helpDeskChat: HelpDeskChat }>()
+);
+
+export const archiveHelpDeskChatFailure = createAction(
+  '[HelpDesk/Inbox API] Archive help desk chat FAILURE',
+  props<{ error: string }>()
+);

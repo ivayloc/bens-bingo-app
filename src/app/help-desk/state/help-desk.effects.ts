@@ -29,7 +29,7 @@ export class HelpDeskEffects {
     );
   });
 
-  loadSelectedInboxMessage = createEffect(() => {
+  loadHelpDeskChat = createEffect(() => {
     return this.actions$.pipe(
       ofType(HelpDeskPageActions.loadHelpDeskChat),
       mergeMap(({ id }) =>
@@ -41,6 +41,24 @@ export class HelpDeskEffects {
           ),
           catchError((error) =>
             of(HelpDeskApiActions.loadHelpDeskChatFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  archiveHelpDeskChat = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(HelpDeskPageActions.archiveHelpDeskChat),
+      mergeMap(({ id }) =>
+        this.helpDeskService.archiveHelpDeskChat(id).pipe(
+          map((helpDeskChat) =>
+            HelpDeskApiActions.archiveHelpDeskChatSuccess({
+              helpDeskChat,
+            })
+          ),
+          catchError((error) =>
+            of(HelpDeskApiActions.archiveHelpDeskChatFailure({ error }))
           )
         )
       )

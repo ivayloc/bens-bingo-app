@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { HelpDeskChat } from '../../models/help-desk-chat';
@@ -21,6 +21,7 @@ export class HelpDeskMessageComponent implements OnInit {
   constructor(
     private store: Store<State>,
     private route: ActivatedRoute,
+    private router: Router,
     private fb: FormBuilder
   ) {}
 
@@ -34,5 +35,10 @@ export class HelpDeskMessageComponent implements OnInit {
     });
 
     this.getInboxMessage$ = this.store.select(getHelpDeskChat);
+  }
+
+  archiveHelpDeskChat(id: number) {
+    this.store.dispatch(HelpDeskPageActions.archiveHelpDeskChat({ id }));
+    this.router.navigate(['../'], { relativeTo: this.route });
   }
 }

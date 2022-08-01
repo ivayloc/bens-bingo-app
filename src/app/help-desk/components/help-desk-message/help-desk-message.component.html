@@ -31,16 +31,18 @@
               <textarea matInput formControlName="message"></textarea>
             </mat-form-field>
             <div class="px-3 pb-1">
-              <button
-                type="button"
-                class="btn-clear btn-main py-1 mx-4 btn-field mb-4"
-              >
+              <button class="btn-clear btn-main py-1 mx-4 btn-field mb-4">
                 <span class="btn-main-text">Send</span>
               </button>
             </div>
           </div>
           <div class="d-flex justify-content-between">
-            <button type="button" class="btn-clear btn-main btn-red btn-sm">
+            <button
+              type="button"
+              class="btn-clear btn-main btn-red btn-sm"
+              *ngIf="getInboxMessage$ | async as chat"
+              (click)="archiveHelpDeskChat(chat.id)"
+            >
               <span class="btn-main-text">Archive this ticket</span>
             </button>
           </div>
