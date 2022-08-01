@@ -56,5 +56,25 @@ export const helpDeskReducer = createReducer<HelpDeskState>(
         error: action.error,
       };
     }
+  ),
+  on(
+    HelpDeskApiActions.helpDeskChatReplySuccess,
+    (state, { helpDeskChat }): HelpDeskState => {
+      return {
+        ...state,
+        helpDeskChat,
+        error: '',
+      };
+    }
+  ),
+  on(
+    HelpDeskApiActions.helpDeskChatReplyFailure,
+    (state, action): HelpDeskState => {
+      return {
+        ...state,
+        helpDeskChat: {} as HelpDeskChat,
+        error: action.error,
+      };
+    }
   )
 );

@@ -9,6 +9,14 @@
         *ngIf="inboxMessages.data.length; else noMessages"
       >
         <!-- [fixedLayout]="true" -->
+        <!-- column ID -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell class="fz-24" *matHeaderCellDef>ID</th>
+          <td class="fz-24" mat-cell *matCellDef="let element">
+            {{ element.id }}
+          </td>
+        </ng-container>
+
         <!-- column Time -->
         <ng-container matColumnDef="time">
           <th mat-header-cell class="fz-24" *matHeaderCellDef>Time</th>

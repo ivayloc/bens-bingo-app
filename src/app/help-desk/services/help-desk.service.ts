@@ -31,8 +31,9 @@ export class HelpDeskService {
 
   archiveHelpDeskChat(id: number): Observable<HelpDeskChat> {
     return this.http
-      .get<ResponseOf<HelpDeskChat>>(
-        `${environment.apiDomain}/api/slim/v1/user/current/help/ticket/${id}/archive`
+      .post<ResponseOf<HelpDeskChat>>(
+        `${environment.apiDomain}/api/slim/v1/user/current/help/ticket/${id}/archive`,
+        {}
       )
       .pipe(map(({ data }) => data));
   }

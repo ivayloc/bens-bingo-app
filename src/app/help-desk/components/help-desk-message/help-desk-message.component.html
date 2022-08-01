@@ -1,53 +1,95 @@
 <app-content-box
-  [headerText]="'Ticket #' + (getInboxMessage$ | async)?.id"
+  [headerText]="'Ticket #' + (getHelpDeskChat$ | async)?.id"
   [isFluid]="true"
+  class="mb-5"
 >
-  <ng-container *ngIf="getInboxMessage$ | async as inboxMessage">
-    <div class="d-flex flex-column fz-24 mb-5">
-      <div
-        class="w-75 mb-4"
-        [ngClass]="{ 'align-self-end': isOdd }"
-        *ngFor="let message of inboxMessage.items; odd as isOdd"
-      >
-        <app-content-box>
-          <div
-            header=""
-            class="d-flex justify-content-between fz-31 fw-bold my-2 mx-3"
-          >
-            <div>Support</div>
-            <div>{{ message.date }}</div>
-          </div>
-          <div [outerHTML]="message.body"></div>
-        </app-content-box>
+  <ng-container *ngIf="getHelpDeskChat$ | async as helpDeskChat">
+    <ng-container *ngIf="helpDeskChat.items">
+      <div class="d-flex flex-column fz-24 mb-5">
+        <div
+          class="w-75 mb-4"
+          [ngClass]="{ 'align-self-end': isOdd }"
+          *ngFor="let message of helpDeskChat.items; odd as isOdd"
+        >
+          <app-content-box>
+            <div
+              header=""
+              class="d-flex justify-content-between fz-31 fw-bold my-2 mx-3"
+            >
+              <div>Support</div>
+              <div>{{ message.date }}</div>
+            </div>
+            <div [outerHTML]="message.body"></div>
+          </app-content-box>
+        </div>
       </div>
-    </div>
-
-    <div class="row justify-content-center">
-      <div class="col-9">
-        <form [formGroup]="replyForm">
-          <div class="align-items-end d-flex">
-            <mat-form-field appearance="fill" class="w-100 fz-24">
-              <mat-label>Reply</mat-label>
-              <textarea matInput formControlName="message"></textarea>
-            </mat-form-field>
-            <div class="px-3 pb-1">
-              <button class="btn-clear btn-main py-1 mx-4 btn-field mb-4">
-                <span class="btn-main-text">Send</span>
+      <div class="row justify-content-center">
+        <div
+          [ngClass]="{
+            'col-12': helpDeskChat.closed,
+            'col-9': !helpDeskChat.closed
+          }"
+        >
+          <form [formGroup]="replyForm">
+            <div class="align-items-end d-flex" *ngIf="!helpDeskChat.closed">
+              <mat-form-field appearance="fill" class="w-100 fz-24">
+                <mat-label>Reply</mat-label>
+                <textarea matInput formControlName="message"></textarea>
+              </mat-form-field>
+              <div class="px-3 pb-1">
+                <button
+                  class="btn-clear btn-main py-1 mx-4 btn-field mb-4"
+                  (click)="helpDeskChatReply(helpDeskChat.id)"
+                >
+                  <span class="btn-main-text">Send</span>
+                </button>
+              </div>
+            </div>
+            <div
+              class="d-flex"
+              [ngClass]="{
+                'justify-content-center': helpDeskChat.closed
+              }"
+            >
+              <button
+                type="button"
+                class="btn-clear btn-main btn-red btn-sm"
+                [ngClass]="{ 'py-3': helpDeskChat.closed }"
+                (click)="archiveHelpDeskChat(helpDeskChat.id)"
+              >
+                <span class="btn-main-text">Archive this ticket</span>
               </button>
             </div>
-          </div>
-          <div class="d-flex justify-content-between">
-            <button
-              type="button"
-              class="btn-clear btn-main btn-red btn-sm"
-              *ngIf="getInboxMessage$ | async as chat"
-              (click)="archiveHelpDeskChat(chat.id)"
-            >
-              <span class="btn-main-text">Archive this ticket</span>
-            </button>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
+    </ng-container>
   </ng-container>
+</app-content-box>
+
+<app-content-box
+  headerText="Rate Response"
+  [isFluid]="true"
+  *ngIf="(getHelpDeskChat$ | async)?.closed"
+>
+  <div class="d-flex justify-content-center">
+    <div>
+      <label id="rate-response" class="d-bloc fz-31 fw-bold mb-4"
+        >Was this response helpful?
+      </label>
+      <mat-radio-group aria-labelledby="rate-response" class="d-block mb-4">
+        <mat-radio-button
+          class="d-block fz-24 mb-4"
+          *ngFor="let rate of responseRates"
+          [value]="rate.value"
+        >
+          {{ rate.label }}
+        </mat-radio-button>
+      </mat-radio-group>
+
+      <button type="button" class="btn-clear btn-main btn-sm py-3">
+        <span class="btn-main-text">Submit</span>
+      </button>
+    </div>
+  </div>
 </app-content-box>

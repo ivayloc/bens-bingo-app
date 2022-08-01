@@ -18,11 +18,16 @@ export class HelpDeskMessageComponent implements OnInit {
     message: ['', Validators.required],
   });
 
+  responseRates = [
+    { label: 'Yes', valu: 1 },
+    { label: 'Somewhat', valu: 0 },
+    { label: 'No', value: -1 },
+  ];
   public get messageField(): FormControl {
     return this.replyForm.get('message') as FormControl;
   }
 
-  getInboxMessage$ = new Observable<HelpDeskChat>();
+  getHelpDeskChat$ = new Observable<HelpDeskChat>();
 
   constructor(
     private store: Store<State>,
@@ -40,7 +45,7 @@ export class HelpDeskMessageComponent implements OnInit {
       }
     });
 
-    this.getInboxMessage$ = this.store.select(getHelpDeskChat);
+    this.getHelpDeskChat$ = this.store.select(getHelpDeskChat);
   }
 
   archiveHelpDeskChat(id: number) {
@@ -56,5 +61,7 @@ export class HelpDeskMessageComponent implements OnInit {
     };
 
     this.store.dispatch(HelpDeskPageActions.helpDeskChatReply({ payload }));
+    this.messageField.reset();
+    this.router.navigate(['/help-desk/sent']);
   }
 }

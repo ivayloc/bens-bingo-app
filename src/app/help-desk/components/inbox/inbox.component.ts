@@ -13,7 +13,7 @@ import { HelpDeskPageActions } from '../../state/actions';
   styleUrls: ['./inbox.component.scss'],
 })
 export class InboxComponent implements OnInit {
-  displayedColumns = ['time', 'title', 'options'];
+  displayedColumns = ['id', 'time', 'title', 'options'];
 
   getInboxMessages$ = new Observable<MatTableDataSource<HelpDeskMessage>>();
 
