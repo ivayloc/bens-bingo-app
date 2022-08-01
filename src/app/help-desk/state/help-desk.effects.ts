@@ -64,4 +64,21 @@ export class HelpDeskEffects {
       )
     );
   });
+  helpDeskChatReply = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(HelpDeskPageActions.helpDeskChatReply),
+      mergeMap(({ payload }) =>
+        this.helpDeskService.helpDeskChatReply(payload).pipe(
+          map((helpDeskChat) =>
+            HelpDeskApiActions.helpDeskChatReplySuccess({
+              helpDeskChat,
+            })
+          ),
+          catchError((error) =>
+            of(HelpDeskApiActions.helpDeskChatReplyFailure({ error }))
+          )
+        )
+      )
+    );
+  });
 }

@@ -5,6 +5,7 @@ import { ResponseOf } from 'src/app/shared/models/response-of';
 import { environment } from 'src/environments/environment';
 import { HelpDeskChat } from '../models/help-desk-chat';
 import { HelpDeskMessage } from '../models/help-desk-message';
+import { HelpDeskReply } from '../models/help-desk-reply';
 
 @Injectable({
   providedIn: 'root',
@@ -32,6 +33,22 @@ export class HelpDeskService {
     return this.http
       .get<ResponseOf<HelpDeskChat>>(
         `${environment.apiDomain}/api/slim/v1/user/current/help/ticket/${id}/archive`
+      )
+      .pipe(map(({ data }) => data));
+  }
+
+  helpDeskChatReply({
+    id,
+    body,
+    returnticket,
+  }: HelpDeskReply): Observable<HelpDeskChat> {
+    return this.http
+      .post<ResponseOf<HelpDeskChat>>(
+        `${environment.apiDomain}/api/slim/v1/user/current/help/ticket/${id}/reply`,
+        {
+          body,
+          returnticket,
+        }
       )
       .pipe(map(({ data }) => data));
   }

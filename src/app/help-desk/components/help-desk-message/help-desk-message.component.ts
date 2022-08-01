@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { HelpDeskChat } from '../../models/help-desk-chat';
+import { HelpDeskReply } from '../../models/help-desk-reply';
 import { getHelpDeskChat, State } from '../../state';
 import { HelpDeskPageActions } from '../../state/actions';
 
@@ -13,9 +14,14 @@ import { HelpDeskPageActions } from '../../state/actions';
   styleUrls: ['./help-desk-message.component.scss'],
 })
 export class HelpDeskMessageComponent implements OnInit {
-  replayForm = this.fb.group({
+  replyForm = this.fb.group({
     message: ['', Validators.required],
   });
+
+  public get messageField(): FormControl {
+    return this.replyForm.get('message') as FormControl;
+  }
+
   getInboxMessage$ = new Observable<HelpDeskChat>();
 
   constructor(
@@ -40,5 +46,15 @@ export class HelpDeskMessageComponent implements OnInit {
   archiveHelpDeskChat(id: number) {
     this.store.dispatch(HelpDeskPageActions.archiveHelpDeskChat({ id }));
     this.router.navigate(['../'], { relativeTo: this.route });
+  }
+
+  helpDeskChatReply(id: number) {
+    const payload: HelpDeskReply = {
+      id,
+      body: this.messageField.value,
+      returnticket: true,
+    };
+
+    this.store.dispatch(HelpDeskPageActions.helpDeskChatReply({ payload }));
   }
 }
