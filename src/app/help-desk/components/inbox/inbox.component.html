@@ -1,57 +1,8 @@
-<div class="container-page">
-  <app-content-box headerText="Inbox" [isFluid]="true">
-    <ng-container *ngIf="getInboxMessages$ | async as inboxMessages">
-      <table
-        mat-table
-        aria-describedby="aa"
-        [dataSource]="inboxMessages"
-        class="mat-elevation-z8 w-100"
-        *ngIf="inboxMessages.data.length; else noMessages"
-      >
-        <!-- [fixedLayout]="true" -->
-        <!-- column ID -->
-        <ng-container matColumnDef="id">
-          <th mat-header-cell class="fz-24" *matHeaderCellDef>ID</th>
-          <td class="fz-24" mat-cell *matCellDef="let element">
-            {{ element.id }}
-          </td>
-        </ng-container>
-
-        <!-- column Time -->
-        <ng-container matColumnDef="time">
-          <th mat-header-cell class="fz-24" *matHeaderCellDef>Time</th>
-          <td class="fz-24" mat-cell *matCellDef="let element">
-            {{ element.date }}
-          </td>
-        </ng-container>
-
-        <!-- column Title -->
-        <ng-container matColumnDef="title">
-          <th mat-header-cell class="fz-24" *matHeaderCellDef>Title</th>
-          <td class="fz-24" mat-cell *matCellDef="let element">
-            {{ element.subject }}
-          </td>
-        </ng-container>
-
-        <!-- columns Options -->
-        <ng-container matColumnDef="options">
-          <th mat-header-cell class="fz-24" *matHeaderCellDef>Options</th>
-          <td class="fz-24" mat-cell *matCellDef="let element">
-            <button
-              class="btn-clear btn-main btn-sm"
-              (click)="viewMessage(element.id)"
-            >
-              <span class="btn-main-text">View</span>
-            </button>
-          </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
-      <ng-template #noMessages>
-        <span class="fz-22">No messages</span>
-      </ng-template>
-    </ng-container>
-  </app-content-box>
-</div>
+<app-content-box headerText="Inbox" [isFluid]="true">
+  <ng-container *ngIf="getInboxMessages$ | async as messages">
+    <app-messages-list
+      [messages]="messages"
+      (viewMessage)="viewMessage($event)"
+    ></app-messages-list>
+  </ng-container>
+</app-content-box>
