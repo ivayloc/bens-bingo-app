@@ -1,8 +1,8 @@
 export interface HelpDeskMessage {
-    id: number;
-    subject: string;
-    date: string;
-    viewed: boolean;
-    closed: boolean;
-    allow_reply: boolean;
+  allow_reply: boolean;
+  closed: boolean;
+  date: string;
+  id: number;
+  subject: string;
+  viewed: boolean;
 }

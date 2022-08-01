@@ -28,4 +28,22 @@ export class HelpDeskEffects {
       )
     );
   });
+
+  loadSelectedInboxMessage = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(HelpDeskPageActions.loadSelectedInboxMessage),
+      mergeMap(({ id }) =>
+        this.helpDeskService.getSelectedInboxMessage(id).pipe(
+          map((selectedInboxMessage) =>
+            HelpDeskApiActions.loadSelectedInboxMessageSuccess({
+              selectedInboxMessage,
+            })
+          ),
+          catchError((error) =>
+            of(HelpDeskApiActions.loadSelectedInboxMessageFailure({ error }))
+          )
+        )
+      )
+    );
+  });
 }

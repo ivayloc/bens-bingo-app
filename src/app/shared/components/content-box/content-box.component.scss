@@ -14,10 +14,10 @@
     padding-inline-end: 0;
   }
   &-header {
-    min-height: calc-clamp(75);
-    padding-bottom: 7px;
     margin: 0 calc-clamp(-7);
     &-text {
+      padding-bottom: 7px;
+      min-height: calc-clamp(75);
       font-family: OpenSans, sans-serif;
       font-size: calc-clamp(60);
       font-style: italic;

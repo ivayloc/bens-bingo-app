@@ -10,11 +10,18 @@
         class="box-pink-header d-flex align-items-center justify-content-center"
         *ngIf="headerText"
       >
-        <div class="box-pink-header-text" [ngClass]="titleClass">
+        <div
+          class="box-pink-header-text"
+          [ngClass]="titleClass"
+          *ngIf="headerText"
+        >
           <div [ngClass]="{ 'transform-skew-10': !isFluid }">
             {{ headerText }}
           </div>
         </div>
+      </div>
+      <div class="box-pink-header" #titleBlock>
+        <ng-content select="[header]"></ng-content>
       </div>
       <div
         class="box-pink-body"

@@ -27,10 +27,12 @@ import { HelpDeskMessageComponent } from './components/help-desk-message/help-de
     ArchivedComponent,
     HelpDeskMessageComponent,
   ],
-  imports: [CommonModule, HelpRoutingModule, SharedModule,
+  imports: [
+    CommonModule,
+    HelpRoutingModule,
+    SharedModule,
     StoreModule.forFeature('help-desk', helpDeskReducer),
     EffectsModule.forFeature([HelpDeskEffects]),
-
   ],
 })
-export class HelpModule { }
+export class HelpModule {}

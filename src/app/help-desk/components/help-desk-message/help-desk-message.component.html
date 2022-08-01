@@ -1,1 +1,51 @@
-<p>help-desk-message works!</p>
+<app-content-box
+  [headerText]="'Ticket #' + (getInboxMessage$ | async)?.id"
+  [isFluid]="true"
+>
+  <ng-container *ngIf="getInboxMessage$ | async as inboxMessage">
+    <div class="d-flex flex-column fz-24 mb-5">
+      <div
+        class="w-75 mb-4"
+        [ngClass]="{ 'align-self-end': isOdd }"
+        *ngFor="let message of inboxMessage.items; odd as isOdd"
+      >
+        <app-content-box>
+          <div
+            header=""
+            class="d-flex justify-content-between fz-31 fw-bold my-2 mx-3"
+          >
+            <div>Support</div>
+            <div>{{ message.date }}</div>
+          </div>
+          <div [outerHTML]="message.body"></div>
+        </app-content-box>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-9">
+        <form [formGroup]="replayForm">
+          <div class="align-items-end d-flex">
+            <mat-form-field appearance="fill" class="w-100 fz-24">
+              <mat-label>Replay</mat-label>
+              <textarea matInput formControlName="message"></textarea>
+            </mat-form-field>
+            <div class="px-3 pb-1">
+              <button
+                type="button"
+                class="btn-clear btn-main py-1 mx-4 btn-field mb-4"
+              >
+                <span class="btn-main-text">Send</span>
+              </button>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between">
+            <button type="button" class="btn-clear btn-main btn-red btn-sm">
+              <span class="btn-main-text">Archive this ticket</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ng-container>
+</app-content-box>

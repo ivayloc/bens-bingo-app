@@ -114,7 +114,7 @@
         <th mat-header-cell class="fz-24" *matHeaderCellDef>Action</th>
         <td class="fz-24" mat-cell *matCellDef="let element">
           <button
-            class="btn-clear btn-main btn-sm"
+            class="btn-clear btn-main btn-red btn-sm"
             (click)="removeFriend(element.alias)"
           >
             <span class="btn-main-text">Remove</span>
@@ -179,7 +179,10 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell class="fz-24" *matHeaderCellDef>Action</th>
         <td class="fz-24" mat-cell *matCellDef="let element">
-          <button class="btn-clear btn-main btn-sm" (click)="approveFriendRequest(element.alias)">
+          <button
+            class="btn-clear btn-main btn-sm"
+            (click)="approveFriendRequest(element.alias)"
+          >
             <span class="btn-main-text">Approve</span>
           </button>
         </td>
@@ -252,7 +255,7 @@
           <th mat-header-cell class="fz-24" *matHeaderCellDef>Action</th>
           <td class="fz-24" mat-cell *matCellDef="let element">
             <button
-              class="btn-clear btn-main btn-sm"
+              class="btn-clear btn-main btn-red btn-sm"
               (click)="cancelOutgoingFriendRequest(element.alias)"
             >
               <span class="btn-main-text">Remove</span>
