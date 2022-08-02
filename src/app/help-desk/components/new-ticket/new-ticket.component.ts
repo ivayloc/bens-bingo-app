@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { HelpDeskQuestion } from 'src/app/help-desk/models/help-desk-question';
+import { HelpDeskNewTicket } from '../../models/help-desk-new-ticket';
 import { getHelpDeskQuestions, State } from '../../state';
 import { HelpDeskPageActions } from '../../state/actions';
 
@@ -13,7 +14,7 @@ import { HelpDeskPageActions } from '../../state/actions';
 })
 export class NewTicketComponent implements OnInit {
   newTicketForm = this.fb.group({
-    subject: '',
+    subject: 'New Ticket',
     body: '',
     attachments: '',
   });
@@ -32,5 +33,10 @@ export class NewTicketComponent implements OnInit {
   newQuestion() {
     const id: number = this.quickQuestionField.value;
     this.store.dispatch(HelpDeskPageActions.submitNewQuestion({ id }));
+  }
+
+  createNewTicket() {
+    const payload: HelpDeskNewTicket = this.newTicketForm.value;
+    this.store.dispatch(HelpDeskPageActions.createNewTicket({ payload }));
   }
 }

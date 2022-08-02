@@ -7,6 +7,7 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 })
 export class ContentBoxComponent implements OnInit {
   @ViewChild('titleBlock') hasTitleBlock!: ElementRef<HTMLDivElement>;
+  @ViewChild('footerBlock') hasFooterBlock!: ElementRef<HTMLDivElement>;
   @Input() headerText = '';
   @Input() titleClass = '';
   @Input() isFluid = false;

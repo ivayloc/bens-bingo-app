@@ -6,6 +6,7 @@ import { ResponseOf } from 'src/app/shared/models/response-of';
 import { environment } from 'src/environments/environment';
 import { HelpDeskChat } from '../models/help-desk-chat';
 import { HelpDeskMessage } from '../models/help-desk-message';
+import { HelpDeskNewTicket } from '../models/help-desk-new-ticket';
 import { HelpDeskQuestions } from '../models/help-desk-questions';
 import { HelpDeskReply } from '../models/help-desk-reply';
 
@@ -98,6 +99,15 @@ export class HelpDeskService {
       .post<ResponseOf<{ ticketid: number }>>(
         `${environment.apiDomain}/api/slim/v1/user/current/help/ticket`,
         { questionid }
+      )
+      .pipe(map(({ data }) => data.ticketid));
+  }
+
+  createNewTicket(newTicket: HelpDeskNewTicket): Observable<number> {
+    return this.http
+      .post<ResponseOf<{ ticketid: number }>>(
+        `${environment.apiDomain}/api/slim/v1/user/current/help/ticket`,
+        { newTicket }
       )
       .pipe(map(({ data }) => data.ticketid));
   }

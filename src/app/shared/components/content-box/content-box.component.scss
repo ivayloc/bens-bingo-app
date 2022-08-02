@@ -27,8 +27,7 @@
       text-transform: uppercase;
     }
   }
-  &-body {
-    padding: calc-clamp(18) calc-clamp(88);
+  &-content {
     background: #322c36
       linear-gradient(
         135deg,
@@ -39,8 +38,12 @@
         rgba(31, 27, 33, 1) 87%,
         rgba(31, 27, 33, 1) 100%
       );
-    &-compact {
-      padding: calc-clamp(18) calc-clamp(44);
+    &-body,
+    &-footer {
+      padding: calc-clamp(18) calc-clamp(88);
+      &-compact {
+        padding: calc-clamp(18) calc-clamp(44);
+      }
     }
   }
 }

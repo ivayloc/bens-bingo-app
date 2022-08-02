@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { HelpDeskNewTicket } from '../../models/help-desk-new-ticket';
 import { HelpDeskReply } from '../../models/help-desk-reply';
 
 export const loadInboxMessages = createAction(
@@ -44,4 +45,9 @@ export const loadHelpDeskQuestions = createAction(
 export const submitNewQuestion = createAction(
   '[HelpDesk/NewTicket] Submit new question',
   props<{ id: number }>()
+);
+
+export const createNewTicket = createAction(
+  '[HelpDesk/NewTicket] Create new ticket',
+  props<{ payload: HelpDeskNewTicket }>()
 );

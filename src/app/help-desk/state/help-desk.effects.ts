@@ -185,12 +185,42 @@ export class HelpDeskEffects {
     );
   });
 
+  createNewTicket$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(HelpDeskPageActions.createNewTicket),
+      mergeMap(({ payload }) =>
+        this.helpDeskService.createNewTicket(payload).pipe(
+          map((newTicketId) =>
+            HelpDeskApiActions.createNewTicketSuccess({
+              newTicketId,
+            })
+          ),
+          catchError((error) =>
+            of(HelpDeskApiActions.createNewTicketFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
   submitNewQuestionSuccess$ = createEffect(
     () => {
       return this.actions$.pipe(
         ofType(HelpDeskApiActions.submitNewQuestionSuccess),
         tap(({ submittedQuestionId }) => {
           this.router.navigate(['help-desk', 'outbox', submittedQuestionId]);
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
+  createNewTicketSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(HelpDeskApiActions.createNewTicketSuccess),
+        tap(({ newTicketId }) => {
+          this.router.navigate(['help-desk', 'outbox', newTicketId]);
         })
       );
     },

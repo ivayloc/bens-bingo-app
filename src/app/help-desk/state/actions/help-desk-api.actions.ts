@@ -92,3 +92,13 @@ export const submitNewQuestionFailure = createAction(
   '[HelpDesk/NewTicket API] Submit new question FAILURE',
   props<{ error: string }>()
 );
+
+export const createNewTicketSuccess = createAction(
+  '[HelpDesk/NewTicket API] Create new ticket SUCCESS',
+  props<{ newTicketId: number }>()
+);
+
+export const createNewTicketFailure = createAction(
+  '[HelpDesk/NewTicket API] Create new ticket FAILURE',
+  props<{ error: string }>()
+);

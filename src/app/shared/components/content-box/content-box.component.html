@@ -6,36 +6,48 @@
     }"
   >
     <div class="box-pink" [ngClass]="{ 'box-pink-fluid': isFluid }">
-      <div
-        class="box-pink-header d-flex align-items-center justify-content-center"
-        *ngIf="headerText"
-      >
+      <header>
         <div
-          class="box-pink-header-text"
-          [ngClass]="titleClass"
+          class="box-pink-header d-flex align-items-center justify-content-center"
           *ngIf="headerText"
         >
-          <div [ngClass]="{ 'transform-skew-10': !isFluid }">
-            {{ headerText }}
+          <div
+            class="box-pink-header-text"
+            [ngClass]="titleClass"
+            *ngIf="headerText"
+          >
+            <div [ngClass]="{ 'transform-skew-10': !isFluid }">
+              {{ headerText }}
+            </div>
           </div>
         </div>
-      </div>
-      <div class="box-pink-header" #titleBlock>
-        <ng-content select="[header]"></ng-content>
-      </div>
-      <div
-        class="box-pink-body"
-        [ngClass]="{ 'box-pink-body-compact': isCompact }"
-      >
-        <div
-          [ngClass]="{
-            'transform-skew-10': !isFluid,
-            'py-4': !isCompact,
-            'py-2': isCompact
-          }"
-        >
-          <ng-content></ng-content>
+        <div class="box-pink-header" #titleBlock>
+          <ng-content select="[header]"></ng-content>
         </div>
+      </header>
+      <div class="box-pink-content">
+        <div
+          class="box-pink-content-body"
+          [ngClass]="{ 'box-pink-content-body-compact': isCompact }"
+        >
+          <div
+            [ngClass]="{
+              'transform-skew-10': !isFluid,
+              'py-4': !isCompact,
+              'py-2': isCompact
+            }"
+          >
+            <ng-content></ng-content>
+          </div>
+        </div>
+        <hr class="m-0" />
+        <footer
+          class="box-pink-content-footer transform-skew-10"
+          #footerBlock
+          [ngClass]="{ 'd-none': !hasFooterBlock?.nativeElement?.innerHTML }"
+        >
+          <ng-content select="[footer]"></ng-content>
+        </footer>
       </div>
     </div>
   </div>
