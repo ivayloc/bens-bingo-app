@@ -1,4 +1,4 @@
-<app-content-box headerText="Outbox" [isFluid]="true">
+<app-content-box headerText="Archived" [isFluid]="true">
   <ng-container *ngIf="getArchivedMessages$ | async as messages">
     <app-messages-list
       [messages]="messages"

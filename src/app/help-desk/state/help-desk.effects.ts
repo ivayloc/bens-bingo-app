@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { mergeMap, map, catchError, of } from 'rxjs';
+import { mergeMap, map, catchError, of, tap, switchMap } from 'rxjs';
 import { HelpDeskService } from '../services/help-desk.service';
 import { HelpDeskApiActions, HelpDeskPageActions } from './actions';
 
@@ -16,11 +16,14 @@ export class HelpDeskEffects {
       ofType(HelpDeskPageActions.loadInboxMessages),
       mergeMap(() =>
         this.helpDeskService.getInboxMessages().pipe(
-          map((inboxMessages) =>
+          switchMap((inboxMessages) => [
             HelpDeskApiActions.loadInboxMessagesSuccess({
               inboxMessages,
-            })
-          ),
+            }),
+            HelpDeskPageActions.saveInLocalStorage({
+              payload: { isAdmin: false },
+            }),
+          ]),
           catchError((error) =>
             of(HelpDeskApiActions.loadInboxMessagesFailure({ error }))
           )
@@ -34,11 +37,14 @@ export class HelpDeskEffects {
       ofType(HelpDeskPageActions.loadOutboxMessages),
       mergeMap(() =>
         this.helpDeskService.getOutboxMessages().pipe(
-          map((outboxMessages) =>
+          switchMap((outboxMessages) => [
             HelpDeskApiActions.loadOutboxMessagesSuccess({
               outboxMessages,
-            })
-          ),
+            }),
+            HelpDeskPageActions.saveInLocalStorage({
+              payload: { isAdmin: false },
+            }),
+          ]),
           catchError((error) =>
             of(HelpDeskApiActions.loadOutboxMessagesFailure({ error }))
           )
@@ -52,11 +58,14 @@ export class HelpDeskEffects {
       ofType(HelpDeskPageActions.loadArchivedMessages),
       mergeMap(() =>
         this.helpDeskService.getArchivedMessages().pipe(
-          map((archivedMessages) =>
+          switchMap((archivedMessages) => [
             HelpDeskApiActions.loadArchivedMessagesSuccess({
               archivedMessages,
-            })
-          ),
+            }),
+            HelpDeskPageActions.saveInLocalStorage({
+              payload: { isAdmin: false },
+            }),
+          ]),
           catchError((error) =>
             of(HelpDeskApiActions.loadArchivedMessagesFailure({ error }))
           )
@@ -70,11 +79,14 @@ export class HelpDeskEffects {
       ofType(HelpDeskPageActions.loadCustomerServiceMessages),
       mergeMap(() =>
         this.helpDeskService.getCustomerServiceMessages().pipe(
-          map((customerServiceMessages) =>
+          switchMap((customerServiceMessages) => [
             HelpDeskApiActions.loadCustomerServiceMessagesSuccess({
               customerServiceMessages,
-            })
-          ),
+            }),
+            HelpDeskPageActions.saveInLocalStorage({
+              payload: { isAdmin: true },
+            }),
+          ]),
           catchError((error) =>
             of(HelpDeskApiActions.loadCustomerServiceMessagesFailure({ error }))
           )
@@ -83,7 +95,7 @@ export class HelpDeskEffects {
     );
   });
 
-  loadHelpDeskChat = createEffect(() => {
+  loadHelpDeskChat$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(HelpDeskPageActions.loadHelpDeskChat),
       mergeMap(({ id, isFromAdmin }) =>
@@ -101,7 +113,7 @@ export class HelpDeskEffects {
     );
   });
 
-  archiveHelpDeskChat = createEffect(() => {
+  archiveHelpDeskChat$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(HelpDeskPageActions.archiveHelpDeskChat),
       mergeMap(({ id }) =>
@@ -118,7 +130,7 @@ export class HelpDeskEffects {
       )
     );
   });
-  helpDeskChatReply = createEffect(() => {
+  helpDeskChatReply$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(HelpDeskPageActions.helpDeskChatReply),
       mergeMap(({ payload }) =>
@@ -135,4 +147,16 @@ export class HelpDeskEffects {
       )
     );
   });
+
+  helpDeskMessageOptions$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(HelpDeskPageActions.saveInLocalStorage),
+        tap(({ payload }) => {
+          localStorage.setItem('helpDesk', JSON.stringify(payload));
+        })
+      );
+    },
+    { dispatch: false }
+  );
 }

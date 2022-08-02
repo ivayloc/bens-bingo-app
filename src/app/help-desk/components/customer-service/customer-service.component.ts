@@ -29,6 +29,10 @@ export class CustomerServiceComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(HelpDeskPageActions.loadCustomerServiceMessages());
+    // this.store.dispatch(
+    //   HelpDeskPageActions.saveInLocalStorage({ payload: { isAdmin: true } })
+    // );
+
     this.getCustomerServiceMessages$ = this.store.select(
       getCustomerServiceMessages
     );

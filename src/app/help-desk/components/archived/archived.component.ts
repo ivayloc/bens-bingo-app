@@ -23,6 +23,7 @@ export class ArchivedComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(HelpDeskPageActions.loadArchivedMessages());
+
     this.getArchivedMessages$ = this.store.select(getArchivedMessages);
   }
 

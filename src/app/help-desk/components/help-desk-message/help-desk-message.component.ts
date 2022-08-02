@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { Observable, switchMap, tap } from 'rxjs';
 import { HelpDeskChat } from '../../models/help-desk-chat';
 import { HelpDeskReply } from '../../models/help-desk-reply';
-import { getHelpDeskChat, getIsFromCustomerService, State } from '../../state';
+import { getHelpDeskChat, State } from '../../state';
 import { HelpDeskPageActions } from '../../state/actions';
 
 @Component({
@@ -38,21 +38,18 @@ export class HelpDeskMessageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params
-      .pipe(
-        tap((params) => (this.messageId = +params['id'])),
-        switchMap(() => this.store.select(getIsFromCustomerService))
-      )
-      .subscribe((isFromAdmin) => {
-        if (this.messageId) {
-          this.store.dispatch(
-            HelpDeskPageActions.loadHelpDeskChat({
-              id: this.messageId,
-              isFromAdmin,
-            })
-          );
-        }
-      });
+    this.route.params.subscribe((params) => {
+      const isFromAdmin = JSON.parse(localStorage.getItem('helpDesk') || '');
+
+      if (params['id']) {
+        this.store.dispatch(
+          HelpDeskPageActions.loadHelpDeskChat({
+            id: +params['id'],
+            isFromAdmin,
+          })
+        );
+      }
+    });
 
     this.getHelpDeskChat$ = this.store.select(getHelpDeskChat);
   }

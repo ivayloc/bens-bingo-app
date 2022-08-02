@@ -31,3 +31,8 @@ export const helpDeskChatReply = createAction(
   '[Help Desk/Inbox] Reply help desk chat',
   props<{ payload: HelpDeskReply }>()
 );
+
+export const saveInLocalStorage = createAction(
+  '[Help Desk] Save in localStorage',
+  props<{ payload: any }>()
+);

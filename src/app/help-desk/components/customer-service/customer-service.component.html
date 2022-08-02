@@ -1,4 +1,4 @@
-<app-content-box headerText="Outbox" [isFluid]="true">
+<app-content-box headerText="Customer Service" [isFluid]="true">
   <ng-container *ngIf="getCustomerServiceMessages$ | async as messages">
     <app-messages-list
       [messages]="messages"

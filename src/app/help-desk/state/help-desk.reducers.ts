@@ -8,7 +8,6 @@ export interface HelpDeskState {
   outboxMessages: HelpDeskMessage[];
   archivedMessages: HelpDeskMessage[];
   customerServiceMessages: HelpDeskMessage[];
-  isFromAdmin: boolean;
   helpDeskChat: HelpDeskChat;
   error: any;
 }
@@ -18,7 +17,6 @@ const initialState: HelpDeskState = {
   outboxMessages: [],
   archivedMessages: [],
   customerServiceMessages: [],
-  isFromAdmin: false,
   helpDeskChat: {} as HelpDeskChat,
   error: {},
 };
@@ -31,7 +29,6 @@ export const helpDeskReducer = createReducer<HelpDeskState>(
       return {
         ...state,
         inboxMessages,
-        isFromAdmin: false,
         error: '',
       };
     }
@@ -92,7 +89,6 @@ export const helpDeskReducer = createReducer<HelpDeskState>(
       return {
         ...state,
         outboxMessages,
-        isFromAdmin: false,
         error: '',
       };
     }
@@ -113,7 +109,6 @@ export const helpDeskReducer = createReducer<HelpDeskState>(
       return {
         ...state,
         archivedMessages,
-        isFromAdmin: false,
         error: '',
       };
     }
@@ -134,7 +129,6 @@ export const helpDeskReducer = createReducer<HelpDeskState>(
       return {
         ...state,
         customerServiceMessages,
-        isFromAdmin: true,
         error: '',
       };
     }

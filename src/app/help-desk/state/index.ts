@@ -33,8 +33,3 @@ export const getHelpDeskChat = createSelector(
   getHelpDeskState,
   (state) => state.helpDeskChat
 );
-
-export const getIsFromCustomerService = createSelector(
-  getHelpDeskState,
-  (state) => state.isFromAdmin
-);
