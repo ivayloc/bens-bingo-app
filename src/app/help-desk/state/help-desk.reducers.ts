@@ -1,4 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
+import { HelpDeskQuestion } from 'src/app/help-desk/models/help-desk-question';
 import { HelpDeskChat } from '../models/help-desk-chat';
 import { HelpDeskMessage } from '../models/help-desk-message';
 import { HelpDeskApiActions } from './actions';
@@ -9,6 +10,7 @@ export interface HelpDeskState {
   archivedMessages: HelpDeskMessage[];
   customerServiceMessages: HelpDeskMessage[];
   helpDeskChat: HelpDeskChat;
+  helpDeskQuestions: HelpDeskQuestion[];
   error: any;
 }
 
@@ -18,6 +20,7 @@ const initialState: HelpDeskState = {
   archivedMessages: [],
   customerServiceMessages: [],
   helpDeskChat: {} as HelpDeskChat,
+  helpDeskQuestions: [],
   error: {},
 };
 
@@ -139,6 +142,26 @@ export const helpDeskReducer = createReducer<HelpDeskState>(
       return {
         ...state,
         customerServiceMessages: [],
+        error: action.error,
+      };
+    }
+  ),
+  on(
+    HelpDeskApiActions.loadHelpDeskQuestionsSuccess,
+    (state, { helpDeskQuestions }): HelpDeskState => {
+      return {
+        ...state,
+        helpDeskQuestions,
+        error: '',
+      };
+    }
+  ),
+  on(
+    HelpDeskApiActions.loadHelpDeskQuestionsFailure,
+    (state, action): HelpDeskState => {
+      return {
+        ...state,
+        helpDeskQuestions: [],
         error: action.error,
       };
     }

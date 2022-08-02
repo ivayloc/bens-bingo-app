@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { HelpDeskQuestion } from 'src/app/help-desk/models/help-desk-question';
 import { HelpDeskChat } from '../../models/help-desk-chat';
 import { HelpDeskMessage } from '../../models/help-desk-message';
 
@@ -69,5 +70,15 @@ export const helpDeskChatReplySuccess = createAction(
 
 export const helpDeskChatReplyFailure = createAction(
   '[HelpDesk/Inbox API] Reply help desk chat FAILURE',
+  props<{ error: string }>()
+);
+
+export const loadHelpDeskQuestionsSuccess = createAction(
+  '[HelpDesk/Inbox API] Get help desk questions SUCCESS',
+  props<{ helpDeskQuestions: HelpDeskQuestion[] }>()
+);
+
+export const loadHelpDeskQuestionsFailure = createAction(
+  '[HelpDesk/Inbox API] Get help desk questions FAILURE',
   props<{ error: string }>()
 );

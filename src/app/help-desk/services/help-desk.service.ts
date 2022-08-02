@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
+import { HelpDeskQuestion } from 'src/app/help-desk/models/help-desk-question';
 import { ResponseOf } from 'src/app/shared/models/response-of';
 import { environment } from 'src/environments/environment';
 import { HelpDeskChat } from '../models/help-desk-chat';
 import { HelpDeskMessage } from '../models/help-desk-message';
+import { HelpDeskQuestions } from '../models/help-desk-questions';
 import { HelpDeskReply } from '../models/help-desk-reply';
 
 @Injectable({
@@ -81,5 +83,13 @@ export class HelpDeskService {
         }
       )
       .pipe(map(({ data }) => data));
+  }
+
+  getHelpDeskQuestions(): Observable<HelpDeskQuestion[]> {
+    return this.http
+      .get<ResponseOf<HelpDeskQuestions>>(
+        `${environment.apiDomain}/api/slim/v1/user/current/help/questions/en`
+      )
+      .pipe(map(({ data }) => data.items));
   }
 }

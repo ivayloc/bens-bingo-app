@@ -148,6 +148,24 @@ export class HelpDeskEffects {
     );
   });
 
+  getHelpDeskQuestions$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(HelpDeskPageActions.loadHelpDeskQuestions),
+      mergeMap(() =>
+        this.helpDeskService.getHelpDeskQuestions().pipe(
+          map((helpDeskQuestions) =>
+            HelpDeskApiActions.loadHelpDeskQuestionsSuccess({
+              helpDeskQuestions,
+            })
+          ),
+          catchError((error) =>
+            of(HelpDeskApiActions.loadHelpDeskQuestionsFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
   helpDeskMessageOptions$ = createEffect(
     () => {
       return this.actions$.pipe(

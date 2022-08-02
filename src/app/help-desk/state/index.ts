@@ -33,3 +33,8 @@ export const getHelpDeskChat = createSelector(
   getHelpDeskState,
   (state) => state.helpDeskChat
 );
+
+export const getHelpDeskQuestions = createSelector(
+  getHelpDeskState,
+  (state) => state.helpDeskQuestions
+);
