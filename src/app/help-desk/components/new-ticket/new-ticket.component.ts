@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { HelpDeskQuestion } from 'src/app/help-desk/models/help-desk-question';
-import { HelpDeskMessage } from '../../models/help-desk-message';
-import { getHelpDeskQuestions, getOutboxMessages, State } from '../../state';
+import { getHelpDeskQuestions, State } from '../../state';
 import { HelpDeskPageActions } from '../../state/actions';
 
 @Component({
@@ -19,10 +17,9 @@ export class NewTicketComponent implements OnInit {
     body: '',
     attachments: '',
   });
+  quickQuestionField = this.fb.control('');
 
   getHelpDeskQuestions$ = new Observable<HelpDeskQuestion[]>();
-
-  quickQuestionField = this.fb.control('');
 
   constructor(private store: Store<State>, private fb: FormBuilder) {}
 
@@ -30,5 +27,10 @@ export class NewTicketComponent implements OnInit {
     this.store.dispatch(HelpDeskPageActions.loadHelpDeskQuestions());
 
     this.getHelpDeskQuestions$ = this.store.select(getHelpDeskQuestions);
+  }
+
+  newQuestion() {
+    const id: number = this.quickQuestionField.value;
+    this.store.dispatch(HelpDeskPageActions.submitNewQuestion({ id }));
   }
 }

@@ -40,3 +40,8 @@ export const saveInLocalStorage = createAction(
 export const loadHelpDeskQuestions = createAction(
   '[HelpDesk/NewTicket] Load help desk questions'
 );
+
+export const submitNewQuestion = createAction(
+  '[HelpDesk/NewTicket] Submit new question',
+  props<{ id: number }>()
+);

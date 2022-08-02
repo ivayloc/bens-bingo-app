@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { mergeMap, map, catchError, of, tap, switchMap } from 'rxjs';
 import { HelpDeskService } from '../services/help-desk.service';
@@ -8,7 +9,8 @@ import { HelpDeskApiActions, HelpDeskPageActions } from './actions';
 export class HelpDeskEffects {
   constructor(
     private actions$: Actions,
-    private helpDeskService: HelpDeskService
+    private helpDeskService: HelpDeskService,
+    private router: Router
   ) {}
 
   loadInboxMessages$ = createEffect(() => {
@@ -165,6 +167,35 @@ export class HelpDeskEffects {
       )
     );
   });
+  submitNewQuestion$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(HelpDeskPageActions.submitNewQuestion),
+      mergeMap(({ id }) =>
+        this.helpDeskService.submitNewQuestion(id).pipe(
+          map((submittedQuestionId) =>
+            HelpDeskApiActions.submitNewQuestionSuccess({
+              submittedQuestionId,
+            })
+          ),
+          catchError((error) =>
+            of(HelpDeskApiActions.submitNewQuestionFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  submitNewQuestionSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(HelpDeskApiActions.submitNewQuestionSuccess),
+        tap(({ submittedQuestionId }) => {
+          this.router.navigate(['help-desk', 'outbox', submittedQuestionId]);
+        })
+      );
+    },
+    { dispatch: false }
+  );
 
   helpDeskMessageOptions$ = createEffect(
     () => {

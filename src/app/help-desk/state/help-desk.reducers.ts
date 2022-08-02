@@ -11,6 +11,7 @@ export interface HelpDeskState {
   customerServiceMessages: HelpDeskMessage[];
   helpDeskChat: HelpDeskChat;
   helpDeskQuestions: HelpDeskQuestion[];
+  submittedQuestionId: number;
   error: any;
 }
 
@@ -21,6 +22,7 @@ const initialState: HelpDeskState = {
   customerServiceMessages: [],
   helpDeskChat: {} as HelpDeskChat,
   helpDeskQuestions: [],
+  submittedQuestionId: 0,
   error: {},
 };
 
@@ -162,6 +164,26 @@ export const helpDeskReducer = createReducer<HelpDeskState>(
       return {
         ...state,
         helpDeskQuestions: [],
+        error: action.error,
+      };
+    }
+  ),
+  on(
+    HelpDeskApiActions.submitNewQuestionSuccess,
+    (state, { submittedQuestionId }): HelpDeskState => {
+      return {
+        ...state,
+        submittedQuestionId,
+        error: '',
+      };
+    }
+  ),
+  on(
+    HelpDeskApiActions.submitNewQuestionFailure,
+    (state, action): HelpDeskState => {
+      return {
+        ...state,
+        submittedQuestionId: 0,
         error: action.error,
       };
     }

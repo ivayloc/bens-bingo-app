@@ -39,7 +39,9 @@ export class HelpDeskMessageComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      const isFromAdmin = JSON.parse(localStorage.getItem('helpDesk') || '');
+      const { isFromAdmin } = JSON.parse(
+        localStorage.getItem('helpDesk') || ''
+      );
 
       if (params['id']) {
         this.store.dispatch(

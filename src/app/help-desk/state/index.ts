@@ -38,3 +38,8 @@ export const getHelpDeskQuestions = createSelector(
   getHelpDeskState,
   (state) => state.helpDeskQuestions
 );
+
+export const getSubmittedQuestionId = createSelector(
+  getHelpDeskState,
+  (state) => state.submittedQuestionId
+);

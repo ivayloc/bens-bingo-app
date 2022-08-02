@@ -82,3 +82,13 @@ export const loadHelpDeskQuestionsFailure = createAction(
   '[HelpDesk/Inbox API] Get help desk questions FAILURE',
   props<{ error: string }>()
 );
+
+export const submitNewQuestionSuccess = createAction(
+  '[HelpDesk/NewTicket API] Submit new question SUCCESS',
+  props<{ submittedQuestionId: number }>()
+);
+
+export const submitNewQuestionFailure = createAction(
+  '[HelpDesk/NewTicket API] Submit new question FAILURE',
+  props<{ error: string }>()
+);

@@ -92,4 +92,13 @@ export class HelpDeskService {
       )
       .pipe(map(({ data }) => data.items));
   }
+
+  submitNewQuestion(questionid: number): Observable<number> {
+    return this.http
+      .post<ResponseOf<{ ticketid: number }>>(
+        `${environment.apiDomain}/api/slim/v1/user/current/help/ticket`,
+        { questionid }
+      )
+      .pipe(map(({ data }) => data.ticketid));
+  }
 }
