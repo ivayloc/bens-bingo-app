@@ -29,11 +29,65 @@ export class HelpDeskEffects {
     );
   });
 
+  loadOutboxMessages$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(HelpDeskPageActions.loadOutboxMessages),
+      mergeMap(() =>
+        this.helpDeskService.getOutboxMessages().pipe(
+          map((outboxMessages) =>
+            HelpDeskApiActions.loadOutboxMessagesSuccess({
+              outboxMessages,
+            })
+          ),
+          catchError((error) =>
+            of(HelpDeskApiActions.loadOutboxMessagesFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  loadArchivedMessages$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(HelpDeskPageActions.loadArchivedMessages),
+      mergeMap(() =>
+        this.helpDeskService.getArchivedMessages().pipe(
+          map((archivedMessages) =>
+            HelpDeskApiActions.loadArchivedMessagesSuccess({
+              archivedMessages,
+            })
+          ),
+          catchError((error) =>
+            of(HelpDeskApiActions.loadArchivedMessagesFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  loadCustomerServiceMessages$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(HelpDeskPageActions.loadCustomerServiceMessages),
+      mergeMap(() =>
+        this.helpDeskService.getCustomerServiceMessages().pipe(
+          map((customerServiceMessages) =>
+            HelpDeskApiActions.loadCustomerServiceMessagesSuccess({
+              customerServiceMessages,
+            })
+          ),
+          catchError((error) =>
+            of(HelpDeskApiActions.loadCustomerServiceMessagesFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
   loadHelpDeskChat = createEffect(() => {
     return this.actions$.pipe(
       ofType(HelpDeskPageActions.loadHelpDeskChat),
-      mergeMap(({ id }) =>
-        this.helpDeskService.getHelpDeskChat(id).pipe(
+      mergeMap(({ id, isFromAdmin }) =>
+        this.helpDeskService.getHelpDeskChat(id, isFromAdmin).pipe(
           map((helpDeskChat) =>
             HelpDeskApiActions.loadHelpDeskChatSuccess({
               helpDeskChat,

@@ -21,10 +21,39 @@ export class HelpDeskService {
       .pipe(map(({ data }) => data));
   }
 
-  getHelpDeskChat(id: number): Observable<HelpDeskChat> {
+  getOutboxMessages(): Observable<HelpDeskMessage[]> {
+    return this.http
+      .get<ResponseOf<HelpDeskMessage[]>>(
+        `${environment.apiDomain}/api/slim/v1/user/current/help/outbox`
+      )
+      .pipe(map(({ data }) => data));
+  }
+
+  getArchivedMessages(): Observable<HelpDeskMessage[]> {
+    return this.http
+      .get<ResponseOf<HelpDeskMessage[]>>(
+        `${environment.apiDomain}/api/slim/v1/user/current/help/archived`
+      )
+      .pipe(map(({ data }) => data));
+  }
+
+  getCustomerServiceMessages(): Observable<HelpDeskMessage[]> {
+    return this.http
+      .get<ResponseOf<HelpDeskMessage[]>>(
+        `${environment.apiDomain}/api/slim/v1/user/current/help/admin`
+      )
+      .pipe(map(({ data }) => data));
+  }
+
+  getHelpDeskChat(id: number, isFromAdmin: boolean): Observable<HelpDeskChat> {
+    let messageDetailsUrl = `api/slim/v1/user/current/help/ticket/${id}`;
+    if (isFromAdmin) {
+      messageDetailsUrl = `api/slim/v1/user/current/help/admin/${id}`;
+    }
+
     return this.http
       .get<ResponseOf<HelpDeskChat>>(
-        `${environment.apiDomain}/api/slim/v1/user/current/help/ticket/${id}`
+        `${environment.apiDomain}${messageDetailsUrl}`
       )
       .pipe(map(({ data }) => data));
   }

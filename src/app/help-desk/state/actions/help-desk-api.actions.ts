@@ -7,6 +7,36 @@ export const loadInboxMessagesSuccess = createAction(
   props<{ inboxMessages: HelpDeskMessage[] }>()
 );
 
+export const loadOutboxMessagesSuccess = createAction(
+  '[HelpDesk/Outbox API] Get outbox messages SUCCESS',
+  props<{ outboxMessages: HelpDeskMessage[] }>()
+);
+
+export const loadOutboxMessagesFailure = createAction(
+  '[HelpDesk/Outbox API] Get outbox messages FAILURE',
+  props<{ error: string }>()
+);
+
+export const loadArchivedMessagesSuccess = createAction(
+  '[HelpDesk/Outbox API] Get archived messages SUCCESS',
+  props<{ archivedMessages: HelpDeskMessage[] }>()
+);
+
+export const loadArchivedMessagesFailure = createAction(
+  '[HelpDesk/Outbox API] Get archived messages FAILURE',
+  props<{ error: string }>()
+);
+
+export const loadCustomerServiceMessagesSuccess = createAction(
+  '[HelpDesk/CustomerService API] Get customer service messages SUCCESS',
+  props<{ customerServiceMessages: HelpDeskMessage[] }>()
+);
+
+export const loadCustomerServiceMessagesFailure = createAction(
+  '[HelpDesk/CustomerService API] Get customer service messages FAILURE',
+  props<{ error: string }>()
+);
+
 export const loadInboxMessagesFailure = createAction(
   '[HelpDesk/Inbox API] Get inbox messages FAILURE',
   props<{ error: string }>()

@@ -14,7 +14,27 @@ export const getInboxMessages = createSelector(
   (state) => new MatTableDataSource(state.inboxMessages)
 );
 
+export const getOutboxMessages = createSelector(
+  getHelpDeskState,
+  (state) => new MatTableDataSource(state.outboxMessages)
+);
+
+export const getArchivedMessages = createSelector(
+  getHelpDeskState,
+  (state) => new MatTableDataSource(state.archivedMessages)
+);
+
+export const getCustomerServiceMessages = createSelector(
+  getHelpDeskState,
+  (state) => new MatTableDataSource(state.customerServiceMessages)
+);
+
 export const getHelpDeskChat = createSelector(
   getHelpDeskState,
   (state) => state.helpDeskChat
+);
+
+export const getIsFromCustomerService = createSelector(
+  getHelpDeskState,
+  (state) => state.isFromAdmin
 );

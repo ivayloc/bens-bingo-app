@@ -9,7 +9,12 @@
     <!-- column ID -->
     <ng-container matColumnDef="id">
       <th mat-header-cell class="fz-24" *matHeaderCellDef>ID</th>
-      <td class="fz-24" mat-cell *matCellDef="let element">
+      <td
+        class="fz-24"
+        mat-cell
+        [ngClass]="{ 'fw-bold': !element.viewed }"
+        *matCellDef="let element"
+      >
         {{ element.id }}
       </td>
     </ng-container>
@@ -17,7 +22,12 @@
     <!-- column Time -->
     <ng-container matColumnDef="time">
       <th mat-header-cell class="fz-24" *matHeaderCellDef>Time</th>
-      <td class="fz-24" mat-cell *matCellDef="let element">
+      <td
+        class="fz-24"
+        mat-cell
+        [ngClass]="{ 'fw-bold': !element.viewed }"
+        *matCellDef="let element"
+      >
         {{ element.date }}
       </td>
     </ng-container>
@@ -25,15 +35,26 @@
     <!-- column Title -->
     <ng-container matColumnDef="title">
       <th mat-header-cell class="fz-24" *matHeaderCellDef>Title</th>
-      <td class="fz-24" mat-cell *matCellDef="let element">
+      <td
+        class="fz-24"
+        mat-cell
+        [ngClass]="{ 'fw-bold': !element.viewed }"
+        *matCellDef="let element"
+      >
         {{ element.subject }}
+        <span class="badge bg-secondary" *ngIf="!element.viewed">New</span>
       </td>
     </ng-container>
 
     <!-- columns Options -->
     <ng-container matColumnDef="options">
       <th mat-header-cell class="fz-24" *matHeaderCellDef>Options</th>
-      <td class="fz-24" mat-cell *matCellDef="let element">
+      <td
+        class="fz-24"
+        mat-cell
+        [ngClass]="{ 'fw-bold': !element.viewed }"
+        *matCellDef="let element"
+      >
         <button
           class="btn-clear btn-main btn-sm"
           (click)="viewMessage.next(element.id)"

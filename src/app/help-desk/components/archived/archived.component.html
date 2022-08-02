@@ -1,9 +1,8 @@
-<div class="container-page">
-  <app-content-box headerText="Saved">
-    <div class="row justify-content-center">
-      <div class="col-8">
-        <div class="fz-24">You currently have no tickets.</div>
-      </div>
-    </div>
-  </app-content-box>
-</div>
+<app-content-box headerText="Outbox" [isFluid]="true">
+  <ng-container *ngIf="getArchivedMessages$ | async as messages">
+    <app-messages-list
+      [messages]="messages"
+      (viewMessage)="viewMessage($event)"
+    ></app-messages-list>
+  </ng-container>
+</app-content-box>

@@ -5,12 +5,20 @@ import { HelpDeskApiActions } from './actions';
 
 export interface HelpDeskState {
   inboxMessages: HelpDeskMessage[];
+  outboxMessages: HelpDeskMessage[];
+  archivedMessages: HelpDeskMessage[];
+  customerServiceMessages: HelpDeskMessage[];
+  isFromAdmin: boolean;
   helpDeskChat: HelpDeskChat;
   error: any;
 }
 
 const initialState: HelpDeskState = {
   inboxMessages: [],
+  outboxMessages: [],
+  archivedMessages: [],
+  customerServiceMessages: [],
+  isFromAdmin: false,
   helpDeskChat: {} as HelpDeskChat,
   error: {},
 };
@@ -23,6 +31,7 @@ export const helpDeskReducer = createReducer<HelpDeskState>(
       return {
         ...state,
         inboxMessages,
+        isFromAdmin: false,
         error: '',
       };
     }
@@ -73,6 +82,69 @@ export const helpDeskReducer = createReducer<HelpDeskState>(
       return {
         ...state,
         helpDeskChat: {} as HelpDeskChat,
+        error: action.error,
+      };
+    }
+  ),
+  on(
+    HelpDeskApiActions.loadOutboxMessagesSuccess,
+    (state, { outboxMessages }): HelpDeskState => {
+      return {
+        ...state,
+        outboxMessages,
+        isFromAdmin: false,
+        error: '',
+      };
+    }
+  ),
+  on(
+    HelpDeskApiActions.loadOutboxMessagesFailure,
+    (state, action): HelpDeskState => {
+      return {
+        ...state,
+        outboxMessages: [],
+        error: action.error,
+      };
+    }
+  ),
+  on(
+    HelpDeskApiActions.loadArchivedMessagesSuccess,
+    (state, { archivedMessages }): HelpDeskState => {
+      return {
+        ...state,
+        archivedMessages,
+        isFromAdmin: false,
+        error: '',
+      };
+    }
+  ),
+  on(
+    HelpDeskApiActions.loadArchivedMessagesFailure,
+    (state, action): HelpDeskState => {
+      return {
+        ...state,
+        archivedMessages: [],
+        error: action.error,
+      };
+    }
+  ),
+  on(
+    HelpDeskApiActions.loadCustomerServiceMessagesSuccess,
+    (state, { customerServiceMessages }): HelpDeskState => {
+      return {
+        ...state,
+        customerServiceMessages,
+        isFromAdmin: true,
+        error: '',
+      };
+    }
+  ),
+  on(
+    HelpDeskApiActions.loadCustomerServiceMessagesFailure,
+    (state, action): HelpDeskState => {
+      return {
+        ...state,
+        customerServiceMessages: [],
         error: action.error,
       };
     }

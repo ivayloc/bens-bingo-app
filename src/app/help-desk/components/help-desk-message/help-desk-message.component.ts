@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, switchMap, tap } from 'rxjs';
 import { HelpDeskChat } from '../../models/help-desk-chat';
 import { HelpDeskReply } from '../../models/help-desk-reply';
-import { getHelpDeskChat, State } from '../../state';
+import { getHelpDeskChat, getIsFromCustomerService, State } from '../../state';
 import { HelpDeskPageActions } from '../../state/actions';
 
 @Component({
@@ -23,6 +23,7 @@ export class HelpDeskMessageComponent implements OnInit {
     { label: 'Somewhat', valu: 0 },
     { label: 'No', value: -1 },
   ];
+  messageId!: number;
   public get messageField(): FormControl {
     return this.replyForm.get('message') as FormControl;
   }
@@ -37,13 +38,21 @@ export class HelpDeskMessageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      if (params['id']) {
-        this.store.dispatch(
-          HelpDeskPageActions.loadHelpDeskChat({ id: +params['id'] })
-        );
-      }
-    });
+    this.route.params
+      .pipe(
+        tap((params) => (this.messageId = +params['id'])),
+        switchMap(() => this.store.select(getIsFromCustomerService))
+      )
+      .subscribe((isFromAdmin) => {
+        if (this.messageId) {
+          this.store.dispatch(
+            HelpDeskPageActions.loadHelpDeskChat({
+              id: this.messageId,
+              isFromAdmin,
+            })
+          );
+        }
+      });
 
     this.getHelpDeskChat$ = this.store.select(getHelpDeskChat);
   }
