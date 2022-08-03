@@ -34,6 +34,11 @@ export const getHelpDeskChat = createSelector(
   (state) => state.helpDeskChat
 );
 
+export const getHelpDeskMessageAttachment = createSelector(
+  getHelpDeskState,
+  (state) => state.helpDeskMessageAttachment
+);
+
 export const getHelpDeskQuestions = createSelector(
   getHelpDeskState,
   (state) => state.helpDeskQuestions

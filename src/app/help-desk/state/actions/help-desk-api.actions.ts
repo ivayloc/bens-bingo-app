@@ -102,3 +102,13 @@ export const createNewTicketFailure = createAction(
   '[HelpDesk/NewTicket API] Create new ticket FAILURE',
   props<{ error: string }>()
 );
+
+export const loadHelpDeskMessageAttachmentSuccess = createAction(
+  '[HelpDesk/Inbox API] Get help desk message attachment SUCCESS',
+  props<{ attachment: string }>()
+);
+
+export const loadHelpDeskMessageAttachmentFailure = createAction(
+  '[HelpDesk/Inbox API] Get help desk message attachment FAILURE',
+  props<{ error: string }>()
+);

@@ -115,6 +115,26 @@ export class HelpDeskEffects {
     );
   });
 
+  loadHelpDeskMessageAttachment$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(HelpDeskPageActions.loadHelpDeskMessageAttachment),
+      mergeMap(({ payload }) =>
+        this.helpDeskService.getHelpDeskMessageAttachment(payload).pipe(
+          map((attachment) =>
+            HelpDeskApiActions.loadHelpDeskMessageAttachmentSuccess({
+              attachment,
+            })
+          ),
+          catchError((error) =>
+            of(
+              HelpDeskApiActions.loadHelpDeskMessageAttachmentFailure({ error })
+            )
+          )
+        )
+      )
+    );
+  });
+
   archiveHelpDeskChat$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(HelpDeskPageActions.archiveHelpDeskChat),
@@ -203,24 +223,24 @@ export class HelpDeskEffects {
     );
   });
 
-  submitNewQuestionSuccess$ = createEffect(
-    () => {
-      return this.actions$.pipe(
-        ofType(HelpDeskApiActions.submitNewQuestionSuccess),
-        tap(({ submittedQuestionId }) => {
-          this.router.navigate(['help-desk', 'outbox', submittedQuestionId]);
-        })
-      );
-    },
-    { dispatch: false }
-  );
-
   createNewTicketSuccess$ = createEffect(
     () => {
       return this.actions$.pipe(
         ofType(HelpDeskApiActions.createNewTicketSuccess),
         tap(({ newTicketId }) => {
           this.router.navigate(['help-desk', 'outbox', newTicketId]);
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
+  submitNewQuestionSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(HelpDeskApiActions.submitNewQuestionSuccess),
+        tap(({ submittedQuestionId }) => {
+          this.router.navigate(['help-desk', 'outbox', submittedQuestionId]);
         })
       );
     },

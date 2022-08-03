@@ -20,6 +20,15 @@
               <div class="align-self-end">{{ message.date }}</div>
             </div>
             <div [outerHTML]="message.body"></div>
+            <div footer>
+              <button
+                type="button"
+                class="btn-clear btn-main btn-sm py-3"
+                (click)="getAttachment()"
+              >
+                <span class="btn-main-text">Attachment</span>
+              </button>
+            </div>
           </app-content-box>
         </div>
       </div>

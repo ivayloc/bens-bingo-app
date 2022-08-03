@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { HelpDeskQuestion } from 'src/app/help-desk/models/help-desk-question';
@@ -15,7 +15,7 @@ import { HelpDeskPageActions } from '../../state/actions';
 export class NewTicketComponent implements OnInit {
   newTicketForm = this.fb.group({
     subject: 'New Ticket',
-    body: '',
+    body: ['', [Validators.required, Validators.minLength(10)]],
     attachments: '',
   });
   quickQuestionField = this.fb.control('');
@@ -36,7 +36,15 @@ export class NewTicketComponent implements OnInit {
   }
 
   createNewTicket() {
-    const payload: HelpDeskNewTicket = this.newTicketForm.value;
+    const payload = this.newTicketForm.value;
+
     this.store.dispatch(HelpDeskPageActions.createNewTicket({ payload }));
+  }
+
+  onFileSelect(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.newTicketForm.get('attachments')?.setValue(file);
+    }
   }
 }

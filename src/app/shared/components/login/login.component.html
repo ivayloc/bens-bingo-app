@@ -19,7 +19,7 @@
 >
   <app-content-box [isCompact]="true">
     <div class="login-panel">
-      <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <form [formGroup]="loginForm" (ngSubmit)="login()" class="fz-24">
         <mat-form-field class="d-block" appearance="fill">
           <mat-label>Username</mat-label>
           <input matInput formControlName="email" />

@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { HelpDeskMessageAttachment } from '../../models/help-desk-message-attachment';
 import { HelpDeskNewTicket } from '../../models/help-desk-new-ticket';
 import { HelpDeskReply } from '../../models/help-desk-reply';
 
@@ -31,6 +32,11 @@ export const archiveHelpDeskChat = createAction(
 export const helpDeskChatReply = createAction(
   '[HelpDesk/Inbox] Reply help desk chat',
   props<{ payload: HelpDeskReply }>()
+);
+
+export const loadHelpDeskMessageAttachment = createAction(
+  '[HelpDesk/Inbox] Get help desk message attachment',
+  props<{ payload: HelpDeskMessageAttachment }>()
 );
 
 export const saveInLocalStorage = createAction(

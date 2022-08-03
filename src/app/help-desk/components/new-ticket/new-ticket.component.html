@@ -1,19 +1,23 @@
 <div class="row justify-content-center">
   <div class="col-8">
     <app-content-box headerText="New Ticket" class="mb-5">
-      <form [formGroup]="newTicketForm" class="fz-24">
+      <form
+        [formGroup]="newTicketForm"
+        class="fz-24"
+        (ngSubmit)="createNewTicket()"
+      >
         <mat-form-field class="d-block mb-3" appearance="fill">
-          <textarea matInput></textarea>
+          <textarea matInput formControlName="body"></textarea>
         </mat-form-field>
         <input
           type="file"
           name=""
           id=""
-          formControlName="attachments"
+          (change)="onFileSelect($event)"
           class="mb-4"
         />
         <div class="text-center">
-          <button type="button" class="btn-clear btn-main py-1 mx-2 btn-field">
+          <button class="btn-clear btn-main py-1 mx-2 btn-field">
             <span class="btn-main-text">Submit</span>
           </button>
         </div>
@@ -21,7 +25,7 @@
     </app-content-box>
 
     <app-content-box headerText="Quick Question" class="mb-5">
-      <div class="fz-24 mb-3">
+      <form class="fz-24 mb-3">
         <mat-form-field appearance="fill" class="d-block">
           <mat-label>Select a question</mat-label>
           <mat-select [formControl]="quickQuestionField">
@@ -32,7 +36,7 @@
             >
           </mat-select>
         </mat-form-field>
-      </div>
+      </form>
       <div class="text-center">
         <button
           type="button"

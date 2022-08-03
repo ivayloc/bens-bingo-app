@@ -6,6 +6,7 @@ import { ResponseOf } from 'src/app/shared/models/response-of';
 import { environment } from 'src/environments/environment';
 import { HelpDeskChat } from '../models/help-desk-chat';
 import { HelpDeskMessage } from '../models/help-desk-message';
+import { HelpDeskMessageAttachment } from '../models/help-desk-message-attachment';
 import { HelpDeskNewTicket } from '../models/help-desk-new-ticket';
 import { HelpDeskQuestions } from '../models/help-desk-questions';
 import { HelpDeskReply } from '../models/help-desk-reply';
@@ -103,12 +104,32 @@ export class HelpDeskService {
       .pipe(map(({ data }) => data.ticketid));
   }
 
-  createNewTicket(newTicket: HelpDeskNewTicket): Observable<number> {
+  createNewTicket(newTicket: any): Observable<number> {
+    const form = new FormData();
+    for (const key in newTicket) {
+      if (Object.prototype.hasOwnProperty.call(newTicket, key)) {
+        const value = newTicket[key];
+
+        form.append(key, value);
+      }
+    }
+
     return this.http
       .post<ResponseOf<{ ticketid: number }>>(
         `${environment.apiDomain}/api/slim/v1/user/current/help/ticket`,
-        { newTicket }
+        form
       )
       .pipe(map(({ data }) => data.ticketid));
+  }
+
+  getHelpDeskMessageAttachment({
+    id,
+    num,
+  }: HelpDeskMessageAttachment): Observable<string> {
+    return this.http
+      .get<ResponseOf<string>>(
+        `${environment.apiDomain}/api/slim/v1/user/current/help/ticket/${id}/attachment/${num}`
+      )
+      .pipe(map(({ data }) => data));
   }
 }
