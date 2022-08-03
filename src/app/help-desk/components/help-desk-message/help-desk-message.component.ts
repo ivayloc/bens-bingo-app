@@ -2,10 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable, switchMap, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { HelpDeskChat } from '../../models/help-desk-chat';
+import { HelpDeskMessageAttachment } from '../../models/help-desk-message-attachment';
 import { HelpDeskReply } from '../../models/help-desk-reply';
-import { getHelpDeskChat, State } from '../../state';
+import {
+  getHelpDeskChat,
+  getHelpDeskMessageAttachment,
+  State,
+} from '../../state';
 import { HelpDeskPageActions } from '../../state/actions';
 
 @Component({
@@ -19,15 +24,16 @@ export class HelpDeskMessageComponent implements OnInit {
   });
 
   responseRates = [
-    { label: 'Yes', valu: 1 },
-    { label: 'Somewhat', valu: 0 },
+    { label: 'Yes', value: 1 },
+    { label: 'Somewhat', value: 0 },
     { label: 'No', value: -1 },
   ];
   messageId!: number;
-  public get messageField(): FormControl {
+  get messageField(): FormControl {
     return this.replyForm.get('message') as FormControl;
   }
 
+  getHelpDeskMessageAttachment$ = new Observable<string>();
   getHelpDeskChat$ = new Observable<HelpDeskChat>();
 
   constructor(
@@ -54,6 +60,9 @@ export class HelpDeskMessageComponent implements OnInit {
     });
 
     this.getHelpDeskChat$ = this.store.select(getHelpDeskChat);
+    this.getHelpDeskMessageAttachment$ = this.store.select(
+      getHelpDeskMessageAttachment
+    );
   }
 
   archiveHelpDeskChat(id: number) {
@@ -71,5 +80,14 @@ export class HelpDeskMessageComponent implements OnInit {
     this.store.dispatch(HelpDeskPageActions.helpDeskChatReply({ payload }));
     this.messageField.reset();
     this.router.navigate(['/help-desk/sent']);
+  }
+  getHelpDeskChatChatAttachment({ id, num }: HelpDeskMessageAttachment) {
+    const payload = {
+      id,
+      num,
+    };
+    this.store.dispatch(
+      HelpDeskPageActions.loadHelpDeskMessageAttachment({ payload })
+    );
   }
 }
