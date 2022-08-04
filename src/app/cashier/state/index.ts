@@ -17,3 +17,8 @@ export const getCashOutMethods = createSelector(
   getCashierGamesState,
   (state) => state.cashOutMethods
 );
+
+export const getCashOutStatus = createSelector(
+  getCashierGamesState,
+  (state) => state.cashOutStatus
+);

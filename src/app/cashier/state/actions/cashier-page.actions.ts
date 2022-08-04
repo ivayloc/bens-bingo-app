@@ -7,3 +7,7 @@ export const loadPaymentMethods = createAction(
 export const loadCashOutMethods = createAction(
   '[Cashier/Withdrawal Page] Load cash-out methods'
 );
+
+export const loadCashOutStatus = createAction(
+  '[Cashier/Withdrawal Page] Load cash-out status'
+);

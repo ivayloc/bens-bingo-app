@@ -1,22 +1,33 @@
 import { createAction, props } from '@ngrx/store';
+import { CashOutStatus } from '../../models/cash-out-status';
 import { PaymentMethod } from '../../models/payment-method';
 
-export const loadPaymentMethodsSuccess = createAction(
+export const getPaymentMethodsSuccess = createAction(
   '[Cashier/Deposits API] Load payment methods Success',
   props<{ paymentMethods: PaymentMethod[] }>()
 );
 
-export const loadPaymentMethodsFailure = createAction(
+export const getPaymentMethodsFailure = createAction(
   '[Cashier/Deposits API] Load payment methods Failure',
   props<{ error: string }>()
 );
 
-export const loadCashOutMethodsSuccess = createAction(
-  '[Cashier/Deposits API] Load cash-out methods Success',
+export const getCashOutMethodsSuccess = createAction(
+  '[Cashier/Withdrawal API] Load cash-out methods Success',
   props<{ cashOutMethods: PaymentMethod[] }>()
 );
 
-export const loadCashOutMethodsFailure = createAction(
-  '[Cashier/Deposits API] Load cash-out methods Failure',
+export const getCashOutMethodsFailure = createAction(
+  '[Cashier/Withdrawal API] Load cash-out methods Failure',
+  props<{ error: string }>()
+);
+
+export const getCashOutStatusSuccess = createAction(
+  '[Cashier/Withdrawal API] Get cash-out status Success',
+  props<{ cashOutStatus: CashOutStatus }>()
+);
+
+export const getCashOutStatusFailure = createAction(
+  '[Cashier/Withdrawal API] Get cash-out status Failure',
   props<{ error: string }>()
 );

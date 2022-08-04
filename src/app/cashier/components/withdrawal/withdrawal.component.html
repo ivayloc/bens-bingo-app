@@ -3,6 +3,9 @@
   headerText="Withdrawal Information"
   class="mb-5"
 >
+  <ng-container *ngIf="getCashOutStatus$ | async as cashOutStatus">
+    <pre>{{ cashOutStatus | json }}</pre>
+  </ng-container>
 </app-content-box>
 
 <app-content-box [isFluid]="true" headerText="Choose a Cash-out Method">

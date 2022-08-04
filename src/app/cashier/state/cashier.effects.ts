@@ -17,12 +17,12 @@ export class CashierEffects {
       mergeMap(() =>
         this.cashierService.getPaymentMethods().pipe(
           map((paymentMethods) =>
-            CashierApiActions.loadPaymentMethodsSuccess({
+            CashierApiActions.getPaymentMethodsSuccess({
               paymentMethods,
             })
           ),
           catchError((error) =>
-            of(CashierApiActions.loadPaymentMethodsFailure({ error }))
+            of(CashierApiActions.getPaymentMethodsFailure({ error }))
           )
         )
       )
@@ -35,12 +35,30 @@ export class CashierEffects {
       mergeMap(() =>
         this.cashierService.getCashOutMethods().pipe(
           map((cashOutMethods) =>
-            CashierApiActions.loadCashOutMethodsSuccess({
+            CashierApiActions.getCashOutMethodsSuccess({
               cashOutMethods,
             })
           ),
           catchError((error) =>
-            of(CashierApiActions.loadCashOutMethodsFailure({ error }))
+            of(CashierApiActions.getCashOutMethodsFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  loadCashOutService$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CashierPageActions.loadCashOutStatus),
+      mergeMap(() =>
+        this.cashierService.getCashOutStatus().pipe(
+          map((cashOutStatus) =>
+            CashierApiActions.getCashOutStatusSuccess({
+              cashOutStatus,
+            })
+          ),
+          catchError((error) =>
+            of(CashierApiActions.getCashOutStatusFailure({ error }))
           )
         )
       )
