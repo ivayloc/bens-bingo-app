@@ -21,13 +21,15 @@
             </div>
             <div [outerHTML]="message.body"></div>
             <div footer>
-              <button
-                type="button"
-                class="btn-clear btn-main btn-sm py-3"
-                (click)="getAttachment()"
-              >
-                <span class="btn-main-text">Attachment</span>
-              </button>
+              <ng-container *ngFor="let attachment of message.attachments">
+                <button
+                  type="button"
+                  class="btn-clear btn-main btn-sm py-3"
+                  (click)="getHelpDeskChatChatAttachment(attachment)"
+                >
+                  <span class="btn-main-text">Attachment</span>
+                </button>
+              </ng-container>
             </div>
           </app-content-box>
         </div>
@@ -80,6 +82,7 @@
       </div>
     </ng-container>
   </ng-container>
+  <div footer></div>
 </app-content-box>
 
 <app-content-box

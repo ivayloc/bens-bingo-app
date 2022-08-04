@@ -16,6 +16,7 @@ import { helpDeskReducer } from './state/help-desk.reducers';
 import { HelpDeskEffects } from './state/help-desk.effects';
 import { HelpDeskMessageComponent } from './components/help-desk-message/help-desk-message.component';
 import { MessagesListComponent } from './components/messages-list/messages-list.component';
+import { HelpDeskMessageAttachmentDialogComponent } from './components/help-desk-message-attachment-dialog/help-desk-message-attachment-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { MessagesListComponent } from './components/messages-list/messages-list.
     ArchivedComponent,
     HelpDeskMessageComponent,
     MessagesListComponent,
+    HelpDeskMessageAttachmentDialogComponent,
   ],
   imports: [
     CommonModule,

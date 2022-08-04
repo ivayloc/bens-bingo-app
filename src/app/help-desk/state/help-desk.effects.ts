@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { mergeMap, map, catchError, of, tap, switchMap } from 'rxjs';
+import { HelpDeskMessageAttachmentDialogComponent } from '../components/help-desk-message-attachment-dialog/help-desk-message-attachment-dialog.component';
 import { HelpDeskService } from '../services/help-desk.service';
 import { HelpDeskApiActions, HelpDeskPageActions } from './actions';
 
@@ -10,7 +13,8 @@ export class HelpDeskEffects {
   constructor(
     private actions$: Actions,
     private helpDeskService: HelpDeskService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) {}
 
   loadInboxMessages$ = createEffect(() => {
@@ -134,6 +138,23 @@ export class HelpDeskEffects {
       )
     );
   });
+
+  openHelpDeskMessageAttachment$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(HelpDeskApiActions.loadHelpDeskMessageAttachmentSuccess),
+        tap(({ attachment }) => {
+          this.dialog.open<HelpDeskMessageAttachmentDialogComponent, string>(
+            HelpDeskMessageAttachmentDialogComponent,
+            {
+              data: attachment,
+            }
+          );
+        })
+      );
+    },
+    { dispatch: false }
+  );
 
   archiveHelpDeskChat$ = createEffect(() => {
     return this.actions$.pipe(

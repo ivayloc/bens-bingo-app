@@ -40,14 +40,19 @@
             <ng-content></ng-content>
           </div>
         </div>
-        <hr class="m-0" />
-        <footer
-          class="box-pink-content-footer transform-skew-10"
-          #footerBlock
-          [ngClass]="{ 'd-none': !hasFooterBlock?.nativeElement?.innerHTML }"
+        <div
+          [ngClass]="{
+            'd-none': !footerBlock?.children?.item(0)?.children?.length
+          }"
         >
-          <ng-content select="[footer]"></ng-content>
-        </footer>
+          <hr class="m-0" />
+          <footer
+            class="box-pink-content-footer transform-skew-10"
+            #footerBlock
+          >
+            <ng-content select="[footer]"></ng-content>
+          </footer>
+        </div>
       </div>
     </div>
   </div>

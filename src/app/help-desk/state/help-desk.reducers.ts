@@ -10,7 +10,7 @@ export interface HelpDeskState {
   archivedMessages: HelpDeskMessage[];
   customerServiceMessages: HelpDeskMessage[];
   helpDeskChat: HelpDeskChat;
-  helpDeskMessageAttachment: string;
+  helpDeskMessageAttachments: string[];
   helpDeskQuestions: HelpDeskQuestion[];
   submittedQuestionId: number;
   error: any;
@@ -22,7 +22,7 @@ const initialState: HelpDeskState = {
   archivedMessages: [],
   customerServiceMessages: [],
   helpDeskChat: {} as HelpDeskChat,
-  helpDeskMessageAttachment: '',
+  helpDeskMessageAttachments: [],
   helpDeskQuestions: [],
   submittedQuestionId: 0,
   error: {},
@@ -195,7 +195,10 @@ export const helpDeskReducer = createReducer<HelpDeskState>(
     (state, { attachment }): HelpDeskState => {
       return {
         ...state,
-        helpDeskMessageAttachment: attachment,
+        helpDeskMessageAttachments: [
+          ...state.helpDeskMessageAttachments,
+          attachment,
+        ],
         error: '',
       };
     }
@@ -205,7 +208,7 @@ export const helpDeskReducer = createReducer<HelpDeskState>(
     (state, action): HelpDeskState => {
       return {
         ...state,
-        helpDeskMessageAttachment: '',
+        helpDeskMessageAttachments: [],
         error: action.error,
       };
     }

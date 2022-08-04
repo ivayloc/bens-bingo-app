@@ -6,11 +6,7 @@ import { Observable } from 'rxjs';
 import { HelpDeskChat } from '../../models/help-desk-chat';
 import { HelpDeskMessageAttachment } from '../../models/help-desk-message-attachment';
 import { HelpDeskReply } from '../../models/help-desk-reply';
-import {
-  getHelpDeskChat,
-  getHelpDeskMessageAttachment,
-  State,
-} from '../../state';
+import { getHelpDeskChat, State } from '../../state';
 import { HelpDeskPageActions } from '../../state/actions';
 
 @Component({
@@ -19,6 +15,10 @@ import { HelpDeskPageActions } from '../../state/actions';
   styleUrls: ['./help-desk-message.component.scss'],
 })
 export class HelpDeskMessageComponent implements OnInit {
+  get messageField(): FormControl {
+    return this.replyForm.get('message') as FormControl;
+  }
+
   replyForm = this.fb.group({
     message: ['', Validators.required],
   });
@@ -29,11 +29,7 @@ export class HelpDeskMessageComponent implements OnInit {
     { label: 'No', value: -1 },
   ];
   messageId!: number;
-  get messageField(): FormControl {
-    return this.replyForm.get('message') as FormControl;
-  }
 
-  getHelpDeskMessageAttachment$ = new Observable<string>();
   getHelpDeskChat$ = new Observable<HelpDeskChat>();
 
   constructor(
@@ -60,9 +56,6 @@ export class HelpDeskMessageComponent implements OnInit {
     });
 
     this.getHelpDeskChat$ = this.store.select(getHelpDeskChat);
-    this.getHelpDeskMessageAttachment$ = this.store.select(
-      getHelpDeskMessageAttachment
-    );
   }
 
   archiveHelpDeskChat(id: number) {

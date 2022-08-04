@@ -1,11 +1,11 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-content-box',
   templateUrl: './content-box.component.html',
   styleUrls: ['./content-box.component.scss'],
 })
-export class ContentBoxComponent implements OnInit {
+export class ContentBoxComponent {
   @ViewChild('titleBlock') hasTitleBlock!: ElementRef<HTMLDivElement>;
   @ViewChild('footerBlock') hasFooterBlock!: ElementRef<HTMLDivElement>;
   @Input() headerText = '';
@@ -13,7 +13,9 @@ export class ContentBoxComponent implements OnInit {
   @Input() isFluid = false;
   @Input() isCompact = false;
 
-  constructor() {}
+  // public get hasFooterBlock() {
+  //   return this.footerBlock?.nativeElement;
+  // }
 
-  ngOnInit(): void {}
+  constructor() {}
 }
