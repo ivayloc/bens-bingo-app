@@ -30,6 +30,16 @@ export const archiveHelpDeskChat = createAction(
   props<{ id: number }>()
 );
 
+export const deleteHelpDeskChat = createAction(
+  '[HelpDesk/CustomerService] Delete help desk chat',
+  props<{ id: number }>()
+);
+
+export const hideHelpDeskChat = createAction(
+  '[HelpDesk/Archive] Hide help desk chat',
+  props<{ id: number }>()
+);
+
 export const helpDeskChatReply = createAction(
   '[HelpDesk/Inbox] Reply help desk chat',
   props<{ payload: HelpDeskReply }>()

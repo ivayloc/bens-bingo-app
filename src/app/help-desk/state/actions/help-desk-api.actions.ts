@@ -82,6 +82,25 @@ export const helpDeskChatReplyFailure = createAction(
   props<{ error: string }>()
 );
 
+export const deleteHelpDeskChatSuccess = createAction(
+  '[HelpDesk/CustomerService API] Delete help desk chat SUCCESS',
+  props<{ helpDeskChat: HelpDeskChat }>()
+);
+
+export const deleteHelpDeskChatFailure = createAction(
+  '[HelpDesk/CustomerService API] Delete help desk chat FAILURE',
+  props<{ error: string }>()
+);
+
+export const hideHelpDeskChatSuccess = createAction(
+  '[HelpDesk/Archive API] Hide help desk chat SUCCESS'
+);
+
+export const hideHelpDeskChatFailure = createAction(
+  '[HelpDesk/Archived API] Hide help desk chat FAILURE',
+  props<{ error: string }>()
+);
+
 export const sendHelpDeskChatFeedbackSuccess = createAction(
   '[HelpDesk/Inbox API] Send help desk chat feedback SUCCESS'
 );

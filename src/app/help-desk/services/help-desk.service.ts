@@ -72,6 +72,25 @@ export class HelpDeskService {
       .pipe(map(({ data }) => data));
   }
 
+  // TODO: Delete a ticket missing
+  deleteHelpDeskChat(id: number): Observable<HelpDeskChat> {
+    return this.http
+      .post<ResponseOf<HelpDeskChat>>(
+        `${environment.apiDomain}/api/slim/v1/user/current/help/ticket/${id}/archive`,
+        {}
+      )
+      .pipe(map(({ data }) => data));
+  }
+
+  hideHelpDeskChat(id: number): Observable<void> {
+    return this.http
+      .post<ResponseOf<void>>(
+        `${environment.apiDomain}/api/slim/v1/user/current/help/ticket/${id}/hide`,
+        {}
+      )
+      .pipe(map(({ data }) => data));
+  }
+
   helpDeskChatReply({
     id,
     body,

@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, mergeMap, of, switchMap, tap } from 'rxjs';
+import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import { HelpDeskMessageAttachmentDialogComponent } from '../components/help-desk-message-attachment-dialog/help-desk-message-attachment-dialog.component';
+import { HelpDeskMessageType } from '../models/help-desk-message-type';
+import { HelpDeskMessageTypes } from '../models/help-desk-message-types';
 import { HelpDeskService } from '../services/help-desk.service';
 import { HelpDeskApiActions, HelpDeskPageActions } from './actions';
 
@@ -21,14 +23,11 @@ export class HelpDeskEffects {
       ofType(HelpDeskPageActions.loadInboxMessages),
       mergeMap(() =>
         this.helpDeskService.getInboxMessages().pipe(
-          switchMap((inboxMessages) => [
+          map((inboxMessages) =>
             HelpDeskApiActions.loadInboxMessagesSuccess({
               inboxMessages,
-            }),
-            HelpDeskPageActions.saveInLocalStorage({
-              payload: { isAdmin: false },
-            }),
-          ]),
+            })
+          ),
           catchError((error) =>
             of(HelpDeskApiActions.loadInboxMessagesFailure({ error }))
           )
@@ -42,14 +41,11 @@ export class HelpDeskEffects {
       ofType(HelpDeskPageActions.loadOutboxMessages),
       mergeMap(() =>
         this.helpDeskService.getOutboxMessages().pipe(
-          switchMap((outboxMessages) => [
+          map((outboxMessages) =>
             HelpDeskApiActions.loadOutboxMessagesSuccess({
               outboxMessages,
-            }),
-            HelpDeskPageActions.saveInLocalStorage({
-              payload: { isAdmin: false },
-            }),
-          ]),
+            })
+          ),
           catchError((error) =>
             of(HelpDeskApiActions.loadOutboxMessagesFailure({ error }))
           )
@@ -63,14 +59,11 @@ export class HelpDeskEffects {
       ofType(HelpDeskPageActions.loadArchivedMessages),
       mergeMap(() =>
         this.helpDeskService.getArchivedMessages().pipe(
-          switchMap((archivedMessages) => [
+          map((archivedMessages) =>
             HelpDeskApiActions.loadArchivedMessagesSuccess({
               archivedMessages,
-            }),
-            HelpDeskPageActions.saveInLocalStorage({
-              payload: { isAdmin: false },
-            }),
-          ]),
+            })
+          ),
           catchError((error) =>
             of(HelpDeskApiActions.loadArchivedMessagesFailure({ error }))
           )
@@ -84,14 +77,11 @@ export class HelpDeskEffects {
       ofType(HelpDeskPageActions.loadCustomerServiceMessages),
       mergeMap(() =>
         this.helpDeskService.getCustomerServiceMessages().pipe(
-          switchMap((customerServiceMessages) => [
+          map((customerServiceMessages) =>
             HelpDeskApiActions.loadCustomerServiceMessagesSuccess({
               customerServiceMessages,
-            }),
-            HelpDeskPageActions.saveInLocalStorage({
-              payload: { isAdmin: true },
-            }),
-          ]),
+            })
+          ),
           catchError((error) =>
             of(HelpDeskApiActions.loadCustomerServiceMessagesFailure({ error }))
           )
@@ -186,6 +176,21 @@ export class HelpDeskEffects {
       )
     );
   });
+
+  hideHelpDeskChat$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(HelpDeskPageActions.hideHelpDeskChat),
+      mergeMap(({ id }) =>
+        this.helpDeskService.hideHelpDeskChat(id).pipe(
+          map(() => HelpDeskApiActions.hideHelpDeskChatSuccess()),
+          catchError((error) =>
+            of(HelpDeskApiActions.hideHelpDeskChatFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
   helpDeskChatReply$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(HelpDeskPageActions.helpDeskChatReply),
@@ -298,9 +303,30 @@ export class HelpDeskEffects {
   helpDeskMessageOptions$ = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType(HelpDeskPageActions.saveInLocalStorage),
-        tap(({ payload }) => {
-          localStorage.setItem('helpDesk', JSON.stringify(payload));
+        ofType(
+          HelpDeskApiActions.loadInboxMessagesSuccess,
+          HelpDeskApiActions.loadOutboxMessagesSuccess,
+          HelpDeskApiActions.loadArchivedMessagesSuccess,
+          HelpDeskApiActions.loadCustomerServiceMessagesSuccess
+        ),
+        tap(({ type }) => {
+          let helpDeskMessageType = '' as HelpDeskMessageTypes;
+          if (type === '[Help Desk API] Get inbox messages SUCCESS') {
+            helpDeskMessageType = HelpDeskMessageType.isInbox;
+          }
+          if (type === '[HelpDesk/Outbox API] Get outbox messages SUCCESS') {
+            helpDeskMessageType = HelpDeskMessageType.isInbox;
+          }
+          if (
+            type ===
+            '[HelpDesk/CustomerService API] Get customer service messages SUCCESS'
+          ) {
+            helpDeskMessageType = HelpDeskMessageType.isAdmin;
+          }
+          if (type === '[HelpDesk/Outbox API] Get archived messages SUCCESS') {
+            helpDeskMessageType = HelpDeskMessageType.isArchived;
+          }
+          localStorage.setItem('helpDeskMessageType', helpDeskMessageType);
         })
       );
     },

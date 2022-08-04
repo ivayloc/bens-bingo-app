@@ -5,6 +5,8 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { HelpDeskChat } from '../../models/help-desk-chat';
 import { HelpDeskMessageAttachment } from '../../models/help-desk-message-attachment';
+import { HelpDeskMessageType } from '../../models/help-desk-message-type';
+import { HelpDeskMessageTypes } from '../../models/help-desk-message-types';
 import { HelpDeskReply } from '../../models/help-desk-reply';
 import { getHelpDeskChat, State } from '../../state';
 import { HelpDeskPageActions } from '../../state/actions';
@@ -15,6 +17,8 @@ import { HelpDeskPageActions } from '../../state/actions';
   styleUrls: ['./help-desk-message.component.scss'],
 })
 export class HelpDeskMessageComponent implements OnInit {
+  helpDeskMessageTypes = HelpDeskMessageType;
+  helpDeskMessageType = '' as HelpDeskMessageTypes;
   get messageField(): FormControl {
     return this.replyForm.get('message') as FormControl;
   }
@@ -44,15 +48,16 @@ export class HelpDeskMessageComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      const { isFromAdmin } = JSON.parse(
-        localStorage.getItem('helpDesk') || ''
-      );
+      this.helpDeskMessageType = localStorage.getItem(
+        'helpDeskMessageType'
+      ) as HelpDeskMessageTypes;
 
       if (params['id']) {
         this.store.dispatch(
           HelpDeskPageActions.loadHelpDeskChat({
             id: +params['id'],
-            isFromAdmin,
+            isFromAdmin:
+              this.helpDeskMessageType === HelpDeskMessageType.isAdmin,
           })
         );
       }
@@ -63,6 +68,16 @@ export class HelpDeskMessageComponent implements OnInit {
 
   archiveChat(id: number) {
     this.store.dispatch(HelpDeskPageActions.archiveHelpDeskChat({ id }));
+    this.router.navigate(['../'], { relativeTo: this.route });
+  }
+
+  deleteChat(id: number) {
+    this.store.dispatch(HelpDeskPageActions.deleteHelpDeskChat({ id }));
+    this.router.navigate(['../'], { relativeTo: this.route });
+  }
+
+  hideChat(id: number) {
+    this.store.dispatch(HelpDeskPageActions.hideHelpDeskChat({ id }));
     this.router.navigate(['../'], { relativeTo: this.route });
   }
 
@@ -77,6 +92,7 @@ export class HelpDeskMessageComponent implements OnInit {
     this.messageField.reset();
     this.router.navigate(['/help-desk/sent']);
   }
+
   getMessageAttachment({ id, num }: HelpDeskMessageAttachment) {
     const payload = {
       id,

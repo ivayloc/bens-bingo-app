@@ -69,12 +69,35 @@
               <button
                 type="button"
                 class="btn-clear btn-main btn-red btn-sm"
+                *ngIf="helpDeskMessageType === helpDeskMessageTypes.isInbox"
                 [ngClass]="{
                   'py-3': helpDeskChat.closed || !helpDeskChat.allow_reply
                 }"
                 (click)="archiveChat(helpDeskChat.id)"
               >
                 <span class="btn-main-text">Archive this ticket</span>
+              </button>
+              <button
+                type="button"
+                class="btn-clear btn-main btn-red btn-sm"
+                *ngIf="helpDeskMessageType === helpDeskMessageTypes.isAdmin"
+                [ngClass]="{
+                  'py-3': helpDeskChat.closed || !helpDeskChat.allow_reply
+                }"
+                (click)="deleteChat(helpDeskChat.id)"
+              >
+                <span class="btn-main-text">Delete this Message</span>
+              </button>
+              <button
+                type="button"
+                class="btn-clear btn-main btn-red btn-sm"
+                *ngIf="helpDeskMessageType === helpDeskMessageTypes.isArchived"
+                [ngClass]="{
+                  'py-3': helpDeskChat.closed || !helpDeskChat.allow_reply
+                }"
+                (click)="hideChat(helpDeskChat.id)"
+              >
+                <span class="btn-main-text">Hide this Message</span>
               </button>
             </div>
           </form>
