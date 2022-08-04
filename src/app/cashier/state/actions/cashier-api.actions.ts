@@ -1,11 +1,12 @@
 import { createAction, props } from '@ngrx/store';
+import { PaymentMethod } from '../../models/payment-method';
 
-// export const loadCashierDetailsSuccess = createAction(
-//   '[Cashier API] Load Cashier Details Success',
-//   props<{ cashierDetails: CashierDetails }>()
-// );
+export const loadPaymentMethodsSuccess = createAction(
+  '[Cashier/Deposits API] Load payment methods Success',
+  props<{ paymentMethods: PaymentMethod[] }>()
+);
 
-// export const loadCashierDetailsFailure = createAction(
-//   '[Cashier API] Load Cashier Details Failure',
-//   props<{ error: string }>()
-// );
+export const loadPaymentMethodsFailure = createAction(
+  '[Cashier/Deposits API] Load payment methods Failure',
+  props<{ error: string }>()
+);

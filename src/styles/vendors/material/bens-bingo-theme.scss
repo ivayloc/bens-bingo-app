@@ -82,3 +82,5 @@ $bens-bingo-app-theme: mat.define-dark-theme(
 @include mat.table-theme($bens-bingo-app-theme);
 @include mat.table-theme($bens-bingo-app-theme);
 @include mat.radio-theme($bens-bingo-app-theme);
+@include mat.card-theme($bens-bingo-app-theme);
+@include mat.button-theme($bens-bingo-app-theme);

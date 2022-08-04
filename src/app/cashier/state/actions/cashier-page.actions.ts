@@ -1,5 +1,5 @@
 import { createAction } from '@ngrx/store';
 
-export const loadCashierDetails = createAction(
-  '[Cashier Page] Load Cashier Details'
+export const loadPaymentMethods = createAction(
+  '[Cashier/Deposits Page] Load payment methods'
 );
