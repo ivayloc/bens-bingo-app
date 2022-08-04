@@ -84,40 +84,42 @@
   </ng-container>
   <div footer></div>
 </app-content-box>
-
-<ng-container *ngIf="getHelpDeskChat$ | async as helpDeskChat">
-  <app-content-box
-    headerText="Rate Response"
-    [isFluid]="true"
-    *ngIf="helpDeskChat.closed && !helpDeskChat.rating"
-  >
-    <div class="d-flex justify-content-center">
-      <div>
-        <label id="rate-response" class="d-bloc fz-31 fw-bold mb-4"
-          >Was this response helpful?
-        </label>
-        <mat-radio-group
-          [formControl]="feedbackRatingField"
-          aria-labelledby="rate-response"
-          class="d-block mb-4"
-        >
-          <mat-radio-button
-            class="d-block fz-24 mb-4"
-            *ngFor="let rate of responseRates"
-            [value]="rate.value"
+<!-- TODO: Replace with state -->
+<ng-container *ngIf="hideSendFeedbackForm">
+  <ng-container *ngIf="getHelpDeskChat$ | async as helpDeskChat">
+    <app-content-box
+      headerText="Rate Response"
+      [isFluid]="true"
+      *ngIf="helpDeskChat.closed && !helpDeskChat.rating"
+    >
+      <div class="d-flex justify-content-center">
+        <div>
+          <label id="rate-response" class="d-bloc fz-31 fw-bold mb-4"
+            >Was this response helpful?
+          </label>
+          <mat-radio-group
+            [formControl]="feedbackRatingField"
+            aria-labelledby="rate-response"
+            class="d-block mb-4"
           >
-            {{ rate.label }}
-          </mat-radio-button>
-        </mat-radio-group>
+            <mat-radio-button
+              class="d-block fz-24 mb-4"
+              *ngFor="let rate of responseRates"
+              [value]="rate.value"
+            >
+              {{ rate.label }}
+            </mat-radio-button>
+          </mat-radio-group>
 
-        <button
-          type="button"
-          class="btn-clear btn-main btn-sm py-3"
-          (click)="sendFeedback(helpDeskChat.id)"
-        >
-          <span class="btn-main-text">Submit</span>
-        </button>
+          <button
+            type="button"
+            class="btn-clear btn-main btn-sm py-3"
+            (click)="sendFeedback(helpDeskChat.id)"
+          >
+            <span class="btn-main-text">Submit</span>
+          </button>
+        </div>
       </div>
-    </div>
-  </app-content-box>
+    </app-content-box>
+  </ng-container>
 </ng-container>

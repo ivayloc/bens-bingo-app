@@ -18,7 +18,8 @@ export class HelpDeskMessageComponent implements OnInit {
   get messageField(): FormControl {
     return this.replyForm.get('message') as FormControl;
   }
-
+  // TODO: Replace with state
+  hideSendFeedbackForm = false;
   replyForm = this.fb.group({
     message: ['', Validators.required],
   });
@@ -94,5 +95,6 @@ export class HelpDeskMessageComponent implements OnInit {
     this.store.dispatch(
       HelpDeskPageActions.sendHelpDeskChatFeedback({ payload })
     );
+    this.hideSendFeedbackForm = true;
   }
 }
