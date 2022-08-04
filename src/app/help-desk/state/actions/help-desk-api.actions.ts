@@ -53,6 +53,15 @@ export const loadHelpDeskChatFailure = createAction(
   props<{ error: string }>()
 );
 
+export const setHelpDeskChatViewedSuccess = createAction(
+  '[HelpDesk/Inbox API] Set help desk chat as viewed SUCCESS'
+);
+
+export const setHelpDeskChatViewedFailure = createAction(
+  '[HelpDesk/Inbox API] Set help desk chat as viewed FAILURE',
+  props<{ error: string }>()
+);
+
 export const archiveHelpDeskChatSuccess = createAction(
   '[HelpDesk/Inbox API] Archive help desk chat SUCCESS',
   props<{ helpDeskChat: HelpDeskChat }>()

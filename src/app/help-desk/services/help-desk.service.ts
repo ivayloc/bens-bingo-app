@@ -132,4 +132,13 @@ export class HelpDeskService {
       )
       .pipe(map(({ data }) => data));
   }
+
+  setHelpDeskChatViewed(id: number): Observable<void> {
+    return this.http
+      .post<ResponseOf<void>>(
+        `${environment.apiDomain}/api/slim/v1/user/current/help/ticket/${id}/mark_all_viewed`,
+        {}
+      )
+      .pipe(map(({ data }) => data));
+  }
 }

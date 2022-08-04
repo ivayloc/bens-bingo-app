@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { DomSanitizer } from '@angular/platform-browser';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { mergeMap, map, catchError, of, tap, switchMap } from 'rxjs';
+import { catchError, map, mergeMap, of, switchMap, tap } from 'rxjs';
 import { HelpDeskMessageAttachmentDialogComponent } from '../components/help-desk-message-attachment-dialog/help-desk-message-attachment-dialog.component';
 import { HelpDeskService } from '../services/help-desk.service';
 import { HelpDeskApiActions, HelpDeskPageActions } from './actions';
@@ -113,6 +112,20 @@ export class HelpDeskEffects {
           ),
           catchError((error) =>
             of(HelpDeskApiActions.loadHelpDeskChatFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  setHelpDeskChatViewed$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(HelpDeskApiActions.loadHelpDeskChatSuccess),
+      mergeMap(({ helpDeskChat }) =>
+        this.helpDeskService.setHelpDeskChatViewed(helpDeskChat.id).pipe(
+          map(() => HelpDeskApiActions.setHelpDeskChatViewedSuccess()),
+          catchError((error) =>
+            of(HelpDeskApiActions.setHelpDeskChatViewedFailure({ error }))
           )
         )
       )
