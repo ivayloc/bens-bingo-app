@@ -1,19 +1,17 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { CashierRoutingModule } from './cashier-routing.module';
-import { CashierLayoutComponent } from './components/cashier-layout/cashier-layout.component';
-import { SharedModule } from '../shared/shared.module';
-import { DepositComponent } from './components/deposit/deposit.component';
-import { WithdrawalComponent } from './components/withdrawal/withdrawal.component';
-import { DepositLimitComponent } from './components/deposit-limit/deposit-limit.component';
-import { BonusCodeComponent } from './components/bonus-code/bonus-code.component';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { BingoEffects } from '../bingo/state/bingo.effects';
-import { bingoReducer } from '../bingo/state/bingo.reducers';
-import { cashierReducer } from './state/cashier.reducers';
+import { SharedModule } from '../shared/shared.module';
+import { CashierRoutingModule } from './cashier-routing.module';
+import { BonusCodeComponent } from './components/bonus-code/bonus-code.component';
+import { CashierLayoutComponent } from './components/cashier-layout/cashier-layout.component';
+import { DepositLimitComponent } from './components/deposit-limit/deposit-limit.component';
+import { DepositComponent } from './components/deposit/deposit.component';
+import { WithdrawalComponent } from './components/withdrawal/withdrawal.component';
 import { CashierEffects } from './state/cashier.effects';
+import { cashierReducer } from './state/cashier.reducers';
 
 @NgModule({
   declarations: [
