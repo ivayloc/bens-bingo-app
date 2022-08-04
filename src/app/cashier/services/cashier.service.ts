@@ -19,4 +19,12 @@ export class CashierService {
       )
       .pipe(map(({ data }) => data.items));
   }
+
+  getCashOutMethods(): Observable<PaymentMethod[]> {
+    return this.http
+      .get<ResponseOf<PaymentMethodsResponse>>(
+        `${environment.apiDomain}/api/slim/v1/user/current/cashout/processorlist`
+      )
+      .pipe(map(({ data }) => data.items));
+  }
 }

@@ -4,11 +4,13 @@ import { CashierApiActions } from './actions';
 
 export interface CashierState {
   paymentMethods: PaymentMethod[];
+  cashOutMethods: PaymentMethod[];
   error: string;
 }
 
 const initialState: CashierState = {
   paymentMethods: [],
+  cashOutMethods: [],
   error: '',
 };
 
@@ -30,6 +32,26 @@ export const cashierReducer = createReducer<CashierState>(
       return {
         ...state,
         paymentMethods: [],
+        error: action.error,
+      };
+    }
+  ),
+  on(
+    CashierApiActions.loadCashOutMethodsSuccess,
+    (state, { cashOutMethods }): CashierState => {
+      return {
+        ...state,
+        cashOutMethods,
+        error: '',
+      };
+    }
+  ),
+  on(
+    CashierApiActions.loadCashOutMethodsFailure,
+    (state, action): CashierState => {
+      return {
+        ...state,
+        cashOutMethods: [],
         error: action.error,
       };
     }

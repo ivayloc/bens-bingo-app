@@ -28,4 +28,22 @@ export class CashierEffects {
       )
     );
   });
+
+  loadCashOutMethods$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CashierPageActions.loadCashOutMethods),
+      mergeMap(() =>
+        this.cashierService.getCashOutMethods().pipe(
+          map((cashOutMethods) =>
+            CashierApiActions.loadCashOutMethodsSuccess({
+              cashOutMethods,
+            })
+          ),
+          catchError((error) =>
+            of(CashierApiActions.loadCashOutMethodsFailure({ error }))
+          )
+        )
+      )
+    );
+  });
 }

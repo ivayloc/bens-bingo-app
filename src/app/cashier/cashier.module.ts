@@ -12,6 +12,7 @@ import { DepositComponent } from './components/deposit/deposit.component';
 import { WithdrawalComponent } from './components/withdrawal/withdrawal.component';
 import { CashierEffects } from './state/cashier.effects';
 import { cashierReducer } from './state/cashier.reducers';
+import { PaymentMethodComponent } from './components/payment-methods/payment-methods.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { cashierReducer } from './state/cashier.reducers';
     WithdrawalComponent,
     DepositLimitComponent,
     BonusCodeComponent,
+    PaymentMethodComponent,
   ],
   imports: [
     CommonModule,

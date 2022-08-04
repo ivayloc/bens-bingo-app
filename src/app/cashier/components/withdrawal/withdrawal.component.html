@@ -1,1 +1,12 @@
-<p>withdrawal works!</p>
+<app-content-box
+  [isFluid]="true"
+  headerText="Withdrawal Information"
+  class="mb-5"
+>
+</app-content-box>
+
+<app-content-box [isFluid]="true" headerText="Choose a Cash-out Method">
+  <app-payment-methods
+    [getPaymentMethods]="getCashOutMethods$ | async"
+  ></app-payment-methods>
+</app-content-box>
