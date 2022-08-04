@@ -82,6 +82,15 @@ export const helpDeskChatReplyFailure = createAction(
   props<{ error: string }>()
 );
 
+export const sendHelpDeskChatFeedbackSuccess = createAction(
+  '[HelpDesk/Inbox API] Send help desk chat feedback SUCCESS'
+);
+
+export const sendHelpDeskChatFeedbackFailure = createAction(
+  '[HelpDesk/Inbox API] Send help desk chat feedback FAILURE',
+  props<{ error: string }>()
+);
+
 export const loadHelpDeskQuestionsSuccess = createAction(
   '[HelpDesk/Inbox API] Get help desk questions SUCCESS',
   props<{ helpDeskQuestions: HelpDeskQuestion[] }>()

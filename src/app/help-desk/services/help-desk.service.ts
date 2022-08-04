@@ -5,6 +5,7 @@ import { HelpDeskQuestion } from 'src/app/help-desk/models/help-desk-question';
 import { ResponseOf } from 'src/app/shared/models/response-of';
 import { environment } from 'src/environments/environment';
 import { HelpDeskChat } from '../models/help-desk-chat';
+import { HelpDeskChatFeedbackRequest } from '../models/help-desk-chat-feedback-request';
 import { HelpDeskMessage } from '../models/help-desk-message';
 import { HelpDeskMessageAttachment } from '../models/help-desk-message-attachment';
 import { HelpDeskNewTicket } from '../models/help-desk-new-ticket';
@@ -138,6 +139,18 @@ export class HelpDeskService {
       .post<ResponseOf<void>>(
         `${environment.apiDomain}/api/slim/v1/user/current/help/ticket/${id}/mark_all_viewed`,
         {}
+      )
+      .pipe(map(({ data }) => data));
+  }
+
+  sendHelpDeskChatFeedback({
+    id,
+    rating,
+  }: HelpDeskChatFeedbackRequest): Observable<void> {
+    return this.http
+      .post<ResponseOf<void>>(
+        `${environment.apiDomain}/api/slim/v1/user/current/help/ticket/${id}/feedback`,
+        { rating }
       )
       .pipe(map(({ data }) => data));
   }

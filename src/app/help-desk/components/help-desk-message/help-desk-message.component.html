@@ -25,7 +25,7 @@
                 <button
                   type="button"
                   class="btn-clear btn-main btn-sm py-3"
-                  (click)="getHelpDeskChatChatAttachment(attachment)"
+                  (click)="getMessageAttachment(attachment)"
                 >
                   <span class="btn-main-text">Attachment</span>
                 </button>
@@ -53,7 +53,7 @@
               <div class="px-3 pb-1">
                 <button
                   class="btn-clear btn-main py-1 mx-4 btn-field mb-4"
-                  (click)="helpDeskChatReply(helpDeskChat.id)"
+                  (click)="chatReply(helpDeskChat.id)"
                 >
                   <span class="btn-main-text">Send</span>
                 </button>
@@ -72,7 +72,7 @@
                 [ngClass]="{
                   'py-3': helpDeskChat.closed || !helpDeskChat.allow_reply
                 }"
-                (click)="archiveHelpDeskChat(helpDeskChat.id)"
+                (click)="archiveChat(helpDeskChat.id)"
               >
                 <span class="btn-main-text">Archive this ticket</span>
               </button>
@@ -85,29 +85,39 @@
   <div footer></div>
 </app-content-box>
 
-<app-content-box
-  headerText="Rate Response"
-  [isFluid]="true"
-  *ngIf="(getHelpDeskChat$ | async)?.closed"
->
-  <div class="d-flex justify-content-center">
-    <div>
-      <label id="rate-response" class="d-bloc fz-31 fw-bold mb-4"
-        >Was this response helpful?
-      </label>
-      <mat-radio-group aria-labelledby="rate-response" class="d-block mb-4">
-        <mat-radio-button
-          class="d-block fz-24 mb-4"
-          *ngFor="let rate of responseRates"
-          [value]="rate.value"
+<ng-container *ngIf="getHelpDeskChat$ | async as helpDeskChat">
+  <app-content-box
+    headerText="Rate Response"
+    [isFluid]="true"
+    *ngIf="helpDeskChat.closed && !helpDeskChat.rating"
+  >
+    <div class="d-flex justify-content-center">
+      <div>
+        <label id="rate-response" class="d-bloc fz-31 fw-bold mb-4"
+          >Was this response helpful?
+        </label>
+        <mat-radio-group
+          [formControl]="feedbackRatingField"
+          aria-labelledby="rate-response"
+          class="d-block mb-4"
         >
-          {{ rate.label }}
-        </mat-radio-button>
-      </mat-radio-group>
+          <mat-radio-button
+            class="d-block fz-24 mb-4"
+            *ngFor="let rate of responseRates"
+            [value]="rate.value"
+          >
+            {{ rate.label }}
+          </mat-radio-button>
+        </mat-radio-group>
 
-      <button type="button" class="btn-clear btn-main btn-sm py-3">
-        <span class="btn-main-text">Submit</span>
-      </button>
+        <button
+          type="button"
+          class="btn-clear btn-main btn-sm py-3"
+          (click)="sendFeedback(helpDeskChat.id)"
+        >
+          <span class="btn-main-text">Submit</span>
+        </button>
+      </div>
     </div>
-  </div>
-</app-content-box>
+  </app-content-box>
+</ng-container>

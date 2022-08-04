@@ -204,6 +204,20 @@ export class HelpDeskEffects {
     );
   });
 
+  sendHelpDeskChatFeedback$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(HelpDeskPageActions.sendHelpDeskChatFeedback),
+      mergeMap(({ payload }) =>
+        this.helpDeskService.sendHelpDeskChatFeedback(payload).pipe(
+          map(() => HelpDeskApiActions.sendHelpDeskChatFeedbackSuccess()),
+          catchError((error) =>
+            of(HelpDeskApiActions.sendHelpDeskChatFeedbackFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
   getHelpDeskQuestions$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(HelpDeskPageActions.loadHelpDeskQuestions),

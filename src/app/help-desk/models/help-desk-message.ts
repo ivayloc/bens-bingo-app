@@ -7,5 +7,5 @@ export interface HelpDeskMessage {
   id: number;
   subject: string;
   viewed: boolean;
-  attachments: HelpDeskMessageAttachment[];
+  attachments?: HelpDeskMessageAttachment[];
 }

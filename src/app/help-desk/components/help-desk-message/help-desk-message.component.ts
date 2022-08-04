@@ -23,6 +23,8 @@ export class HelpDeskMessageComponent implements OnInit {
     message: ['', Validators.required],
   });
 
+  feedbackRatingField = this.fb.control('');
+
   responseRates = [
     { label: 'Yes', value: 1 },
     { label: 'Somewhat', value: 0 },
@@ -58,12 +60,12 @@ export class HelpDeskMessageComponent implements OnInit {
     this.getHelpDeskChat$ = this.store.select(getHelpDeskChat);
   }
 
-  archiveHelpDeskChat(id: number) {
+  archiveChat(id: number) {
     this.store.dispatch(HelpDeskPageActions.archiveHelpDeskChat({ id }));
     this.router.navigate(['../'], { relativeTo: this.route });
   }
 
-  helpDeskChatReply(id: number) {
+  chatReply(id: number) {
     const payload: HelpDeskReply = {
       id,
       body: this.messageField.value,
@@ -74,13 +76,23 @@ export class HelpDeskMessageComponent implements OnInit {
     this.messageField.reset();
     this.router.navigate(['/help-desk/sent']);
   }
-  getHelpDeskChatChatAttachment({ id, num }: HelpDeskMessageAttachment) {
+  getMessageAttachment({ id, num }: HelpDeskMessageAttachment) {
     const payload = {
       id,
       num,
     };
     this.store.dispatch(
       HelpDeskPageActions.loadHelpDeskMessageAttachment({ payload })
+    );
+  }
+
+  sendFeedback(id: number) {
+    const payload = {
+      id,
+      rating: this.feedbackRatingField.value,
+    };
+    this.store.dispatch(
+      HelpDeskPageActions.sendHelpDeskChatFeedback({ payload })
     );
   }
 }

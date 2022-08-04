@@ -17,6 +17,7 @@ import { HelpDeskEffects } from './state/help-desk.effects';
 import { HelpDeskMessageComponent } from './components/help-desk-message/help-desk-message.component';
 import { MessagesListComponent } from './components/messages-list/messages-list.component';
 import { HelpDeskMessageAttachmentDialogComponent } from './components/help-desk-message-attachment-dialog/help-desk-message-attachment-dialog.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { HelpDeskMessageAttachmentDialogComponent } from './components/help-desk
     CommonModule,
     HelpRoutingModule,
     SharedModule,
+    FormsModule,
     StoreModule.forFeature('help-desk', helpDeskReducer),
     EffectsModule.forFeature([HelpDeskEffects]),
   ],
