@@ -1,10 +1,10 @@
-<!-- <app-content-box
+<app-content-box
   [isFluid]="true"
   headerText="Selected Cash-out Method"
-  *ngIf="selectedPaymentMethod.name"
+  *ngIf="getSelectedPaymentMethod$ | async as selectedPaymentMethod"
   class="mb-5"
 >
   <app-payment-methods
     [cashOutPaymentMethod]="selectedPaymentMethod"
   ></app-payment-methods>
-</app-content-box> -->
+</app-content-box>

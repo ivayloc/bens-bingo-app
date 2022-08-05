@@ -1,3 +1,5 @@
+<router-outlet></router-outlet>
+
 <app-content-box
   [isFluid]="true"
   headerText="Withdrawal Information"
@@ -11,8 +13,6 @@
     {{ cashOutStatus.availableBalance }}
   </div>
 </app-content-box>
-
-<router-outlet></router-outlet>
 
 <app-content-box [isFluid]="true" headerText="Choose a Cash-out Method">
   <app-payment-methods

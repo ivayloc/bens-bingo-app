@@ -1,5 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as AppState from '../../state/app.states';
+import { PaymentMethod } from '../models/payment-method';
 import { CashierState } from './cashier.reducers';
 
 export interface State extends AppState.State {
@@ -25,5 +26,15 @@ export const selectCashOutStatus = createSelector(
 
 export const selectSelectedPaymentMethod = createSelector(
   selectCashierGamesState,
-  (state) => state.cashOutStatus
+  (state) => state.selectedPaymentMethodId
+);
+
+export const selectSelectedCashOutMethod = createSelector(
+  selectCashierGamesState,
+  selectSelectedPaymentMethod,
+  (state, id) => {
+    return state.cashOutMethods.find(
+      (method) => method.id === id
+    ) as PaymentMethod;
+  }
 );
