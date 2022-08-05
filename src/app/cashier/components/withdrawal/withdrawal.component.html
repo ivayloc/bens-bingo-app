@@ -17,5 +17,6 @@
 <app-content-box [isFluid]="true" headerText="Choose a Cash-out Method">
   <app-payment-methods
     [getPaymentMethods]="getCashOutMethods$ | async"
+    (selectedPaymentMethod)="selectPaymentMethod($event)"
   ></app-payment-methods>
 </app-content-box>

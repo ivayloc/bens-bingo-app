@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { CashOutStatus } from '../../models/cash-out-status';
 import { PaymentMethod } from '../../models/payment-method';
-import { selectCashOutMethods, selectCashOutStatus, State } from '../../state';
+import { selectCashOutMethods, selectCashOutStatus } from '../../state';
 import { CashierPageActions } from '../../state/actions';
 
 @Component({
@@ -27,10 +27,18 @@ export class WithdrawalComponent implements OnInit {
     this.store.dispatch(CashierPageActions.loadCashOutDetails());
     this.getCashOutMethods$ = this.store.select(selectCashOutMethods);
     this.getCashOutStatus$ = this.store.select(selectCashOutStatus);
+
+    this.loadSelectedPaymentMethodOnLoad();
+  }
+
+  private loadSelectedPaymentMethodOnLoad() {
+    if (this.route.snapshot.firstChild?.params['id']) {
+      const id = +this.route.snapshot.firstChild?.params['id'];
+      this.store.dispatch(CashierPageActions.setSelectedPaymentMethod({ id }));
+    }
   }
 
   selectPaymentMethod({ id }: PaymentMethod) {
-    // this.selectedPaymentMethod = paymentMethod;
-    // this.router.navigate([id], { relativeTo: this.route });
+    this.store.dispatch(CashierPageActions.setSelectedPaymentMethod({ id }));
   }
 }

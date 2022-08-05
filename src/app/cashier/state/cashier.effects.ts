@@ -95,7 +95,7 @@ export class CashierEffects {
       return this.actions$.pipe(
         ofType(CashierPageActions.setSelectedPaymentMethod),
         tap(({ id }) => {
-          this.router.navigate([id], { relativeTo: this.route });
+          this.router.navigate(['/cashier/withdrawal/', id]);
         })
       );
     },

@@ -22,9 +22,7 @@ export class PaymentMethodComponent {
     private route: ActivatedRoute
   ) {}
 
-  selectPaymentMethod({ id }: PaymentMethod) {
-    this.store.dispatch(CashierPageActions.setSelectedPaymentMethod({ id }));
-    // this.selectedPaymentMethod.emit(paymentMethod);
-    this.router.navigate([id], { relativeTo: this.route });
+  selectPaymentMethod(paymentMethod: PaymentMethod) {
+    this.selectedPaymentMethod.emit(paymentMethod);
   }
 }

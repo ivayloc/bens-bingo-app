@@ -1,13 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { CashOutStatus } from '../../models/cash-out-status';
 import { PaymentMethod } from '../../models/payment-method';
-import {
-  selectSelectedCashOutMethod,
-  selectSelectedPaymentMethod,
-} from '../../state';
+import { selectSelectedCashOutMethod } from '../../state';
 
 @Component({
   selector: 'app-request-withdrawal',
@@ -16,6 +11,7 @@ import {
 })
 export class RequestWithdrawalComponent implements OnInit {
   getSelectedPaymentMethod$ = new Observable<PaymentMethod>();
+
   constructor(private store: Store) {}
 
   ngOnInit(): void {
