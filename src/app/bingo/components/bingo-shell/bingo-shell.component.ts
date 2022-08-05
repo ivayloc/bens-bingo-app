@@ -28,7 +28,7 @@ export class BingoShellComponent implements OnInit {
   getNewGames$ = new Observable<BingoGame[]>();
   getRecentWinners$ = new Observable<RecentWinners[]>();
 
-  constructor(private store: Store<State>) {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
     this.store.dispatch(BingoPageActions.loadBingoDetails());

@@ -36,7 +36,7 @@ export class HomeLayoutComponent implements OnInit, AfterViewInit {
   getRecentWinners$ = new Observable<RecentWinners[]>();
   getNewGames$ = new Observable<Game[]>();
 
-  constructor(private store: Store<State>) {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
     this.store.dispatch(HomePageActions.loadHomeDetails());

@@ -33,7 +33,7 @@ export class PrivateInfoComponent implements OnInit {
 
   getUserInfo$ = new Observable<UserInfo>();
 
-  constructor(private store: Store<State>, private fb: FormBuilder) {}
+  constructor(private store: Store, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.store.dispatch(AccountPageActions.loadUserInfo());

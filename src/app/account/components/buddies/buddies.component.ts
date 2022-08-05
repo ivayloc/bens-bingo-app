@@ -42,10 +42,10 @@ export class FriendsComponent implements OnInit {
   getSearchUserResult$ = new Observable<SearchUserResult>();
 
   constructor(
-    private store: Store<State>,
+    private store: Store,
     private fb: FormBuilder,
     public dialog: MatDialog
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.store.dispatch(AccountPageActions.loadFriends());
@@ -104,6 +104,4 @@ export class FriendsComponent implements OnInit {
       AccountPageActions.approveFriendRequest({ friendalias })
     );
   }
-
-
 }

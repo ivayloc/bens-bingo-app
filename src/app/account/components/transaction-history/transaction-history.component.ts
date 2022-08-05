@@ -35,7 +35,7 @@ export class TransactionHistoryComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   showTable = false;
 
-  constructor(private store: Store<State>, private fb: FormBuilder) {}
+  constructor(private store: Store, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.getTransactionsHistory$ = this.store

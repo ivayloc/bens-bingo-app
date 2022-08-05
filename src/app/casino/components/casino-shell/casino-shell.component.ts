@@ -27,10 +27,7 @@ export class CasinoShellComponent implements OnInit {
   getNewReleasesGames$ = new Observable<Game[]>();
   getJackpotGames$ = new Observable<Game[]>();
 
-  constructor(
-    private store: Store<State>,
-    private casinoService: CasinoService
-  ) {}
+  constructor(private store: Store, private casinoService: CasinoService) {}
 
   ngOnInit(): void {
     this.store.dispatch(CasinoPageActions.loadCasinoDetails());

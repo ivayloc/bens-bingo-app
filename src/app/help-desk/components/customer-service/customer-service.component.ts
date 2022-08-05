@@ -22,7 +22,7 @@ export class CustomerServiceComponent implements OnInit {
   >();
 
   constructor(
-    private store: Store<State>,
+    private store: Store,
     private router: Router,
     private route: ActivatedRoute
   ) {}

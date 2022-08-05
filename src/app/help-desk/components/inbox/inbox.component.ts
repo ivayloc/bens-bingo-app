@@ -16,7 +16,7 @@ export class InboxComponent implements OnInit {
   getInboxMessages$ = new Observable<MatTableDataSource<HelpDeskMessage>>();
 
   constructor(
-    private store: Store<State>,
+    private store: Store,
     private router: Router,
     private route: ActivatedRoute
   ) {}

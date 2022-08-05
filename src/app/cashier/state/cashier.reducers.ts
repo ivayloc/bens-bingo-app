@@ -1,12 +1,13 @@
 import { createReducer, on } from '@ngrx/store';
 import { CashOutStatus } from '../models/cash-out-status';
 import { PaymentMethod } from '../models/payment-method';
-import { CashierApiActions } from './actions';
+import { CashierApiActions, CashierPageActions } from './actions';
 
 export interface CashierState {
   paymentMethods: PaymentMethod[];
   cashOutMethods: PaymentMethod[];
   cashOutStatus: CashOutStatus;
+  selectedPaymentMethodId: number;
   error: string;
 }
 
@@ -14,6 +15,7 @@ const initialState: CashierState = {
   paymentMethods: [],
   cashOutMethods: [],
   cashOutStatus: {} as CashOutStatus,
+  selectedPaymentMethodId: 0,
   error: '',
 };
 
@@ -50,7 +52,7 @@ export const cashierReducer = createReducer<CashierState>(
     }
   ),
   on(
-    CashierApiActions.getCashOutStatusFailure,
+    CashierApiActions.getCashOutMethodsFailure,
     (state, action): CashierState => {
       return {
         ...state,
@@ -70,12 +72,44 @@ export const cashierReducer = createReducer<CashierState>(
     }
   ),
   on(
-    CashierApiActions.getCashOutMethodsFailure,
+    CashierApiActions.getCashOutStatusFailure,
     (state, action): CashierState => {
       return {
         ...state,
         cashOutStatus: {} as CashOutStatus,
         error: action.error,
+      };
+    }
+  ),
+  on(
+    CashierApiActions.getCashOutDetailsSuccess,
+    (state, { cashOutStatus, cashOutMethods }): CashierState => {
+      return {
+        ...state,
+        cashOutStatus,
+        cashOutMethods,
+        error: '',
+      };
+    }
+  ),
+  on(
+    CashierApiActions.getCashOutDetailsFailure,
+    (state, action): CashierState => {
+      return {
+        ...state,
+        cashOutMethods: [],
+        cashOutStatus: {} as CashOutStatus,
+        error: action.error,
+      };
+    }
+  ),
+  on(
+    CashierPageActions.setSelectedPaymentMethod,
+    (state, { id }): CashierState => {
+      return {
+        ...state,
+        selectedPaymentMethodId: id,
+        error: '',
       };
     }
   )

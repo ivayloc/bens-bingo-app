@@ -22,7 +22,7 @@ export class NewTicketComponent implements OnInit {
 
   getHelpDeskQuestions$ = new Observable<HelpDeskQuestion[]>();
 
-  constructor(private store: Store<State>, private fb: FormBuilder) {}
+  constructor(private store: Store, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.store.dispatch(HelpDeskPageActions.loadHelpDeskQuestions());

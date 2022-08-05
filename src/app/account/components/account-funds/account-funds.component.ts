@@ -16,7 +16,7 @@ export class AccountFundsComponent implements OnInit {
     currency: UserCurrency;
   }>();
 
-  constructor(private store: Store<State>) {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
     this.getUserInfoBalance$ = this.store.select(getUserInfoBalance);

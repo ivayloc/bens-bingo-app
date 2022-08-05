@@ -31,7 +31,7 @@ export class CasinoGameCategoryComponent implements OnInit {
   getAllGames$ = new Observable<Game[]>();
 
   constructor(
-    private store: Store<State>,
+    private store: Store,
     private casinoService: CasinoService,
     private route: ActivatedRoute
   ) {}

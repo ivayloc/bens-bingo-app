@@ -40,7 +40,7 @@ export class HelpDeskMessageComponent implements OnInit {
   getHelpDeskChat$ = new Observable<HelpDeskChat>();
 
   constructor(
-    private store: Store<State>,
+    private store: Store,
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder

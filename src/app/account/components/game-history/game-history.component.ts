@@ -54,7 +54,7 @@ export class GameHistoryComponent implements OnInit {
 
   getGamesHistory$ = new Observable<MatTableDataSource<GameHistory>>();
 
-  constructor(private store: Store<State>, private fb: FormBuilder) {}
+  constructor(private store: Store, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.getGamesHistory$ = this.store.select(getGameHistory).pipe(

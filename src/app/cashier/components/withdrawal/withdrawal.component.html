@@ -3,10 +3,16 @@
   headerText="Withdrawal Information"
   class="mb-5"
 >
-  <ng-container *ngIf="getCashOutStatus$ | async as cashOutStatus">
-    <pre>{{ cashOutStatus | json }}</pre>
-  </ng-container>
+  <div
+    class="fz-31 text-center"
+    *ngIf="getCashOutStatus$ | async as cashOutStatus"
+  >
+    <span class="fw-bold">Available To Redeem</span>
+    {{ cashOutStatus.availableBalance }}
+  </div>
 </app-content-box>
+
+<router-outlet></router-outlet>
 
 <app-content-box [isFluid]="true" headerText="Choose a Cash-out Method">
   <app-payment-methods

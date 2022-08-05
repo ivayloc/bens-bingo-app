@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, mergeMap, of } from 'rxjs';
+import { catchError, forkJoin, map, mergeMap, of, tap } from 'rxjs';
 import { CashierService } from '../services/cashier.service';
 import { CashierApiActions, CashierPageActions } from './actions';
 
@@ -8,7 +9,9 @@ import { CashierApiActions, CashierPageActions } from './actions';
 export class CashierEffects {
   constructor(
     private actions$: Actions,
-    private cashierService: CashierService
+    private cashierService: CashierService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   loadPaymentMethods$ = createEffect(() => {
@@ -47,7 +50,7 @@ export class CashierEffects {
     );
   });
 
-  loadCashOutService$ = createEffect(() => {
+  loadCashOutStatus$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CashierPageActions.loadCashOutStatus),
       mergeMap(() =>
@@ -64,4 +67,38 @@ export class CashierEffects {
       )
     );
   });
+
+  loadCashOutDetails$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CashierPageActions.loadCashOutDetails),
+      mergeMap(() =>
+        forkJoin([
+          this.cashierService.getCashOutStatus(),
+          this.cashierService.getCashOutMethods(),
+        ]).pipe(
+          map(([cashOutStatus, cashOutMethods]) =>
+            CashierApiActions.getCashOutDetailsSuccess({
+              cashOutStatus,
+              cashOutMethods,
+            })
+          ),
+          catchError((error) =>
+            of(CashierApiActions.getCashOutDetailsFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  navigateToSelectedState$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(CashierPageActions.setSelectedPaymentMethod),
+        tap(({ id }) => {
+          this.router.navigate([id], { relativeTo: this.route });
+        })
+      );
+    },
+    { dispatch: false }
+  );
 }

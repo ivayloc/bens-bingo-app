@@ -1,5 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { PaymentMethod } from '../../models/payment-method';
+import { State } from '../../state';
+import { CashierPageActions } from '../../state/actions';
 
 @Component({
   selector: 'app-payment-methods',
@@ -9,6 +12,13 @@ import { PaymentMethod } from '../../models/payment-method';
 export class PaymentMethodComponent {
   @Input() getPaymentMethods: PaymentMethod[] | null = [];
   @Input() onlyDefaultPaymentMethod = false;
+  @Input() cashOutPaymentMethod = {} as PaymentMethod;
+  @Output() selectedPaymentMethod = new EventEmitter<PaymentMethod>();
 
-  constructor() {}
+  constructor(private store: Store) {}
+
+  selectPaymentMethod({ id }: PaymentMethod) {
+    this.store.dispatch(CashierPageActions.setSelectedPaymentMethod({ id }));
+    // this.selectedPaymentMethod.emit(paymentMethod);
+  }
 }

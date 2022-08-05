@@ -22,7 +22,7 @@ export class UserProfileDialogComponent implements OnInit {
   getSelectedUserAlias$ = new Observable<string>();
 
   constructor(
-    private store: Store<State>,
+    private store: Store,
     public dialogRef: MatDialogRef<UserProfileDialogComponent>
   ) {}
 

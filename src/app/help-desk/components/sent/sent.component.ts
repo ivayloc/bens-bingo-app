@@ -16,7 +16,7 @@ export class SentComponent implements OnInit {
   getOutboxMessages$ = new Observable<MatTableDataSource<HelpDeskMessage>>();
 
   constructor(
-    private store: Store<State>,
+    private store: Store,
     private router: Router,
     private route: ActivatedRoute
   ) {}

@@ -15,7 +15,7 @@ export class TermsAndConditionsComponent implements OnInit {
   private fragment = '';
 
   constructor(
-    private store: Store<State>,
+    private store: Store,
     private sanitizer: DomSanitizer,
     private route: ActivatedRoute
   ) {}

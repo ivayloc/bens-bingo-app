@@ -6,19 +6,24 @@ export interface State extends AppState.State {
   cashierGames: CashierState;
 }
 
-const getCashierGamesState = createFeatureSelector<CashierState>('cashier');
+const selectCashierGamesState = createFeatureSelector<CashierState>('cashier');
 
-export const getPaymentMethods = createSelector(
-  getCashierGamesState,
+export const selectPaymentMethods = createSelector(
+  selectCashierGamesState,
   (state) => state.paymentMethods
 );
 
-export const getCashOutMethods = createSelector(
-  getCashierGamesState,
+export const selectCashOutMethods = createSelector(
+  selectCashierGamesState,
   (state) => state.cashOutMethods
 );
 
-export const getCashOutStatus = createSelector(
-  getCashierGamesState,
+export const selectCashOutStatus = createSelector(
+  selectCashierGamesState,
+  (state) => state.cashOutStatus
+);
+
+export const selectSelectedPaymentMethod = createSelector(
+  selectCashierGamesState,
   (state) => state.cashOutStatus
 );

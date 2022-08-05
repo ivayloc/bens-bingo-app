@@ -31,3 +31,13 @@ export const getCashOutStatusFailure = createAction(
   '[Cashier/Withdrawal API] Get cash-out status Failure',
   props<{ error: string }>()
 );
+
+export const getCashOutDetailsSuccess = createAction(
+  '[Cashier/Withdrawal API] Get cash-out details Success',
+  props<{ cashOutStatus: CashOutStatus; cashOutMethods: PaymentMethod[] }>()
+);
+
+export const getCashOutDetailsFailure = createAction(
+  '[Cashier/Withdrawal API] Get cash-out details Failure',
+  props<{ error: string }>()
+);

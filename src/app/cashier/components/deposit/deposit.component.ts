@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { PaymentMethod } from '../../models/payment-method';
-import { getPaymentMethods, State } from '../../state';
+import { selectPaymentMethods, State } from '../../state';
 import { CashierPageActions } from '../../state/actions';
 
 @Component({
@@ -13,10 +13,10 @@ import { CashierPageActions } from '../../state/actions';
 export class DepositComponent implements OnInit {
   getPaymentMethods$ = new Observable<PaymentMethod[]>();
 
-  constructor(private store: Store<State>) {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
     this.store.dispatch(CashierPageActions.loadPaymentMethods());
-    this.getPaymentMethods$ = this.store.select(getPaymentMethods);
+    this.getPaymentMethods$ = this.store.select(selectPaymentMethods);
   }
 }
