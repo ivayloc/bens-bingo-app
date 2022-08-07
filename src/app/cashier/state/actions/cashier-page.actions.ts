@@ -16,7 +16,12 @@ export const loadCashOutDetails = createAction(
   '[Cashier/Withdrawal Page] Load cash-out details'
 );
 
-export const setSelectedPaymentMethod = createAction(
-  '[Cashier Page] Set selected payment method',
+export const setSelectedDepositMethod = createAction(
+  '[Cashier Page] Set selected deposit method',
+  props<{ id: number }>()
+);
+
+export const setSelectedCashOutMethod = createAction(
+  '[Cashier Page] Set selected cash-out method',
   props<{ id: number }>()
 );

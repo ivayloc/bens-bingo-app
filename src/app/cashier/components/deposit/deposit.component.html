@@ -1,16 +1,18 @@
-<app-content-box
+<!-- <app-content-box
   [isFluid]="true"
   headerText="Repeat Your Last Deposit"
   class="mb-5"
 >
-  <app-payment-methods
-    [getPaymentMethods]="getPaymentMethods$ | async"
-    [onlyDefaultPaymentMethod]="true"
-  ></app-payment-methods>
-</app-content-box>
+  <ng-container *ngIf="getPaymentMethods$ | async as paymentMethod">
+    <app-payment-method [paymentMethod]="paymentMethod"></app-payment-method>
+  </ng-container>
+</app-content-box> -->
+
+<router-outlet></router-outlet>
 
 <app-content-box [isFluid]="true" headerText="Choose a Payment Method">
   <app-payment-methods
     [getPaymentMethods]="getPaymentMethods$ | async"
+    (selectedPaymentMethod)="selectPaymentMethod($event)"
   ></app-payment-methods>
 </app-content-box>

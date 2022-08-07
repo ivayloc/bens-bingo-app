@@ -93,9 +93,19 @@ export class CashierEffects {
   navigateToSelectedState$ = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType(CashierPageActions.setSelectedPaymentMethod),
-        tap(({ id }) => {
-          this.router.navigate(['/cashier/withdrawal/', id]);
+        ofType(
+          CashierPageActions.setSelectedDepositMethod,
+          CashierPageActions.setSelectedCashOutMethod
+        ),
+        tap(({ type, id }) => {
+          console.log(CashierPageActions.setSelectedDepositMethod);
+
+          if (type === '[Cashier Page] Set selected deposit method') {
+            this.router.navigate(['/cashier/deposit/', id]);
+          }
+          if (type === '[Cashier Page] Set selected cash-out method') {
+            this.router.navigate(['/cashier/withdrawal/', id]);
+          }
         })
       );
     },

@@ -53,7 +53,6 @@ import { RegisterComponent } from './components/register/register.component';
     CommonModule,
     RouterModule,
     AngularMaterialModule,
-    AngularMaterialModule,
     PrimeNgModule,
     CarouselModule,
     ReactiveFormsModule,

@@ -38,3 +38,13 @@ export const selectSelectedCashOutMethod = createSelector(
     ) as PaymentMethod;
   }
 );
+
+export const selectSelectedDepositMethod = createSelector(
+  selectCashierGamesState,
+  selectSelectedPaymentMethod,
+  (state, id) => {
+    return state.paymentMethods.find(
+      (method) => method.id === id
+    ) as PaymentMethod;
+  }
+);

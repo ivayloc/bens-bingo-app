@@ -104,7 +104,8 @@ export const cashierReducer = createReducer<CashierState>(
     }
   ),
   on(
-    CashierPageActions.setSelectedPaymentMethod,
+    CashierPageActions.setSelectedDepositMethod,
+    CashierPageActions.setSelectedCashOutMethod,
     (state, { id }): CashierState => {
       return {
         ...state,

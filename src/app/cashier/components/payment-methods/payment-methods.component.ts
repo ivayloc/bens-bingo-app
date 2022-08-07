@@ -6,10 +6,9 @@ import { PaymentMethod } from '../../models/payment-method';
   templateUrl: './payment-methods.component.html',
   styleUrls: ['./payment-methods.component.scss'],
 })
-export class PaymentMethodComponent {
+export class PaymentMethodsComponent {
   @Input() getPaymentMethods: PaymentMethod[] | null = [];
   @Input() onlyDefaultPaymentMethod = false;
-  @Input() cashOutPaymentMethod = {} as PaymentMethod;
   @Output() selectedPaymentMethod = new EventEmitter<PaymentMethod>();
 
   constructor() {}

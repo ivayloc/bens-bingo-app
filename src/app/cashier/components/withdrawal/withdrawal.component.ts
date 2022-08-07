@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { CashOutStatus } from '../../models/cash-out-status';
@@ -17,11 +17,7 @@ export class WithdrawalComponent implements OnInit {
   getCashOutStatus$ = new Observable<CashOutStatus>();
   selectedPaymentMethod = {} as PaymentMethod;
 
-  constructor(
-    private store: Store,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private store: Store, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.store.dispatch(CashierPageActions.loadCashOutDetails());
@@ -34,11 +30,11 @@ export class WithdrawalComponent implements OnInit {
   private loadSelectedPaymentMethodOnLoad() {
     if (this.route.snapshot.firstChild?.params['id']) {
       const id = +this.route.snapshot.firstChild?.params['id'];
-      this.store.dispatch(CashierPageActions.setSelectedPaymentMethod({ id }));
+      this.store.dispatch(CashierPageActions.setSelectedCashOutMethod({ id }));
     }
   }
 
   selectPaymentMethod({ id }: PaymentMethod) {
-    this.store.dispatch(CashierPageActions.setSelectedPaymentMethod({ id }));
+    this.store.dispatch(CashierPageActions.setSelectedCashOutMethod({ id }));
   }
 }
