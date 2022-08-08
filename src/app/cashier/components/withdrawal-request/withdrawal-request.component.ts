@@ -6,10 +6,10 @@ import { selectSelectedCashOutMethod } from '../../state';
 
 @Component({
   selector: 'app-request-withdrawal',
-  templateUrl: './request-withdrawal.component.html',
-  styleUrls: ['./request-withdrawal.component.scss'],
+  templateUrl: './withdrawal-request.component.html',
+  styleUrls: ['./withdrawal-request.component.scss'],
 })
-export class RequestWithdrawalComponent implements OnInit {
+export class WithdrawalRequestComponent implements OnInit {
   getSelectedPaymentMethod$ = new Observable<PaymentMethod>();
 
   constructor(private store: Store) {}

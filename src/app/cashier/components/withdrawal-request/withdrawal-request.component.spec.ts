@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RequestWithdrawalComponent } from './request-withdrawal.component';
+import { WithdrawalRequestComponent } from './withdrawal-request.component';
 
 describe('RequestWithdrawalComponent', () => {
-  let component: RequestWithdrawalComponent;
-  let fixture: ComponentFixture<RequestWithdrawalComponent>;
+  let component: WithdrawalRequestComponent;
+  let fixture: ComponentFixture<WithdrawalRequestComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RequestWithdrawalComponent ]
+      declarations: [ WithdrawalRequestComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RequestWithdrawalComponent);
+    fixture = TestBed.createComponent(WithdrawalRequestComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

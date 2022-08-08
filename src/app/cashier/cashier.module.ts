@@ -13,7 +13,7 @@ import { WithdrawalComponent } from './components/withdrawal/withdrawal.componen
 import { CashierEffects } from './state/cashier.effects';
 import { cashierReducer } from './state/cashier.reducers';
 import { PaymentMethodsComponent } from './components/payment-methods/payment-methods.component';
-import { RequestWithdrawalComponent } from './components/request-withdrawal/request-withdrawal.component';
+import { WithdrawalRequestComponent } from './components/withdrawal-request/withdrawal-request.component';
 import { PaymentMethodComponent } from './components/payment-method/payment-method.component';
 import { DepositSelectedMethodComponent } from './components/deposit-selected-method/deposit-selected-method.component';
 
@@ -26,7 +26,7 @@ import { DepositSelectedMethodComponent } from './components/deposit-selected-me
     BonusCodeComponent,
     PaymentMethodsComponent,
     PaymentMethodComponent,
-    RequestWithdrawalComponent,
+    WithdrawalRequestComponent,
     DepositSelectedMethodComponent,
   ],
   imports: [
