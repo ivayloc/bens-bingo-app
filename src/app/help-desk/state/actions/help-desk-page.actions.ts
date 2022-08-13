@@ -73,3 +73,5 @@ export const createNewTicket = createAction(
   '[HelpDesk/NewTicket] Create new ticket',
   props<{ payload: HelpDeskNewTicket }>()
 );
+
+export const loadFaqContent = createAction('[HelpDesk/FAQ] Load FAQ');

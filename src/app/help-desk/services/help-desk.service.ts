@@ -173,4 +173,12 @@ export class HelpDeskService {
       )
       .pipe(map(({ data }) => data));
   }
+
+  getFaqContent(): Observable<string> {
+    return this.http
+      .get<ResponseOf<string>>(
+        `${environment.apiDomain}/api/slim/v1/content/en_GB/faq`
+      )
+      .pipe(map(({ data }) => data));
+  }
 }

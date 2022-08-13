@@ -43,3 +43,7 @@ export const getSubmittedQuestionId = createSelector(
   getHelpDeskState,
   (state) => state.submittedQuestionId
 );
+export const selectFaqContent = createSelector(
+  getHelpDeskState,
+  (state) => state.faq
+);

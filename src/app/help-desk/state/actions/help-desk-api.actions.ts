@@ -149,3 +149,13 @@ export const loadHelpDeskMessageAttachmentFailure = createAction(
   '[HelpDesk/Inbox API] Get help desk message attachment FAILURE',
   props<{ error: string }>()
 );
+
+export const loadFaqContentSuccess = createAction(
+  '[HelpDesk/FAQ API] Load FAQ SUCCESS',
+  props<{ faq: string }>()
+);
+
+export const loadFaqContentFailure = createAction(
+  '[HelpDesk/FAQ API] Load FAQ FAILURE',
+  props<{ error: string }>()
+);

@@ -332,4 +332,22 @@ export class HelpDeskEffects {
     },
     { dispatch: false }
   );
+
+  loadFaqContent$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(HelpDeskPageActions.loadFaqContent),
+      mergeMap(() =>
+        this.helpDeskService.getFaqContent().pipe(
+          map((faq) =>
+            HelpDeskApiActions.loadFaqContentSuccess({
+              faq,
+            })
+          ),
+          catchError((error) =>
+            of(HelpDeskApiActions.loadFaqContentFailure({ error }))
+          )
+        )
+      )
+    );
+  });
 }

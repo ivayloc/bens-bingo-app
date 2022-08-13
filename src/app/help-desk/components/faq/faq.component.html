@@ -1,6 +1,9 @@
 <div class="container-page">
-  <app-content-box headerText="FAQ">
+  <app-content-box headerText="FAQ" [isFluid]="true">
     <div class="row justify-content-center">
+      <div class="col-8" *ngIf="getFaqContent$ | async as faq">
+        <div [outerHTML]="faq"></div>
+      </div>
       <div class="col-8">
         <div class="fz-24">
           <h3 class="fw-bold fz-31">How do I deposit</h3>

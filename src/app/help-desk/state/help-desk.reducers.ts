@@ -5,27 +5,29 @@ import { HelpDeskMessage } from '../models/help-desk-message';
 import { HelpDeskApiActions } from './actions';
 
 export interface HelpDeskState {
-  inboxMessages: HelpDeskMessage[];
-  outboxMessages: HelpDeskMessage[];
   archivedMessages: HelpDeskMessage[];
   customerServiceMessages: HelpDeskMessage[];
+  faq: string;
   helpDeskChat: HelpDeskChat;
   helpDeskMessageAttachments: string[];
   helpDeskQuestions: HelpDeskQuestion[];
+  inboxMessages: HelpDeskMessage[];
+  outboxMessages: HelpDeskMessage[];
   submittedQuestionId: number;
   error: any;
 }
 
 const initialState: HelpDeskState = {
-  inboxMessages: [],
-  outboxMessages: [],
   archivedMessages: [],
   customerServiceMessages: [],
+  error: {},
   helpDeskChat: {} as HelpDeskChat,
   helpDeskMessageAttachments: [],
   helpDeskQuestions: [],
+  inboxMessages: [],
+  outboxMessages: [],
   submittedQuestionId: 0,
-  error: {},
+  faq: '',
 };
 
 export const helpDeskReducer = createReducer<HelpDeskState>(
@@ -209,6 +211,26 @@ export const helpDeskReducer = createReducer<HelpDeskState>(
       return {
         ...state,
         helpDeskMessageAttachments: [],
+        error: action.error,
+      };
+    }
+  ),
+  on(
+    HelpDeskApiActions.loadFaqContentSuccess,
+    (state, { faq }): HelpDeskState => {
+      return {
+        ...state,
+        faq,
+        error: '',
+      };
+    }
+  ),
+  on(
+    HelpDeskApiActions.loadFaqContentFailure,
+    (state, action): HelpDeskState => {
+      return {
+        ...state,
+        faq: '',
         error: action.error,
       };
     }
