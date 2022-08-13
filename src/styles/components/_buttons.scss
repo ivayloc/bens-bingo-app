@@ -14,7 +14,7 @@
   padding: 0 calc-clamp(30);
   background-color: #0d808a;
   transform: skew(-20deg);
-  &-text {
+  > * {
     display: block;
     font-family: OpenSans, sans-serif;
     font-size: calc-clamp(35);

@@ -24,6 +24,14 @@
             | transloco: { value: limit.value | currency: limit.currency }
         }}
       </mat-card>
+
+      <button
+        type="button"
+        class="btn-clear btn-main btn-sm btn-red py-2"
+        (click)="removeDepositLimits()"
+      >
+        <span>Remove my limits</span>
+      </button>
     </div>
   </div>
 </app-content-box>
