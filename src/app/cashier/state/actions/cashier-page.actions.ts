@@ -25,3 +25,17 @@ export const setSelectedCashOutMethod = createAction(
   '[Cashier Page] Set selected cash-out method',
   props<{ id: number }>()
 );
+
+export const setDepositLimit = createAction(
+  '[Cashier/Limits Page] Set deposit limit',
+  props<{ duration: string; sum: number }>()
+);
+
+export const removeDepositLimits = createAction(
+  '[Cashier/Limits Page] Remove deposit limits',
+  props<{ id: number }>()
+);
+
+export const getDepositLimits = createAction(
+  '[Cashier/Limits Page] Get deposit limits'
+);

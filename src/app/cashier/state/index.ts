@@ -48,3 +48,8 @@ export const selectSelectedDepositMethod = createSelector(
     ) as PaymentMethod;
   }
 );
+
+export const selectDepositLimitsPlayerDuration = createSelector(
+  selectCashierGamesState,
+  (state) => state.depositLimits?.playerEntries?.duration
+);

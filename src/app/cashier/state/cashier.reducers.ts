@@ -1,5 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { CashOutStatus } from '../models/cash-out-status';
+import { DepositLimits } from '../models/deposit-limits';
 import { PaymentMethod } from '../models/payment-method';
 import { CashierApiActions, CashierPageActions } from './actions';
 
@@ -8,6 +9,7 @@ export interface CashierState {
   cashOutMethods: PaymentMethod[];
   cashOutStatus: CashOutStatus;
   selectedPaymentMethodId: number;
+  depositLimits: DepositLimits;
   error: string;
 }
 
@@ -16,6 +18,7 @@ const initialState: CashierState = {
   cashOutMethods: [],
   cashOutStatus: {} as CashOutStatus,
   selectedPaymentMethodId: 0,
+  depositLimits: {} as DepositLimits,
   error: '',
 };
 
@@ -111,6 +114,26 @@ export const cashierReducer = createReducer<CashierState>(
         ...state,
         selectedPaymentMethodId: id,
         error: '',
+      };
+    }
+  ),
+  on(
+    CashierApiActions.getDepositLimitsSuccess,
+    (state, { depositLimits }): CashierState => {
+      return {
+        ...state,
+        depositLimits,
+        error: '',
+      };
+    }
+  ),
+  on(
+    CashierApiActions.getDepositLimitsFailure,
+    (state, action): CashierState => {
+      return {
+        ...state,
+        depositLimits: {} as DepositLimits,
+        error: action.error,
       };
     }
   )

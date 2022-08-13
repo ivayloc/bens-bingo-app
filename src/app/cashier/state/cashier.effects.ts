@@ -98,8 +98,6 @@ export class CashierEffects {
           CashierPageActions.setSelectedCashOutMethod
         ),
         tap(({ type, id }) => {
-          console.log(CashierPageActions.setSelectedDepositMethod);
-
           if (type === '[Cashier Page] Set selected deposit method') {
             this.router.navigate(['/cashier/deposit/', id]);
           }
@@ -111,4 +109,52 @@ export class CashierEffects {
     },
     { dispatch: false }
   );
+
+  getDepositLimits$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CashierPageActions.getDepositLimits),
+      mergeMap(() =>
+        this.cashierService.getDepositLimits().pipe(
+          map((depositLimits) =>
+            CashierApiActions.getDepositLimitsSuccess({
+              depositLimits,
+            })
+          ),
+          catchError((error) =>
+            of(CashierApiActions.getDepositLimitsFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  setDepositLimit$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CashierPageActions.setDepositLimit),
+      mergeMap(({ duration, sum }) =>
+        this.cashierService.setDepositLimit(duration, sum).pipe(
+          map((success) => CashierApiActions.setDepositLimitSuccess(success)),
+          catchError((error) =>
+            of(CashierApiActions.setDepositLimitFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  removeDepositLimits$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CashierPageActions.removeDepositLimits),
+      mergeMap(() =>
+        this.cashierService.removeDepositLimits().pipe(
+          map((success) =>
+            CashierApiActions.removeDepositLimitsSuccess(success)
+          ),
+          catchError((error) =>
+            of(CashierApiActions.removeDepositLimitsFailure({ error }))
+          )
+        )
+      )
+    );
+  });
 }

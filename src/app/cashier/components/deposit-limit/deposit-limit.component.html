@@ -1,3 +1,18 @@
+<app-content-box
+  [isFluid]="true"
+  headerText="Set Deposit Limit"
+  *ngIf="getDepositLimitsPlayerDuration$ | async as limits"
+  class="mb-5"
+>
+  <div class="row justify-content-center">
+    <div class="col-9">
+      <mat-card *ngFor="let limit of limits" class="mb-3">
+        <pre>{{ limit | json }}</pre>
+      </mat-card>
+    </div>
+  </div>
+</app-content-box>
+
 <div class="row justify-content-center">
   <div class="col-6">
     <app-content-box class="content-box" headerText="Set Deposit Limit">
@@ -14,13 +29,13 @@
           <div class="col-4 col-md-auto">
             <mat-form-field appearance="fill" class="d-block">
               <mat-label>Amount</mat-label>
-              <input matInput placeholder="" formControlName="amount" />
+              <input matInput placeholder="" formControlName="sum" />
             </mat-form-field>
           </div>
           <div class="col-4 col-md-auto">
             <mat-form-field appearance="fill" class="d-block">
               <mat-label>Time Frame</mat-label>
-              <mat-select formControlName="timeFrame">
+              <mat-select formControlName="duration">
                 <mat-option value="24">24 hours</mat-option>
                 <mat-option value="168">7 days</mat-option>
                 <mat-option value="720">30 days</mat-option>
