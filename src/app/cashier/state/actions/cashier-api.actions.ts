@@ -72,3 +72,12 @@ export const getDepositLimitsFailure = createAction(
   '[Cashier/Limits API] Get deposit limits Failure',
   props<{ error: string }>()
 );
+export const redeemBonusCodeSuccess = createAction(
+  '[Cashier/BonusCode API] Redeem bonus code Success',
+  props<{ success: boolean }>()
+);
+
+export const redeemBonusCodeFailure = createAction(
+  '[Cashier/BonusCode API] Redeem bonus code Failure',
+  props<{ error: string }>()
+);

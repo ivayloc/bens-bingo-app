@@ -1,22 +1,21 @@
 <div class="row justify-content-center">
   <div class="col-6">
     <app-content-box class="content-box" headerText="Redeem your bonus">
-      <div class="row mt-4 fz-24">
-        <div class="col-8 col-auto">
-          <mat-form-field class="d-block" appearance="fill">
-            <mat-label>Enter your bonus code</mat-label>
-            <input matInput [formControl]="bonusCodeField" />
-          </mat-form-field>
+      <form [formGroup]="bonusCodeForm" (ngSubmit)="submitCode()">
+        <div class="row mt-4 fz-24">
+          <div class="col-8 col-auto">
+            <mat-form-field class="d-block" appearance="fill">
+              <mat-label>Enter your bonus code</mat-label>
+              <input matInput formControlName="code" />
+            </mat-form-field>
+          </div>
+          <div class="col-auto">
+            <button class="btn-clear btn-main py-1 mx-2 min-w-auto btn-field">
+              <span class="btn-main-text">Submit</span>
+            </button>
+          </div>
         </div>
-        <div class="col-auto">
-          <button
-            type="button"
-            class="btn-clear btn-main py-1 mx-2 min-w-auto btn-field"
-          >
-            <span class="btn-main-text">Submit</span>
-          </button>
-        </div>
-      </div>
+      </form>
     </app-content-box>
   </div>
 </div>

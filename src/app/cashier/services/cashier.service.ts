@@ -67,4 +67,13 @@ export class CashierService {
       )
       .pipe(map(({ data }) => data));
   }
+
+  redeemBonusCode(code: string): Observable<Success> {
+    return this.http
+      .post<ResponseOf<Success>>(
+        `${environment.apiDomain}/api/slim/v1/user/current/coupon`,
+        { code }
+      )
+      .pipe(map(({ data }) => data));
+  }
 }

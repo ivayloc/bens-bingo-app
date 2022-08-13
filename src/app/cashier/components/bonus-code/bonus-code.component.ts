@@ -1,15 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { CashierPageActions } from '../../state/actions';
 
 @Component({
   selector: 'app-bonus-code',
   templateUrl: './bonus-code.component.html',
   styleUrls: ['./bonus-code.component.scss'],
 })
-export class BonusCodeComponent implements OnInit {
-  bonusCodeField = this.fb.control('');
+export class BonusCodeComponent {
+  bonusCodeForm = this.fb.group({ code: ['', Validators.required] });
 
-  constructor(private fb: FormBuilder) {}
+  public get bonusCodeField(): FormControl {
+    return this.bonusCodeForm.get('code') as FormControl;
+  }
 
-  ngOnInit() {}
+  constructor(private store: Store, private fb: FormBuilder) {}
+
+  submitCode() {
+    const code = this.bonusCodeField.value;
+    this.store.dispatch(CashierPageActions.redeemBonusCode({ code }));
+  }
 }

@@ -38,3 +38,8 @@ export const removeDepositLimits = createAction(
 export const getDepositLimits = createAction(
   '[Cashier/Limits Page] Get deposit limits'
 );
+
+export const redeemBonusCode = createAction(
+  '[Cashier/BonusCode Page] Redeem bonus code',
+  props<{ code: string }>()
+);

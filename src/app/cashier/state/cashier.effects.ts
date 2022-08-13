@@ -157,4 +157,18 @@ export class CashierEffects {
       )
     );
   });
+
+  redeemBonusCode$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CashierPageActions.redeemBonusCode),
+      mergeMap(({ code }) =>
+        this.cashierService.redeemBonusCode(code).pipe(
+          map((success) => CashierApiActions.redeemBonusCodeSuccess(success)),
+          catchError((error) =>
+            of(CashierApiActions.redeemBonusCodeFailure({ error }))
+          )
+        )
+      )
+    );
+  });
 }

@@ -136,5 +136,23 @@ export const cashierReducer = createReducer<CashierState>(
         error: action.error,
       };
     }
+  ),
+  on(
+    CashierApiActions.redeemBonusCodeSuccess,
+    (state, { success }): CashierState => {
+      return {
+        ...state,
+        error: '',
+      };
+    }
+  ),
+  on(
+    CashierApiActions.redeemBonusCodeFailure,
+    (state, action): CashierState => {
+      return {
+        ...state,
+        error: action.error,
+      };
+    }
   )
 );
