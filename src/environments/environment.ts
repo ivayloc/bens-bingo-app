@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiDomain: '',
+  apiDomain: '/api/slim/v1',
+  apiLogin: '/api/slim',
 };
 
 /*

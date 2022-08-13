@@ -1,0 +1,8 @@
+<app-content-box headerText="" [isFluid]="true" class="mt-5 pt-5">
+  <div
+    class="row justify-content-center"
+    *ngIf="getPageContent$ | async as content"
+  >
+    <div class="col-8 fz-24" [innerHtml]="content"></div>
+  </div>
+</app-content-box>

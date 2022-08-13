@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { map, Observable, tap } from 'rxjs';
-import { getTermsAndConditions, State } from '../../state';
+import { Observable, tap } from 'rxjs';
+import { selectTermsAndConditions } from '../../state';
 import { SiteInfoPageActions } from '../../state/actions';
 @Component({
   selector: 'app-terms-and-conditions',
@@ -14,11 +14,7 @@ export class TermsAndConditionsComponent implements OnInit {
   getTermsAndConditions$ = new Observable<SafeHtml>();
   private fragment = '';
 
-  constructor(
-    private store: Store,
-    private sanitizer: DomSanitizer,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private store: Store, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.store.dispatch(SiteInfoPageActions.loadTermsAndConditions());
@@ -29,27 +25,24 @@ export class TermsAndConditionsComponent implements OnInit {
       }
     });
 
-    this.getTermsAndConditions$ = this.store.select(getTermsAndConditions).pipe(
-      map((getTermsAndConditionsText) => {
-        return this.sanitizer.bypassSecurityTrustHtml(
-          getTermsAndConditionsText
-        );
-      }),
-      tap(() => {
-        this.scrollToAnchor();
-      })
-    );
+    this.getTermsAndConditions$ = this.store
+      .select(selectTermsAndConditions)
+      .pipe(
+        tap(() => {
+          this.scrollToAnchor();
+        })
+      );
   }
 
   private scrollToAnchor() {
-    setTimeout(() => {
-      const anchor = document.querySelector<HTMLAnchorElement>(
-        `#${this.fragment}`
-      );
-      if (anchor) {
-        anchor.focus();
-        anchor.scrollIntoView();
-      }
-    }, 0);
+    // setTimeout(() => {
+    //   const anchor = document.querySelector<HTMLAnchorElement>(
+    //     `#${this.fragment}`
+    //   );
+    //   if (anchor) {
+    //     anchor.focus();
+    //     anchor.scrollIntoView();
+    //   }
+    // }, 0);
   }
 }

@@ -5,26 +5,26 @@ import { map, Observable, of, switchMap } from 'rxjs';
 import { AuthService } from 'src/app/core/service/auth.service';
 import { ResponseOf } from 'src/app/shared/models/response-of';
 import { environment } from 'src/environments/environment';
-import { GameHistory } from '../models/game-history';
+import { AddFriendResponse } from '../models/add-friend-response';
+import { AddFriendResult } from '../models/add-friend-result';
 import { BingoHistoryRequest } from '../models/bingo-history-request';
+import { FriendRequestResult } from '../models/friend-request-result';
+import { FriendsList } from '../models/friends-list-response';
+import { GameHistory } from '../models/game-history';
+import { GamesHistory } from '../models/games-history';
+import { SearchUserResponse } from '../models/search-user-response';
+import { SearchUserResult } from '../models/search-user-result';
 import { Transaction } from '../models/transaction';
+import { TransactionsHistory } from '../models/transactions-history';
 import { TransactionsHistoryRequest } from '../models/transactions-history-request';
 import { UserInfo } from '../models/user-info';
-import { GamesHistory } from '../models/games-history';
-import { TransactionsHistory } from '../models/transactions-history';
-import { FriendsList } from '../models/friends-list-response';
 import { UserProfile } from '../models/user-profile';
-import { SearchUserResult } from '../models/search-user-result';
-import { SearchUserResponse } from '../models/search-user-response';
-import { AddFriendResult } from '../models/add-friend-result';
-import { AddFriendResponse } from '../models/add-friend-response';
-import { FriendRequestResult } from '../models/friend-request-result';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AccountService {
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   getTransactionsHistory({
     startdate,
@@ -41,12 +41,9 @@ export class AccountService {
 
     const getTransactionsHistory$ = this.http.get<
       ResponseOf<TransactionsHistory>
-    >(
-      `${environment.apiDomain}/api/slim/v1//user/current/history/transaction`,
-      {
-        params,
-      }
-    );
+    >(`${environment.apiDomain}//user/current/history/transaction`, {
+      params,
+    });
     return this.authService
       .apiLogin()
       .pipe(switchMap(() => this.authService.login()))
@@ -71,7 +68,7 @@ export class AccountService {
     });
 
     const getBingoHistory$ = this.http.get<ResponseOf<GamesHistory>>(
-      `${environment.apiDomain}/api/slim/v1/user/current/history/game`,
+      `${environment.apiDomain}/user/current/history/game`,
       {
         params,
       }
@@ -86,7 +83,7 @@ export class AccountService {
   }
   getUserInfo(): Observable<UserInfo> {
     const getBingoHistory$ = this.http.get<ResponseOf<UserInfo>>(
-      `${environment.apiDomain}/api/slim/v1/user/current/info`
+      `${environment.apiDomain}/user/current/info`
     );
     return this.authService.login().pipe(
       switchMap(() => getBingoHistory$),
@@ -102,7 +99,7 @@ export class AccountService {
 
     return this.http
       .get<ResponseOf<FriendsList>>(
-        `${environment.apiDomain}/api/slim/v1/user/current/friends/list`
+        `${environment.apiDomain}/user/current/friends/list`
       )
       .pipe(map(({ data }) => data));
   }
@@ -115,7 +112,7 @@ export class AccountService {
     return of({} as FriendsList);
     return this.http
       .get<ResponseOf<FriendsList>>(
-        `${environment.apiDomain}/api/slim/v1/user/current/friends/remove`,
+        `${environment.apiDomain}/user/current/friends/remove`,
         { params }
       )
       .pipe(map(({ data }) => data));
@@ -129,7 +126,7 @@ export class AccountService {
     return of({} as FriendsList);
     return this.http
       .get<ResponseOf<FriendsList>>(
-        `${environment.apiDomain}/api/slim/v1/user/current/friends/decline`,
+        `${environment.apiDomain}/user/current/friends/decline`,
         { params }
       )
       .pipe(map(({ data }) => data));
@@ -137,7 +134,7 @@ export class AccountService {
   showUserProfile(friendalias: string): Observable<UserProfile> {
     return this.http
       .get<ResponseOf<UserProfile>>(
-        `${environment.apiDomain}/api/slim/v1/profile/${friendalias}`
+        `${environment.apiDomain}/profile/${friendalias}`
       )
       .pipe(map(({ data }) => data));
   }
@@ -150,7 +147,7 @@ export class AccountService {
 
     return this.http
       .get<ResponseOf<SearchUserResponse>>(
-        `${environment.apiDomain}/api/slim/v1/user/current/friends/search`,
+        `${environment.apiDomain}/user/current/friends/search`,
         { params }
       )
       .pipe(map(({ data }) => data.result));
@@ -162,7 +159,7 @@ export class AccountService {
 
     return this.http
       .post<ResponseOf<AddFriendResponse>>(
-        `${environment.apiDomain}/api/slim/v1/user/current/friends/invite`,
+        `${environment.apiDomain}/user/current/friends/invite`,
         body
       )
       .pipe(map(({ data }) => data.result));
@@ -176,20 +173,18 @@ export class AccountService {
     };
 
     return this.http.delete<FriendRequestResult>(
-      `${environment.apiDomain}/api/slim/v1/user/current/friends/cancel`,
+      `${environment.apiDomain}/user/current/friends/cancel`,
       { body }
     );
   }
 
-  approveFriendRequest(
-    friendalias: string
-  ): Observable<FriendRequestResult> {
+  approveFriendRequest(friendalias: string): Observable<FriendRequestResult> {
     const body = {
       friendalias,
     };
 
     return this.http.post<FriendRequestResult>(
-      `${environment.apiDomain}/api/slim/v1/user/current/friends/approve`,
+      `${environment.apiDomain}/user/current/friends/approve`,
       body
     );
   }

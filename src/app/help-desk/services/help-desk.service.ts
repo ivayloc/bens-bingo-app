@@ -8,7 +8,6 @@ import { HelpDeskChat } from '../models/help-desk-chat';
 import { HelpDeskChatFeedbackRequest } from '../models/help-desk-chat-feedback-request';
 import { HelpDeskMessage } from '../models/help-desk-message';
 import { HelpDeskMessageAttachment } from '../models/help-desk-message-attachment';
-import { HelpDeskNewTicket } from '../models/help-desk-new-ticket';
 import { HelpDeskQuestions } from '../models/help-desk-questions';
 import { HelpDeskReply } from '../models/help-desk-reply';
 
@@ -21,7 +20,7 @@ export class HelpDeskService {
   getInboxMessages(): Observable<HelpDeskMessage[]> {
     return this.http
       .get<ResponseOf<HelpDeskMessage[]>>(
-        `${environment.apiDomain}/api/slim/v1/user/current/help/inbox`
+        `${environment.apiDomain}/user/current/help/inbox`
       )
       .pipe(map(({ data }) => data));
   }
@@ -29,7 +28,7 @@ export class HelpDeskService {
   getOutboxMessages(): Observable<HelpDeskMessage[]> {
     return this.http
       .get<ResponseOf<HelpDeskMessage[]>>(
-        `${environment.apiDomain}/api/slim/v1/user/current/help/outbox`
+        `${environment.apiDomain}/user/current/help/outbox`
       )
       .pipe(map(({ data }) => data));
   }
@@ -37,7 +36,7 @@ export class HelpDeskService {
   getArchivedMessages(): Observable<HelpDeskMessage[]> {
     return this.http
       .get<ResponseOf<HelpDeskMessage[]>>(
-        `${environment.apiDomain}/api/slim/v1/user/current/help/archived`
+        `${environment.apiDomain}/user/current/help/archived`
       )
       .pipe(map(({ data }) => data));
   }
@@ -45,7 +44,7 @@ export class HelpDeskService {
   getCustomerServiceMessages(): Observable<HelpDeskMessage[]> {
     return this.http
       .get<ResponseOf<HelpDeskMessage[]>>(
-        `${environment.apiDomain}/api/slim/v1/user/current/help/admin`
+        `${environment.apiDomain}/user/current/help/admin`
       )
       .pipe(map(({ data }) => data));
   }
@@ -66,7 +65,7 @@ export class HelpDeskService {
   archiveHelpDeskChat(id: number): Observable<HelpDeskChat> {
     return this.http
       .post<ResponseOf<HelpDeskChat>>(
-        `${environment.apiDomain}/api/slim/v1/user/current/help/ticket/${id}/archive`,
+        `${environment.apiDomain}/user/current/help/ticket/${id}/archive`,
         {}
       )
       .pipe(map(({ data }) => data));
@@ -76,7 +75,7 @@ export class HelpDeskService {
   deleteHelpDeskChat(id: number): Observable<HelpDeskChat> {
     return this.http
       .post<ResponseOf<HelpDeskChat>>(
-        `${environment.apiDomain}/api/slim/v1/user/current/help/ticket/${id}/archive`,
+        `${environment.apiDomain}/user/current/help/ticket/${id}/archive`,
         {}
       )
       .pipe(map(({ data }) => data));
@@ -85,7 +84,7 @@ export class HelpDeskService {
   hideHelpDeskChat(id: number): Observable<void> {
     return this.http
       .post<ResponseOf<void>>(
-        `${environment.apiDomain}/api/slim/v1/user/current/help/ticket/${id}/hide`,
+        `${environment.apiDomain}/user/current/help/ticket/${id}/hide`,
         {}
       )
       .pipe(map(({ data }) => data));
@@ -98,7 +97,7 @@ export class HelpDeskService {
   }: HelpDeskReply): Observable<HelpDeskChat> {
     return this.http
       .post<ResponseOf<HelpDeskChat>>(
-        `${environment.apiDomain}/api/slim/v1/user/current/help/ticket/${id}/reply`,
+        `${environment.apiDomain}/user/current/help/ticket/${id}/reply`,
         {
           body,
           returnticket,
@@ -110,7 +109,7 @@ export class HelpDeskService {
   getHelpDeskQuestions(): Observable<HelpDeskQuestion[]> {
     return this.http
       .get<ResponseOf<HelpDeskQuestions>>(
-        `${environment.apiDomain}/api/slim/v1/user/current/help/questions/en`
+        `${environment.apiDomain}/user/current/help/questions/en`
       )
       .pipe(map(({ data }) => data.items));
   }
@@ -118,7 +117,7 @@ export class HelpDeskService {
   submitNewQuestion(questionid: number): Observable<number> {
     return this.http
       .post<ResponseOf<{ ticketid: number }>>(
-        `${environment.apiDomain}/api/slim/v1/user/current/help/ticket`,
+        `${environment.apiDomain}/user/current/help/ticket`,
         { questionid }
       )
       .pipe(map(({ data }) => data.ticketid));
@@ -136,7 +135,7 @@ export class HelpDeskService {
 
     return this.http
       .post<ResponseOf<{ ticketid: number }>>(
-        `${environment.apiDomain}/api/slim/v1/user/current/help/ticket`,
+        `${environment.apiDomain}/user/current/help/ticket`,
         form
       )
       .pipe(map(({ data }) => data.ticketid));
@@ -148,7 +147,7 @@ export class HelpDeskService {
   }: HelpDeskMessageAttachment): Observable<string> {
     return this.http
       .get<ResponseOf<string>>(
-        `${environment.apiDomain}/api/slim/v1/user/current/help/ticket/${id}/attachment/${num}`
+        `${environment.apiDomain}/user/current/help/ticket/${id}/attachment/${num}`
       )
       .pipe(map(({ data }) => data));
   }
@@ -156,7 +155,7 @@ export class HelpDeskService {
   setHelpDeskChatViewed(id: number): Observable<void> {
     return this.http
       .post<ResponseOf<void>>(
-        `${environment.apiDomain}/api/slim/v1/user/current/help/ticket/${id}/mark_all_viewed`,
+        `${environment.apiDomain}/user/current/help/ticket/${id}/mark_all_viewed`,
         {}
       )
       .pipe(map(({ data }) => data));
@@ -168,7 +167,7 @@ export class HelpDeskService {
   }: HelpDeskChatFeedbackRequest): Observable<void> {
     return this.http
       .post<ResponseOf<void>>(
-        `${environment.apiDomain}/api/slim/v1/user/current/help/ticket/${id}/feedback`,
+        `${environment.apiDomain}/user/current/help/ticket/${id}/feedback`,
         { rating }
       )
       .pipe(map(({ data }) => data));
@@ -176,9 +175,7 @@ export class HelpDeskService {
 
   getFaqContent(): Observable<string> {
     return this.http
-      .get<ResponseOf<string>>(
-        `${environment.apiDomain}/api/slim/v1/content/en_GB/faq`
-      )
+      .get<ResponseOf<string>>(`${environment.apiDomain}/content/en_GB/faq`)
       .pipe(map(({ data }) => data));
   }
 }

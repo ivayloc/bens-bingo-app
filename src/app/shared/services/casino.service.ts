@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { iif, map, Observable, switchMap, tap } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { AuthService } from 'src/app/core/service/auth.service';
 import { Game } from 'src/app/shared/models/game';
 import { NavigationItem } from 'src/app/shared/models/navigation-item';
@@ -38,7 +38,7 @@ export class CasinoService {
     });
 
     const getGames$ = this.http.get<GamesResponse>(
-      `${environment.apiDomain}/api/slim/v1/instantgames/slots`,
+      `${environment.apiDomain}/instantgames/slots`,
       { params }
     );
 

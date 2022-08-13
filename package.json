@@ -63,6 +63,7 @@
     "karma-coverage": "~2.1.0",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
+    "prettier-plugin-organize-imports": "^3.0.3",
     "primeng": "^13.4.1",
     "stylelint": "^14.9.1",
     "stylelint-config-prettier": "^9.0.3",

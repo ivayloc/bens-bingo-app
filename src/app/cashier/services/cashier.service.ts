@@ -18,7 +18,7 @@ export class CashierService {
   getPaymentMethods(): Observable<PaymentMethod[]> {
     return this.http
       .get<ResponseOf<PaymentMethodsResponse>>(
-        `${environment.apiDomain}/api/slim/v1/user/current/deposit/processorlist`
+        `${environment.apiDomain}/user/current/deposit/processorlist`
       )
       .pipe(map(({ data }) => data.items));
   }
@@ -26,7 +26,7 @@ export class CashierService {
   getCashOutMethods(): Observable<PaymentMethod[]> {
     return this.http
       .get<ResponseOf<PaymentMethodsResponse>>(
-        `${environment.apiDomain}/api/slim/v1/user/current/cashout/processorlist`
+        `${environment.apiDomain}/user/current/cashout/processorlist`
       )
       .pipe(map(({ data }) => data.items));
   }
@@ -34,7 +34,7 @@ export class CashierService {
   getCashOutStatus(): Observable<CashOutStatus> {
     return this.http
       .get<ResponseOf<CashOutStatus>>(
-        `${environment.apiDomain}/api/slim/v1/user/current/cashout`
+        `${environment.apiDomain}/user/current/cashout`
       )
       .pipe(map(({ data }) => data));
   }
@@ -42,7 +42,7 @@ export class CashierService {
   getDepositLimits(): Observable<DepositLimits> {
     return this.http
       .get<ResponseOf<DepositLimits>>(
-        `${environment.apiDomain}/api/slim/v1/user/current/limits/transaction?transactiontype=credit&transactionaction=deposit`
+        `${environment.apiDomain}/user/current/limits/transaction?transactiontype=credit&transactionaction=deposit`
       )
       .pipe(map(({ data }) => data));
   }
@@ -50,7 +50,7 @@ export class CashierService {
   setDepositLimit(duration: string, sum: number): Observable<Success> {
     return this.http
       .post<ResponseOf<Success>>(
-        `${environment.apiDomain}/api/slim/v1/user/current/limits/transaction/add`,
+        `${environment.apiDomain}/user/current/limits/transaction/add`,
         {
           duration,
           sum,
@@ -63,7 +63,7 @@ export class CashierService {
   removeDepositLimits(): Observable<Success> {
     return this.http
       .delete<ResponseOf<Success>>(
-        `${environment.apiDomain}/api/slim/v1/user/current/limits/transaction/remove`
+        `${environment.apiDomain}/user/current/limits/transaction/remove`
       )
       .pipe(map(({ data }) => data));
   }
@@ -71,7 +71,7 @@ export class CashierService {
   redeemBonusCode(code: string): Observable<Success> {
     return this.http
       .post<ResponseOf<Success>>(
-        `${environment.apiDomain}/api/slim/v1/user/current/coupon`,
+        `${environment.apiDomain}/user/current/coupon`,
         { code }
       )
       .pipe(map(({ data }) => data));

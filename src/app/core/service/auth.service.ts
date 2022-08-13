@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { addSeconds, isAfter } from 'date-fns';
 import { Observable } from 'rxjs';
-import { shareReplay, switchMap, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { ResponseOf } from 'src/app/shared/models/response-of';
 import { environment } from 'src/environments/environment';
 import { LoginResponse } from '../models/login-response';
@@ -21,13 +21,10 @@ export class AuthService {
     // return this.apiLogin().pipe(
     // switchMap(() => {
     return this.http
-      .post<ResponseOf<User>>(
-        `${environment.apiDomain}/api/slim/v1/user/login`,
-        {
-          username,
-          password,
-        }
-      )
+      .post<ResponseOf<User>>(`${environment.apiDomain}/user/login`, {
+        username,
+        password,
+      })
       .pipe(
         tap(({ data }) => {
           localStorage.setItem('usersessionid', data.usersessionid);
@@ -45,7 +42,7 @@ export class AuthService {
       isAfter(new Date(), new Date(expirationTime));
     }
     return this.http
-      .post<LoginResponse>(`${environment.apiDomain}/api/slim/login`, {
+      .post<LoginResponse>(`${environment.apiLogin}/login`, {
         username: 'api_test',
         password: 'test1234a',
         siteid: 95,

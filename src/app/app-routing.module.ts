@@ -36,7 +36,7 @@ const routes: Routes = [
   {
     path: 'site',
     loadChildren: () =>
-      import('./info/info.module').then((m) => m.SiteInfoModule),
+      import('./info/site-info.module').then((m) => m.SiteInfoModule),
   },
   {
     path: 'register',
