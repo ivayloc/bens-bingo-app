@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Game } from 'src/app/shared/models/game';
+import { ResponseOf } from 'src/app/shared/models/response-of';
+import { environment } from 'src/environments/environment';
 import { BingoGame } from '../../shared/models/bingo-game';
-import { RecentWinners } from '../../shared/models/recent-winners';
 import { Jackpot } from '../models/jackpots';
 
 @Injectable({
@@ -17,11 +18,11 @@ export class HomeService {
   }
 
   getJackpots(): Observable<Jackpot[]> {
-    return this.http.get<Jackpot[]>('/assets/mock/jackpots.json');
-  }
-
-  getRecentWinners(): Observable<RecentWinners[]> {
-    return this.http.get<RecentWinners[]>('/assets/mock/recent-winners.json');
+    return this.http
+      .get<ResponseOf<Jackpot[]>>(
+        `${environment.apiDomain}/jackpots?currency=EUR&limit=1&best=true`
+      )
+      .pipe(map(({ data }) => data));
   }
 
   getNewGames(): Observable<Game[]> {

@@ -56,3 +56,7 @@ export const approveFriendRequest = createAction(
   '[Account/Buddy Page] Approve friend request',
   props<{ friendalias: string }>()
 );
+
+export const loadTop5Games = createAction(
+  '[Account/Dashboard] Get top 5 games'
+);

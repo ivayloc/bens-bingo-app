@@ -1,0 +1,38 @@
+@import "../../../../styles/functions/calc-clamp";
+@import "../../../../styles/vendors/hovercss";
+@import "/node_modules/hover.css/scss/effects/shadow-and-glow-transitions/float-shadow";
+
+:host ::ng-deep {
+  .box-pink-header {
+    background: linear-gradient(
+      135deg,
+      #981177 1%,
+      #981177 11%,
+      #e311af 17%,
+      #e311af 32%,
+      #981177 33%,
+      #e311af 71%,
+      #e311af 76%,
+      #981177 91%,
+      #e311af 100%
+    );
+  }
+}
+
+.jackpots-list {
+  &-item {
+    font-family: OpenSans, sans-serif;
+    font-size: calc-clamp(60);
+    font-weight: 700;
+    line-height: 1;
+    &-game {
+      &-studio {
+        font-family: OpenSans, sans-serif;
+        font-size: calc-clamp(30);
+        font-style: italic;
+        font-weight: 700;
+        line-height: 1;
+      }
+    }
+  }
+}

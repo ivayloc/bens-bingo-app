@@ -1,12 +1,14 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, tap } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { AuthService } from 'src/app/core/service/auth.service';
 import { Game } from 'src/app/shared/models/game';
 import { NavigationItem } from 'src/app/shared/models/navigation-item';
 import { environment } from 'src/environments/environment';
 import { GameCategoriesNames } from '../models/game-categories-names';
 import { GamesResponse } from '../models/games-response';
+import { RecentWinners } from '../models/recent-winners';
+import { ResponseOf } from '../models/response-of';
 
 @Injectable({
   providedIn: 'root',
@@ -37,33 +39,22 @@ export class CasinoService {
       platform: 'html',
     });
 
-    const getGames$ = this.http.get<GamesResponse>(
-      `${environment.apiDomain}/instantgames/slots`,
-      { params }
-    );
-
-    return getGames$.pipe(
-      tap(({ data }) => {
-        const groups = {} as Record<string, Map<string, Game>>;
-
-        data.groups.forEach((group) => {
-          groups[group.name] = new Map<string, Game>();
-          data.items.forEach((item) => {
-            if (group.games.includes(item.skinbase)) {
-              if (!groups[group.name].has(item.skinbase)) {
-                groups[group.name].set(item.skinbase, item);
-              }
-            }
-          });
-        });
-
-        console.log(groups);
-      }),
-      map(({ data }) => data.items)
-    );
+    return this.http
+      .get<GamesResponse>(`${environment.apiDomain}/instantgames/slots`, {
+        params,
+      })
+      .pipe(map(({ data }) => data.items));
   }
 
   getNewGames(): Observable<Game[]> {
     return this.http.get<Game[]>('/assets/mock/new-games.json');
+  }
+
+  getRecentWinners(): Observable<RecentWinners[]> {
+    return this.http
+      .get<ResponseOf<RecentWinners[]>>(
+        `${environment.apiDomain}/winners/slots/type:?limit=2`
+      )
+      .pipe(map(({ data }) => data));
   }
 }

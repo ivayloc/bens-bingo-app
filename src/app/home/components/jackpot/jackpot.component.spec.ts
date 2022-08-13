@@ -1,20 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { JackpotWinnersComponent } from './jackpot-winners.component';
+import { JackpotComponent } from './jackpot.component';
 
 describe('JackpotWinnersComponent', () => {
-  let component: JackpotWinnersComponent;
-  let fixture: ComponentFixture<JackpotWinnersComponent>;
+  let component: JackpotComponent;
+  let fixture: ComponentFixture<JackpotComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ JackpotWinnersComponent ]
-    })
-    .compileComponents();
+      declarations: [JackpotComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(JackpotWinnersComponent);
+    fixture = TestBed.createComponent(JackpotComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

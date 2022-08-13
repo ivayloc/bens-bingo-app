@@ -34,3 +34,8 @@ export const getNewGames = createSelector(
   getHomeDetailsState,
   (state) => state.newGames
 );
+
+export const selectJackpot = createSelector(
+  getHomeDetailsState,
+  (state) => state.jackpots
+);

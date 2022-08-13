@@ -11,9 +11,7 @@
       <app-bingo-coming-up></app-bingo-coming-up>
     </div>
     <div class="box-winners flex-fill w-50">
-      <app-recent-winners
-        [recentWinners]="getRecentWinners$ | async"
-      ></app-recent-winners>
+      <app-recent-winners [type]="recentWinnersType.bingo"></app-recent-winners>
     </div>
   </div>
 

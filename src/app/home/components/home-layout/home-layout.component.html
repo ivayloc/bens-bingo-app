@@ -9,10 +9,18 @@
   class="bingo-games"
 ></app-bingo-games>
 
-<app-jackpot-winners
-  [jackpots]="$any(getJackpots$ | async)"
-  [recentWinners]="$any(getRecentWinners$ | async)"
-></app-jackpot-winners>
+<div class="row align-items-start bg-jackpot-winners">
+  <div class="col-6">
+    <div class="box-jackpots flex-fill">
+      <app-jackpot></app-jackpot>
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="box-winners flex-fill">
+      <app-recent-winners></app-recent-winners>
+    </div>
+  </div>
+</div>
 
 <app-slots-games
   headerText="Hot Slots!"

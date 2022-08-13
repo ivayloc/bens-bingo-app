@@ -4,6 +4,7 @@ import { FriendRequestResult } from '../../models/friend-request-result';
 import { FriendsList } from '../../models/friends-list-response';
 import { GameHistory } from '../../models/game-history';
 import { SearchUserResult } from '../../models/search-user-result';
+import { Top5Games } from '../../models/top5-games';
 import { Transaction } from '../../models/transaction';
 import { UserInfo } from '../../models/user-info';
 import { UserProfile } from '../../models/user-profile';
@@ -114,5 +115,16 @@ export const approveFriendRequestSuccess = createAction(
 
 export const approveFriendRequestFailure = createAction(
   '[Account/Buddies API] Approve friend request FAILURE',
+  props<{ error: string }>()
+);
+export const loadTop5GamesSuccess = createAction(
+  '[Account/Dashboard API] Get top 5 games SUCCESS',
+  props<{
+    top5Games: Top5Games;
+  }>()
+);
+
+export const loadTop5GamesFailure = createAction(
+  '[Account/Dashboard API] Get top 5 games FAILURE',
   props<{ error: string }>()
 );

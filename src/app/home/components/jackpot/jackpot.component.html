@@ -1,0 +1,16 @@
+<app-content-box headerText="Jackpots">
+  <ul id="content" class="jackpots-list list-unstyled mb-0">
+    <li
+      class="jackpots-list-item d-flex align-items-end jackpots-list-item"
+      *ngFor="let jackpot of getJackpots$ | async"
+    >
+      <div class="jackpots-list-item-game flex-fill">
+        <div class="jackpots-list-item-game-studio">Progressive</div>
+        {{ jackpot.name }}
+      </div>
+      <div class="jackpots-list-item-sum">
+        {{ jackpot.amount | currency: jackpot.currency }}
+      </div>
+    </li>
+  </ul>
+</app-content-box>

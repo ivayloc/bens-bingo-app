@@ -1,5 +1,7 @@
 export interface Jackpot {
-  game: string;
-  studio: string;
-  sum: number;
+  id: string;
+  name: string;
+  shortname: string;
+  amount: number;
+  currency: string;
 }

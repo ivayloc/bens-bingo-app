@@ -3,7 +3,8 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { UserBalance } from '../../models/user-balance';
 import { UserCurrency } from '../../models/user-currency';
-import { getUserInfoBalance, State } from '../../state';
+import { getUserInfoBalance } from '../../state';
+import { AccountPageActions } from '../../state/actions';
 
 @Component({
   selector: 'app-account-funds',
@@ -19,6 +20,7 @@ export class AccountFundsComponent implements OnInit {
   constructor(private store: Store) {}
 
   ngOnInit(): void {
+    this.store.dispatch(AccountPageActions.loadUserInfo());
     this.getUserInfoBalance$ = this.store.select(getUserInfoBalance);
   }
 }

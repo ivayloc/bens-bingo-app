@@ -18,6 +18,7 @@ import { TransactionHistoryComponent } from './components/transaction-history/tr
 import { AccountEffects } from './state/account.effects';
 import { accountReducer } from './state/account.reducers';
 import { UserProfileDialogComponent } from './components/user-profile-dialog/user-profile-dialog.component';
+import { Top5GamesComponent } from './components/top5-games/top5-games.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { UserProfileDialogComponent } from './components/user-profile-dialog/use
     CustomerPortalLayoutComponent,
     AccountFundsComponent,
     UserProfileDialogComponent,
+    Top5GamesComponent,
   ],
   imports: [
     CommonModule,

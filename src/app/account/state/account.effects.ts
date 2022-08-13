@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, forkJoin, map, mergeMap, of, switchMap } from 'rxjs';
+import { catchError, map, mergeMap, of, switchMap } from 'rxjs';
 import { CasinoService } from 'src/app/shared/services/casino.service';
 import { AccountService } from '../services/account.service';
 import { AccountApiActions, AccountPageActions } from './actions';
@@ -11,7 +11,7 @@ export class AccountEffects {
     private actions$: Actions,
     private accountService: AccountService,
     private casinoService: CasinoService
-  ) { }
+  ) {}
 
   loadTransactions$ = createEffect(() => {
     return this.actions$.pipe(

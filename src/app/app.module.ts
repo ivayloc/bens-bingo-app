@@ -1,7 +1,6 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
@@ -10,9 +9,11 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
+import { LoginComponent } from './login/login.component';
 import { TranslocoRootModule } from './shared/modules/transloco-root.module';
 import { SharedModule } from './shared/shared.module';
-import { LoginComponent } from './login/login.component';
+import { AppEffects } from './state/app.effects';
+import { appReducer } from './state/app.reducers';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent],
@@ -24,8 +25,8 @@ import { LoginComponent } from './login/login.component';
     TranslocoRootModule,
     BrowserAnimationsModule,
     SharedModule,
-    StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot({ app: appReducer }, {}),
+    EffectsModule.forRoot([AppEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,

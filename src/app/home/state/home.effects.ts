@@ -21,7 +21,6 @@ export class HomeEffects {
           bingoGames: this.homeService.getBingoGames(),
           slotsGames: this.casinoService.getSlotsGames(),
           jackpots: this.homeService.getJackpots(),
-          recentWinners: this.homeService.getRecentWinners(),
           newGames: this.homeService.getNewGames(),
         }).pipe(
           map((homeDetails) =>
@@ -31,6 +30,24 @@ export class HomeEffects {
           ),
           catchError((error) =>
             of(HomeApiActions.loadHomeDetailsFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  loadJackpots$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(HomePageActions.loadJackpots),
+      mergeMap(() =>
+        this.homeService.getJackpots().pipe(
+          map((jackpots) =>
+            HomeApiActions.loadJackpotsSuccess({
+              jackpots,
+            })
+          ),
+          catchError((error) =>
+            of(HomeApiActions.loadJackpotsFailure({ error }))
           )
         )
       )

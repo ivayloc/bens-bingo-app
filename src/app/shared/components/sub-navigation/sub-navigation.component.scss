@@ -1,8 +1,11 @@
 @import "../../../../styles/functions/calc-clamp";
 @import "../../../../styles/vendors/hovercss";
 
+// .main-navigation {
+//   width: calc-clamp(1568);
+// }
 .main-navigation-submenus {
-  padding-inline-end: calc-clamp(120);
+  // padding-inline-end: calc-clamp(120);
   margin-inline-start: calc-clamp(-24);
   margin-inline-end: calc-clamp(-7);
   background-color: #5d26b7;

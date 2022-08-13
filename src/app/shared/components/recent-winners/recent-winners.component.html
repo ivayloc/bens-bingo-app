@@ -2,15 +2,17 @@
   <ul class="winners-list list-unstyled mb-0">
     <li
       class="winners-list-item d-flex align-items-end winners-list-item"
-      *ngFor="let winner of recentWinners"
+      *ngFor="let winner of getRecentWinners$ | async"
     >
       <div class="winners-list-item-game flex-fill">
         <div class="winners-list-item-game-username">
-          {{ winner.name }}
+          {{ winner?.game?.name }}
         </div>
-        Game
+        {{ winner.alias }}
       </div>
-      <div class="winners-list-item-sum">$ {{ winner.sum }}</div>
+      <div class="winners-list-item-sum">
+        {{ winner?.winnings?.prize | currency: winner?.winnings?.currency }}
+      </div>
     </li>
   </ul>
 </app-content-box>

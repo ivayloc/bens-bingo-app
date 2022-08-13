@@ -60,6 +60,27 @@
   }
 }
 
+.box {
+  &-jackpots {
+    margin-inline-start: calc-clamp(-25);
+    margin-inline-end: calc-clamp(16);
+    margin-top: calc-clamp(-75);
+  }
+  &-winners {
+    margin-inline-start: calc-clamp(16);
+    margin-inline-end: calc-clamp(-35);
+    margin-top: calc-clamp(-165);
+    margin-bottom: calc-clamp(40);
+  }
+}
+
+.bg-jackpot-winners {
+  padding-bottom: calc-clamp(130);
+  background: url("/assets/images/bg-with-mask/bg-with-mask.webp") no-repeat 0
+    center;
+  background-size: cover;
+}
+
 ::ng-deep {
   .main-navigation {
     width: calc-clamp(1568);

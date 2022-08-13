@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { BingoGame } from 'src/app/shared/models/bingo-game';
 import { ComingUp } from 'src/app/shared/models/coming-up';
 import { RecentWinners } from 'src/app/shared/models/recent-winners';
+import { ResponseOf } from 'src/app/shared/models/response-of';
+import { environment } from 'src/environments/environment';
 import { ChatModerators } from '../models/chat-moderators';
 
 @Injectable({
@@ -20,8 +22,12 @@ export class BingoService {
     return this.http.get<ComingUp[]>('/assets/mock/bingo-games.json');
   }
 
-  getRecentWinners() {
-    return this.http.get<RecentWinners[]>('/assets/mock/recent-winners.json');
+  getRecentWinners(): Observable<RecentWinners[]> {
+    return this.http
+      .get<ResponseOf<RecentWinners[]>>(
+        `${environment.apiDomain}/winners/bingo/type:?limit=2`
+      )
+      .pipe(map(({ data }) => data));
   }
 
   getChatModerators() {
