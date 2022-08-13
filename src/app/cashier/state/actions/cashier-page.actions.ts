@@ -32,8 +32,7 @@ export const setDepositLimit = createAction(
 );
 
 export const removeDepositLimits = createAction(
-  '[Cashier/Limits Page] Remove deposit limits',
-  props<{ id: number }>()
+  '[Cashier/Limits Page] Remove deposit limits'
 );
 
 export const getDepositLimits = createAction(

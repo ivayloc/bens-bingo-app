@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { DepositLimitsDuration } from '../../models/deposit-limits-duration';
@@ -13,9 +13,14 @@ import { CashierPageActions } from '../../state/actions';
 })
 export class DepositLimitComponent implements OnInit {
   depositLimitForm = this.fb.group({
-    sum: '',
-    duration: '',
+    sum: [null, Validators.required],
+    duration: ['day', Validators.required],
   });
+
+  public get depositLimitSumField(): FormControl {
+    return this.depositLimitForm.get('sum') as FormControl;
+  }
+
   getDepositLimitsPlayerDuration$ = new Observable<DepositLimitsDuration[]>();
 
   constructor(private store: Store, private fb: FormBuilder) {}
@@ -31,5 +36,15 @@ export class DepositLimitComponent implements OnInit {
     this.store.dispatch(
       CashierPageActions.setDepositLimit(this.depositLimitForm.value)
     );
+    if (this.depositLimitForm.valid) {
+      this.depositLimitForm.reset({
+        duration: 'day',
+        sum: null,
+      });
+    }
+  }
+
+  removeDepositLimits() {
+    this.store.dispatch(CashierPageActions.removeDepositLimits());
   }
 }

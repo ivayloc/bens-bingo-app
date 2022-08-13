@@ -11,12 +11,12 @@
         during time periods of 24hrs, 7 days or 30 days
       </div>
 
-      <div class="fz-24 mb-3">
+      <div class="fz-24 mb-5">
         Should you wish to remove or increase the amount then please allow 7
         days for the change to take effect
       </div>
 
-      <h3 class="fz-31 fw-bold">Current Limits</h3>
+      <h3 class="fz-31 fw-bold mb-3">Current Limits</h3>
 
       <mat-card *ngFor="let limit of limits" class="mb-3 fz-24">
         {{
@@ -31,7 +31,11 @@
 <div class="row justify-content-center">
   <div class="col-6">
     <app-content-box class="content-box" headerText="Set Deposit Limit">
-      <form [formGroup]="depositLimitForm" class="fz-24">
+      <form
+        [formGroup]="depositLimitForm"
+        (ngSubmit)="setDepositLimit()"
+        class="fz-24"
+      >
         <div class="mb-3">
           You will not be able to log in to your account, deposit, make a
           withdrawal or play.
@@ -51,18 +55,15 @@
             <mat-form-field appearance="fill" class="d-block">
               <mat-label>Time Frame</mat-label>
               <mat-select formControlName="duration">
-                <mat-option value="24">24 hours</mat-option>
-                <mat-option value="168">7 days</mat-option>
-                <mat-option value="720">30 days</mat-option>
+                <mat-option value="day">24 hours</mat-option>
+                <mat-option value="week">7 days</mat-option>
+                <mat-option value="month">30 days</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
           <div class="col-4 col-md-auto">
-            <button
-              type="button"
-              class="btn-clear btn-main py-1 mx-2 min-w-auto btn-field"
-            >
-              <span class="btn-main-text">Go</span>
+            <button class="btn-clear btn-main py-1 mx-2 min-w-auto btn-field">
+              <span class="btn-main-text">Save</span>
             </button>
           </div>
         </div>
