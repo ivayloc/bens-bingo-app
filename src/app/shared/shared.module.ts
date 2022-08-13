@@ -26,6 +26,7 @@ import { PrimeNgModule } from './modules/prime-ng.module';
 import { LoaderService } from './services/loader.service';
 import { TextContentLayoutComponent } from './text-content-layout/text-content-layout.component';
 import { RegisterComponent } from './components/register/register.component';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { RegisterComponent } from './components/register/register.component';
     TextContentLayoutComponent,
     ChatModeratorsComponent,
     LoadingSpinnerComponent,
+    TranslocoModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useExisting: LoaderService, multi: true },

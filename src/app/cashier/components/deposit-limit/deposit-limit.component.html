@@ -6,8 +6,23 @@
 >
   <div class="row justify-content-center">
     <div class="col-9">
-      <mat-card *ngFor="let limit of limits" class="mb-3">
-        <pre>{{ limit | json }}</pre>
+      <div class="fz-24 mb-3">
+        The deposit limit determines how much money you are able to deposit
+        during time periods of 24hrs, 7 days or 30 days
+      </div>
+
+      <div class="fz-24 mb-3">
+        Should you wish to remove or increase the amount then please allow 7
+        days for the change to take effect
+      </div>
+
+      <h3 class="fz-31 fw-bold">Current Limits</h3>
+
+      <mat-card *ngFor="let limit of limits" class="mb-3 fz-24">
+        {{
+          "cashier.limits." + limit.duration
+            | transloco: { value: limit.value | currency: limit.currency }
+        }}
       </mat-card>
     </div>
   </div>

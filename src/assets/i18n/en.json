@@ -1,1 +1,9 @@
-{}
+{
+  "cashier": {
+    "limits": {
+      "day": "Limit of {{value}} per day",
+      "week": "Limit of {{value}} per week",
+      "month": "Limit of {{value}} per month"
+    }
+  }
+}
