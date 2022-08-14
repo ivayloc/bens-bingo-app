@@ -16,6 +16,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LanguageSelectorComponent } from './components/language-selector/language-selector.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { LoginButtonComponent } from './components/login-button/login-button.component';
 import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
 import { MainNavigationComponent } from './components/main-navigation/main-navigation.component';
 import { RecentWinnersComponent } from './components/recent-winners/recent-winners.component';
@@ -26,8 +27,6 @@ import { ShrinkFontSizeDirective } from './directives/shrink-font-size.directive
 import { AngularMaterialModule } from './modules/angular-material.module';
 import { PrimeNgModule } from './modules/prime-ng.module';
 import { LoaderService } from './services/loader.service';
-import { TextContentLayoutComponent } from './text-content-layout/text-content-layout.component';
-import { LoginButtonComponent } from './components/login-button/login-button.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +44,6 @@ import { LoginButtonComponent } from './components/login-button/login-button.com
     RecentWinnersComponent,
     SlotsGamesComponent,
     SlotsGameComponent,
-    TextContentLayoutComponent,
     ChatModeratorsComponent,
     LoadingSpinnerComponent,
     RegisterComponent,
@@ -75,7 +73,6 @@ import { LoginButtonComponent } from './components/login-button/login-button.com
     RecentWinnersComponent,
     SlotsGamesComponent,
     CarouselModule,
-    TextContentLayoutComponent,
     ChatModeratorsComponent,
     LoadingSpinnerComponent,
     TranslocoModule,
