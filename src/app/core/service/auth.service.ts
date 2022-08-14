@@ -54,10 +54,7 @@ export class AuthService {
   }
 
   apiRefreshToken() {
-    return this.http.post<LoginResponse>(
-      `${environment.apiDomain}/api/slim/refresh`,
-      {}
-    );
+    return this.http.post<LoginResponse>(`${environment.apiLogin}/refresh`, {});
   }
 
   getAuthToken() {
@@ -66,7 +63,7 @@ export class AuthService {
 
   refreshAuthToken() {
     return this.http
-      .post<LoginResponse>(`${environment.apiDomain}/api/slim/refresh`, {})
+      .post<LoginResponse>(`${environment.apiLogin}/refresh`, {})
       .pipe(map(({ access_token }) => access_token));
   }
 }

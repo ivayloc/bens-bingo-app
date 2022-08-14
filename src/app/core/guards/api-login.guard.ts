@@ -22,6 +22,6 @@ export class ApiLoginGuard implements CanLoad {
         .apiLogin()
         .pipe(map(({ access_token }) => !!access_token));
     }
-    return false;
+    return true;
   }
 }

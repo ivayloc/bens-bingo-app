@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/service/auth.service';
 
@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
 
   login() {
     const val = this.loginForm.value;
-    localStorage.removeItem('jwt');
     if (val.email && val.password) {
       this.authService
         .login(val.email, val.password)
