@@ -63,3 +63,18 @@ export const getSearchUserResult = createSelector(
   getAccountState,
   (state) => state.searchUserResult
 );
+
+export const selectTop5NewestGames = createSelector(
+  getAccountState,
+  (state) => state.top5Games?.newestGames
+);
+
+export const selectTop5MostPlayedGames = createSelector(
+  getAccountState,
+  (state) => state.top5Games?.mostPlayedGames
+);
+
+export const selectTop5JackpotGames = createSelector(
+  getAccountState,
+  (state) => state.top5Games?.jackpots
+);

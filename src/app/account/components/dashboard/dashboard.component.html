@@ -198,85 +198,13 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row mb-5">
     <div class="col-8">
-      <app-content-box
-        class="content-box content-box-top5 hovercss-float-shadow"
-        headerText="Top 5!"
-      >
-        <div class="d-flex fz-16 py-3">
-          <div class="flex-fill">
-            <h3 class="fz-31 fw-bold mb-4 pb-2">Newest</h3>
-            <ng-container *ngFor="let game of top5Games; last as isLast">
-              <div class="d-flex cursor-pointer hover-pulse">
-                <div class="me-4">
-                  <img
-                    class="top5-game-thumbnail"
-                    src="/assets/images/temp/bs-kensei-blade.jpg"
-                    alt=""
-                  />
-                </div>
-                <div>
-                  <div class="fz-24 fw-bold text-decoration-none">
-                    Fishing Trawler
-                  </div>
-                  <div>slots</div>
-                  <div class="fst-italic">Date Added: 2022-07-05</div>
-                </div>
-              </div>
-              <hr class="hr" *ngIf="!isLast" />
-            </ng-container>
-          </div>
-          <div class="flex-fill">
-            <h3 class="fz-31 fw-bold mb-4 pb-2">Most Played</h3>
-            <ng-container *ngFor="let game of top5Games; last as isLast">
-              <div class="d-flex cursor-pointer hover-pulse">
-                <div class="me-4">
-                  <img
-                    class="top5-game-thumbnail"
-                    src="/assets/images/temp/bs-kensei-blade.jpg"
-                    alt=""
-                  />
-                </div>
-                <div>
-                  <div class="fz-24 fw-bold text-decoration-none">
-                    Fishing Trawler
-                  </div>
-                  <div>slots</div>
-                  <div class="fst-italic">Date Added: 2022-07-05</div>
-                </div>
-              </div>
-              <hr class="hr" *ngIf="!isLast" />
-            </ng-container>
-          </div>
-          <div class="flex-fill">
-            <h3 class="fz-31 fw-bold mb-4 pb-2">Jackpots</h3>
-            <ng-container *ngFor="let game of top5Games; last as isLast">
-              <div class="d-flex cursor-pointer hover-pulse">
-                <div class="me-4">
-                  <img
-                    class="top5-game-thumbnail"
-                    src="/assets/images/temp/bs-kensei-blade.jpg"
-                    alt=""
-                  />
-                </div>
-                <div>
-                  <div class="fz-24 fw-bold text-decoration-none">
-                    Fishing Trawler
-                  </div>
-                  <div>slots</div>
-                  <div class="fst-italic">Date Added: 2022-07-05</div>
-                </div>
-              </div>
-              <hr class="hr" *ngIf="!isLast" />
-            </ng-container>
-          </div>
-        </div>
-      </app-content-box>
+      <app-top5-games class="d-block content-box-top5"></app-top5-games>
     </div>
     <div class="col-4">
       <app-content-box
-        class="content-box fz-24 hovercss-float-shadow"
+        class="content-box-responsible fz-24 hovercss-float-shadow"
         titleClass="fz-45"
         headerText="Responsible Gaming"
       >

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, mergeMap, of, switchMap } from 'rxjs';
+import { catchError, forkJoin, map, mergeMap, of, switchMap } from 'rxjs';
 import { CasinoService } from 'src/app/shared/services/casino.service';
+import { GamesService } from 'src/app/shared/services/games.service';
 import { AccountService } from '../services/account.service';
 import { AccountApiActions, AccountPageActions } from './actions';
 
@@ -10,7 +11,8 @@ export class AccountEffects {
   constructor(
     private actions$: Actions,
     private accountService: AccountService,
-    private casinoService: CasinoService
+    private casinoService: CasinoService,
+    private gamesService: GamesService
   ) {}
 
   loadTransactions$ = createEffect(() => {
@@ -179,6 +181,28 @@ export class AccountEffects {
           map(() => AccountPageActions.loadFriends()),
           catchError((error) =>
             of(AccountApiActions.approveFriendRequestFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  loadTop5Games$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AccountPageActions.loadTop5Games),
+      mergeMap(() =>
+        forkJoin({
+          newestGames: this.gamesService.getNewestGames(),
+          mostPlayedGames: this.gamesService.getMostPlayedGames(),
+          jackpots: this.gamesService.getJackpots(),
+        }).pipe(
+          map((top5Games) =>
+            AccountApiActions.loadTop5GamesSuccess({
+              top5Games,
+            })
+          ),
+          catchError((error) =>
+            of(AccountApiActions.loadTop5GamesFailure({ error }))
           )
         )
       )

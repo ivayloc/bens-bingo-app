@@ -1,1 +1,69 @@
-<p>top5-games works!</p>
+<app-content-box class="hovercss-float-shadow" headerText="Top 5!">
+  <div class="d-flex fz-16 py-3">
+    <div class="flex-fill">
+      <h3 class="fz-31 fw-bold mb-4 pb-2">Newest</h3>
+      <ng-container
+        *ngFor="let game of getNewestGames$ | async; last as isLast"
+      >
+        <div
+          class="d-flex cursor-pointer hover-pulse"
+          (click)="gotToGame(game.launchUrl)"
+        >
+          <div class="me-4">
+            <img class="top5-game-thumbnail" [src]="game.tileUrl" alt="" />
+          </div>
+          <div>
+            <div class="fz-24 fw-bold text-decoration-none">
+              {{ game.name }}
+            </div>
+            <div>{{ game.type }}</div>
+            <!-- <div class="fst-italic">Date Added: {2022-07-05}</div> -->
+          </div>
+        </div>
+        <hr class="hr" *ngIf="!isLast" />
+      </ng-container>
+    </div>
+    <div class="flex-fill">
+      <h3 class="fz-31 fw-bold mb-4 pb-2">Most Played</h3>
+      <ng-container
+        *ngFor="let game of getMostPlayedGames$ | async; last as isLast"
+      >
+        <div class="d-flex cursor-pointer hover-pulse">
+          <div class="me-4">
+            <img class="top5-game-thumbnail" [src]="game.tileUrl" alt="" />
+          </div>
+          <div>
+            <div class="fz-24 fw-bold text-decoration-none">
+              {{ game.name }}
+            </div>
+            <div>{{ game.type }}</div>
+            <!-- <div class="fst-italic">Date Added: 2022-07-05</div> -->
+          </div>
+        </div>
+        <hr class="hr" *ngIf="!isLast" />
+      </ng-container>
+    </div>
+    <div class="flex-fill">
+      <h3 class="fz-31 fw-bold mb-4 pb-2">Jackpots</h3>
+      <ng-container *ngFor="let game of getJackpots$ | async; last as isLast">
+        <div class="d-flex cursor-pointer hover-pulse">
+          <!-- <div class="me-4">
+            <img
+              class="top5-game-thumbnail"
+              src="/assets/images/temp/bs-kensei-blade.jpg"
+              alt=""
+            />
+          </div> -->
+          <div>
+            <div class="fz-24 fw-bold text-decoration-none">
+              {{ game.name }}
+            </div>
+            <div>{{ game.amount | currency: game.currency }}</div>
+            <!-- <div class="fst-italic">Date Added: 2022-07-05</div> -->
+          </div>
+        </div>
+        <hr class="hr" *ngIf="!isLast" />
+      </ng-container>
+    </div>
+  </div>
+</app-content-box>

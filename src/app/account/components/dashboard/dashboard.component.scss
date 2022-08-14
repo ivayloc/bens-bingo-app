@@ -1,6 +1,4 @@
 @import "../../../../styles/functions/calc-clamp";
-@import "../../../../styles/vendors/hovercss";
-@import "/node_modules/hover.css/scss/effects/2d-transitions/grow";
 
 .content-box {
   margin-inline-end: calc-clamp(-40);
@@ -16,9 +14,12 @@
     margin-top: calc-clamp(-40);
   }
   &-top5 {
-    margin-inline-start: calc-clamp(-50);
-    margin-inline-end: 0;
+    margin-inline-start: calc-clamp(-60);
+    margin-inline-end: 10px;
     margin-top: calc-clamp(-40);
+  }
+  &-responsible {
+    margin-inline-end: calc-clamp(-50);
   }
 }
 
@@ -26,16 +27,13 @@
   table-layout: fixed;
 }
 
-.top5-game-thumbnail {
-  width: calc-clamp(100);
-}
-
-.hover-pulse {
-  @include grow();
-}
-
 :host ::ng-deep {
   .coming-up-content-scroll {
     height: calc-clamp(240);
+  }
+  .content-box-top5 {
+    .box-pink-content-body {
+      padding-inline-start: calc-clamp(100);
+    }
   }
 }
