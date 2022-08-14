@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { isAfter } from 'date-fns';
+import { addSeconds } from 'date-fns';
 import { catchError, iif, Observable, switchMap, throwError } from 'rxjs';
 import { AuthService } from '../service/auth.service';
 
@@ -38,10 +38,15 @@ export class AuthInterceptor implements HttpInterceptor {
             this.authService.apiRefreshToken(),
             this.authService.apiLogin()
           ).pipe(
-            switchMap(({ access_token }) => {
+            switchMap(({ access_token, expires_in }) => {
               AuthInterceptor.accessToken = access_token;
 
               localStorage.setItem('jwt', access_token);
+              const jwtExpirationTime = addSeconds(new Date(), expires_in);
+              localStorage.setItem(
+                'jwtExpirationTime',
+                jwtExpirationTime.getTime().toString()
+              );
               return next.handle(
                 request.clone({
                   setHeaders: {

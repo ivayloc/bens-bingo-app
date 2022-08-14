@@ -30,18 +30,21 @@ const routes: Routes = [
         path: 'account',
         loadChildren: () =>
           import('./account/account.module').then((m) => m.AccountModule),
+        canActivate: [AuthGuard],
         canLoad: [ApiAuthGuard, AuthGuard],
       },
       {
         path: 'cashier',
         loadChildren: () =>
           import('./cashier/cashier.module').then((m) => m.CashierModule),
+        canActivate: [AuthGuard],
         canLoad: [ApiAuthGuard, AuthGuard],
       },
       {
         path: 'help-desk',
         loadChildren: () =>
           import('./help-desk/help-desk.module').then((m) => m.HelpModule),
+        canActivate: [AuthGuard],
         canLoad: [ApiAuthGuard, AuthGuard],
       },
       {

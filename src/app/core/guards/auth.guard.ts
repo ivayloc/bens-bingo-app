@@ -1,7 +1,15 @@
 import { Injectable } from '@angular/core';
-import { CanLoad, Route, UrlSegment, UrlTree } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  CanLoad,
+  Route,
+  Router,
+  RouterStateSnapshot,
+  UrlSegment,
+  UrlTree,
+} from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { selectIsUserLoggedIn } from 'src/app/state';
 import { AppPageActions } from 'src/app/state/actions';
 
@@ -9,21 +17,45 @@ import { AppPageActions } from 'src/app/state/actions';
   providedIn: 'root',
 })
 export class AuthGuard implements CanLoad {
-  constructor(private store: Store) {}
+  constructor(private store: Store, private router: Router) {}
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    { url }: RouterStateSnapshot
+  ):
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree>
+    | boolean
+    | UrlTree {
+    return this.store.select(selectIsUserLoggedIn).pipe(
+      tap((isLogged) => {
+        console.log(isLogged);
+        if (!isLogged) {
+          this.store.dispatch(AppPageActions.showLogin());
+        }
+        if (url) {
+          localStorage.setItem('redirectTo', url);
+        }
+      })
+    );
+  }
   canLoad(
-    route: Route,
+    { path }: Route,
     segments: UrlSegment[]
   ):
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    const usersessionId = localStorage.getItem('usersessionid');
-    if (!usersessionId) {
-      this.store.dispatch(AppPageActions.showLogin());
-      return this.store.select(selectIsUserLoggedIn);
-    }
-
-    return true;
+    return this.store.select(selectIsUserLoggedIn).pipe(
+      tap((isLogged) => {
+        console.log(isLogged);
+        if (!isLogged) {
+          this.store.dispatch(AppPageActions.showLogin());
+        }
+        if (path) {
+          localStorage.setItem('redirectTo', path);
+        }
+      })
+    );
   }
 }

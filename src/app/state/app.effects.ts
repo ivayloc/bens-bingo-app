@@ -147,4 +147,17 @@ export class AppEffects {
     },
     { dispatch: false }
   );
+
+  redirectiOnLogin$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(AppApiActions.userLoginSuccess),
+        tap(() => {
+          const path = localStorage.getItem('redirectTo') as string;
+          this.router.navigateByUrl(path);
+        })
+      );
+    },
+    { dispatch: false }
+  );
 }

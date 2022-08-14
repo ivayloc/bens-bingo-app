@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppPageActions } from 'src/app/state/actions';
@@ -20,7 +20,8 @@ export class LoginDialogComponent {
     private store: Store,
     private fb: FormBuilder,
     private router: Router,
-    private dialogRef: MatDialogRef<LoginDialogComponent>
+    private dialogRef: MatDialogRef<LoginDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) private path: string
   ) {}
 
   login() {
