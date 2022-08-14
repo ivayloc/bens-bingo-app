@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { BingoHistoryRequest } from '../../models/bingo-history-request';
 import { TransactionsHistoryRequest } from '../../models/transactions-history-request';
-import { UpdatedUserInfo } from '../../models/update-user-info';
+import { UpdatedUserInfo } from '../../models/updated-user-info';
 
 export const loadTransactionsHistory = createAction(
   '[Account Page] Load Transactions history',

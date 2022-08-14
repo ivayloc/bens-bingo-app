@@ -18,7 +18,7 @@ import { SearchUserResult } from '../models/search-user-result';
 import { Transaction } from '../models/transaction';
 import { TransactionsHistory } from '../models/transactions-history';
 import { TransactionsHistoryRequest } from '../models/transactions-history-request';
-import { UpdatedUserInfo } from '../models/update-user-info';
+import { UpdatedUserInfo } from '../models/updated-user-info';
 import { UserInfo } from '../models/user-info';
 import { UserProfile } from '../models/user-profile';
 
