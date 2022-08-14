@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ApiLoginGuard } from './core/guards/api-login.guard';
+import { ApiAuthGuard } from './core/guards/api-auth.guard';
 import { RegisterComponent } from './shared/components/register/register.component';
 
 const routes: Routes = [
@@ -11,43 +11,43 @@ const routes: Routes = [
         path: '',
         loadChildren: () =>
           import('./home/home.module').then((m) => m.HomeModule),
-        canLoad: [ApiLoginGuard],
+        canLoad: [ApiAuthGuard],
       },
       {
         path: 'bingo-games',
         loadChildren: () =>
           import('./bingo/bingo.module').then((m) => m.BingoModule),
-        canLoad: [ApiLoginGuard],
+        canLoad: [ApiAuthGuard],
       },
       {
         path: 'casino-games',
         loadChildren: () =>
           import('./casino/casino.module').then((m) => m.CasinoModule),
-        canLoad: [ApiLoginGuard],
+        canLoad: [ApiAuthGuard],
       },
       {
         path: 'account',
         loadChildren: () =>
           import('./account/account.module').then((m) => m.AccountModule),
-        canLoad: [ApiLoginGuard],
+        canLoad: [ApiAuthGuard],
       },
       {
         path: 'cashier',
         loadChildren: () =>
           import('./cashier/cashier.module').then((m) => m.CashierModule),
-        canLoad: [ApiLoginGuard],
+        canLoad: [ApiAuthGuard],
       },
       {
         path: 'help-desk',
         loadChildren: () =>
           import('./help-desk/help-desk.module').then((m) => m.HelpModule),
-        canLoad: [ApiLoginGuard],
+        canLoad: [ApiAuthGuard],
       },
       {
         path: 'site',
         loadChildren: () =>
           import('./info/site-info.module').then((m) => m.SiteInfoModule),
-        canLoad: [ApiLoginGuard],
+        canLoad: [ApiAuthGuard],
       },
       {
         path: 'register',

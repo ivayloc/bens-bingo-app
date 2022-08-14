@@ -1,13 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-
-import { ApiLoginGuard } from './api-login.guard';
+import { ApiAuthGuard } from './api-auth.guard';
 
 describe('ApiLoginGuard', () => {
-  let guard: ApiLoginGuard;
+  let guard: ApiAuthGuard;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    guard = TestBed.inject(ApiLoginGuard);
+    guard = TestBed.inject(ApiAuthGuard);
   });
 
   it('should be created', () => {

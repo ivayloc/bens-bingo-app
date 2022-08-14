@@ -8,7 +8,7 @@ import { AuthService } from '../service/auth.service';
 @Injectable({
   providedIn: 'root',
 })
-export class ApiLoginGuard implements CanLoad {
+export class ApiAuthGuard implements CanLoad {
   constructor(private authService: AuthService, private store: Store) {}
   canLoad(
     route: Route,
