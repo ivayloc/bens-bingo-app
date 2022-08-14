@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { addSeconds, isAfter } from 'date-fns';
+import { addSeconds } from 'date-fns';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { ResponseOf } from 'src/app/shared/models/response-of';
 import { environment } from 'src/environments/environment';
 import { LoginResponse } from '../models/login-response';
@@ -18,8 +18,6 @@ export class AuthService {
     username: string = 'bencasino',
     password: string = '123456abc'
   ): Observable<ResponseOf<User>> {
-    // return this.apiLogin().pipe(
-    // switchMap(() => {
     return this.http
       .post<ResponseOf<User>>(`${environment.apiDomain}/user/login`, {
         username,
@@ -30,17 +28,13 @@ export class AuthService {
           localStorage.setItem('usersessionid', data.usersessionid);
         })
       );
-    // }),
-
-    // shareReplay()
-    // );
   }
 
   apiLogin() {
-    const expirationTime = localStorage.getItem('jwtExpirationTime');
-    if (expirationTime) {
-      isAfter(new Date(), new Date(expirationTime));
-    }
+    // const expirationTime = localStorage.getItem('jwtExpirationTime');
+    // if (expirationTime) {
+    //   isAfter(new Date(), new Date(expirationTime));
+    // }
     return this.http
       .post<LoginResponse>(`${environment.apiLogin}/login`, {
         username: 'api_test',
@@ -64,5 +58,15 @@ export class AuthService {
       `${environment.apiDomain}/api/slim/refresh`,
       {}
     );
+  }
+
+  getAuthToken() {
+    return localStorage.getItem('jwt');
+  }
+
+  refreshAuthToken() {
+    return this.http
+      .post<LoginResponse>(`${environment.apiDomain}/api/slim/refresh`, {})
+      .pipe(map(({ access_token }) => access_token));
   }
 }
