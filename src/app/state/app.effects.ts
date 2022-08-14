@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import { BingoService } from '../bingo/services/bingo.service';
@@ -17,7 +18,8 @@ export class AppEffects {
     private bingoService: BingoService,
     private userRegistration: UserRegistrationService,
     private authService: AuthService,
-    private dialog: MatDialog // private dialogRef: MatDialogRef<LoginDialogComponent>
+    private dialog: MatDialog,
+    private router: Router
   ) {}
 
   loadCasinoRecentWinners$ = createEffect(() => {
@@ -127,6 +129,19 @@ export class AppEffects {
         ofType(AppPageActions.hydeLogin, AppApiActions.userLoginSuccess),
         tap(() => {
           this.dialog.getDialogById('loginDialog')?.close();
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
+  userLogoutClearStorage$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(AppApiActions.userLogoutSuccess),
+        tap(() => {
+          localStorage.removeItem('usersessionid');
+          this.router.navigateByUrl('/');
         })
       );
     },

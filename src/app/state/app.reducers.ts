@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { RecentWinners } from '../shared/models/recent-winners';
-import { AppApiActions } from './actions';
+import { AppApiActions, AppPageActions } from './actions';
 
 export interface AppState {
   recentWinners: RecentWinners[];
@@ -60,6 +60,13 @@ export const appReducer = createReducer<AppState>(
     return {
       ...state,
       userLoggedIn: success,
+      error: '',
+    };
+  }),
+  on(AppPageActions.userIsLoggedIn, (state, action): AppState => {
+    return {
+      ...state,
+      userLoggedIn: true,
       error: '',
     };
   }),

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ApiAuthGuard } from './core/guards/api-auth.guard';
+import { AuthGuard } from './core/guards/auth.guard';
 import { RegisterComponent } from './shared/components/register/register.component';
 
 const routes: Routes = [
@@ -29,19 +30,19 @@ const routes: Routes = [
         path: 'account',
         loadChildren: () =>
           import('./account/account.module').then((m) => m.AccountModule),
-        canLoad: [ApiAuthGuard],
+        canLoad: [ApiAuthGuard, AuthGuard],
       },
       {
         path: 'cashier',
         loadChildren: () =>
           import('./cashier/cashier.module').then((m) => m.CashierModule),
-        canLoad: [ApiAuthGuard],
+        canLoad: [ApiAuthGuard, AuthGuard],
       },
       {
         path: 'help-desk',
         loadChildren: () =>
           import('./help-desk/help-desk.module').then((m) => m.HelpModule),
-        canLoad: [ApiAuthGuard],
+        canLoad: [ApiAuthGuard, AuthGuard],
       },
       {
         path: 'site',

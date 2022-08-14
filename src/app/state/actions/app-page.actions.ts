@@ -16,6 +16,7 @@ export const userRegistration = createAction(
 
 export const showLogin = createAction('[Login PAGE] Show user login');
 export const hydeLogin = createAction('[Login PAGE] Hyde user login');
+export const userIsLoggedIn = createAction('[Login PAGE] User is logged in');
 export const userLogin = createAction(
   '[Login PAGE] User login',
   props<{ payload: { email: string; password: string } }>()

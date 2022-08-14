@@ -15,6 +15,10 @@ export class LoginButtonComponent implements OnInit {
 
   ngOnInit(): void {
     this.selectIsUserLoggedIn$ = this.store.select(selectIsUserLoggedIn);
+
+    if (!!localStorage.getItem('usersessionid')) {
+      this.store.dispatch(AppPageActions.userIsLoggedIn());
+    }
   }
 
   showLogin() {
