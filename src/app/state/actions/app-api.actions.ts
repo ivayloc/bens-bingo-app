@@ -30,3 +30,13 @@ export const userRegistrationFailure = createAction(
   '[Register API] User registration Failure',
   props<{ error: string }>()
 );
+
+export const userLoginSuccess = createAction(
+  '[Login API] User login Success',
+  props<{ success: boolean }>()
+);
+
+export const userLoginFailure = createAction(
+  '[Login API] User login Failure',
+  props<{ error: string }>()
+);

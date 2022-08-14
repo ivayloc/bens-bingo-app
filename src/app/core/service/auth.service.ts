@@ -17,7 +17,7 @@ export class AuthService {
   login(
     username: string = 'bencasino',
     password: string = '123456abc'
-  ): Observable<ResponseOf<User>> {
+  ): Observable<boolean> {
     return this.http
       .post<ResponseOf<User>>(`${environment.apiDomain}/user/login`, {
         username,
@@ -26,7 +26,8 @@ export class AuthService {
       .pipe(
         tap(({ data }) => {
           localStorage.setItem('usersessionid', data.usersessionid);
-        })
+        }),
+        map(({ success }) => success)
       );
   }
 

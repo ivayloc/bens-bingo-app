@@ -9,14 +9,13 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { LoginComponent } from './login/login.component';
 import { TranslocoRootModule } from './shared/modules/transloco-root.module';
 import { SharedModule } from './shared/shared.module';
 import { AppEffects } from './state/app.effects';
 import { appReducer } from './state/app.reducers';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

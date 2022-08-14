@@ -6,17 +6,18 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { isAfter } from 'date-fns';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, filter, finalize, switchMap, take } from 'rxjs/operators';
+import { AppPageActions } from 'src/app/state/actions';
 import { AuthService } from '../service/auth.service';
 @Injectable()
 export class JwtAuthService implements HttpInterceptor {
   private refreshTokenInProgress = false;
   private refreshTokenSubject = new BehaviorSubject<null | string>(null);
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private store: Store) {}
 
   intercept(
     request: HttpRequest<any>,
@@ -29,13 +30,17 @@ export class JwtAuthService implements HttpInterceptor {
           if (jwtExpirationTime) {
             const apiLoginExpired = isAfter(
               new Date(),
-              new Date(jwtExpirationTime)
+              new Date(+jwtExpirationTime)
             );
 
             if (!apiLoginExpired) {
-              this.router.navigateByUrl('/');
-              return next.handle(request);
+              this.store.dispatch(AppPageActions.showLogin());
+              // return next.handle(request);
             }
+            // else {
+            //   localStorage.removeItem('jwt');
+            //   localStorage.removeItem('jwtExpirationTime');
+            // }
           }
           if (this.refreshTokenInProgress) {
             return this.refreshTokenSubject.pipe(

@@ -4,11 +4,13 @@ import { AppApiActions } from './actions';
 
 export interface AppState {
   recentWinners: RecentWinners[];
+  userLoggedIn: boolean;
   error: string;
 }
 
 const initialState: AppState = {
   recentWinners: [],
+  userLoggedIn: false,
   error: '',
 };
 
@@ -53,5 +55,19 @@ export const appReducer = createReducer<AppState>(
         error,
       };
     }
-  )
+  ),
+  on(AppApiActions.userLoginSuccess, (state, { success }): AppState => {
+    return {
+      ...state,
+      userLoggedIn: success,
+      error: '',
+    };
+  }),
+  on(AppApiActions.userLoginFailure, (state, { error }): AppState => {
+    return {
+      ...state,
+      userLoggedIn: false,
+      error,
+    };
+  })
 );

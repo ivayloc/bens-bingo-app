@@ -106,9 +106,9 @@
       class="content-box-vip mb-5 fz-24 hovercss-float-shadow"
       headerText="Vip"
     >
-      <ng-container *ngIf="getUserInfo$ | async as userInfo">
+      <div *ngIf="getUserInfo$ | async as userInfo" class="fz-45 fw-bold">
         {{ userInfo?.vip?.level }}
-      </ng-container>
+      </div>
     </app-content-box>
 
     <app-account-funds

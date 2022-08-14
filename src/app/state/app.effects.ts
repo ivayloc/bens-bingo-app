@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, mergeMap, of } from 'rxjs';
+import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import { BingoService } from '../bingo/services/bingo.service';
+import { AuthService } from '../core/service/auth.service';
+import { LoginDialogComponent } from '../shared/components/login-dialog/login-dialog.component';
 import { CasinoService } from '../shared/services/casino.service';
 import { UserRegistrationService } from '../shared/services/user-registration.service';
 import { AppApiActions, AppPageActions } from './actions';
@@ -12,7 +15,9 @@ export class AppEffects {
     private actions$: Actions,
     private casinoService: CasinoService,
     private bingoService: BingoService,
-    private userRegistration: UserRegistrationService
+    private userRegistration: UserRegistrationService,
+    private authService: AuthService,
+    private dialog: MatDialog // private dialogRef: MatDialogRef<LoginDialogComponent>
   ) {}
 
   loadCasinoRecentWinners$ = createEffect(() => {
@@ -68,4 +73,47 @@ export class AppEffects {
       )
     );
   });
+
+  userLogin$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AppPageActions.userLogin),
+      mergeMap(({ payload }) =>
+        this.authService.login(payload.email, payload.password).pipe(
+          map((success) =>
+            AppApiActions.userLoginSuccess({
+              success,
+            })
+          ),
+          catchError((error) => of(AppApiActions.userLoginFailure({ error })))
+        )
+      )
+    );
+  });
+
+  showLogin$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(AppPageActions.showLogin),
+        tap(() => {
+          this.dialog.open(LoginDialogComponent, {
+            id: 'loginDialog',
+            disableClose: true,
+          });
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
+  hydeLogin$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(AppPageActions.hydeLogin, AppApiActions.userLoginSuccess),
+        tap(() => {
+          this.dialog.getDialogById('loginDialog')?.close();
+        })
+      );
+    },
+    { dispatch: false }
+  );
 }

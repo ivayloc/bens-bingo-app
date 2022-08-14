@@ -16,7 +16,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LanguageSelectorComponent } from './components/language-selector/language-selector.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
-import { LoginComponent } from './components/login/login.component';
+import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
 import { MainNavigationComponent } from './components/main-navigation/main-navigation.component';
 import { RecentWinnersComponent } from './components/recent-winners/recent-winners.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -47,8 +47,8 @@ import { TextContentLayoutComponent } from './text-content-layout/text-content-l
     TextContentLayoutComponent,
     ChatModeratorsComponent,
     LoadingSpinnerComponent,
-    LoginComponent,
     RegisterComponent,
+    LoginDialogComponent,
   ],
   imports: [
     CommonModule,
