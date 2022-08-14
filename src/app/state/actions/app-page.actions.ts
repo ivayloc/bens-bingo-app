@@ -1,6 +1,10 @@
 import { createAction, props } from '@ngrx/store';
 import { UserRegistrationQuick } from 'src/app/shared/models/user-registration-quick';
 
+export const loadUserInfo = createAction(
+  '[Account/PrivateInfo Page] Load user info'
+);
+
 export const loadCasinoRecentWinners = createAction(
   '[RecentWinners Page] Load casino recent winners'
 );

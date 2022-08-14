@@ -19,7 +19,6 @@ import { Transaction } from '../models/transaction';
 import { TransactionsHistory } from '../models/transactions-history';
 import { TransactionsHistoryRequest } from '../models/transactions-history-request';
 import { UpdatedUserInfo } from '../models/updated-user-info';
-import { UserInfo } from '../models/user-info';
 import { UserProfile } from '../models/user-profile';
 
 @Injectable({
@@ -73,11 +72,6 @@ export class AccountService {
         }
       )
       .pipe(map(({ data }) => data.items));
-  }
-  getUserInfo(): Observable<UserInfo> {
-    return this.http
-      .get<ResponseOf<UserInfo>>(`${environment.apiDomain}/user/current/info`)
-      .pipe(map(({ data }) => data));
   }
 
   updateUserInfo(updatedUserInfo: UpdatedUserInfo): Observable<Success> {

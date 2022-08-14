@@ -1,21 +1,38 @@
 import { createReducer, on } from '@ngrx/store';
 import { RecentWinners } from '../shared/models/recent-winners';
+import { UserInfo } from '../shared/models/user-info';
 import { AppApiActions, AppPageActions } from './actions';
 
 export interface AppState {
   recentWinners: RecentWinners[];
   userLoggedIn: boolean;
+  userInfo: UserInfo;
   error: string;
 }
 
 const initialState: AppState = {
   recentWinners: [],
   userLoggedIn: false,
+  userInfo: {} as UserInfo,
   error: '',
 };
 
 export const appReducer = createReducer<AppState>(
   initialState,
+  on(AppApiActions.loadUserInfoSuccess, (state, { userInfo }): AppState => {
+    return {
+      ...state,
+      userInfo,
+      error: '',
+    };
+  }),
+  on(AppApiActions.loadUserInfoFailure, (state, action): AppState => {
+    return {
+      ...state,
+      userInfo: {} as UserInfo,
+      error: action.error,
+    };
+  }),
   on(
     AppApiActions.loadCasinoRecentWinnersSuccess,
     (state, { recentWinners }): AppState => {

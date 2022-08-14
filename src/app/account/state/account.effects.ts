@@ -1,14 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import {
-  catchError,
-  exhaustMap,
-  forkJoin,
-  map,
-  mergeMap,
-  of,
-  switchMap,
-} from 'rxjs';
+import { catchError, forkJoin, map, mergeMap, of, switchMap } from 'rxjs';
 import { CasinoService } from 'src/app/shared/services/casino.service';
 import { GamesService } from 'src/app/shared/services/games.service';
 import { AccountService } from '../services/account.service';
@@ -57,23 +49,7 @@ export class AccountEffects {
       )
     );
   });
-  loadUserInfo$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(AccountPageActions.loadUserInfo),
-      exhaustMap(() =>
-        this.accountService.getUserInfo().pipe(
-          map((userInfo) =>
-            AccountApiActions.loadUserInfoSuccess({
-              userInfo,
-            })
-          ),
-          catchError((error) =>
-            of(AccountApiActions.loadUserInfoFailure({ error }))
-          )
-        )
-      )
-    );
-  });
+
   updateUserInfo$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AccountPageActions.updateUserInfo),

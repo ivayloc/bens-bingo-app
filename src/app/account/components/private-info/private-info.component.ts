@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable, tap } from 'rxjs';
+import { selectUserInfo } from 'src/app/state';
+import { AppPageActions } from 'src/app/state/actions';
+import { UserInfo } from '../../../shared/models/user-info';
 import { UpdatedUserInfo } from '../../models/updated-user-info';
-import { UserInfo } from '../../models/user-info';
-import { getUserInfo } from '../../state';
 import { AccountPageActions } from '../../state/actions';
 
 @Component({
@@ -37,9 +38,9 @@ export class PrivateInfoComponent implements OnInit {
   constructor(private store: Store, private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    this.store.dispatch(AccountPageActions.loadUserInfo());
+    this.store.dispatch(AppPageActions.loadUserInfo());
 
-    this.getUserInfo$ = this.store.select(getUserInfo).pipe(
+    this.getUserInfo$ = this.store.select(selectUserInfo).pipe(
       tap((userInfo) => {
         this.setUserInfo(userInfo);
       })

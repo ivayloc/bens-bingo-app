@@ -1,5 +1,16 @@
 import { createAction, props } from '@ngrx/store';
 import { RecentWinners } from 'src/app/shared/models/recent-winners';
+import { UserInfo } from 'src/app/shared/models/user-info';
+
+export const loadUserInfoSuccess = createAction(
+  '[Account API] Load user info SUCCESS',
+  props<{ userInfo: UserInfo }>()
+);
+
+export const loadUserInfoFailure = createAction(
+  '[Account API] Load user info FAILURE',
+  props<{ error: string }>()
+);
 
 export const loadCasinoRecentWinnersSuccess = createAction(
   '[RecentWinners API] Load casino recent winners Success',

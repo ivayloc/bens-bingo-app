@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { selectUserInfoBalance } from 'src/app/state';
+import { AppPageActions } from 'src/app/state/actions';
 import { UserBalance } from '../../models/user-balance';
 import { UserCurrency } from '../../models/user-currency';
-import { getUserInfoBalance } from '../../state';
-import { AccountPageActions } from '../../state/actions';
 
 @Component({
   selector: 'app-account-funds',
@@ -20,7 +20,7 @@ export class AccountFundsComponent implements OnInit {
   constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.store.dispatch(AccountPageActions.loadUserInfo());
-    this.getUserInfoBalance$ = this.store.select(getUserInfoBalance);
+    this.store.dispatch(AppPageActions.loadUserInfo());
+    this.getUserInfoBalance$ = this.store.select(selectUserInfoBalance);
   }
 }

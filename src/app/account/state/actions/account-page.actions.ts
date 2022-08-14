@@ -13,10 +13,6 @@ export const loadGameHistory = createAction(
   props<{ payload: BingoHistoryRequest }>()
 );
 
-export const loadUserInfo = createAction(
-  '[Account/PrivateInfo Page] Load user info'
-);
-
 export const updateUserInfo = createAction(
   '[Account/PrivateInfo Page] Update user info',
   props<{ payload: UpdatedUserInfo }>()

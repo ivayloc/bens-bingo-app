@@ -19,16 +19,6 @@ export const getBingoHistory = createSelector(
   (state) => new MatTableDataSource(state.gameHistory)
 );
 
-export const getUserInfo = createSelector(
-  getAccountState,
-  (state) => state.userInfo
-);
-
-export const getUserInfoBalance = createSelector(getAccountState, (state) => ({
-  balance: state.userInfo.balance,
-  currency: state.userInfo.currency,
-}));
-
 export const getFriends = createSelector(
   getAccountState,
   (state) => new MatTableDataSource(state.friends)

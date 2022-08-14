@@ -5,6 +5,7 @@
   display: block;
 }
 .top-bar {
+  min-height: calc-clamp(39);
   padding: calc-clamp(3) calc-clamp(48);
   line-height: 1;
   background: #401784;

@@ -1,9 +1,9 @@
-import { UserBalance } from './user-balance';
-import { UserCurrency } from './user-currency';
-import { UserEmail } from './user-email';
-import { UserPhoneNumber } from './user-phone-numbe';
-import { UserSubscription } from './user-subscription';
-import { UserVip } from './user-vip';
+import { UserBalance } from '../../account/models/user-balance';
+import { UserCurrency } from '../../account/models/user-currency';
+import { UserEmail } from '../../account/models/user-email';
+import { UserPhoneNumber } from '../../account/models/user-phone-numbe';
+import { UserSubscription } from '../../account/models/user-subscription';
+import { UserVip } from '../../account/models/user-vip';
 
 export interface UserInfo {
   userid: number;

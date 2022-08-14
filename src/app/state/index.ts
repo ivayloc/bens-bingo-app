@@ -12,3 +12,16 @@ export const selectIsUserLoggedIn = createSelector(
   selectAppState,
   (state) => state.userLoggedIn
 );
+
+export const selectUserInfo = createSelector(
+  selectAppState,
+  (state) => state.userInfo
+);
+
+export const selectUserInfoBalance = createSelector(
+  selectAppState,
+  (state) => ({
+    balance: state.userInfo.balance,
+    currency: state.userInfo.currency,
+  })
+);

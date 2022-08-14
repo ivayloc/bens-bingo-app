@@ -6,7 +6,6 @@ import { GameHistory } from '../../models/game-history';
 import { SearchUserResult } from '../../models/search-user-result';
 import { Top5Games } from '../../models/top5-games';
 import { Transaction } from '../../models/transaction';
-import { UserInfo } from '../../models/user-info';
 import { UserProfile } from '../../models/user-profile';
 
 export const loadTransactionsHistorySuccess = createAction(
@@ -26,16 +25,6 @@ export const loadGameHistorySuccess = createAction(
 
 export const loadGameHistoryFailure = createAction(
   '[Account API] Load bingo history FAILURE',
-  props<{ error: string }>()
-);
-
-export const loadUserInfoSuccess = createAction(
-  '[Account API] Load user info SUCCESS',
-  props<{ userInfo: UserInfo }>()
-);
-
-export const loadUserInfoFailure = createAction(
-  '[Account API] Load user info FAILURE',
   props<{ error: string }>()
 );
 

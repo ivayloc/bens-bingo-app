@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { delay, Observable } from 'rxjs';
 import { selectIsUserLoggedIn } from 'src/app/state';
 import { AppPageActions } from 'src/app/state/actions';
 
@@ -14,7 +14,9 @@ export class LoginButtonComponent implements OnInit {
   constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.selectIsUserLoggedIn$ = this.store.select(selectIsUserLoggedIn);
+    this.selectIsUserLoggedIn$ = this.store
+      .select(selectIsUserLoggedIn)
+      .pipe(delay(0));
 
     if (!!localStorage.getItem('usersessionid')) {
       this.store.dispatch(AppPageActions.userIsLoggedIn());

@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, mergeMap, of, tap } from 'rxjs';
+import { catchError, exhaustMap, map, mergeMap, of, tap } from 'rxjs';
 import { BingoService } from '../bingo/services/bingo.service';
 import { AuthService } from '../core/service/auth.service';
 import { LoginDialogComponent } from '../shared/components/login-dialog/login-dialog.component';
 import { CasinoService } from '../shared/services/casino.service';
 import { UserRegistrationService } from '../shared/services/user-registration.service';
+import { UserService } from '../shared/services/user.service';
 import { AppApiActions, AppPageActions } from './actions';
 
 @Injectable()
@@ -19,8 +20,27 @@ export class AppEffects {
     private userRegistration: UserRegistrationService,
     private authService: AuthService,
     private dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) {}
+
+  loadUserInfo$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AppPageActions.loadUserInfo),
+      exhaustMap(() =>
+        this.userService.getUserInfo().pipe(
+          map((userInfo) =>
+            AppApiActions.loadUserInfoSuccess({
+              userInfo,
+            })
+          ),
+          catchError((error) =>
+            of(AppApiActions.loadUserInfoFailure({ error }))
+          )
+        )
+      )
+    );
+  });
 
   loadCasinoRecentWinners$ = createEffect(() => {
     return this.actions$.pipe(

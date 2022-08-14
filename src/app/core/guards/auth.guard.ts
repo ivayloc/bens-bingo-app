@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import {
-  ActivatedRouteSnapshot,
   CanLoad,
   Route,
   Router,
   RouterStateSnapshot,
-  UrlSegment,
   UrlTree,
 } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -18,17 +16,15 @@ import { AppPageActions } from 'src/app/state/actions';
 })
 export class AuthGuard implements CanLoad {
   constructor(private store: Store, private router: Router) {}
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    { url }: RouterStateSnapshot
-  ):
+  canActivate({
+    url,
+  }: RouterStateSnapshot):
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
     return this.store.select(selectIsUserLoggedIn).pipe(
       tap((isLogged) => {
-        console.log(isLogged);
         if (!isLogged) {
           this.store.dispatch(AppPageActions.showLogin());
         }
@@ -38,17 +34,15 @@ export class AuthGuard implements CanLoad {
       })
     );
   }
-  canLoad(
-    { path }: Route,
-    segments: UrlSegment[]
-  ):
+  canLoad({
+    path,
+  }: Route):
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
     return this.store.select(selectIsUserLoggedIn).pipe(
       tap((isLogged) => {
-        console.log(isLogged);
         if (!isLogged) {
           this.store.dispatch(AppPageActions.showLogin());
         }

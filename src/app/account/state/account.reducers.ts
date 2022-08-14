@@ -4,14 +4,12 @@ import { GameHistory } from '../models/game-history';
 import { SearchUserResult } from '../models/search-user-result';
 import { Top5Games } from '../models/top5-games';
 import { Transaction } from '../models/transaction';
-import { UserInfo } from '../models/user-info';
 import { UserProfile } from '../models/user-profile';
 import { AccountApiActions, AccountPageActions } from './actions';
 
 export interface AccountState {
   transactionsHistory: Transaction[];
   gameHistory: GameHistory[];
-  userInfo: UserInfo;
   pendingFriends: Friend[];
   pendingOutgoing: Friend[];
   friends: Friend[];
@@ -25,7 +23,6 @@ export interface AccountState {
 const initialState: AccountState = {
   transactionsHistory: [],
   gameHistory: [],
-  userInfo: {} as UserInfo,
   pendingFriends: {} as Friend[],
   pendingOutgoing: {} as Friend[],
   friends: {} as Friend[],
@@ -79,23 +76,6 @@ export const accountReducer = createReducer<AccountState>(
     }
   ),
   on(
-    AccountApiActions.loadUserInfoSuccess,
-    (state, { userInfo }): AccountState => {
-      return {
-        ...state,
-        userInfo,
-        error: '',
-      };
-    }
-  ),
-  on(AccountApiActions.loadUserInfoFailure, (state, action): AccountState => {
-    return {
-      ...state,
-      userInfo: {} as UserInfo,
-      error: action.error,
-    };
-  }),
-  on(
     AccountApiActions.loadUserFriendsSuccess,
     (state, { userFriends }): AccountState => {
       return {
@@ -110,7 +90,9 @@ export const accountReducer = createReducer<AccountState>(
     (state, action): AccountState => {
       return {
         ...state,
-        userInfo: {} as UserInfo,
+        pendingFriends: [],
+        pendingOutgoing: [],
+        friends: [],
         error: action.error,
       };
     }
