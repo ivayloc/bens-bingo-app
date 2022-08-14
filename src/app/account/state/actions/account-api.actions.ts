@@ -128,3 +128,15 @@ export const loadTop5GamesFailure = createAction(
   '[Account/Dashboard API] Get top 5 games FAILURE',
   props<{ error: string }>()
 );
+
+export const updateUserInfoSuccess = createAction(
+  '[Account/PrivateInfo Page] Update user info SUCCESS',
+  props<{
+    success: boolean;
+  }>()
+);
+
+export const updateUserInfoFailure = createAction(
+  '[Account/PrivateInfo Page] Update user info FAILURE',
+  props<{ error: string }>()
+);

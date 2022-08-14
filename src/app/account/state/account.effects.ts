@@ -66,6 +66,24 @@ export class AccountEffects {
       )
     );
   });
+  updateUserInfo$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AccountPageActions.updateUserInfo),
+      mergeMap(({ payload }) =>
+        this.accountService.updateUserInfo(payload).pipe(
+          map(({ success }) =>
+            AccountApiActions.updateUserInfoSuccess({
+              success,
+            })
+          ),
+          catchError((error) =>
+            of(AccountApiActions.updateUserInfoFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
   loadFriends$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AccountPageActions.loadFriends),

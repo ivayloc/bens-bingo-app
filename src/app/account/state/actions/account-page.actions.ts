@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { BingoHistoryRequest } from '../../models/bingo-history-request';
 import { TransactionsHistoryRequest } from '../../models/transactions-history-request';
+import { UpdatedUserInfo } from '../../models/update-user-info';
 
 export const loadTransactionsHistory = createAction(
   '[Account Page] Load Transactions history',
@@ -12,7 +13,14 @@ export const loadGameHistory = createAction(
   props<{ payload: BingoHistoryRequest }>()
 );
 
-export const loadUserInfo = createAction('[Account Page] Load user info');
+export const loadUserInfo = createAction(
+  '[Account/PrivateInfo Page] Load user info'
+);
+
+export const updateUserInfo = createAction(
+  '[Account/PrivateInfo Page] Update user info',
+  props<{ payload: UpdatedUserInfo }>()
+);
 
 export const loadFriends = createAction(
   '[Account/Buddy Page] Load user buddies'

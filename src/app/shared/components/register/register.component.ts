@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { AppPageActions } from 'src/app/state/actions';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
   currencies = ['EUR', 'SEK', 'NOK', 'AUD'];
 
   registerForm = this.fb.group({
@@ -28,7 +30,13 @@ export class RegisterComponent implements OnInit {
     couponcode: '',
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private store: Store, private fb: FormBuilder) {}
 
-  ngOnInit(): void {}
+  register() {
+    if (this.registerForm.invalid) {
+      return;
+    }
+    const userData = this.registerForm.getRawValue();
+    this.store.dispatch(AppPageActions.userRegistration(userData));
+  }
 }

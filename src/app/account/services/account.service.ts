@@ -1,9 +1,10 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import format from 'date-fns/format';
-import { map, Observable, of, switchMap } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { AuthService } from 'src/app/core/service/auth.service';
 import { ResponseOf } from 'src/app/shared/models/response-of';
+import { Success } from 'src/app/shared/models/success';
 import { environment } from 'src/environments/environment';
 import { AddFriendResponse } from '../models/add-friend-response';
 import { AddFriendResult } from '../models/add-friend-result';
@@ -17,6 +18,7 @@ import { SearchUserResult } from '../models/search-user-result';
 import { Transaction } from '../models/transaction';
 import { TransactionsHistory } from '../models/transactions-history';
 import { TransactionsHistoryRequest } from '../models/transactions-history-request';
+import { UpdatedUserInfo } from '../models/update-user-info';
 import { UserInfo } from '../models/user-info';
 import { UserProfile } from '../models/user-profile';
 
@@ -39,18 +41,14 @@ export class AccountService {
       },
     });
 
-    const getTransactionsHistory$ = this.http.get<
-      ResponseOf<TransactionsHistory>
-    >(`${environment.apiDomain}//user/current/history/transaction`, {
-      params,
-    });
-    return this.authService
-      .apiLogin()
-      .pipe(switchMap(() => this.authService.login()))
-      .pipe(
-        switchMap(() => getTransactionsHistory$),
-        map(({ data }) => data.items)
-      );
+    return this.http
+      .get<ResponseOf<TransactionsHistory>>(
+        `${environment.apiDomain}//user/current/history/transaction`,
+        {
+          params,
+        }
+      )
+      .pipe(map(({ data }) => data.items));
   }
 
   getGameHistory({
@@ -67,29 +65,30 @@ export class AccountService {
       },
     });
 
-    const getBingoHistory$ = this.http.get<ResponseOf<GamesHistory>>(
-      `${environment.apiDomain}/user/current/history/game`,
-      {
-        params,
-      }
-    );
-    return this.authService
-      .apiLogin()
-      .pipe(switchMap(() => this.authService.login()))
-      .pipe(
-        switchMap(() => getBingoHistory$),
-        map(({ data }) => data.items)
-      );
+    return this.http
+      .get<ResponseOf<GamesHistory>>(
+        `${environment.apiDomain}/user/current/history/game`,
+        {
+          params,
+        }
+      )
+      .pipe(map(({ data }) => data.items));
   }
   getUserInfo(): Observable<UserInfo> {
-    const getBingoHistory$ = this.http.get<ResponseOf<UserInfo>>(
-      `${environment.apiDomain}/user/current/info`
-    );
-    return this.authService.login().pipe(
-      switchMap(() => getBingoHistory$),
-      map(({ data }) => data)
-    );
+    return this.http
+      .get<ResponseOf<UserInfo>>(`${environment.apiDomain}/user/current/info`)
+      .pipe(map(({ data }) => data));
   }
+
+  updateUserInfo(updatedUserInfo: UpdatedUserInfo): Observable<Success> {
+    return this.http
+      .put<ResponseOf<Success>>(
+        `${environment.apiDomain}/user/current/info`,
+        updatedUserInfo
+      )
+      .pipe(map(({ data }) => data));
+  }
+
   getUserFriendsList(): Observable<FriendsList> {
     const params = new HttpParams({
       fromObject: {
@@ -109,7 +108,6 @@ export class AccountService {
         friendalias,
       },
     });
-    return of({} as FriendsList);
     return this.http
       .get<ResponseOf<FriendsList>>(
         `${environment.apiDomain}/user/current/friends/remove`,
@@ -123,7 +121,6 @@ export class AccountService {
         friendalias,
       },
     });
-    return of({} as FriendsList);
     return this.http
       .get<ResponseOf<FriendsList>>(
         `${environment.apiDomain}/user/current/friends/decline`,

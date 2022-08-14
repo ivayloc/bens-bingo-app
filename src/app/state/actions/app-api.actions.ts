@@ -20,3 +20,13 @@ export const loadBingoRecentWinnersFailure = createAction(
   '[RecentWinners API] Load bingo recent winners Failure',
   props<{ error: string }>()
 );
+
+export const userRegistrationSuccess = createAction(
+  '[Register API] User registration Success',
+  props<{ success: boolean }>()
+);
+
+export const userRegistrationFailure = createAction(
+  '[Register API] User registration Failure',
+  props<{ error: string }>()
+);

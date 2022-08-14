@@ -4,7 +4,7 @@
       class="content-box content-box-account w-100"
       headerText="Create a new account with us"
     >
-      <form [formGroup]="registerForm" class="fz-24">
+      <form [formGroup]="registerForm" (ngSubmit)="register()" class="fz-24">
         <div formGroupName="userdata" class="mb-4">
           <h3 class="fz-31 fw-bold mb-4">Account Info</h3>
           <div class="row mb-4">
@@ -113,7 +113,7 @@
           <a href="">Privacy Policy</a></mat-checkbox
         >
         <div class="text-center">
-          <button type="button" class="btn-clear btn-main py-1 mx-2">
+          <button class="btn-clear btn-main py-1 mx-2">
             <span class="btn-main-text">Register</span>
           </button>
         </div>
@@ -127,9 +127,5 @@
     >
       1
     </app-content-box>
-
-    <!-- <app-account-funds
-      class="content-box content-box-funds d-block hovercss-float-shadow"
-    ></app-account-funds> -->
   </div>
 </div>
