@@ -3,16 +3,13 @@ import {
   Component,
   ElementRef,
   Input,
-  QueryList,
   ViewChild,
-  ViewChildren,
 } from '@angular/core';
+import Parallax from 'parallax-js';
 import { CasinoGameCategories } from 'src/app/casino/models/casino-game-categories';
 import { CasinoGameCategory } from 'src/app/casino/models/casino-game-category';
-import { SlotsGame } from '../../models/slots-game';
-import { CarouselService } from '../../services/carousel.service';
-import Parallax from 'parallax-js';
 import { Game } from '../../models/game';
+import { CarouselService } from '../../services/carousel.service';
 
 @Component({
   selector: 'app-slots-games',
@@ -24,7 +21,7 @@ export class SlotsGamesComponent implements AfterViewInit {
   @Input() games: Game[] | null = [];
   @Input() showInCarousel = true;
   @Input() category: CasinoGameCategories = CasinoGameCategory['hot-slots'];
-  @Input() title = '';
+  @Input() headerText = '';
 
   casinoGameCategory = CasinoGameCategory;
   carouselOptions = this.carouselService.getGamesCarouselOptions(5);

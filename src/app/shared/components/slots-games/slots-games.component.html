@@ -1,5 +1,5 @@
 <div class="slots-games">
-  <div class="d-flex" *ngIf="title.length">
+  <div class="d-flex" *ngIf="headerText.length">
     <div
       class="slots-games-header transform-skew-n20"
       [ngClass]="'slots-games-header-' + categoryName"
@@ -26,7 +26,7 @@
             />
           </div>
         </div>
-        <div class="slots-games-header-text">{{ title }}</div>
+        <div class="slots-games-header-text">{{ headerText }}</div>
         <button
           *ngIf="showInCarousel"
           class="btn-clear slots-games-header-btn-more"
