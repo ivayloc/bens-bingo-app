@@ -14,9 +14,10 @@ export const userRegistration = createAction(
   props<{ payload: UserRegistrationQuick }>()
 );
 
-export const showLogin = createAction('[App Page] Show user login');
-export const hydeLogin = createAction('[App Page] Hyde user login');
+export const showLogin = createAction('[Login PAGE] Show user login');
+export const hydeLogin = createAction('[Login PAGE] Hyde user login');
 export const userLogin = createAction(
-  '[App Page] User login',
+  '[Login PAGE] User login',
   props<{ payload: { email: string; password: string } }>()
 );
+export const userLogout = createAction('[Logout PAGE] User logout');

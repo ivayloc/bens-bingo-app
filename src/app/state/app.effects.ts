@@ -90,6 +90,22 @@ export class AppEffects {
     );
   });
 
+  userLogout$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AppPageActions.userLogout),
+      mergeMap(() =>
+        this.authService.userLogout().pipe(
+          map(({ success }) =>
+            AppApiActions.userLogoutSuccess({
+              success,
+            })
+          ),
+          catchError((error) => of(AppApiActions.userLogoutFailure({ error })))
+        )
+      )
+    );
+  });
+
   showLogin$ = createEffect(
     () => {
       return this.actions$.pipe(

@@ -40,3 +40,13 @@ export const userLoginFailure = createAction(
   '[Login API] User login Failure',
   props<{ error: string }>()
 );
+
+export const userLogoutSuccess = createAction(
+  '[Logout API] User logout Success',
+  props<{ success: boolean }>()
+);
+
+export const userLogoutFailure = createAction(
+  '[Logout API] User logout Failure',
+  props<{ error: string }>()
+);

@@ -22,6 +22,6 @@ export class LoginButtonComponent implements OnInit {
   }
 
   logout() {
-    this.store.dispatch(AppPageActions.showLogin());
+    this.store.dispatch(AppPageActions.userLogout());
   }
 }

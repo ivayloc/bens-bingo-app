@@ -69,5 +69,19 @@ export const appReducer = createReducer<AppState>(
       userLoggedIn: false,
       error,
     };
+  }),
+  on(AppApiActions.userLogoutSuccess, (state, { success }): AppState => {
+    return {
+      ...state,
+      userLoggedIn: !success,
+      error: '',
+    };
+  }),
+  on(AppApiActions.userLogoutFailure, (state, { error }): AppState => {
+    return {
+      ...state,
+      userLoggedIn: false,
+      error,
+    };
   })
 );

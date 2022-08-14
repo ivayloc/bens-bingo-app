@@ -4,6 +4,7 @@ import { addSeconds } from 'date-fns';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { ResponseOf } from 'src/app/shared/models/response-of';
+import { Success } from 'src/app/shared/models/success';
 import { environment } from 'src/environments/environment';
 import { LoginResponse } from '../models/login-response';
 import { User } from '../models/user';
@@ -32,10 +33,6 @@ export class AuthService {
   }
 
   apiLogin() {
-    // const expirationTime = localStorage.getItem('jwtExpirationTime');
-    // if (expirationTime) {
-    //   isAfter(new Date(), new Date(expirationTime));
-    // }
     return this.http
       .post<LoginResponse>(`${environment.apiLogin}/login`, {
         username: 'api_test',
@@ -66,5 +63,12 @@ export class AuthService {
     return this.http
       .post<LoginResponse>(`${environment.apiLogin}/refresh`, {})
       .pipe(map(({ access_token }) => access_token));
+  }
+
+  userLogout(): Observable<Success> {
+    return this.http.post<Success>(
+      `${environment.apiDomain}/user/current/logout`,
+      {}
+    );
   }
 }
