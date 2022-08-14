@@ -27,6 +27,7 @@ import { AngularMaterialModule } from './modules/angular-material.module';
 import { PrimeNgModule } from './modules/prime-ng.module';
 import { LoaderService } from './services/loader.service';
 import { TextContentLayoutComponent } from './text-content-layout/text-content-layout.component';
+import { LoginButtonComponent } from './components/login-button/login-button.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { TextContentLayoutComponent } from './text-content-layout/text-content-l
     LoadingSpinnerComponent,
     RegisterComponent,
     LoginDialogComponent,
+    LoginButtonComponent,
   ],
   imports: [
     CommonModule,

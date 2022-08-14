@@ -1,0 +1,23 @@
+<ng-container *ngIf="selectIsUserLoggedIn$ | async; else userLoggedOut">
+  <button
+    class="btn-clear header-btn-login"
+    (click)="showLogin()"
+    matRipple
+    cdkOverlayOrigin
+    #trigger="cdkOverlayOrigin"
+  >
+    <span class="header-btn-login-text">Login</span>
+  </button>
+</ng-container>
+
+<ng-template #userLoggedOut>
+  <button
+    class="btn-clear header-btn-login"
+    (click)="logout()"
+    matRipple
+    cdkOverlayOrigin
+    #trigger="cdkOverlayOrigin"
+  >
+    <span class="header-btn-login-text">Logout</span>
+  </button>
+</ng-template>
