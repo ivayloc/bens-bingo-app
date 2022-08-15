@@ -8,7 +8,7 @@ import { GamesData } from 'src/app/shared/models/games-data';
 import { CasinoService } from 'src/app/shared/services/casino.service';
 import { CasinoGameCategories } from '../../models/casino-game-categories';
 import { CasinoGameCategory } from '../../models/casino-game-category';
-import { getAllGames, selectGamesPage } from '../../state';
+import { selectAllGames, selectGamesPage } from '../../state';
 import { CasinoPageActions } from '../../state/actions';
 
 @Component({
@@ -33,7 +33,7 @@ export class CasinoGameCategoryComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getAllGames$ = this.store.select(getAllGames);
+    this.getAllGames$ = this.store.select(selectAllGames);
     this.getCategoryGames$ = this.store.select(selectGamesPage);
 
     this.route.params.subscribe((params) => {
@@ -55,10 +55,13 @@ export class CasinoGameCategoryComponent implements OnInit {
       if (this.gameCategory === CasinoGameCategory['table-games']) {
         this.store.dispatch(CasinoPageActions.loadTableGamesPage({ page: 1 }));
       }
-      if (this.gameCategory === CasinoGameCategory['all-slots']) {
+      if (this.gameCategory === CasinoGameCategory['all-games']) {
         this.store.dispatch(
           CasinoPageActions.loadAllSlotsGamesPage({ page: 1 })
         );
+      }
+      if (this.gameCategory !== CasinoGameCategory['all-games']) {
+        this.store.dispatch(CasinoPageActions.loadAllGamesPage({ page: 1 }));
       }
     });
 
@@ -80,7 +83,7 @@ export class CasinoGameCategoryComponent implements OnInit {
       if (this.gameCategory === CasinoGameCategory['table-games']) {
         this.store.dispatch(CasinoPageActions.loadTableGamesPage({ page }));
       }
-      if (this.gameCategory === CasinoGameCategory['all-slots']) {
+      if (this.gameCategory === CasinoGameCategory['all-games']) {
         this.store.dispatch(CasinoPageActions.loadAllSlotsGamesPage({ page }));
       }
     });
@@ -102,7 +105,7 @@ export class CasinoGameCategoryComponent implements OnInit {
         CasinoPageActions.loadTableGamesPage({ page: page.pageIndex + 1 })
       );
     }
-    if (this.gameCategory === CasinoGameCategory['all-slots']) {
+    if (this.gameCategory === CasinoGameCategory['all-games']) {
       this.store.dispatch(
         CasinoPageActions.loadAllSlotsGamesPage({ page: page.pageIndex + 1 })
       );

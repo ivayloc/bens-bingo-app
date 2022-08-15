@@ -19,7 +19,7 @@ export class CasinoService {
     { url: '/casino-games/hot-slots', title: 'Hot Slots' },
     { url: '/casino-games/new-releases', title: 'New Releases' },
     { url: '/casino-games/jackpot-games', title: 'Jackpot Games' },
-    { url: '/casino-games/all-slots', title: 'All Slots' },
+    { url: '/casino-games/all-games', title: 'All Games' },
     { url: '/casino-games/table-games', title: 'Table Games' },
   ];
 
@@ -27,7 +27,7 @@ export class CasinoService {
     'hot-slots': 'Hot Slots',
     'new-releases': 'New Releases',
     'jackpot-games': 'Jackpot Games',
-    'all-slots': 'All Slots',
+    'all-games': 'All Games',
     'table-games': 'Table Games',
   };
   constructor(private http: HttpClient, private authService: AuthService) {}
@@ -112,6 +112,21 @@ export class CasinoService {
       .pipe(map(({ data }) => data));
   }
 
+  getAllGamesPage(pageIndex: number): Observable<GamesData> {
+    const params = new HttpParams().appendAll({
+      siteid: '95',
+      // groups: 'slots',
+      formfactor: 'desktop',
+      platform: 'html',
+      pageIndex,
+    });
+
+    return this.http
+      .get<ResponseOf<GamesData>>(`${environment.apiDomain}/instantgames/all`, {
+        params,
+      })
+      .pipe(map(({ data }) => data));
+  }
   getJackpotGamesPage(pageIndex: number): Observable<GamesData> {
     const params = new HttpParams().appendAll({
       siteid: '95',

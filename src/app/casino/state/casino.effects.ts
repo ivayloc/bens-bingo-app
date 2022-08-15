@@ -103,4 +103,22 @@ export class CasinoEffects {
       )
     );
   });
+
+  loadAllGamesPage$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CasinoPageActions.loadAllGamesPage),
+      mergeMap(({ page }) =>
+        this.casinoService.getAllGamesPage(page).pipe(
+          map((allGames) =>
+            CasinoApiActions.loadAllGamesSuccess({
+              allGames,
+            })
+          ),
+          catchError((error) =>
+            of(CasinoApiActions.loadAllGamesFailure({ error }))
+          )
+        )
+      )
+    );
+  });
 }

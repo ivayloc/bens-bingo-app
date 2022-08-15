@@ -2,7 +2,15 @@ import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, exhaustMap, map, mergeMap, of, tap } from 'rxjs';
+import {
+  catchError,
+  exhaustMap,
+  map,
+  mergeMap,
+  of,
+  switchMap,
+  tap,
+} from 'rxjs';
 import { BingoService } from '../bingo/services/bingo.service';
 import { AuthService } from '../core/service/auth.service';
 import { LoginDialogComponent } from '../shared/components/login-dialog/login-dialog.component';
@@ -125,6 +133,12 @@ export class AppEffects {
           catchError((error) => of(AppApiActions.userLogoutFailure({ error })))
         )
       )
+    );
+  });
+  userIsLoggedIn$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AppPageActions.userIsLoggedIn),
+      switchMap(() => of(AppPageActions.loadUserInfo()))
     );
   });
 

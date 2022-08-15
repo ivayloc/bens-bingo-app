@@ -28,3 +28,13 @@ export const loadAllSlotsGamesPage = createAction(
   '[Casino/AllSlots Page] Load page with all slots games',
   props<{ page: number }>()
 );
+
+export const loadAllGamesPage = createAction(
+  '[Casino/AllSlots Page] Load page with all games',
+  props<{ page: number }>()
+);
+
+export const loadAllGames = createAction(
+  '[Casino/AllSlots Page] Load page with all games',
+  props<{ page: number }>()
+);

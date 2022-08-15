@@ -20,8 +20,8 @@
 </ng-container>
 
 <app-slots-games
-  *ngIf="gameCategories['all-slots'] !== gameCategory"
-  [headerText]="gameCategoriesNames['all-slots']"
+  *ngIf="gameCategories['all-games'] !== gameCategory"
+  [headerText]="gameCategoriesNames['all-games']"
   [games]="getAllGames$ | async"
-  [category]="gameCategories['all-slots']"
+  [category]="gameCategories['all-games']"
 ></app-slots-games>
