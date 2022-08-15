@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import {
   AfterViewInit,
   Component,
@@ -6,22 +7,20 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
+import Parallax from 'parallax-js';
 import { Observable } from 'rxjs';
+import { Game } from 'src/app/shared/models/game';
 import { BingoGame } from '../../../shared/models/bingo-game';
-import { Jackpot } from '../../models/jackpots';
 import { RecentWinners } from '../../../shared/models/recent-winners';
-import { SlotsGame } from '../../../shared/models/slots-game';
+import { Jackpot } from '../../models/jackpots';
 import {
   getBingoGames,
   getJackpots,
   getNewGames,
   getRecentWinners,
   getSlotsGames,
-  State,
 } from '../../state';
 import { HomePageActions } from '../../state/actions';
-import Parallax from 'parallax-js';
-import { Game } from 'src/app/shared/models/game';
 
 @Component({
   selector: 'app-home-layout',
@@ -36,7 +35,7 @@ export class HomeLayoutComponent implements OnInit, AfterViewInit {
   getRecentWinners$ = new Observable<RecentWinners[]>();
   getNewGames$ = new Observable<Game[]>();
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, private http: HttpClient) {}
 
   ngOnInit(): void {
     this.store.dispatch(HomePageActions.loadHomeDetails());
@@ -46,6 +45,14 @@ export class HomeLayoutComponent implements OnInit, AfterViewInit {
     this.getJackpots$ = this.store.select(getJackpots);
     this.getRecentWinners$ = this.store.select(getRecentWinners);
     this.getNewGames$ = this.store.select(getNewGames);
+
+    this.http
+      .get(
+        'https://api.ibanapi.com/v1/validate/BG49STSA93000023875370?api_key=4d183541b8087fe0be8f64943c0b30a0c7ba4888'
+      )
+      .subscribe((data) => {
+        console.log(data);
+      });
   }
 
   ngAfterViewInit(): void {

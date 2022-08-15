@@ -50,9 +50,9 @@ export class HelpDeskService {
   }
 
   getHelpDeskChat(id: number, isFromAdmin: boolean): Observable<HelpDeskChat> {
-    let messageDetailsUrl = `api/slim/v1/user/current/help/ticket/${id}`;
+    let messageDetailsUrl = `/user/current/help/ticket/${id}`;
     if (isFromAdmin) {
-      messageDetailsUrl = `api/slim/v1/user/current/help/admin/${id}`;
+      messageDetailsUrl = `/user/current/help/admin/${id}`;
     }
 
     return this.http
