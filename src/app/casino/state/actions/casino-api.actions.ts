@@ -12,12 +12,22 @@ export const loadCasinoDetailsFailure = createAction(
   props<{ error: string }>()
 );
 
-export const loadSlotsGamesPageSuccess = createAction(
-  '[Casino API] Load page with slots games Success',
+export const loadGamesPageSuccess = createAction(
+  '[Casino API] Load page with games Success',
   props<{ slotsGamesPage: GamesData }>()
 );
 
-export const loadSlotsGamesPageFailure = createAction(
-  '[Casino API] Load page with slots games Failure',
+export const loadGamesPageFailure = createAction(
+  '[Casino API] Load page with games Failure',
   props<{ error: string }>()
 );
+
+// export const loadNewReleasesGamesPageSuccess = createAction(
+//   '[Casino/NewReleases API] Load page with newly released games Success',
+//   props<{ slotsGamesPage: GamesData }>()
+// );
+
+// export const loadNewReleasesGamesPageFailure = createAction(
+//   '[Casino/NewReleases API] Load page with newly released games Failure',
+//   props<{ error: string }>()
+// );

@@ -9,6 +9,7 @@ export interface CasinoState {
   newReleases: Game[];
   slotsGames: Game[];
   slotsGamesPage: GamesData;
+  newReleasesGamesPage: GamesData;
   error: string;
 }
 
@@ -18,6 +19,7 @@ const initialState: CasinoState = {
   newReleases: [],
   slotsGames: [],
   slotsGamesPage: {} as GamesData,
+  newReleasesGamesPage: {} as GamesData,
   error: '',
 };
 
@@ -44,7 +46,7 @@ export const casinoReducer = createReducer<CasinoState>(
     }
   ),
   on(
-    CasinoApiActions.loadSlotsGamesPageSuccess,
+    CasinoApiActions.loadGamesPageSuccess,
     (state, { slotsGamesPage }): CasinoState => {
       return {
         ...state,
@@ -53,14 +55,11 @@ export const casinoReducer = createReducer<CasinoState>(
       };
     }
   ),
-  on(
-    CasinoApiActions.loadSlotsGamesPageFailure,
-    (state, action): CasinoState => {
-      return {
-        ...state,
-        ...initialState,
-        error: action.error,
-      };
-    }
-  )
+  on(CasinoApiActions.loadGamesPageFailure, (state, action): CasinoState => {
+    return {
+      ...state,
+      ...initialState,
+      error: action.error,
+    };
+  })
 );

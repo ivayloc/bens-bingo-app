@@ -64,6 +64,23 @@ export class CasinoService {
       .pipe(map(({ data }) => data));
   }
 
+  getNewReleasesGamesPage(pageIndex: number): Observable<GamesData> {
+    const params = new HttpParams().appendAll({
+      siteid: '95',
+      groups: 'slots',
+      formfactor: 'desktop',
+      platform: 'html',
+      pageIndex,
+      order: 'created',
+    });
+
+    return this.http
+      .get<ResponseOf<GamesData>>(`${environment.apiDomain}/instantgames/all`, {
+        params,
+      })
+      .pipe(map(({ data }) => data));
+  }
+
   getNewGames(): Observable<Game[]> {
     return this.http.get<Game[]>('/assets/mock/new-games.json');
   }

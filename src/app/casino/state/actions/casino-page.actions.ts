@@ -5,6 +5,11 @@ export const loadCasinoDetails = createAction(
 );
 
 export const loadSlotsGamesPage = createAction(
-  '[HotSlots Page] Load page with slots games',
+  '[Casino/HotSlots Page] Load page with slots games',
+  props<{ page: number }>()
+);
+
+export const loadNewReleasesGamesPage = createAction(
+  '[Casino/NewReleases Page] Load page with newly released games',
   props<{ page: number }>()
 );

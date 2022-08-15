@@ -38,12 +38,30 @@ export class CasinoEffects {
       mergeMap(({ page }) =>
         this.casinoService.getSlotsGamesPage(page).pipe(
           map((slotsGames) =>
-            CasinoApiActions.loadSlotsGamesPageSuccess({
+            CasinoApiActions.loadGamesPageSuccess({
               slotsGamesPage: slotsGames,
             })
           ),
           catchError((error) =>
-            of(CasinoApiActions.loadSlotsGamesPageFailure({ error }))
+            of(CasinoApiActions.loadGamesPageFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  loadNewReleasesGamesPage$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CasinoPageActions.loadNewReleasesGamesPage),
+      mergeMap(({ page }) =>
+        this.casinoService.getNewReleasesGamesPage(page).pipe(
+          map((slotsGamesPage) =>
+            CasinoApiActions.loadGamesPageSuccess({
+              slotsGamesPage,
+            })
+          ),
+          catchError((error) =>
+            of(CasinoApiActions.loadGamesPageFailure({ error }))
           )
         )
       )

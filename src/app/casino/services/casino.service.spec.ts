@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-
-import { CasinoService } from './casino.service';
+import { CasinoService } from 'src/app/shared/services/casino.service';
 
 describe('CasinoService', () => {
   let service: CasinoService;

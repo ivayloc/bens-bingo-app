@@ -35,3 +35,8 @@ export const selectSlotsGamesPage = createSelector(
   getCasinoGamesState,
   (state) => state.slotsGamesPage
 );
+
+export const selectNewReleasesGamesPage = createSelector(
+  getCasinoGamesState,
+  (state) => state.slotsGamesPage
+);
