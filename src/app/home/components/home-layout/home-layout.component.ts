@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import {
   AfterViewInit,
   Component,
@@ -35,7 +34,7 @@ export class HomeLayoutComponent implements OnInit, AfterViewInit {
   getRecentWinners$ = new Observable<RecentWinners[]>();
   getNewGames$ = new Observable<Game[]>();
 
-  constructor(private store: Store, private http: HttpClient) {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
     this.store.dispatch(HomePageActions.loadHomeDetails());
@@ -45,14 +44,6 @@ export class HomeLayoutComponent implements OnInit, AfterViewInit {
     this.getJackpots$ = this.store.select(getJackpots);
     this.getRecentWinners$ = this.store.select(getRecentWinners);
     this.getNewGames$ = this.store.select(getNewGames);
-
-    this.http
-      .get(
-        'https://api.ibanapi.com/v1/validate/BG49STSA93000023875370?api_key=4d183541b8087fe0be8f64943c0b30a0c7ba4888'
-      )
-      .subscribe((data) => {
-        console.log(data);
-      });
   }
 
   ngAfterViewInit(): void {
