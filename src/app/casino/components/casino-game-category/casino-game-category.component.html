@@ -8,10 +8,16 @@
   [gameCategory]="gameCategory"
 ></app-casino-game-category-header>
 
-<app-slots-games
-  [games]="getCategoryGames$ | async"
-  [showInCarousel]="false"
-></app-slots-games>
+<ng-container *ngIf="getCategoryGames$ | async as games">
+  <app-slots-games
+    [games]="games.items"
+    [showInCarousel]="false"
+    [paginatorLength]="games.totalItems"
+    [paginatorPageSize]="games.itemsPerPage"
+    [paginatorPageIndex]="games.pageIndex - 1"
+    (page)="pageChanged($event)"
+  ></app-slots-games>
+</ng-container>
 
 <app-slots-games
   *ngIf="gameCategories['all-slots'] !== gameCategory"

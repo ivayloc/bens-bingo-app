@@ -2,9 +2,12 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  EventEmitter,
   Input,
+  Output,
   ViewChild,
 } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import Parallax from 'parallax-js';
 import { CasinoGameCategories } from 'src/app/casino/models/casino-game-categories';
 import { CasinoGameCategory } from 'src/app/casino/models/casino-game-category';
@@ -22,6 +25,10 @@ export class SlotsGamesComponent implements AfterViewInit {
   @Input() showInCarousel = true;
   @Input() category: CasinoGameCategories = CasinoGameCategory['hot-slots'];
   @Input() headerText = '';
+  @Input() paginatorLength = 0;
+  @Input() paginatorPageSize = 0;
+  @Input() paginatorPageIndex = 0;
+  @Output() page = new EventEmitter<PageEvent>();
 
   casinoGameCategory = CasinoGameCategory;
   carouselOptions = this.carouselService.getGamesCarouselOptions(5);
@@ -37,5 +44,8 @@ export class SlotsGamesComponent implements AfterViewInit {
         selector: '.parallax-layer',
       });
     }
+  }
+  pageChanged(page: PageEvent) {
+    this.page.emit(page);
   }
 }

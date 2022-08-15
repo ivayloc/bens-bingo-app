@@ -31,4 +31,22 @@ export class CasinoEffects {
       )
     );
   });
+
+  loadSlotsGamesPage$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CasinoPageActions.loadSlotsGamesPage),
+      mergeMap(({ page }) =>
+        this.casinoService.getSlotsGamesPage(page).pipe(
+          map((slotsGames) =>
+            CasinoApiActions.loadSlotsGamesPageSuccess({
+              slotsGamesPage: slotsGames,
+            })
+          ),
+          catchError((error) =>
+            of(CasinoApiActions.loadSlotsGamesPageFailure({ error }))
+          )
+        )
+      )
+    );
+  });
 }

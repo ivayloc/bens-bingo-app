@@ -1,7 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { Game } from 'src/app/shared/models/game';
-import { SlotsGame } from 'src/app/shared/models/slots-game';
-import { CasinoNewGame } from '../models/casino-new-game';
+import { GamesData } from 'src/app/shared/models/games-data';
 import { CasinoApiActions } from './actions';
 
 export interface CasinoState {
@@ -9,6 +8,7 @@ export interface CasinoState {
   newGames: Game[];
   newReleases: Game[];
   slotsGames: Game[];
+  slotsGamesPage: GamesData;
   error: string;
 }
 
@@ -17,6 +17,7 @@ const initialState: CasinoState = {
   newGames: [],
   newReleases: [],
   slotsGames: [],
+  slotsGamesPage: {} as GamesData,
   error: '',
 };
 
@@ -34,6 +35,26 @@ export const casinoReducer = createReducer<CasinoState>(
   ),
   on(
     CasinoApiActions.loadCasinoDetailsFailure,
+    (state, action): CasinoState => {
+      return {
+        ...state,
+        ...initialState,
+        error: action.error,
+      };
+    }
+  ),
+  on(
+    CasinoApiActions.loadSlotsGamesPageSuccess,
+    (state, { slotsGamesPage }): CasinoState => {
+      return {
+        ...state,
+        slotsGamesPage,
+        error: '',
+      };
+    }
+  ),
+  on(
+    CasinoApiActions.loadSlotsGamesPageFailure,
     (state, action): CasinoState => {
       return {
         ...state,

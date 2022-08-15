@@ -6,6 +6,7 @@ import { Game } from 'src/app/shared/models/game';
 import { NavigationItem } from 'src/app/shared/models/navigation-item';
 import { environment } from 'src/environments/environment';
 import { GameCategoriesNames } from '../models/game-categories-names';
+import { GamesData } from '../models/games-data';
 import { GamesResponse } from '../models/games-response';
 import { RecentWinners } from '../models/recent-winners';
 import { ResponseOf } from '../models/response-of';
@@ -34,16 +35,33 @@ export class CasinoService {
   getSlotsGames(): Observable<Game[]> {
     const params = new HttpParams().appendAll({
       siteid: '95',
-      groups: 'jackpot',
+      groups: 'slots',
       formfactor: 'desktop',
       platform: 'html',
+      limit: 10,
     });
 
     return this.http
-      .get<GamesResponse>(`${environment.apiDomain}/instantgames/slots`, {
+      .get<GamesResponse>(`${environment.apiDomain}/instantgames/all`, {
         params,
       })
       .pipe(map(({ data }) => data.items));
+  }
+
+  getSlotsGamesPage(pageIndex: number): Observable<GamesData> {
+    const params = new HttpParams().appendAll({
+      siteid: '95',
+      groups: 'slots',
+      formfactor: 'desktop',
+      platform: 'html',
+      pageIndex,
+    });
+
+    return this.http
+      .get<ResponseOf<GamesData>>(`${environment.apiDomain}/instantgames/all`, {
+        params,
+      })
+      .pipe(map(({ data }) => data));
   }
 
   getNewGames(): Observable<Game[]> {
