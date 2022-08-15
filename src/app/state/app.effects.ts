@@ -168,7 +168,7 @@ export class AppEffects {
     { dispatch: false }
   );
 
-  redirectiOnLogin$ = createEffect(
+  redirectOnLogin$ = createEffect(
     () => {
       return this.actions$.pipe(
         ofType(AppApiActions.userLoginSuccess),

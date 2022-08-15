@@ -31,12 +31,7 @@ export const getNewGames = createSelector(
   (state) => state.newGames
 );
 
-export const selectSlotsGamesPage = createSelector(
+export const selectGamesPage = createSelector(
   getCasinoGamesState,
-  (state) => state.slotsGamesPage
-);
-
-export const selectNewReleasesGamesPage = createSelector(
-  getCasinoGamesState,
-  (state) => state.slotsGamesPage
+  (state) => state.gamesCategoryPage
 );

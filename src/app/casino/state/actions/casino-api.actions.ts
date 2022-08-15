@@ -14,7 +14,7 @@ export const loadCasinoDetailsFailure = createAction(
 
 export const loadGamesPageSuccess = createAction(
   '[Casino API] Load page with games Success',
-  props<{ slotsGamesPage: GamesData }>()
+  props<{ gamesCategoryPage: GamesData }>()
 );
 
 export const loadGamesPageFailure = createAction(

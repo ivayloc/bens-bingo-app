@@ -21,7 +21,7 @@
 
 <app-slots-games
   *ngIf="gameCategories['all-slots'] !== gameCategory"
-  [title]="gameCategoriesNames['all-slots']"
+  [headerText]="gameCategoriesNames['all-slots']"
   [games]="getAllGames$ | async"
   [category]="gameCategories['all-slots']"
 ></app-slots-games>

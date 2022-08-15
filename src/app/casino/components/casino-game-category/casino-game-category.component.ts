@@ -8,7 +8,7 @@ import { GamesData } from 'src/app/shared/models/games-data';
 import { CasinoService } from 'src/app/shared/services/casino.service';
 import { CasinoGameCategories } from '../../models/casino-game-categories';
 import { CasinoGameCategory } from '../../models/casino-game-category';
-import { getAllGames, selectSlotsGamesPage } from '../../state';
+import { getAllGames, selectGamesPage } from '../../state';
 import { CasinoPageActions } from '../../state/actions';
 
 @Component({
@@ -34,6 +34,7 @@ export class CasinoGameCategoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllGames$ = this.store.select(getAllGames);
+    this.getCategoryGames$ = this.store.select(selectGamesPage);
 
     this.route.params.subscribe((params) => {
       this.gameCategory = params['gameCategory'];
@@ -46,10 +47,19 @@ export class CasinoGameCategoryComponent implements OnInit {
           CasinoPageActions.loadNewReleasesGamesPage({ page: 1 })
         );
       }
-      if (this.gameCategory === CasinoGameCategory['jackpot-games']) {
-        // this.getCategoryGames$ = this.store.select(selectSlotsGamesPage);
+      // if (this.gameCategory === CasinoGameCategory['jackpot-games']) {
+      //   this.store.dispatch(
+      //     CasinoPageActions.loadJackpotGamesPage({ page: 1 })
+      //   );
+      // }
+      if (this.gameCategory === CasinoGameCategory['table-games']) {
+        this.store.dispatch(CasinoPageActions.loadTableGamesPage({ page: 1 }));
       }
-      this.getCategoryGames$ = this.store.select(selectSlotsGamesPage);
+      if (this.gameCategory === CasinoGameCategory['all-slots']) {
+        this.store.dispatch(
+          CasinoPageActions.loadAllSlotsGamesPage({ page: 1 })
+        );
+      }
     });
 
     this.route.queryParams.subscribe((params) => {
@@ -61,13 +71,17 @@ export class CasinoGameCategoryComponent implements OnInit {
       }
       if (this.gameCategory === CasinoGameCategory['hot-slots']) {
         this.store.dispatch(CasinoPageActions.loadSlotsGamesPage({ page }));
-        this.getCategoryGames$ = this.store.select(selectSlotsGamesPage);
       }
       if (this.gameCategory === CasinoGameCategory['new-releases']) {
         this.store.dispatch(
           CasinoPageActions.loadNewReleasesGamesPage({ page })
         );
-        this.getCategoryGames$ = this.store.select(selectSlotsGamesPage);
+      }
+      if (this.gameCategory === CasinoGameCategory['table-games']) {
+        this.store.dispatch(CasinoPageActions.loadTableGamesPage({ page }));
+      }
+      if (this.gameCategory === CasinoGameCategory['all-slots']) {
+        this.store.dispatch(CasinoPageActions.loadAllSlotsGamesPage({ page }));
       }
     });
   }
@@ -81,6 +95,16 @@ export class CasinoGameCategoryComponent implements OnInit {
     if (this.gameCategory === CasinoGameCategory['new-releases']) {
       this.store.dispatch(
         CasinoPageActions.loadNewReleasesGamesPage({ page: page.pageIndex + 1 })
+      );
+    }
+    if (this.gameCategory === CasinoGameCategory['table-games']) {
+      this.store.dispatch(
+        CasinoPageActions.loadTableGamesPage({ page: page.pageIndex + 1 })
+      );
+    }
+    if (this.gameCategory === CasinoGameCategory['all-slots']) {
+      this.store.dispatch(
+        CasinoPageActions.loadAllSlotsGamesPage({ page: page.pageIndex + 1 })
       );
     }
 

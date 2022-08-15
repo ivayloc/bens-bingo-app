@@ -27,7 +27,7 @@ export class CasinoService {
     'hot-slots': 'Hot Slots',
     'new-releases': 'New Releases',
     'jackpot-games': 'Jackpot Games',
-    'all-slots': 'All Games',
+    'all-slots': 'All Slots',
     'table-games': 'Table Games',
   };
   constructor(private http: HttpClient, private authService: AuthService) {}
@@ -65,6 +65,54 @@ export class CasinoService {
   }
 
   getNewReleasesGamesPage(pageIndex: number): Observable<GamesData> {
+    const params = new HttpParams().appendAll({
+      siteid: '95',
+      formfactor: 'desktop',
+      platform: 'html',
+      pageIndex,
+      order: 'created',
+    });
+
+    return this.http
+      .get<ResponseOf<GamesData>>(`${environment.apiDomain}/instantgames/all`, {
+        params,
+      })
+      .pipe(map(({ data }) => data));
+  }
+
+  getTableGamesPage(pageIndex: number): Observable<GamesData> {
+    const params = new HttpParams().appendAll({
+      siteid: '95',
+      groups: 'baccarat,blackjack,craps,poker,roulette,war',
+      formfactor: 'desktop',
+      platform: 'html',
+      pageIndex,
+    });
+
+    return this.http
+      .get<ResponseOf<GamesData>>(`${environment.apiDomain}/instantgames/all`, {
+        params,
+      })
+      .pipe(map(({ data }) => data));
+  }
+
+  getAllSlotsGamesPage(pageIndex: number): Observable<GamesData> {
+    const params = new HttpParams().appendAll({
+      siteid: '95',
+      groups: 'slots',
+      formfactor: 'desktop',
+      platform: 'html',
+      pageIndex,
+    });
+
+    return this.http
+      .get<ResponseOf<GamesData>>(`${environment.apiDomain}/instantgames/all`, {
+        params,
+      })
+      .pipe(map(({ data }) => data));
+  }
+
+  getJackpotGamesPage(pageIndex: number): Observable<GamesData> {
     const params = new HttpParams().appendAll({
       siteid: '95',
       groups: 'slots',

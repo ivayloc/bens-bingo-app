@@ -39,7 +39,7 @@ export class CasinoEffects {
         this.casinoService.getSlotsGamesPage(page).pipe(
           map((slotsGames) =>
             CasinoApiActions.loadGamesPageSuccess({
-              slotsGamesPage: slotsGames,
+              gamesCategoryPage: slotsGames,
             })
           ),
           catchError((error) =>
@@ -55,9 +55,45 @@ export class CasinoEffects {
       ofType(CasinoPageActions.loadNewReleasesGamesPage),
       mergeMap(({ page }) =>
         this.casinoService.getNewReleasesGamesPage(page).pipe(
-          map((slotsGamesPage) =>
+          map((newReleasesGames) =>
             CasinoApiActions.loadGamesPageSuccess({
-              slotsGamesPage,
+              gamesCategoryPage: newReleasesGames,
+            })
+          ),
+          catchError((error) =>
+            of(CasinoApiActions.loadGamesPageFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  loadTabletGamesPage$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CasinoPageActions.loadTableGamesPage),
+      mergeMap(({ page }) =>
+        this.casinoService.getTableGamesPage(page).pipe(
+          map((tableGames) =>
+            CasinoApiActions.loadGamesPageSuccess({
+              gamesCategoryPage: tableGames,
+            })
+          ),
+          catchError((error) =>
+            of(CasinoApiActions.loadGamesPageFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  loadAllSlotsGamesPage$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CasinoPageActions.loadAllSlotsGamesPage),
+      mergeMap(({ page }) =>
+        this.casinoService.getAllSlotsGamesPage(page).pipe(
+          map((allSLotsGames) =>
+            CasinoApiActions.loadGamesPageSuccess({
+              gamesCategoryPage: allSLotsGames,
             })
           ),
           catchError((error) =>
