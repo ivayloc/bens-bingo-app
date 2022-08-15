@@ -30,7 +30,7 @@
             <div class="col-4">
               <mat-form-field class="d-block" appearance="fill">
                 <mat-label>Password</mat-label>
-                <input type="password" matInput formControlName="firstname" />
+                <input type="password" matInput formControlName="password" />
                 <div matSuffix>
                   <mat-icon
                     svgIcon="live-help"
@@ -41,6 +41,11 @@
                     matTooltip="Your password must contain at least one letter and one digit and may not be the same as your alias."
                   ></mat-icon>
                 </div>
+                <mat-error
+                  *ngIf="passwordControl?.invalid && passwordControl?.touched"
+                >
+                  {{ passwordControl.getError("password") }}
+                </mat-error>
               </mat-form-field>
             </div>
           </div>

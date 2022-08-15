@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppPageActions } from 'src/app/state/actions';
+import { ValidatorsService } from '../../services/validators.service';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,7 @@ export class RegisterComponent {
       lastname: ['', Validators.required],
       username: ['', Validators.required],
       email: ['', Validators.required],
-      password: ['', Validators.required],
+      password: ['1', Validators.required, this.validatorsService.password()],
       mobilephone: ['', Validators.required],
       bday: ['', Validators.required],
       currency: ['', Validators.required],
@@ -30,7 +31,15 @@ export class RegisterComponent {
     couponcode: '',
   });
 
-  constructor(private store: Store, private fb: FormBuilder) {}
+  get passwordControl(): FormControl {
+    return this.registerForm.get('userdata.password') as FormControl;
+  }
+
+  constructor(
+    private store: Store,
+    private fb: FormBuilder,
+    private validatorsService: ValidatorsService
+  ) {}
 
   register() {
     if (this.registerForm.invalid) {
