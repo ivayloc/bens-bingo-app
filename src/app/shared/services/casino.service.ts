@@ -32,7 +32,7 @@ export class CasinoService {
   };
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-  getSlotsGames(): Observable<Game[]> {
+  getSlotsGamesCarousel(): Observable<Game[]> {
     const params = new HttpParams().appendAll({
       siteid: '95',
       groups: 'slots',
@@ -78,6 +78,21 @@ export class CasinoService {
         params,
       })
       .pipe(map(({ data }) => data));
+  }
+  getNewReleasesGamesCarousel(): Observable<Game[]> {
+    const params = new HttpParams().appendAll({
+      siteid: '95',
+      formfactor: 'desktop',
+      platform: 'html',
+      order: 'created',
+      limit: 10,
+    });
+
+    return this.http
+      .get<ResponseOf<GamesData>>(`${environment.apiDomain}/instantgames/all`, {
+        params,
+      })
+      .pipe(map(({ data }) => data.items));
   }
 
   getTableGamesPage(pageIndex: number): Observable<GamesData> {

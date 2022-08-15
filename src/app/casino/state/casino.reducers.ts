@@ -5,7 +5,7 @@ import { CasinoApiActions } from './actions';
 
 export interface CasinoState {
   jackpotGames: Game[];
-  newGames: Game[];
+  // newGames: Game[];
   newReleases: Game[];
   slotsGames: Game[];
   gamesCategoryPage: GamesData;
@@ -15,7 +15,7 @@ export interface CasinoState {
 
 const initialState: CasinoState = {
   jackpotGames: [],
-  newGames: [],
+  // newGames: [],
   newReleases: [],
   slotsGames: [],
   gamesCategoryPage: {} as GamesData,

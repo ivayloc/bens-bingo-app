@@ -26,10 +26,10 @@ export const getJackpotGames = createSelector(
   (state) => state.jackpotGames
 );
 
-export const getNewGames = createSelector(
-  getCasinoGamesState,
-  (state) => state.newGames
-);
+// export const getNewGames = createSelector(
+//   getCasinoGamesState,
+//   (state) => state.newGames
+// );
 
 export const selectGamesPage = createSelector(
   getCasinoGamesState,

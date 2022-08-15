@@ -137,7 +137,7 @@ export class AppEffects {
   });
   userIsLoggedIn$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(AppPageActions.userIsLoggedIn),
+      ofType(AppPageActions.userIsLoggedIn, AppApiActions.userLoginSuccess),
       switchMap(() => of(AppPageActions.loadUserInfo()))
     );
   });

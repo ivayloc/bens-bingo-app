@@ -16,8 +16,8 @@ export class CasinoEffects {
       ofType(CasinoPageActions.loadCasinoDetails),
       mergeMap(() =>
         forkJoin({
-          slotsGames: this.casinoService.getSlotsGames(),
-          newGames: this.casinoService.getNewGames(),
+          slotsGames: this.casinoService.getSlotsGamesCarousel(),
+          newReleases: this.casinoService.getNewReleasesGamesCarousel(),
         }).pipe(
           map((casinoDetails) =>
             CasinoApiActions.loadCasinoDetailsSuccess({

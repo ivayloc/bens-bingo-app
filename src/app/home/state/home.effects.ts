@@ -21,7 +21,7 @@ export class HomeEffects {
       mergeMap(() =>
         forkJoin({
           bingoGames: this.homeService.getBingoGames(),
-          slotsGames: this.casinoService.getSlotsGames(),
+          slotsGames: this.casinoService.getSlotsGamesCarousel(),
           newGames: this.homeService.getNewGames(),
         }).pipe(
           map((homeDetails) =>
