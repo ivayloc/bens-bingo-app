@@ -13,6 +13,7 @@ import { BingoGamesComponent } from './components/bingo-games/bingo-games.compon
 import { ChatModeratorsComponent } from './components/chat-moderators/chat-moderators.component';
 import { ContentBoxComponent } from './components/content-box/content-box.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { FormErrorMessageComponent } from './components/form-error-message/form-error-message.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LanguageSelectorComponent } from './components/language-selector/language-selector.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
@@ -49,6 +50,7 @@ import { LoaderService } from './services/loader.service';
     RegisterComponent,
     LoginDialogComponent,
     LoginButtonComponent,
+    FormErrorMessageComponent,
   ],
   imports: [
     CommonModule,
@@ -76,6 +78,7 @@ import { LoaderService } from './services/loader.service';
     ChatModeratorsComponent,
     LoadingSpinnerComponent,
     TranslocoModule,
+    FormErrorMessageComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useExisting: LoaderService, multi: true },

@@ -1,0 +1,14 @@
+<ng-container *ngIf="control?.invalid && control?.touched">
+  <ng-container *ngIf="control?.hasError('required')">
+    Please fill out this field
+  </ng-container>
+  <ng-container *ngIf="control?.hasError('password')">
+    {{ control?.getError("password") }}
+  </ng-container>
+  <ng-container *ngIf="control?.hasError('email')">
+    Invalid Email
+  </ng-container>
+  <ng-container *ngIf="control?.hasError('invalidEmail')">
+    {{ control?.getError("invalidEmail") }}
+  </ng-container>
+</ng-container>

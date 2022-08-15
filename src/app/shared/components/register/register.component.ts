@@ -16,9 +16,13 @@ export class RegisterComponent {
     userdata: this.fb.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
-      username: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['1', Validators.required, this.validatorsService.password()],
+      username: ['', Validators.required, this.validatorsService.username()],
+      email: [
+        '',
+        [Validators.required, Validators.email],
+        this.validatorsService.email(),
+      ],
+      password: ['', Validators.required, this.validatorsService.password()],
       mobilephone: ['', Validators.required],
       bday: ['', Validators.required],
       currency: ['', Validators.required],
@@ -27,12 +31,20 @@ export class RegisterComponent {
       email: '',
       sms: '',
     }),
-    terms: '',
+    terms: ['', Validators.requiredTrue],
     couponcode: '',
   });
 
   get passwordControl(): FormControl {
     return this.registerForm.get('userdata.password') as FormControl;
+  }
+
+  get emailControl(): FormControl {
+    return this.registerForm.get('userdata.email') as FormControl;
+  }
+
+  get usernameControl(): FormControl {
+    return this.registerForm.get('userdata.username') as FormControl;
   }
 
   constructor(

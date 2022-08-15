@@ -11,13 +11,23 @@
             <div class="col-4">
               <mat-form-field class="d-block" appearance="fill">
                 <mat-label>User Name</mat-label>
-                <input matInput formControlName="firstname" />
+                <input matInput formControlName="username" />
+                <mat-error
+                  *ngIf="usernameControl?.invalid && usernameControl?.touched"
+                >
+                  <ng-container *ngIf="usernameControl.hasError('required')">
+                    Please fill out this field
+                  </ng-container>
+                  <ng-container *ngIf="usernameControl.hasError('username')">
+                    {{ usernameControl.getError("username") }}
+                  </ng-container>
+                </mat-error>
               </mat-form-field>
             </div>
             <div class="col-4">
               <mat-form-field class="d-block" appearance="fill">
                 <mat-label>Currency</mat-label>
-                <mat-select>
+                <mat-select formControlName="currency">
                   <mat-option
                     *ngFor="let currency of currencies"
                     [value]="currency"
@@ -25,6 +35,11 @@
                     {{ currency }}
                   </mat-option>
                 </mat-select>
+                <mat-error>
+                  <app-form-error-message
+                    [control]="registerForm.get('userdata.currency')"
+                  ></app-form-error-message>
+                </mat-error>
               </mat-form-field>
             </div>
             <div class="col-4">
@@ -41,10 +56,10 @@
                     matTooltip="Your password must contain at least one letter and one digit and may not be the same as your alias."
                   ></mat-icon>
                 </div>
-                <mat-error
-                  *ngIf="passwordControl?.invalid && passwordControl?.touched"
-                >
-                  {{ passwordControl.getError("password") }}
+                <mat-error>
+                  <app-form-error-message
+                    [control]="registerForm.get('userdata.password')"
+                  ></app-form-error-message>
                 </mat-error>
               </mat-form-field>
             </div>
@@ -56,30 +71,50 @@
               <mat-form-field class="d-block" appearance="fill">
                 <mat-label>First Name</mat-label>
                 <input matInput formControlName="firstname" />
+                <mat-error>
+                  <app-form-error-message
+                    [control]="registerForm.get('userdata.firstname')"
+                  ></app-form-error-message>
+                </mat-error>
               </mat-form-field>
             </div>
             <div class="col-4">
               <mat-form-field class="d-block" appearance="fill">
                 <mat-label>Last Name</mat-label>
                 <input matInput formControlName="lastname" />
+                <mat-error>
+                  <app-form-error-message
+                    [control]="registerForm.get('userdata.lastname')"
+                  ></app-form-error-message>
+                </mat-error>
               </mat-form-field>
             </div>
             <div class="col-4">
               <mat-form-field class="d-block" appearance="fill">
                 <mat-label>E-Mail</mat-label>
-                <input matInput formControlName="mobilephone" />
+                <input matInput formControlName="email" />
+                <mat-error>
+                  <app-form-error-message
+                    [control]="registerForm.get('userdata.email')"
+                  ></app-form-error-message>
+                </mat-error>
               </mat-form-field>
             </div>
             <div class="col-4">
               <mat-form-field class="d-block" appearance="fill">
                 <mat-label>Mobile Phone</mat-label>
                 <input matInput formControlName="mobilephone" />
+                <mat-error>
+                  <app-form-error-message
+                    [control]="registerForm.get('userdata.mobilephone')"
+                  ></app-form-error-message>
+                </mat-error>
               </mat-form-field>
             </div>
 
             <div class="col-4">
               <mat-form-field appearance="fill" class="d-block">
-                <mat-label>Choose a date</mat-label>
+                <mat-label>Birthday</mat-label>
                 <input
                   matInput
                   [matDatepicker]="picker"
@@ -90,6 +125,11 @@
                   [for]="picker"
                 ></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
+                <mat-error>
+                  <app-form-error-message
+                    [control]="registerForm.get('userdata.bday')"
+                  ></app-form-error-message>
+                </mat-error>
               </mat-form-field>
             </div>
           </div>
@@ -113,10 +153,16 @@
             >Subscribe to our SMS notifications</mat-checkbox
           >
         </div>
-        <mat-checkbox class="mb-5" formControlName="terms"
-          >*I accept the <a href="">Terms and Conditions</a> &
-          <a href="">Privacy Policy</a></mat-checkbox
-        >
+        <div class="mb-5">
+          <mat-checkbox formControlName="terms"
+            >*I accept the <a href="">Terms and Conditions</a> &
+            <a href="">Privacy Policy</a></mat-checkbox
+          >
+          <app-form-error-message
+            class="text-danger"
+            [control]="registerForm.get('terms')"
+          ></app-form-error-message>
+        </div>
         <div class="text-center">
           <button class="btn-clear btn-main py-1 mx-2">
             <span class="btn-main-text">Register</span>
