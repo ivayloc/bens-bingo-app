@@ -1,10 +1,173 @@
 <app-content-box
   [isFluid]="true"
-  headerText="Selected Cash-out Method"
-  *ngIf="getSelectedDepositMethod$ | async as selectedPaymentMethod"
+  [headerText]="'Pay with ' + paymentMethod.name"
+  *ngIf="getSelectedDepositMethod$ | async as paymentMethod"
   class="mb-5"
 >
-  <app-payment-method
+  <!-- <app-payment-method
+    buttonLabel="Continue"
     [paymentMethod]="selectedPaymentMethod"
-  ></app-payment-method>
+  ></app-payment-method> -->
+
+  <mat-card *ngIf="getSelectedDepositMethod$ | async as paymentMethod">
+    <mat-card-title>{{ paymentMethod.name }}</mat-card-title>
+
+    <mat-card-content class="fz-24">
+      <div class="row">
+        <div class="col-md-3">
+          <img
+            [src]="
+              'https://functionalgames.cdn.bingolab.com/images/common/processors/' +
+              paymentMethod.image +
+              '.png'
+            "
+            class="w-100"
+            alt="payment method"
+          />
+          <div
+            class="mt-4 pt-3"
+            *ngFor="let paymentDetail of paymentMethod.details"
+          >
+            <dl class="d-flex">
+              <dt class="pe-2">Fee:</dt>
+              <dd class="mb-0">{{ paymentDetail.fee }}</dd>
+            </dl>
+            <dl class="d-flex">
+              <dt class="pe-2">Minimum:</dt>
+              <dd class="mb-0">{{ paymentDetail.min }}</dd>
+            </dl>
+            <dl class="d-flex">
+              <dt class="pe-2">Maximum:</dt>
+              <dd class="mb-0">{{ paymentDetail.max }}</dd>
+            </dl>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div [outerHTML]="paymentMethod.description"></div>
+          <hr class="hr my-4" />
+          <form [formGroup]="depositForm">
+            <mat-form-field appearance="fill">
+              <mat-label>Amount</mat-label>
+              <mat-select formControlName="amount">
+                <mat-option
+                  *ngFor="let amount of paymentMethod.amounts?.items"
+                  [value]="amount"
+                >
+                  {{ amount }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <!-- <mat-form-field appearance="fill">
+              <mat-label>Amount</mat-label>
+              <input matInput formControlName="amount" />
+              <div matSuffix>EUR</div>
+            </mat-form-field> -->
+          </form>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions align="end" class="align-items-baseline">
+      <button class="btn btn-link fz-22">Change method</button>
+      <div class="px-4 pb-4">
+        <button
+          type="button"
+          class="btn-clear btn-main py-1 mx-2 min-w-auto"
+          (click)="continue()"
+        >
+          <span class="btn-main-text">Continue</span>
+        </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</app-content-box>
+
+<app-content-box
+  [isFluid]="true"
+  *ngIf="getSelectedDepositMethod$ | async as paymentMethod"
+  class="my-5"
+  [headerText]="'Choose a ' + paymentMethod.name + ' Card'"
+>
+  <ng-container
+    *ngIf="
+      getSelectedDepositMethodAccounts$ | async as accounts;
+      else noResults
+    "
+  >
+    <table
+      mat-table
+      aria-describedby="aa"
+      [dataSource]="accounts"
+      matSort
+      matSortActive="date"
+      matSortDirection="desc"
+      class="mat-elevation-z8 w-100"
+    >
+      <!-- [fixedLayout]="true" -->
+      <!-- id Column -->
+      <ng-container matColumnDef="id">
+        <th
+          mat-header-cell
+          class="fz-24"
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by ID"
+        >
+          ID
+        </th>
+        <td class="fz-24" mat-cell *matCellDef="let element">
+          {{ element.id }}
+        </td>
+      </ng-container>
+
+      <!-- Number Column -->
+      <ng-container matColumnDef="number">
+        <th
+          mat-header-cell
+          class="fz-24"
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by Number"
+        >
+          Number
+        </th>
+        <td class="fz-24" mat-cell *matCellDef="let element">
+          {{ element.masked_accountnumber }}
+        </td>
+      </ng-container>
+
+      <!-- type Column-->
+      <ng-container matColumnDef="type">
+        <th
+          mat-header-cell
+          class="fz-24"
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by type"
+        >
+          Type
+        </th>
+        <td class="fz-24" mat-cell *matCellDef="let element">
+          {{ element.type }}
+        </td>
+      </ng-container>
+      <!-- action Column -->
+      <ng-container matColumnDef="action">
+        <th
+          mat-header-cell
+          class="fz-24"
+          *matHeaderCellDef
+          mat-sort-header
+          sortActionDescription="Sort by action"
+        >
+          Action
+        </th>
+        <td class="fz-24" mat-cell *matCellDef="let element">
+          {{ element.action }}
+        </td>
+      </ng-container>
+
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </ng-container>
+  <ng-template #noResults> No Transaction Data </ng-template>
 </app-content-box>
