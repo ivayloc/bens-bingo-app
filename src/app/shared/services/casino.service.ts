@@ -166,7 +166,7 @@ export class CasinoService {
   getRecentWinners(): Observable<RecentWinners[]> {
     return this.http
       .get<ResponseOf<RecentWinners[]>>(
-        `${environment.apiDomain}/winners/slots/type:?limit=2`
+        `${environment.apiDomain}/winners/slots?limit=2`
       )
       .pipe(map(({ data }) => data));
   }
