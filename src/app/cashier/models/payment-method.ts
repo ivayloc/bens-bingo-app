@@ -7,7 +7,7 @@ export interface PaymentMethod {
   amounts?: PaymentMethodAmounts;
   default?: number;
   description: string;
-  details: PaymentMethodDetails;
+  details: PaymentMethodDetails[];
   id: number;
   image: string;
   name: string;

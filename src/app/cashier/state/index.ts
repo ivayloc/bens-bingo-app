@@ -1,3 +1,4 @@
+import { MatTableDataSource } from '@angular/material/table';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as AppState from '../../state/app.states';
 import { PaymentMethod } from '../models/payment-method';
@@ -46,6 +47,18 @@ export const selectSelectedDepositMethod = createSelector(
     return state.paymentMethods.find(
       (method) => method.id === id
     ) as PaymentMethod;
+  }
+);
+
+export const selectSelectedDepositMethodAccountMatData = createSelector(
+  selectCashierGamesState,
+  selectSelectedPaymentMethod,
+  (state, id) => {
+    const dataSource = state.paymentMethods.find(
+      (method) => method.id === id
+    )?.accounts;
+
+    return new MatTableDataSource(dataSource);
   }
 );
 

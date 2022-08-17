@@ -16,6 +16,8 @@ import { PaymentMethodsComponent } from './components/payment-methods/payment-me
 import { WithdrawalRequestComponent } from './components/withdrawal-request/withdrawal-request.component';
 import { PaymentMethodComponent } from './components/payment-method/payment-method.component';
 import { DepositSelectedMethodComponent } from './components/deposit-selected-method/deposit-selected-method.component';
+import { DepositStartComponent } from './components/deposit-start/deposit-start.component';
+import { DepositWtihPaymentMethodComponent } from './components/deposit-wtih-payment-method/deposit-wtih-payment-method.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { DepositSelectedMethodComponent } from './components/deposit-selected-me
     PaymentMethodComponent,
     WithdrawalRequestComponent,
     DepositSelectedMethodComponent,
+    DepositStartComponent,
+    DepositWtihPaymentMethodComponent,
   ],
   imports: [
     CommonModule,

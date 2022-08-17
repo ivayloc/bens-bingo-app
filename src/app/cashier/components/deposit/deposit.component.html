@@ -3,8 +3,12 @@
   headerText="Repeat Your Last Deposit"
   class="mb-5"
 >
-  <ng-container *ngIf="getPaymentMethods$ | async as paymentMethod">
-    <app-payment-method [paymentMethod]="paymentMethod"></app-payment-method>
+  <ng-container *ngIf="getPaymentMethods$ | async as paymentMethods">
+    <app-payment-method
+      *ngIf="paymentMethods.length"
+      [paymentMethod]="paymentMethods[0]"
+      buttonLabel="Deposit"
+    ></app-payment-method>
   </ng-container>
 </app-content-box> -->
 
@@ -12,7 +16,7 @@
 
 <app-content-box [isFluid]="true" headerText="Choose a Payment Method">
   <app-payment-methods
-    [getPaymentMethods]="getPaymentMethods$ | async"
+    [paymentMethods]="getPaymentMethods$ | async"
     (selectedPaymentMethod)="selectPaymentMethod($event)"
   ></app-payment-methods>
 </app-content-box>

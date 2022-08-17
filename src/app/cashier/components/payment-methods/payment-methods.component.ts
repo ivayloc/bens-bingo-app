@@ -7,7 +7,7 @@ import { PaymentMethod } from '../../models/payment-method';
   styleUrls: ['./payment-methods.component.scss'],
 })
 export class PaymentMethodsComponent {
-  @Input() getPaymentMethods: PaymentMethod[] | null = [];
+  @Input() paymentMethods: PaymentMethod[] | null = [];
   @Input() onlyDefaultPaymentMethod = false;
   @Output() selectedPaymentMethod = new EventEmitter<PaymentMethod>();
 

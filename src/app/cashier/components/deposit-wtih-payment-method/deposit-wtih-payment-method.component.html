@@ -1,0 +1,7 @@
+<app-content-box
+  [isFluid]="true"
+  [headerText]="'Pay with ' + selectedPaymentMethod.name"
+  *ngIf="getSelectedDepositMethod$ | async as selectedPaymentMethod"
+  class="mb-5"
+>
+</app-content-box>

@@ -1,6 +1,6 @@
 <!-- All payment methods -->
 <div class="row" *ngIf="!onlyDefaultPaymentMethod">
-  <ng-container *ngFor="let paymentMethod of getPaymentMethods">
+  <ng-container *ngFor="let paymentMethod of paymentMethods">
     <div class="col-md-4 mb-4" *ngIf="!paymentMethod.default">
       <mat-card class="h-100 d-flex flex-column">
         <mat-card-header>
@@ -21,23 +21,26 @@
         </mat-card-content>
         <!-- <mat-divider inset></mat-divider> -->
         <mat-card-content class="fz-24">
-          <div class="row text-center">
+          <div
+            class="row text-center"
+            *ngFor="let paymentDetail of paymentMethod.details"
+          >
             <div class="col-md-4">
               <dl class="mb-0">
                 <dt>Fee</dt>
-                <dd class="mb-0">{{ paymentMethod.details.fee }}</dd>
+                <dd class="mb-0">{{ paymentDetail.fee }}</dd>
               </dl>
             </div>
             <div class="col-md-4">
               <dl class="mb-0">
                 <dt>Minimum</dt>
-                <dd class="mb-0">{{ paymentMethod.details.min }}</dd>
+                <dd class="mb-0">{{ paymentDetail.min }}</dd>
               </dl>
             </div>
             <div class="col-md-4">
               <dl class="mb-0">
                 <dt>Maximum</dt>
-                <dd class="mb-0">{{ paymentMethod.details.max }}</dd>
+                <dd class="mb-0">{{ paymentDetail.max }}</dd>
               </dl>
             </div>
           </div>

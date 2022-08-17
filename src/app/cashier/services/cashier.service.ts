@@ -18,7 +18,7 @@ export class CashierService {
   getPaymentMethods(): Observable<PaymentMethod[]> {
     return this.http
       .get<ResponseOf<PaymentMethodsResponse>>(
-        `${environment.apiDomain}/user/current/deposit/processorlist`
+        `${environment.apiDomain}/user/current/deposit`
       )
       .pipe(map(({ data }) => data.items));
   }

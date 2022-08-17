@@ -8,6 +8,7 @@ import { PaymentMethod } from '../../models/payment-method';
 })
 export class PaymentMethodComponent implements OnInit {
   @Input() paymentMethod = {} as PaymentMethod;
+  @Input() buttonLabel = '';
   @Output() selectedPaymentMethod = new EventEmitter<PaymentMethod>();
 
   constructor() {}
