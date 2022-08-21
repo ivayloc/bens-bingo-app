@@ -1,7 +1,8 @@
 <!-- All payment methods -->
 <div class="row" *ngIf="!onlyDefaultPaymentMethod">
   <ng-container *ngFor="let paymentMethod of paymentMethods">
-    <div class="col-md-4 mb-4" *ngIf="!paymentMethod.default">
+    <!-- *ngIf="!paymentMethod.default" -->
+    <div class="col-md-4 mb-4">
       <mat-card class="h-100 d-flex flex-column">
         <mat-card-header>
           <mat-card-title>{{ paymentMethod.name }}</mat-card-title>

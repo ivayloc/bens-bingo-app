@@ -1,4 +1,7 @@
 import { createAction, props } from '@ngrx/store';
+import { DepositActionPayload } from '../../models/deposit-action-payload';
+import { DepositAddAccountRequest } from '../../models/deposit-add-account-request';
+import { DepositUpdateAccountRequest } from '../../models/deposit-update-account-request';
 
 export const loadPaymentMethods = createAction(
   '[Cashier/Deposits Page] Load payment methods'
@@ -42,4 +45,25 @@ export const getDepositLimits = createAction(
 export const redeemBonusCode = createAction(
   '[Cashier/BonusCode Page] Redeem bonus code',
   props<{ code: string }>()
+);
+
+export const makeDeposit = createAction(
+  '[Cashier/Deposits] Make a deposit',
+  props<{
+    payload: DepositActionPayload;
+  }>()
+);
+
+export const depositUpdateAccount = createAction(
+  '[Cashier/Deposits] Save account',
+  props<{
+    payload: DepositUpdateAccountRequest;
+  }>()
+);
+
+export const depositAddAccount = createAction(
+  '[Cashier/Deposits] Add account',
+  props<{
+    payload: DepositAddAccountRequest;
+  }>()
 );

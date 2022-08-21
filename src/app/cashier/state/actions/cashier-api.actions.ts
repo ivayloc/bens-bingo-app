@@ -81,3 +81,33 @@ export const redeemBonusCodeFailure = createAction(
   '[Cashier/BonusCode API] Redeem bonus code Failure',
   props<{ error: string }>()
 );
+
+export const makeDepositSuccess = createAction(
+  '[Cashier/Deposit API] Make a deposit Success',
+  props<{ success: boolean }>()
+);
+
+export const makeDepositFailure = createAction(
+  '[Cashier/Deposit API] Make a deposit Failure',
+  props<{ error: string }>()
+);
+
+export const depositAddAccountSuccess = createAction(
+  '[Cashier/Deposit API] Add account to payment method Success',
+  props<{ success: boolean }>()
+);
+
+export const depositAddAccountFailure = createAction(
+  '[Cashier/Deposit API] Add account to payment method Failure',
+  props<{ error: string }>()
+);
+
+export const depositUpdateAccountSuccess = createAction(
+  '[Cashier/Deposit API] Update account to payment method Success',
+  props<{ success: boolean }>()
+);
+
+export const depositUpdateAccountFailure = createAction(
+  '[Cashier/Deposit API] Update account to payment method Failure',
+  props<{ error: string }>()
+);

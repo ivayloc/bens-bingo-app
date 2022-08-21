@@ -1,5 +1,7 @@
+import { SelectionModel } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { Observable, tap } from 'rxjs';
@@ -9,6 +11,8 @@ import {
   selectSelectedDepositMethod,
   selectSelectedDepositMethodAccountMatData,
 } from '../../state';
+import { CashierPageActions } from '../../state/actions';
+import { DepositAddEditCardComponent } from '../deposit-add-edit-card/deposit-add-edit-card.component';
 
 @Component({
   selector: 'app-deposit-selected-method',
@@ -19,33 +23,57 @@ export class DepositSelectedMethodComponent implements OnInit {
   showCardsStep = false;
   depositForm = this.fb.group({
     amount: ['', Validators.required],
+    cvv: ['', Validators.required],
+    account: ['', Validators.required],
   });
+
+  get depositAmountField(): FormControl {
+    return this.depositForm.get('amount') as FormControl;
+  }
+
+  cvvForm = this.fb.group({
+    cvv: ['', Validators.required],
+  });
+
+  get cvvField(): FormControl {
+    return this.depositForm.get('cvv') as FormControl;
+  }
+
+  get accountField(): FormControl {
+    return this.depositForm.get('account') as FormControl;
+  }
+
   getSelectedDepositMethodAccounts$ = new Observable<
     MatTableDataSource<PaymentMethodAccount>
   >();
 
-  public get depositAmountField(): FormControl {
-    return this.depositForm.get('amount') as FormControl;
-  }
-
   getSelectedDepositMethod$ = new Observable<PaymentMethod>();
   displayedColumns = [
+    'select',
     'type',
     'number',
     'nameOnCard',
-    'Expiry',
-    'type',
+    'expiry',
     'action',
-    'transactionid',
-    'result',
   ];
-  constructor(private store: Store, private fb: FormBuilder) {}
+  selection = new SelectionModel<PaymentMethodAccount>(false, []);
+
+  selectedCard = {} as PaymentMethodAccount;
+
+  constructor(
+    private store: Store,
+    private fb: FormBuilder,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.getSelectedDepositMethod$ = this.store
       .select(selectSelectedDepositMethod)
       .pipe(
         tap((paymentMethod) => {
+          if (paymentMethod?.accounts) {
+            this.accountField.setValue(paymentMethod?.accounts[0]);
+          }
           this.depositAmountField.setValue(paymentMethod?.default);
         })
       );
@@ -57,5 +85,47 @@ export class DepositSelectedMethodComponent implements OnInit {
 
   continue() {
     this.showCardsStep = true;
+  }
+
+  selectCard($event: any, card: PaymentMethodAccount) {
+    if ($event) {
+      this.selectedCard = card;
+    }
+  }
+
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: any): string {
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${
+      row.position + 1
+    }`;
+  }
+
+  submitDeposit(processorid: number) {
+    const payload = {
+      processorid,
+      accountid: this.accountField.value.id,
+      amount: this.depositAmountField.value,
+      cvv: this.cvvField.value,
+    };
+    this.store.dispatch(CashierPageActions.makeDeposit({ payload }));
+  }
+
+  editCardDetails(paymentMethod: PaymentMethod, account: PaymentMethodAccount) {
+    this.dialog.open(DepositAddEditCardComponent, {
+      width: '100%',
+      data: {
+        paymentMethod,
+        account,
+      },
+    });
+  }
+
+  addDepositAccount(paymentMethod: PaymentMethod) {
+    this.dialog.open(DepositAddEditCardComponent, {
+      width: '100%',
+      data: {
+        paymentMethod,
+      },
+    });
   }
 }

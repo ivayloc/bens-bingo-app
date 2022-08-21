@@ -1,0 +1,95 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <app-content-box [headerText]="dialogTitle">
+      <form [formGroup]="cardForm" class="fz-24 px-5" (ngSubmit)="submit()">
+        <mat-form-field class="d-block mb-4" appearance="fill">
+          <mat-label>Card Number</mat-label>
+          <input matInput formControlName="accountnumber" />
+          <mat-hint>Do not enter spaces</mat-hint>
+        </mat-form-field>
+        <mat-form-field class="d-block mb-4" appearance="fill">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="nameoncard" />
+          <mat-hint>As it appears on card</mat-hint>
+        </mat-form-field>
+        <div class="fw-bold mb-2">Valid From</div>
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field appearance="fill" class="d-block">
+              <mat-label>Month</mat-label>
+              <mat-select formControlName="frommonth">
+                <mat-option
+                  *ngFor="let month of months; index as i"
+                  [value]="i + 1"
+                >
+                  {{ i + 1 }} - {{ month }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field appearance="fill" class="d-block">
+              <mat-label>Year</mat-label>
+              <mat-select formControlName="fromyear">
+                <mat-option *ngFor="let year of years" [value]="year">
+                  {{ year }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="fw-bold mb-2">Expiration Date</div>
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field appearance="fill" class="d-block">
+              <mat-label>Month</mat-label>
+              <mat-select formControlName="expmonth">
+                <mat-option
+                  *ngFor="let month of months; index as i"
+                  [value]="i + 1"
+                >
+                  {{ i + 1 }} - {{ month }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field appearance="fill" class="d-block">
+              <mat-label>Year</mat-label>
+              <mat-select formControlName="expyear">
+                <mat-option *ngFor="let year of years" [value]="year">
+                  {{ year }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field class="d-block" appearance="fill">
+              <mat-label>Issue Number</mat-label>
+              <input matInput type="number" formControlName="issue" />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="text-muted fz-18 mb-5">
+          A card may only be used once for one account on BensCasino
+        </div>
+
+        <div class="text-center">
+          <button
+            type="button"
+            class="btn btn-link fz-22 mx-4"
+            (click)="cancel()"
+          >
+            Cancel
+          </button>
+          <button class="btn-clear btn-main py-1 mx-2 min-w-auto">
+            <span class="btn-main-text">
+              <ng-container *ngIf="!editMode">Add Card</ng-container>
+              <ng-container *ngIf="editMode">Save Card</ng-container></span
+            >
+          </button>
+        </div>
+      </form>
+    </app-content-box>
+  </div>
+</div>

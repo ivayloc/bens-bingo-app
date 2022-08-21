@@ -171,4 +171,58 @@ export class CashierEffects {
       )
     );
   });
+
+  makeDeposit$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CashierPageActions.makeDeposit),
+      mergeMap(({ payload }) =>
+        this.cashierService.makeDeposit(payload).pipe(
+          map((success) => CashierApiActions.makeDepositSuccess(success)),
+          catchError((error) =>
+            of(CashierApiActions.makeDepositFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  depositAddAccount$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CashierPageActions.depositAddAccount),
+      mergeMap(({ payload }) =>
+        this.cashierService.depositAddAccount(payload).pipe(
+          map((success) => CashierApiActions.depositAddAccountSuccess(success)),
+          catchError((error) =>
+            of(CashierApiActions.depositAddAccountFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  depositUpdateAccount$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CashierPageActions.depositUpdateAccount),
+      mergeMap(({ payload }) =>
+        this.cashierService.depositUpdateAccount(payload).pipe(
+          map((success) =>
+            CashierApiActions.depositUpdateAccountSuccess(success)
+          ),
+          catchError((error) =>
+            of(CashierApiActions.depositUpdateAccountFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  reloadPaymentMethods$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(
+        CashierApiActions.depositAddAccountSuccess,
+        CashierApiActions.depositUpdateAccountSuccess
+      ),
+      map(() => CashierPageActions.loadPaymentMethods())
+    );
+  });
 }
