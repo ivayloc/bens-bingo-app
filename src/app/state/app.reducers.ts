@@ -9,6 +9,7 @@ export interface AppState {
   userLoggedIn: boolean;
   userInfo: UserInfo;
   resetPasswordMethods: ResetPasswordMethods;
+  resetPasswordCodeSend: boolean;
   error: string;
 }
 
@@ -17,6 +18,7 @@ const initialState: AppState = {
   userLoggedIn: false,
   userInfo: {} as UserInfo,
   resetPasswordMethods: {} as ResetPasswordMethods,
+  resetPasswordCodeSend: false,
   error: '',
 };
 
@@ -127,6 +129,26 @@ export const appReducer = createReducer<AppState>(
       return {
         ...state,
         resetPasswordMethods: {} as ResetPasswordMethods,
+        error,
+      };
+    }
+  ),
+  on(
+    AppApiActions.getPasswordResetCodeSuccess,
+    (state, { success }): AppState => {
+      return {
+        ...state,
+        resetPasswordCodeSend: success,
+        error: '',
+      };
+    }
+  ),
+  on(
+    AppApiActions.getPasswordResetCodeFailure,
+    (state, { error }): AppState => {
+      return {
+        ...state,
+        resetPasswordCodeSend: false,
         error,
       };
     }

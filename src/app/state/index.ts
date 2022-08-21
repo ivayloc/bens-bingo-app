@@ -26,6 +26,11 @@ export const selectUserInfoBalance = createSelector(
   })
 );
 
+export const selectResetPasswordCodeSend = createSelector(
+  selectAppState,
+  (state) => ({ resetPasswordCodeSend: state.resetPasswordCodeSend })
+);
+
 export const selectResetPasswordMethods = createSelector(
   selectAppState,
   (state) => {

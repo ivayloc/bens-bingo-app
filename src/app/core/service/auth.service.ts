@@ -86,4 +86,26 @@ export class AuthService {
       )
       .pipe(map(({ data }) => data.methods));
   }
+
+  getPasswordResetCode(
+    method: string,
+    accountIdentifier: string
+  ): Observable<Success> {
+    return this.http.post<Success>(
+      `${environment.apiDomain}/user/resetpassword/${method}`,
+      { account_identifier: accountIdentifier, siteid: 95 }
+    );
+  }
+
+  sendPasswordResetKey(
+    key: string,
+    accountIdentifier: string
+  ): Observable<Success> {
+    return this.http
+      .post<ResponseOf<Success>>(
+        `${environment.apiDomain}/user/resetpassword`,
+        { account_identifier: accountIdentifier, key }
+      )
+      .pipe(map(({ data }) => data));
+  }
 }

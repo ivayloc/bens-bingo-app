@@ -33,5 +33,15 @@ export const resetPasswordInquiry = createAction(
 );
 
 export const clearPasswordResetsMethods = createAction(
-  '[ResetPassword Page] Clear password reset methods'
+  '[ResetPassword Page] Clear reset password methods'
+);
+
+export const getPasswordResetCode = createAction(
+  '[ResetPassword Page] Get reset password',
+  props<{ accountIdentifier: string; method: string }>()
+);
+
+export const sendPasswordResetKey = createAction(
+  '[ResetPassword Page] Send password reset key',
+  props<{ accountIdentifier: string; resetKey: string }>()
 );

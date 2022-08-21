@@ -152,6 +152,38 @@ export class AppEffects {
     );
   });
 
+  getPasswordResetCode$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AppPageActions.getPasswordResetCode),
+      mergeMap(({ accountIdentifier, method }) =>
+        this.authService.getPasswordResetCode(method, accountIdentifier).pipe(
+          map(({ success }) =>
+            AppApiActions.getPasswordResetCodeSuccess({ success })
+          ),
+          catchError((error) =>
+            of(AppApiActions.getPasswordResetCodeFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  sendPasswordResetKey$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AppPageActions.sendPasswordResetKey),
+      mergeMap(({ accountIdentifier, resetKey }) =>
+        this.authService.sendPasswordResetKey(resetKey, accountIdentifier).pipe(
+          map(({ success }) =>
+            AppApiActions.sendPasswordResetKeySuccess({ success })
+          ),
+          catchError((error) =>
+            of(AppApiActions.sendPasswordResetKeyFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
   userIsLoggedIn$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AppPageActions.userIsLoggedIn, AppApiActions.userLoginSuccess),

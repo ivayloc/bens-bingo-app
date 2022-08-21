@@ -72,3 +72,23 @@ export const resetPasswordInquiryFailure = createAction(
   '[ResetPassword API] Get reset password methods Failure',
   props<{ error: string }>()
 );
+
+export const getPasswordResetCodeSuccess = createAction(
+  '[ResetPassword API] Get reset password code Success',
+  props<{ success: boolean }>()
+);
+
+export const getPasswordResetCodeFailure = createAction(
+  '[ResetPassword API] Get reset password code Failure',
+  props<{ error: string }>()
+);
+
+export const sendPasswordResetKeySuccess = createAction(
+  '[ResetPassword API] Send password reset key Success',
+  props<{ success: boolean }>()
+);
+
+export const sendPasswordResetKeyFailure = createAction(
+  '[ResetPassword API] Send password reset key Failure',
+  props<{ error: string }>()
+);
