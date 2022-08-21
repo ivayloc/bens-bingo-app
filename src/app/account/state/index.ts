@@ -34,6 +34,15 @@ export const getPendingOutgoingFriendsRequest = createSelector(
   (state) => new MatTableDataSource(state.pendingOutgoing)
 );
 
+export const selectSelectedUserprofileForEdit = createSelector(
+  getAccountState,
+  ({ selectedUserProfile }) => {
+    return {
+      ...selectedUserProfile,
+    };
+  }
+);
+
 export const getSelectedUserProfile = createSelector(
   getAccountState,
   ({ selectedUserProfile }) => {

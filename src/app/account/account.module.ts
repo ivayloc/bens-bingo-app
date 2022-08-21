@@ -19,6 +19,7 @@ import { AccountEffects } from './state/account.effects';
 import { accountReducer } from './state/account.reducers';
 import { UserProfileDialogComponent } from './components/user-profile-dialog/user-profile-dialog.component';
 import { Top5GamesComponent } from './components/top5-games/top5-games.component';
+import { PublicProfileEditComponent } from './components/public-profile-edit/public-profile-edit.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { Top5GamesComponent } from './components/top5-games/top5-games.component
     AccountFundsComponent,
     UserProfileDialogComponent,
     Top5GamesComponent,
+    PublicProfileEditComponent,
   ],
   imports: [
     CommonModule,

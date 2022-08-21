@@ -129,3 +129,15 @@ export const updateUserInfoFailure = createAction(
   '[Account/PrivateInfo Page] Update user info FAILURE',
   props<{ error: string }>()
 );
+
+export const saveUserProfileSuccess = createAction(
+  '[Account/PublicProfile Page] Save public profile SUCCESS',
+  props<{
+    success: boolean;
+  }>()
+);
+
+export const saveUserProfileFailure = createAction(
+  '[Account/PublicProfile Page] Save public profile FAILURE',
+  props<{ error: string }>()
+);

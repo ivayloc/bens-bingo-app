@@ -6,7 +6,19 @@
         <a routerLink="/cashier" class="mx-2">Cashier</a>
         <a href="">Bonuses</a>
       </div>
-      <div class="top-bar-username text-white ms-3">{{ userInfo.alias }}</div>
+      <div class="top-bar-username text-white ms-3">
+        <button
+          type="button"
+          class="btn-clear"
+          [routerLink]="['/account/public-profile']"
+          [queryParams]="{ alias: userInfo.alias }"
+          [queryParamsHandling]="'merge'"
+        >
+          <!-- (click)="showUserProfile(userInfo.alias)" -->
+          <!-- routerLink="/account/public-profile" -->
+          {{ userInfo.alias }}
+        </button>
+      </div>
     </ng-container>
   </ng-container>
 </div>

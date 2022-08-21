@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
-import { map, Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Friend } from '../../models/friend';
 import { SearchUserResult } from '../../models/search-user-result';
 import {
@@ -12,10 +12,9 @@ import {
   getPendingFriendsRequest,
   getPendingOutgoingFriendsRequest,
   getSearchUserResult,
-  State,
 } from '../../state';
 import { AccountPageActions } from '../../state/actions';
-import { UserProfileDialogComponent } from '../user-profile-dialog/user-profile-dialog.component';
+import { PublicProfileComponent } from '../public-profile/public-profile.component';
 
 @Component({
   selector: 'app-buddies',
@@ -73,7 +72,7 @@ export class FriendsComponent implements OnInit {
   showUserProfile(friendalias: string) {
     this.store.dispatch(AccountPageActions.showUserProfile({ friendalias }));
 
-    this.dialog.open(UserProfileDialogComponent, {
+    this.dialog.open(PublicProfileComponent, {
       width: '52vw',
       panelClass: 'site-details-dialog',
     });

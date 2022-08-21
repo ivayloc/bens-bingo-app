@@ -1,1 +1,84 @@
-<p>public-profile works!</p>
+<ng-container *ngIf="getSelectedUserAlias$ | async as alias">
+  <ng-container *ngIf="getSelectedUserProfile$ | async as userProfile">
+    <app-content-box
+      [isFluid]="isContentFluid"
+      [headerText]="alias + '\'s Profile'"
+      class="mb-5"
+    >
+      <div class="row justify-content-center">
+        <div class="col-9">
+          <div class="align-items-start d-flex position-relative w-100">
+            <div class="text-center">
+              <img
+                width="172"
+                [src]="
+                  'https://functionalgames.cdn.bingolab.com/viewprofilepic.php?alias=' +
+                  alias +
+                  '&size=bigsquare&siteid=95'
+                "
+                alt=""
+                srcset=""
+              />
+            </div>
+            <div class="px-4 w-100">
+              <div class="d-flex justify-content-between mb-4">
+                <dl *ngIf="userProfile.profile.get('age')">
+                  <dt class="fz-31 fw-bold">Age</dt>
+                  <dd class="fz-24">
+                    {{ userProfile.profile.get("age") }}
+                  </dd>
+                </dl>
+                <dl *ngIf="userProfile.profile.get('zodiac')">
+                  <dt class="fz-31 fw-bold">Zodiac</dt>
+                  <dd class="fz-24">
+                    {{ userProfile.profile.get("zodiac") }}
+                  </dd>
+                </dl>
+                <dl *ngIf="userProfile.profile.get('maritalstatus')">
+                  <dt class="fz-31 fw-bold">Marital status</dt>
+                  <dd class="fz-24">
+                    {{ userProfile.profile.get("maritalstatus") }}
+                  </dd>
+                </dl>
+              </div>
+              <div class="text-center">
+                <button
+                  class="btn-clear btn-main py-1 mx-2 min-w-auto"
+                  [routerLink]="['/account/public-profile/edit']"
+                  [queryParams]="{ alias: alias }"
+                >
+                  <span class="btn-main-text">Edit Profile</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </app-content-box>
+
+    <app-content-box [isFluid]="isContentFluid" headerText="About Me">
+      <div class="row justify-content-center">
+        <div class="col-9">
+          <div class="row">
+            <ng-container
+              *ngFor="let details of userProfile.profile | keyvalue"
+            >
+              <dl
+                class="col-4 mb-4"
+                *ngIf="
+                  details.value &&
+                  details.key !== 'age' &&
+                  details.key !== 'zodiac' &&
+                  details.key !== 'maritalstatus'
+                "
+              >
+                <dt class="fz-31 fw-bold">{{ details.key }}</dt>
+                <dd class="fz-24">{{ details.value }}</dd>
+              </dl>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </app-content-box>
+  </ng-container>
+</ng-container>

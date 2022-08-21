@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { BingoHistoryRequest } from '../../models/bingo-history-request';
 import { TransactionsHistoryRequest } from '../../models/transactions-history-request';
+import { UpdateUserProfileRequest } from '../../models/update-user-profile-request';
 import { UpdatedUserInfo } from '../../models/updated-user-info';
 
 export const loadTransactionsHistory = createAction(
@@ -35,6 +36,11 @@ export const declinePendingFriendRequest = createAction(
 export const showUserProfile = createAction(
   '[Account/Buddy Page] Show user profile',
   props<{ friendalias: string }>()
+);
+
+export const saveUserProfile = createAction(
+  '[Account/PublicProfile Page] Save User profile',
+  props<{ payload: UpdateUserProfileRequest }>()
 );
 
 export const searchUser = createAction(

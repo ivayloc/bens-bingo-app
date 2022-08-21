@@ -18,6 +18,7 @@ import { SearchUserResult } from '../models/search-user-result';
 import { Transaction } from '../models/transaction';
 import { TransactionsHistory } from '../models/transactions-history';
 import { TransactionsHistoryRequest } from '../models/transactions-history-request';
+import { UpdateUserProfileRequest } from '../models/update-user-profile-request';
 import { UpdatedUserInfo } from '../models/updated-user-info';
 import { UserProfile } from '../models/user-profile';
 
@@ -126,6 +127,14 @@ export class AccountService {
     return this.http
       .get<ResponseOf<UserProfile>>(
         `${environment.apiDomain}/profile/${friendalias}`
+      )
+      .pipe(map(({ data }) => data));
+  }
+  saveUserProfile(payload: UpdateUserProfileRequest): Observable<Success> {
+    return this.http
+      .put<ResponseOf<Success>>(
+        `${environment.apiDomain}/user/current/profile`,
+        payload
       )
       .pipe(map(({ data }) => data));
   }

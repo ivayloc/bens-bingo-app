@@ -129,6 +129,19 @@ export class AccountEffects {
       )
     );
   });
+  saveUserProfile$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AccountPageActions.saveUserProfile),
+      mergeMap(({ payload }) =>
+        this.accountService.saveUserProfile(payload).pipe(
+          map((success) => AccountApiActions.saveUserProfileSuccess(success)),
+          catchError((error) =>
+            of(AccountApiActions.saveUserProfileFailure({ error }))
+          )
+        )
+      )
+    );
+  });
   searchUser$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AccountPageActions.searchUser),

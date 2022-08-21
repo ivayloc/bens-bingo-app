@@ -1,0 +1,119 @@
+<ng-container *ngIf="getSelectedUserProfile$ | async as userProfile">
+  <ng-container *ngIf="getSelectedUserAlias$ | async as alias">
+    <form [formGroup]="publicProfileForm" (ngSubmit)="saveUserProfile(alias)">
+      <app-content-box [isFluid]="true" headerText="Info" class="mb-5">
+        <div class="row justify-content-center fz-24">
+          <div class="col-9">
+            <div class="align-items-start d-flex position-relative w-100">
+              <div class="text-center">
+                <!-- <img
+                width="172"
+                [src]="
+                  'https://functionalgames.cdn.bingolab.com/viewprofilepic.php?alias=' +
+                  alias +
+                  '&size=bigsquare&siteid=95'
+                "
+                alt=""
+                srcset=""
+              /> -->
+              </div>
+              <div class="px-4 w-100">
+                <div class="row">
+                  <div class="col-4">
+                    <mat-form-field appearance="fill" class="d-block mb-2">
+                      <mat-label>My City</mat-label>
+                      <input matInput formControlName="location" />
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="d-block mb-2">
+                      <mat-label>My Age</mat-label>
+                      <input type="number" matInput formControlName="age" />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-4">
+                    <mat-form-field appearance="fill" class="d-block mb-2">
+                      <mat-label>Biggest Jackpot Win</mat-label>
+                      <input matInput formControlName="biggestjackpot" />
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="d-block mb-2">
+                      <mat-label>Astrological Sign</mat-label>
+                      <input matInput formControlName="zodiac" />
+                    </mat-form-field>
+                  </div>
+                  <div class="col-4">
+                    <mat-form-field appearance="fill" class="d-block mb-2">
+                      <mat-label>Hobbies</mat-label>
+                      <input matInput formControlName="hobbies" />
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-content-box>
+
+      <app-content-box [isFluid]="true" headerText="Other Info">
+        <div class="row justify-content-center fz-24 pt-4">
+          <div class="col-9">
+            <div class="row">
+              <div class="col-6">
+                <mat-form-field appearance="fill" class="d-block mb-2">
+                  <mat-label>My Interests</mat-label>
+                  <textarea matInput formControlName="interests"></textarea>
+                </mat-form-field>
+              </div>
+              <div class="col-6">
+                <mat-form-field appearance="fill" class="d-block mb-2">
+                  <mat-label>My Type of Music</mat-label>
+                  <textarea matInput formControlName="music"></textarea>
+                </mat-form-field>
+              </div>
+              <div class="col-6">
+                <mat-form-field appearance="fill" class="d-block mb-2">
+                  <mat-label>Books I Like</mat-label>
+                  <textarea matInput formControlName="books"></textarea>
+                </mat-form-field>
+              </div>
+              <div class="col-6">
+                <mat-form-field appearance="fill" class="d-block mb-2">
+                  <mat-label>Pets</mat-label>
+                  <textarea matInput formControlName="pets"></textarea>
+                </mat-form-field>
+              </div>
+              <div class="col-6">
+                <mat-form-field appearance="fill" class="d-block mb-2">
+                  <mat-label>Favorite Quote</mat-label>
+                  <textarea matInput formControlName="favquote"></textarea>
+                </mat-form-field>
+              </div>
+              <div class="col-6">
+                <mat-form-field appearance="fill" class="d-block mb-2">
+                  <mat-label>Movies I Like</mat-label>
+                  <textarea matInput formControlName="movies"></textarea>
+                </mat-form-field>
+              </div>
+              <div class="col-6">
+                <mat-form-field appearance="fill" class="d-block">
+                  <mat-label>Children</mat-label>
+                  <textarea matInput formControlName="children"></textarea>
+                </mat-form-field>
+              </div>
+              <div class="col-6">
+                <mat-form-field appearance="fill" class="d-block">
+                  <mat-label>A little about me</mat-label>
+                  <textarea matInput formControlName="aboutme"></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button class="btn-clear btn-main py-1 mx-2">
+            <span class="btn-main-text">Save</span>
+          </button>
+        </div>
+      </app-content-box>
+    </form>
+  </ng-container>
+</ng-container>
