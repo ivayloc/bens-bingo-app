@@ -26,3 +26,12 @@ export const userLogin = createAction(
   props<{ payload: { email: string; password: string } }>()
 );
 export const userLogout = createAction('[Logout PAGE] User logout');
+
+export const resetPasswordInquiry = createAction(
+  '[ResetPassword Page] Reset the password',
+  props<{ accountIdentifier: string }>()
+);
+
+export const clearPasswordResetsMethods = createAction(
+  '[ResetPassword Page] Clear password reset methods'
+);

@@ -28,6 +28,7 @@ import { ShrinkFontSizeDirective } from './directives/shrink-font-size.directive
 import { AngularMaterialModule } from './modules/angular-material.module';
 import { PrimeNgModule } from './modules/prime-ng.module';
 import { LoaderService } from './services/loader.service';
+import { LoginResetPasswordComponent } from './components/login-reset-password/login-reset-password.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { LoaderService } from './services/loader.service';
     LoginDialogComponent,
     LoginButtonComponent,
     FormErrorMessageComponent,
+    LoginResetPasswordComponent,
   ],
   imports: [
     CommonModule,

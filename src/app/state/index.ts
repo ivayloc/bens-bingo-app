@@ -25,3 +25,13 @@ export const selectUserInfoBalance = createSelector(
     currency: state.userInfo.currency,
   })
 );
+
+export const selectResetPasswordMethods = createSelector(
+  selectAppState,
+  (state) => {
+    return Object.entries(state.resetPasswordMethods).map(([value, label]) => ({
+      label,
+      value,
+    }));
+  }
+);

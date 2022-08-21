@@ -1,5 +1,5 @@
 <app-content-box headerText="Login" class="mx-5">
-  <form [formGroup]="loginForm" (ngSubmit)="login()" class="fz-24">
+  <form [formGroup]="loginForm" (ngSubmit)="login()" class="fz-24 mb-4">
     <mat-form-field class="d-block" appearance="fill">
       <mat-label>Username</mat-label>
       <input matInput formControlName="email" />
@@ -22,4 +22,11 @@
       </button>
     </div>
   </form>
+  <button
+    type="button"
+    class="btn btn-link px-0"
+    (click)="showForgotUsernamePassword()"
+  >
+    Forgot Username/Password?
+  </button>
 </app-content-box>

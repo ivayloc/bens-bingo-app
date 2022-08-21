@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { RecentWinners } from 'src/app/shared/models/recent-winners';
+import { ResetPasswordMethods } from 'src/app/shared/models/reset-password-methods';
 import { UserInfo } from 'src/app/shared/models/user-info';
 
 export const loadUserInfoSuccess = createAction(
@@ -59,5 +60,15 @@ export const userLogoutSuccess = createAction(
 
 export const userLogoutFailure = createAction(
   '[Logout API] User logout Failure',
+  props<{ error: string }>()
+);
+
+export const resetPasswordInquirySuccess = createAction(
+  '[ResetPassword API] Get reset password methods Success',
+  props<{ resetPasswordMethods: ResetPasswordMethods }>()
+);
+
+export const resetPasswordInquiryFailure = createAction(
+  '[ResetPassword API] Get reset password methods Failure',
   props<{ error: string }>()
 );

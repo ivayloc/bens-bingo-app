@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { addSeconds } from 'date-fns';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
+import { ResetPasswordInquiryResponse } from 'src/app/shared/models/reset-password-inquiry-response';
+import { ResetPasswordMethods } from 'src/app/shared/models/reset-password-methods';
 import { ResponseOf } from 'src/app/shared/models/response-of';
 import { Success } from 'src/app/shared/models/success';
 import { environment } from 'src/environments/environment';
@@ -70,5 +72,18 @@ export class AuthService {
       `${environment.apiDomain}/user/current/logout`,
       {}
     );
+  }
+
+  resetPasswordInquiry(
+    accountIdentifier: string
+  ): Observable<ResetPasswordMethods> {
+    return this.http
+      .get<ResponseOf<ResetPasswordInquiryResponse>>(
+        `${environment.apiDomain}/user/resetpassword`,
+        {
+          params: { account_identifier: accountIdentifier, siteid: 95 },
+        }
+      )
+      .pipe(map(({ data }) => data.methods));
   }
 }

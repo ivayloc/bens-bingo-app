@@ -1,9 +1,14 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppPageActions } from 'src/app/state/actions';
+import { LoginResetPasswordComponent } from '../login-reset-password/login-reset-password.component';
 
 @Component({
   selector: 'app-login-dialog',
@@ -15,11 +20,13 @@ export class LoginDialogComponent {
     email: ['bencasino', Validators.required],
     password: ['123456abc', Validators.required],
   });
+  isForgotUsernamePasswordActive = false;
 
   constructor(
     private store: Store,
     private fb: FormBuilder,
     private router: Router,
+    private dialog: MatDialog,
     private dialogRef: MatDialogRef<LoginDialogComponent>,
     @Inject(MAT_DIALOG_DATA) private path: string
   ) {}
@@ -37,5 +44,13 @@ export class LoginDialogComponent {
   close() {
     this.dialogRef.close();
     this.router.navigateByUrl('/');
+  }
+
+  showForgotUsernamePassword() {
+    this.dialogRef.close();
+
+    this.dialog.open(LoginResetPasswordComponent, {
+      width: '100%',
+    });
   }
 }

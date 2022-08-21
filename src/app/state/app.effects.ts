@@ -135,6 +135,23 @@ export class AppEffects {
       )
     );
   });
+
+  resetPasswordInquiry$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AppPageActions.resetPasswordInquiry),
+      mergeMap(({ accountIdentifier }) =>
+        this.authService.resetPasswordInquiry(accountIdentifier).pipe(
+          map((resetPasswordMethods) =>
+            AppApiActions.resetPasswordInquirySuccess({ resetPasswordMethods })
+          ),
+          catchError((error) =>
+            of(AppApiActions.resetPasswordInquiryFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
   userIsLoggedIn$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AppPageActions.userIsLoggedIn, AppApiActions.userLoginSuccess),
