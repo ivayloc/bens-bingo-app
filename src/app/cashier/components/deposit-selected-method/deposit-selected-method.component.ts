@@ -31,10 +31,6 @@ export class DepositSelectedMethodComponent implements OnInit {
     return this.depositForm.get('amount') as FormControl;
   }
 
-  cvvForm = this.fb.group({
-    cvv: ['', Validators.required],
-  });
-
   get cvvField(): FormControl {
     return this.depositForm.get('cvv') as FormControl;
   }
@@ -93,7 +89,6 @@ export class DepositSelectedMethodComponent implements OnInit {
     }
   }
 
-  /** The label for the checkbox on the passed row */
   checkboxLabel(row?: any): string {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${
       row.position + 1
