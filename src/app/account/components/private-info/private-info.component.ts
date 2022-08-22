@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import format from 'date-fns/format';
 import { Observable, tap } from 'rxjs';
 import { selectUserInfo } from 'src/app/state';
 import { AppPageActions } from 'src/app/state/actions';
@@ -60,10 +61,15 @@ export class PrivateInfoComponent implements OnInit {
         city: userInfo.city,
         state: userInfo.state,
         zip: userInfo.zip,
-        mobilephone: userInfo?.phoneNumbers[0].phone,
-        bday: userInfo.birthdate, // parse(userInfo.birthdate, 'yyyy-MM-dd', new Date()),
+        bday: userInfo.birthdate,
       },
     });
+
+    if (userInfo?.phoneNumbers?.length) {
+      this.accountInfoForm
+        ?.get('mobilephone')
+        ?.setValue(userInfo?.phoneNumbers[0].phone);
+    }
   }
 
   updateUserInfo() {
@@ -71,6 +77,10 @@ export class PrivateInfoComponent implements OnInit {
       return;
     }
     const payload: UpdatedUserInfo = this.accountInfoForm.getRawValue();
+    payload.userdata.bday = format(
+      new Date(payload.userdata.bday),
+      'yyy-MM-dd'
+    );
     this.store.dispatch(AccountPageActions.updateUserInfo({ payload }));
   }
 }
