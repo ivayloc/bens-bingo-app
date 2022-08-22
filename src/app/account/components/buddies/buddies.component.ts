@@ -43,7 +43,7 @@ export class FriendsComponent implements OnInit {
   constructor(
     private store: Store,
     private fb: FormBuilder,
-    public dialog: MatDialog
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {

@@ -5,7 +5,10 @@
         class="moderators-moderator"
         *ngFor="let moderator of getChatModerators$ | async"
       >
-        <a class="moderators-moderator-link" href=""></a>
+        <button
+          class="moderators-moderator-link"
+          (click)="showUserProfile(moderator.alias)"
+        ></button>
         <div class="moderators-moderator-name fz-31 text-center text-white">
           {{ moderator.alias }}
         </div>
