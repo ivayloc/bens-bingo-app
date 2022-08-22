@@ -1,4 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
+import { Member } from '../shared/models/member';
 import { RecentWinners } from '../shared/models/recent-winners';
 import { ResetPasswordMethods } from '../shared/models/reset-password-methods';
 import { UserInfo } from '../shared/models/user-info';
@@ -10,6 +11,7 @@ export interface AppState {
   userInfo: UserInfo;
   resetPasswordMethods: ResetPasswordMethods;
   resetPasswordCodeSend: boolean;
+  chatModerators: Member[];
   error: string;
 }
 
@@ -19,6 +21,7 @@ const initialState: AppState = {
   userInfo: {} as UserInfo,
   resetPasswordMethods: {} as ResetPasswordMethods,
   resetPasswordCodeSend: false,
+  chatModerators: [],
   error: '',
 };
 
@@ -153,6 +156,23 @@ export const appReducer = createReducer<AppState>(
       };
     }
   ),
+  on(
+    AppApiActions.getChatModeratorsSuccess,
+    (state, { chatModerators }): AppState => {
+      return {
+        ...state,
+        chatModerators,
+        error: '',
+      };
+    }
+  ),
+  on(AppApiActions.getChatModeratorsFailure, (state, { error }): AppState => {
+    return {
+      ...state,
+      chatModerators: [],
+      error,
+    };
+  }),
   on(AppPageActions.clearPasswordResetsMethods, (state): AppState => {
     return {
       ...state,

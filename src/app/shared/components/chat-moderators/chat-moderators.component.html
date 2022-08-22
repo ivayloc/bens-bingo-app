@@ -1,34 +1,13 @@
 <app-content-box class="box-chat-moderators" headerText="CHAT MODERATORS">
   <div class="moderators-wrap">
     <ol class="moderators list-unstyled d-flex justify-content-center">
-      <li class="moderators-moderator">
+      <li
+        class="moderators-moderator"
+        *ngFor="let moderator of getChatModerators$ | async"
+      >
         <a class="moderators-moderator-link" href=""></a>
         <div class="moderators-moderator-name fz-31 text-center text-white">
-          CM - Babs
-        </div>
-      </li>
-      <li class="moderators-moderator">
-        <a class="moderators-moderator-link" href=""></a>
-        <div class="moderators-moderator-name fz-31 text-center text-white">
-          CM - Sindre
-        </div>
-      </li>
-      <li class="moderators-moderator">
-        <a class="moderators-moderator-link" href=""></a>
-        <div class="moderators-moderator-name fz-31 text-center text-white">
-          CM - Michael
-        </div>
-      </li>
-      <li class="moderators-moderator">
-        <a class="moderators-moderator-link" href=""></a>
-        <div class="moderators-moderator-name fz-31 text-center text-white">
-          CM - Niclas
-        </div>
-      </li>
-      <li class="moderators-moderator">
-        <a class="moderators-moderator-link" href=""></a>
-        <div class="moderators-moderator-name fz-31 text-center text-white">
-          CM - Nadine
+          {{ moderator.alias }}
         </div>
       </li>
     </ol>

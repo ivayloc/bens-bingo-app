@@ -45,3 +45,7 @@ export const sendPasswordResetKey = createAction(
   '[ResetPassword Page] Send password reset key',
   props<{ accountIdentifier: string; resetKey: string }>()
 );
+
+export const getChatModerators = createAction(
+  '[ChatModerators Page] Get chat moderators'
+);

@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { Member } from 'src/app/shared/models/member';
 import { RecentWinners } from 'src/app/shared/models/recent-winners';
 import { ResetPasswordMethods } from 'src/app/shared/models/reset-password-methods';
 import { UserInfo } from 'src/app/shared/models/user-info';
@@ -90,5 +91,15 @@ export const sendPasswordResetKeySuccess = createAction(
 
 export const sendPasswordResetKeyFailure = createAction(
   '[ResetPassword API] Send password reset key Failure',
+  props<{ error: string }>()
+);
+
+export const getChatModeratorsSuccess = createAction(
+  '[ChatModerators API] Get chat moderators Success',
+  props<{ chatModerators: Member[] }>()
+);
+
+export const getChatModeratorsFailure = createAction(
+  '[ChatModerators API] Get chat moderators Failure',
   props<{ error: string }>()
 );

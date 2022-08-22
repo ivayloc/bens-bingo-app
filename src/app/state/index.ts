@@ -40,3 +40,8 @@ export const selectResetPasswordMethods = createSelector(
     }));
   }
 );
+
+export const selectChatModerators = createSelector(
+  selectAppState,
+  (state) => state.chatModerators
+);

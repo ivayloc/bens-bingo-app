@@ -15,6 +15,7 @@ import { BingoService } from '../bingo/services/bingo.service';
 import { AuthService } from '../core/service/auth.service';
 import { LoginDialogComponent } from '../shared/components/login-dialog/login-dialog.component';
 import { CasinoService } from '../shared/services/casino.service';
+import { MembersService } from '../shared/services/members.service';
 import { UserRegistrationService } from '../shared/services/user-registration.service';
 import { UserService } from '../shared/services/user.service';
 import { AppApiActions, AppPageActions } from './actions';
@@ -27,6 +28,7 @@ export class AppEffects {
     private bingoService: BingoService,
     private userRegistration: UserRegistrationService,
     private authService: AuthService,
+    private membersService: MembersService,
     private dialog: MatDialog,
     private router: Router,
     private userService: UserService
@@ -178,6 +180,22 @@ export class AppEffects {
           ),
           catchError((error) =>
             of(AppApiActions.sendPasswordResetKeyFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  getChatModerators$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AppPageActions.getChatModerators),
+      mergeMap(() =>
+        this.membersService.getChatModerators().pipe(
+          map((chatModerators) =>
+            AppApiActions.getChatModeratorsSuccess({ chatModerators })
+          ),
+          catchError((error) =>
+            of(AppApiActions.getChatModeratorsFailure({ error }))
           )
         )
       )
