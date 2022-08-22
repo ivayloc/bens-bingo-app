@@ -58,6 +58,11 @@ export const getSelectedUserAlias = createSelector(
   (state) => state.selectedUserAlias
 );
 
+export const selectUserProfilePicture = createSelector(
+  getAccountState,
+  (state) => state.selectedUserProfilePicture
+);
+
 export const getSearchUserResult = createSelector(
   getAccountState,
   (state) => state.searchUserResult

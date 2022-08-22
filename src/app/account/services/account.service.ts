@@ -21,6 +21,7 @@ import { TransactionsHistoryRequest } from '../models/transactions-history-reque
 import { UpdateUserProfileRequest } from '../models/update-user-profile-request';
 import { UpdatedUserInfo } from '../models/updated-user-info';
 import { UserProfile } from '../models/user-profile';
+import { UserProfilePicture } from '../models/user-profile-picture';
 
 @Injectable({
   providedIn: 'root',
@@ -187,5 +188,28 @@ export class AccountService {
       `${environment.apiDomain}/user/current/friends/approve`,
       body
     );
+  }
+
+  getUserProfilePicture(alias: string): Observable<UserProfilePicture> {
+    return this.http
+      .get<ResponseOf<UserProfilePicture>>(
+        `${environment.apiDomain}/profilepicture/${alias}/bigsquare`
+      )
+      .pipe(map(({ data }) => data));
+  }
+
+  saveUserProfilePicture(
+    picture: string,
+    alias: string
+  ): Observable<UserProfilePicture> {
+    const form = new FormData();
+    form.append('form_data', picture);
+
+    return this.http
+      .post<ResponseOf<UserProfilePicture>>(
+        `${environment.apiDomain}/user/current/profilepicture`,
+        form
+      )
+      .pipe(map(({ data }) => data));
   }
 }

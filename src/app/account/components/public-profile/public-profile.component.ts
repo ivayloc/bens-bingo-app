@@ -5,7 +5,12 @@ import { distinctUntilChanged, Observable } from 'rxjs';
 import { selectUserInfo } from 'src/app/state';
 import { UserProfile } from '../../models/user-profile';
 import { UserProfileDetails } from '../../models/user-profile-details';
-import { getSelectedUserAlias, getSelectedUserProfile } from '../../state';
+import { UserProfilePicture } from '../../models/user-profile-picture';
+import {
+  getSelectedUserAlias,
+  getSelectedUserProfile,
+  selectUserProfilePicture,
+} from '../../state';
 import { AccountPageActions } from '../../state/actions';
 
 @Component({
@@ -19,6 +24,7 @@ export class PublicProfileComponent implements OnInit {
     UserProfile<Map<string, UserProfileDetails>>
   >();
   getSelectedUserAlias$ = new Observable<string>();
+  getSelectedUserProfilePicture$ = new Observable<UserProfilePicture>();
 
   constructor(private store: Store, private route: ActivatedRoute) {}
 
@@ -40,6 +46,9 @@ export class PublicProfileComponent implements OnInit {
       .subscribe((data) => console.log(data));
 
     this.getSelectedUserProfile$ = this.store.select(getSelectedUserProfile);
+    this.getSelectedUserProfilePicture$ = this.store.select(
+      selectUserProfilePicture
+    );
     this.getSelectedUserAlias$ = this.store.select(getSelectedUserAlias);
   }
 }

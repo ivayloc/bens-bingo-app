@@ -5,6 +5,7 @@ import { SearchUserResult } from '../models/search-user-result';
 import { Top5Games } from '../models/top5-games';
 import { Transaction } from '../models/transaction';
 import { UserProfile } from '../models/user-profile';
+import { UserProfilePicture } from '../models/user-profile-picture';
 import { AccountApiActions, AccountPageActions } from './actions';
 
 export interface AccountState {
@@ -14,6 +15,7 @@ export interface AccountState {
   pendingOutgoing: Friend[];
   friends: Friend[];
   selectedUserProfile: UserProfile;
+  selectedUserProfilePicture: UserProfilePicture;
   selectedUserAlias: string;
   searchUserResult: SearchUserResult;
   top5Games: Top5Games;
@@ -27,6 +29,7 @@ const initialState: AccountState = {
   pendingOutgoing: {} as Friend[],
   friends: {} as Friend[],
   selectedUserProfile: {} as UserProfile,
+  selectedUserProfilePicture: {} as UserProfilePicture,
   selectedUserAlias: '',
   searchUserResult: {} as SearchUserResult,
   top5Games: {} as Top5Games,
@@ -161,6 +164,26 @@ export const accountReducer = createReducer<AccountState>(
         ...state,
         selectedUserProfile: {} as UserProfile,
         selectedUserAlias: '',
+        error: action.error,
+      };
+    }
+  ),
+  on(
+    AccountApiActions.getUserProfilePictureSuccess,
+    (state, { userProfilePicture }): AccountState => {
+      return {
+        ...state,
+        selectedUserProfilePicture: userProfilePicture,
+        error: '',
+      };
+    }
+  ),
+  on(
+    AccountApiActions.getUserProfilePictureFailure,
+    (state, action): AccountState => {
+      return {
+        ...state,
+        selectedUserProfilePicture: {} as UserProfilePicture,
         error: action.error,
       };
     }

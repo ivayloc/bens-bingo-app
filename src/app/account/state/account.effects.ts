@@ -202,6 +202,60 @@ export class AccountEffects {
     );
   });
 
+  getUserProfilePicture$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AccountApiActions.showUserProfileSuccess),
+      mergeMap(({ friendalias }) =>
+        this.accountService.getUserProfilePicture(friendalias).pipe(
+          map((userProfilePicture) =>
+            AccountApiActions.getUserProfilePictureSuccess({
+              userProfilePicture,
+            })
+          ),
+          catchError((error) =>
+            of(AccountApiActions.getUserProfilePictureFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  saveUserProfilePicture$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AccountPageActions.saveUserProfilePicture),
+      mergeMap(({ picture, alias }) =>
+        this.accountService.saveUserProfilePicture(picture, alias).pipe(
+          map((userProfilePicture) =>
+            AccountApiActions.saveUserProfilePictureSuccess({
+              userProfilePicture,
+            })
+          ),
+          catchError((error) =>
+            of(AccountApiActions.saveUserProfilePictureFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  // setUserProfilePicture$ = createEffect(() => {
+  //   return this.actions$.pipe(
+  //     ofType(AccountApiActions.showUserProfileSuccess),
+  //     mergeMap(({ friendalias }) =>
+  //       this.accountService.getUserProfilePicture(friendalias).pipe(
+  //         map((userProfilePicture) =>
+  //           AccountApiActions.getUserProfilePictureSuccess({
+  //             userProfilePicture,
+  //           })
+  //         ),
+  //         catchError((error) =>
+  //           of(AccountApiActions.getUserProfilePictureFailure({ error }))
+  //         )
+  //       )
+  //     )
+  //   );
+  // });
+
   loadTop5Games$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AccountPageActions.loadTop5Games),

@@ -7,20 +7,34 @@
     >
       <div class="row justify-content-center">
         <div class="col-9">
-          <div class="align-items-start d-flex position-relative w-100">
-            <div class="text-center">
-              <img
-                width="172"
-                [src]="
-                  'https://functionalgames.cdn.bingolab.com/viewprofilepic.php?alias=' +
-                  alias +
-                  '&size=bigsquare&siteid=95'
+          <div class="align-items-start row">
+            <div class="col-3 text-center">
+              <ng-container
+                *ngIf="
+                  getSelectedUserProfilePicture$ | async as userProfilePicture
                 "
-                alt=""
-                srcset=""
-              />
+              >
+                <ng-container
+                  *ngIf="userProfilePicture.base64; else missingImage"
+                >
+                  <img
+                    width="172"
+                    [src]="userProfilePicture.base64"
+                    alt=""
+                    srcset=""
+                  />
+                </ng-container>
+                <ng-template #missingImage>
+                  <img
+                    width="172"
+                    src="/assets/images/user-profile-image/default-profile.png"
+                    alt=""
+                    srcset=""
+                  />
+                </ng-template>
+              </ng-container>
             </div>
-            <div class="px-4 w-100">
+            <div class="col-9">
               <div class="d-flex justify-content-between mb-4">
                 <dl *ngIf="userProfile.profile.get('age')">
                   <dt class="fz-31 fw-bold">Age</dt>

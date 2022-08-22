@@ -7,6 +7,7 @@ import { SearchUserResult } from '../../models/search-user-result';
 import { Top5Games } from '../../models/top5-games';
 import { Transaction } from '../../models/transaction';
 import { UserProfile } from '../../models/user-profile';
+import { UserProfilePicture } from '../../models/user-profile-picture';
 
 export const loadTransactionsHistorySuccess = createAction(
   '[Account API] Load transaction history  SUCCESS',
@@ -119,25 +120,49 @@ export const loadTop5GamesFailure = createAction(
 );
 
 export const updateUserInfoSuccess = createAction(
-  '[Account/PrivateInfo Page] Update user info SUCCESS',
+  '[Account/PrivateInfo API] Update user info SUCCESS',
   props<{
     success: boolean;
   }>()
 );
 
 export const updateUserInfoFailure = createAction(
-  '[Account/PrivateInfo Page] Update user info FAILURE',
+  '[Account/PrivateInfo API] Update user info FAILURE',
   props<{ error: string }>()
 );
 
 export const saveUserProfileSuccess = createAction(
-  '[Account/PublicProfile Page] Save public profile SUCCESS',
+  '[Account/PublicProfile API] Save public profile SUCCESS',
   props<{
     success: boolean;
   }>()
 );
 
 export const saveUserProfileFailure = createAction(
-  '[Account/PublicProfile Page] Save public profile FAILURE',
+  '[Account/PublicProfile API] Save public profile FAILURE',
+  props<{ error: string }>()
+);
+
+export const getUserProfilePictureSuccess = createAction(
+  '[Account/Profile API] Get user profile picture SUCCESS',
+  props<{
+    userProfilePicture: UserProfilePicture;
+  }>()
+);
+
+export const getUserProfilePictureFailure = createAction(
+  '[Account/Profile API] Get user profile picture FAILURE',
+  props<{ error: string }>()
+);
+
+export const saveUserProfilePictureSuccess = createAction(
+  '[Account/PublicProfileEdit API] Save user profile picture SUCCESS',
+  props<{
+    userProfilePicture: UserProfilePicture;
+  }>()
+);
+
+export const saveUserProfilePictureFailure = createAction(
+  '[Account/PublicProfileEdit API] Save user profile picture FAILURE',
   props<{ error: string }>()
 );

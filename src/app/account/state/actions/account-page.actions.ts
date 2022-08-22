@@ -43,6 +43,11 @@ export const saveUserProfile = createAction(
   props<{ payload: UpdateUserProfileRequest }>()
 );
 
+export const saveUserProfilePicture = createAction(
+  '[Account/PublicProfileEdit Page] Save User profile',
+  props<{ picture: string; alias: string }>()
+);
+
 export const searchUser = createAction(
   '[Account/Buddy Page] Search for user profile',
   props<{ friendalias: string }>()
@@ -69,4 +74,9 @@ export const approveFriendRequest = createAction(
 
 export const loadTop5Games = createAction(
   '[Account/Dashboard] Get top 5 games'
+);
+
+export const getUserProfilePicture = createAction(
+  '[Account/Profile Page] Get user profile picture',
+  props<{ alias: string }>()
 );
