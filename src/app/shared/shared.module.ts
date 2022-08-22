@@ -19,16 +19,17 @@ import { LanguageSelectorComponent } from './components/language-selector/langua
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { LoginButtonComponent } from './components/login-button/login-button.component';
 import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
+import { LoginResetPasswordComponent } from './components/login-reset-password/login-reset-password.component';
 import { MainNavigationComponent } from './components/main-navigation/main-navigation.component';
 import { RecentWinnersComponent } from './components/recent-winners/recent-winners.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SlotsGameComponent } from './components/slots-game/slots-game.component';
 import { SubNavigationComponent } from './components/sub-navigation/sub-navigation.component';
+import { UserVipLevelComponent } from './components/user-vip-level/user-vip-level.component';
 import { ShrinkFontSizeDirective } from './directives/shrink-font-size.directive';
 import { AngularMaterialModule } from './modules/angular-material.module';
 import { PrimeNgModule } from './modules/prime-ng.module';
 import { LoaderService } from './services/loader.service';
-import { LoginResetPasswordComponent } from './components/login-reset-password/login-reset-password.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { LoginResetPasswordComponent } from './components/login-reset-password/l
     LoginButtonComponent,
     FormErrorMessageComponent,
     LoginResetPasswordComponent,
+    UserVipLevelComponent,
   ],
   imports: [
     CommonModule,
@@ -81,6 +83,7 @@ import { LoginResetPasswordComponent } from './components/login-reset-password/l
     LoadingSpinnerComponent,
     TranslocoModule,
     FormErrorMessageComponent,
+    UserVipLevelComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useExisting: LoaderService, multi: true },

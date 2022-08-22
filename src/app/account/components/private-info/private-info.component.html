@@ -130,14 +130,9 @@
     </app-content-box>
   </div>
   <div class="col-4">
-    <app-content-box
-      class="content-box-vip mb-5 fz-24 hovercss-float-shadow"
-      headerText="Vip"
-    >
-      <div *ngIf="getUserInfo$ | async as userInfo" class="fz-45 fw-bold">
-        {{ userInfo?.vip?.level }}
-      </div>
-    </app-content-box>
+    <app-user-vip-level
+      class="d-block content-box-vip mb-5 hovercss-float-shadow"
+    ></app-user-vip-level>
 
     <app-content-box
       class="content-box-change-password mb-5 fz-24"

@@ -11,7 +11,11 @@
             <div class="col-4">
               <mat-form-field class="d-block" appearance="fill">
                 <mat-label>User Name</mat-label>
-                <input matInput formControlName="username" />
+                <input
+                  matInput
+                  formControlName="username"
+                  autocomplete="username"
+                />
                 <mat-error
                   *ngIf="usernameControl?.invalid && usernameControl?.touched"
                 >
@@ -45,7 +49,12 @@
             <div class="col-4">
               <mat-form-field class="d-block" appearance="fill">
                 <mat-label>Password</mat-label>
-                <input type="password" matInput formControlName="password" />
+                <input
+                  type="password"
+                  matInput
+                  formControlName="password"
+                  autocomplete="new-password"
+                />
                 <div matSuffix>
                   <mat-icon
                     svgIcon="live-help"
@@ -70,7 +79,11 @@
             <div class="col-4">
               <mat-form-field class="d-block" appearance="fill">
                 <mat-label>First Name</mat-label>
-                <input matInput formControlName="firstname" />
+                <input
+                  matInput
+                  formControlName="firstname"
+                  autocomplete="given-name"
+                />
                 <mat-error>
                   <app-form-error-message
                     [control]="registerForm.get('userdata.firstname')"
@@ -81,7 +94,11 @@
             <div class="col-4">
               <mat-form-field class="d-block" appearance="fill">
                 <mat-label>Last Name</mat-label>
-                <input matInput formControlName="lastname" />
+                <input
+                  matInput
+                  formControlName="lastname"
+                  autocomplete="family-name"
+                />
                 <mat-error>
                   <app-form-error-message
                     [control]="registerForm.get('userdata.lastname')"
@@ -92,7 +109,7 @@
             <div class="col-4">
               <mat-form-field class="d-block" appearance="fill">
                 <mat-label>E-Mail</mat-label>
-                <input matInput formControlName="email" />
+                <input matInput formControlName="email" autocomplete="email" />
                 <mat-error>
                   <app-form-error-message
                     [control]="registerForm.get('userdata.email')"
@@ -103,7 +120,11 @@
             <div class="col-4">
               <mat-form-field class="d-block" appearance="fill">
                 <mat-label>Mobile Phone</mat-label>
-                <input matInput formControlName="mobilephone" />
+                <input
+                  matInput
+                  formControlName="mobilephone"
+                  autocomplete="tel"
+                />
                 <mat-error>
                   <app-form-error-message
                     [control]="registerForm.get('userdata.mobilephone')"
@@ -172,11 +193,8 @@
     </app-content-box>
   </div>
   <div class="col-4">
-    <app-content-box
-      class="content-box-vip mb-5 fz-24 hovercss-float-shadow"
-      headerText="Vip"
-    >
-      1
-    </app-content-box>
+    <app-user-vip-level
+      class="d-block content-box-vip mb-5 hovercss-float-shadow"
+    ></app-user-vip-level>
   </div>
 </div>
