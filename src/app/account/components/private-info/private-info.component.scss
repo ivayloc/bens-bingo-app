@@ -12,12 +12,21 @@
     margin-inline-start: calc-clamp(-93);
     margin-inline-end: calc-clamp(-50);
   }
+  &-change-password {
+    margin-inline-start: calc-clamp(-43);
+    margin-inline-end: calc-clamp(-60);
+  }
 }
 
 :host ::ng-deep {
   .content-box-account {
     .box-pink-content-body {
       padding-inline-start: calc-clamp(155);
+    }
+  }
+  .content-box-change-password {
+    .box-pink-header {
+      padding-inline-end: calc-clamp(80);
     }
   }
 }

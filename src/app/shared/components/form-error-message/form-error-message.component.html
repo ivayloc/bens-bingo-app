@@ -11,4 +11,7 @@
   <ng-container *ngIf="control?.hasError('invalidEmail')">
     {{ control?.getError("invalidEmail") }}
   </ng-container>
+  <ng-container *ngIf="control?.hasError('mismatch')">
+    Password Verification Must Match
+  </ng-container>
 </ng-container>

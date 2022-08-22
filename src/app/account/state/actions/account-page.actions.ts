@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { BingoHistoryRequest } from '../../models/bingo-history-request';
+import { ChangePasswordRequest } from '../../models/change-password-request';
 import { TransactionsHistoryRequest } from '../../models/transactions-history-request';
 import { UpdateUserProfileRequest } from '../../models/update-user-profile-request';
 import { UpdatedUserInfo } from '../../models/updated-user-info';
@@ -17,6 +18,11 @@ export const loadGameHistory = createAction(
 export const updateUserInfo = createAction(
   '[Account/PrivateInfo Page] Update user info',
   props<{ payload: UpdatedUserInfo }>()
+);
+
+export const changePassword = createAction(
+  '[Account/PrivateInfo Page] Change password',
+  props<{ payload: ChangePasswordRequest }>()
 );
 
 export const loadFriends = createAction(

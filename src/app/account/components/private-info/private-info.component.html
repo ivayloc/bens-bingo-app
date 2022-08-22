@@ -111,6 +111,61 @@
       </div>
     </app-content-box>
 
+    <app-content-box
+      class="content-box-change-password mb-5 fz-24"
+      headerText="Change Password"
+    >
+      <form
+        [formGroup]="changePasswordForm"
+        (ngSubmit)="changePassword()"
+        #changePasswordFormEl
+      >
+        <mat-form-field class="d-block mb-2" appearance="fill">
+          <mat-label>Current Password</mat-label>
+          <input
+            type="password"
+            autocomplete="current-password"
+            matInput
+            formControlName="currentpassword"
+          />
+        </mat-form-field>
+        <mat-form-field class="d-block mb-2" appearance="fill">
+          <mat-label>New Password</mat-label>
+          <input
+            type="password"
+            autocomplete="new-password"
+            matInput
+            formControlName="newpassword"
+          />
+          <mat-error>
+            <app-form-error-message
+              [control]="changePasswordForm.get('newpassword')"
+            ></app-form-error-message>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="d-block mb-2" appearance="fill">
+          <mat-label>Verify Password</mat-label>
+          <input
+            type="password"
+            auto="new-password"
+            matInput
+            formControlName="verifypassword"
+          />
+          <mat-error>
+            <app-form-error-message
+              [control]="changePasswordForm.get('verifypassword')"
+            ></app-form-error-message>
+          </mat-error>
+        </mat-form-field>
+
+        <div class="text-center">
+          <button class="btn-clear btn-main py-1 mx-2">
+            <span class="btn-main-text">Change</span>
+          </button>
+        </div>
+      </form>
+    </app-content-box>
+
     <app-account-funds
       class="content-box content-box-funds d-block hovercss-float-shadow"
     ></app-account-funds>

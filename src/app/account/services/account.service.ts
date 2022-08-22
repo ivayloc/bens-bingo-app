@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 import { AddFriendResponse } from '../models/add-friend-response';
 import { AddFriendResult } from '../models/add-friend-result';
 import { BingoHistoryRequest } from '../models/bingo-history-request';
+import { ChangePasswordRequest } from '../models/change-password-request';
 import { FriendRequestResult } from '../models/friend-request-result';
 import { FriendsList } from '../models/friends-list-response';
 import { GameHistory } from '../models/game-history';
@@ -209,6 +210,15 @@ export class AccountService {
       .post<ResponseOf<UserProfilePicture>>(
         `${environment.apiDomain}/user/current/profilepicture`,
         form
+      )
+      .pipe(map(({ data }) => data));
+  }
+
+  changePassword(payload: ChangePasswordRequest): Observable<Success> {
+    return this.http
+      .put<ResponseOf<Success>>(
+        `${environment.apiDomain}/user/current/updatepassword`,
+        payload
       )
       .pipe(map(({ data }) => data));
   }

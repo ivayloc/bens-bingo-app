@@ -166,3 +166,15 @@ export const saveUserProfilePictureFailure = createAction(
   '[Account/PublicProfileEdit API] Save user profile picture FAILURE',
   props<{ error: string }>()
 );
+
+export const changePasswordSuccess = createAction(
+  '[Account/PrivateInfo API] Change password SUCCESS',
+  props<{
+    success: boolean;
+  }>()
+);
+
+export const changePasswordFailure = createAction(
+  '[Account/PrivateInfo API] Change password FAILURE',
+  props<{ error: string }>()
+);

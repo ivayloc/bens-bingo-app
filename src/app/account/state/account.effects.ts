@@ -238,23 +238,19 @@ export class AccountEffects {
     );
   });
 
-  // setUserProfilePicture$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(AccountApiActions.showUserProfileSuccess),
-  //     mergeMap(({ friendalias }) =>
-  //       this.accountService.getUserProfilePicture(friendalias).pipe(
-  //         map((userProfilePicture) =>
-  //           AccountApiActions.getUserProfilePictureSuccess({
-  //             userProfilePicture,
-  //           })
-  //         ),
-  //         catchError((error) =>
-  //           of(AccountApiActions.getUserProfilePictureFailure({ error }))
-  //         )
-  //       )
-  //     )
-  //   );
-  // });
+  changePassword$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AccountPageActions.changePassword),
+      mergeMap(({ payload }) =>
+        this.accountService.changePassword(payload).pipe(
+          map((success) => AccountApiActions.changePasswordSuccess(success)),
+          catchError((error) =>
+            of(AccountApiActions.changePasswordFailure({ error }))
+          )
+        )
+      )
+    );
+  });
 
   loadTop5Games$ = createEffect(() => {
     return this.actions$.pipe(

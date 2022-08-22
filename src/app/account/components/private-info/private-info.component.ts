@@ -1,8 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  AbstractControl,
+  FormBuilder,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 import { Store } from '@ngrx/store';
 import format from 'date-fns/format';
 import { Observable, tap } from 'rxjs';
+import { ValidatorsService } from 'src/app/shared/services/validators.service';
 import { selectUserInfo } from 'src/app/state';
 import { AppPageActions } from 'src/app/state/actions';
 import { UserInfo } from '../../../shared/models/user-info';
@@ -15,6 +21,9 @@ import { AccountPageActions } from '../../state/actions';
   styleUrls: ['./private-info.component.scss'],
 })
 export class PrivateInfoComponent implements OnInit {
+  @ViewChild('changePasswordFormEl')
+  private changePasswordFormEl!: ElementRef<HTMLFormElement>;
+
   accountInfoForm = this.fb.group({
     userdata: this.fb.group({
       firstname: ['', Validators.required],
@@ -34,9 +43,41 @@ export class PrivateInfoComponent implements OnInit {
     siteid: 95,
   });
 
+  changePasswordForm = this.fb.group(
+    {
+      currentpassword: ['', Validators.required],
+      newpassword: [
+        '',
+        [Validators.required, this.passwordMatchValidator],
+        this.validatorsService.password(),
+      ],
+      verifypassword: ['', [Validators.required, this.passwordMatchValidator]],
+    }
+    // { validators: [this.passwordMatchValidator] }
+  );
+
+  private passwordMatchValidator(
+    formGroup: AbstractControl
+  ): ValidationErrors | null {
+    const newpassword = formGroup.parent?.get('newpassword');
+    const verifypassword = formGroup.parent?.get('verifypassword');
+
+    if (newpassword && verifypassword?.pristine) {
+      return null;
+    }
+
+    return newpassword?.value === verifypassword?.value
+      ? null
+      : { mismatch: true };
+  }
+
   getUserInfo$ = new Observable<UserInfo>();
 
-  constructor(private store: Store, private fb: FormBuilder) {}
+  constructor(
+    private store: Store,
+    private fb: FormBuilder,
+    private validatorsService: ValidatorsService
+  ) {}
 
   ngOnInit(): void {
     this.store.dispatch(AppPageActions.loadUserInfo());
@@ -82,5 +123,18 @@ export class PrivateInfoComponent implements OnInit {
       'yyy-MM-dd'
     );
     this.store.dispatch(AccountPageActions.updateUserInfo({ payload }));
+  }
+
+  changePassword() {
+    const { newpassword, currentpassword } =
+      this.changePasswordForm.getRawValue();
+
+    this.store.dispatch(
+      AccountPageActions.changePassword({
+        payload: { newpassword, currentpassword },
+      })
+    );
+
+    this.changePasswordFormEl.nativeElement.reset();
   }
 }
