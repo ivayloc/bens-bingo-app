@@ -8,7 +8,7 @@ import { HelpDeskMessageAttachment } from '../../models/help-desk-message-attach
 import { HelpDeskMessageType } from '../../models/help-desk-message-type';
 import { HelpDeskMessageTypes } from '../../models/help-desk-message-types';
 import { HelpDeskReply } from '../../models/help-desk-reply';
-import { getHelpDeskChat, State } from '../../state';
+import { getHelpDeskChat } from '../../state';
 import { HelpDeskPageActions } from '../../state/actions';
 
 @Component({
@@ -72,7 +72,7 @@ export class HelpDeskMessageComponent implements OnInit {
   }
 
   deleteChat(id: number) {
-    this.store.dispatch(HelpDeskPageActions.deleteHelpDeskChat({ id }));
+    this.store.dispatch(HelpDeskPageActions.archiveHelpDeskChat({ id }));
     this.router.navigate(['../'], { relativeTo: this.route });
   }
 
