@@ -26,6 +26,7 @@ export class RegisterComponent {
       mobilephone: ['', Validators.required],
       bday: ['', Validators.required],
       currency: ['', Validators.required],
+      language: 'en',
     }),
     subscription: this.fb.group({
       email: '',
@@ -33,6 +34,8 @@ export class RegisterComponent {
     }),
     terms: ['', Validators.requiredTrue],
     couponcode: '',
+    signuptype: 'full',
+    accounttype: 'normal',
   });
 
   get passwordControl(): FormControl {
@@ -57,7 +60,7 @@ export class RegisterComponent {
     if (this.registerForm.invalid) {
       return;
     }
-    const userData = this.registerForm.getRawValue();
-    this.store.dispatch(AppPageActions.userRegistration(userData));
+    const payload = this.registerForm.getRawValue();
+    this.store.dispatch(AppPageActions.userRegistration({ payload }));
   }
 }

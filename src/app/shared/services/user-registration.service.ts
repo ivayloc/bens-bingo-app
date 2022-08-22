@@ -4,6 +4,7 @@ import { map, Observable, switchMap, timer } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { InvalidField } from '../models/invalid-field';
 import { ResponseOf } from '../models/response-of';
+import { UserRegistrationQuick } from '../models/user-registration-quick';
 import { ValidField } from '../models/valid-field';
 
 @Injectable({
@@ -12,8 +13,8 @@ import { ValidField } from '../models/valid-field';
 export class UserRegistrationService {
   constructor(private http: HttpClient) {}
 
-  register(userData: any): Observable<any> {
-    return this.http.post(`${environment.apiDomain}/`, {});
+  register(payload: UserRegistrationQuick): Observable<any> {
+    return this.http.post(`${environment.apiDomain}/user/register`, payload);
   }
   validatePassword(password: string): Observable<InvalidField | ValidField> {
     return timer(600).pipe(
