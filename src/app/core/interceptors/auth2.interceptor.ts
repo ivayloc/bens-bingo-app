@@ -52,9 +52,10 @@ export class JwtAuthService implements HttpInterceptor {
             this.refreshTokenInProgress = true;
             this.refreshTokenSubject.next(null);
 
-            return this.authService.refreshAuthToken().pipe(
-              switchMap((token) => {
-                this.refreshTokenSubject.next(token);
+            // return next.handle(this.addAuthToken(request))
+            return this.authService.apiLogin().pipe(
+              switchMap(({ access_token }) => {
+                this.refreshTokenSubject.next(access_token);
                 return next.handle(this.addAuthToken(request));
               }),
               finalize(() => (this.refreshTokenInProgress = false))
@@ -63,8 +64,8 @@ export class JwtAuthService implements HttpInterceptor {
         } else if (this.refreshTokenSubject.value) {
           return throwError(() => new Error(requestError.message));
         } else {
-          localStorage.removeItem('jvt');
-          localStorage.removeItem('jwtExpirationTime');
+          // localStorage.removeItem('jvt');
+          // localStorage.removeItem('jwtExpirationTime');
           return throwError(() => new Error(requestError.message));
         }
       })
@@ -72,6 +73,9 @@ export class JwtAuthService implements HttpInterceptor {
   }
 
   addAuthToken(request: HttpRequest<any>) {
+    // if (request.url.includes('api/slim/refresh')) {
+    //   localStorage.clear();
+    // }
     const token = this.authService.getAuthToken();
 
     if (!token) {

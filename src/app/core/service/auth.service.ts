@@ -62,6 +62,8 @@ export class AuthService {
   }
 
   refreshAuthToken() {
+    console.log('refresh');
+
     return this.http
       .post<LoginResponse>(`${environment.apiLogin}/refresh`, {})
       .pipe(map(({ access_token }) => access_token));
