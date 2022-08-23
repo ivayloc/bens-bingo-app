@@ -1,10 +1,18 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { Observable, tap } from 'rxjs';
+import { UpdatedUserInfo } from 'src/app/account/models/updated-user-info';
+import { UserInfo } from 'src/app/shared/models/user-info';
+import { selectUserInfo } from 'src/app/state';
 import { PaymentMethod } from '../../models/payment-method';
 import { PaymentMethodAccount } from '../../models/payment-method-account';
 import {
@@ -27,6 +35,21 @@ export class DepositSelectedMethodComponent implements OnInit {
     account: ['', Validators.required],
   });
 
+  confirmDepositDetailsForm = this.fb.group({
+    userdata: this.fb.group({
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      address: ['', Validators.required],
+      city: ['', Validators.required],
+      state: ['', Validators.required],
+      zip: ['', Validators.required],
+      country: ['', Validators.required],
+      phone: ['', Validators.required],
+      birthdate: ['', Validators.required],
+    }),
+    signuptype: 'depositupdate',
+  });
+
   get depositAmountField(): FormControl {
     return this.depositForm.get('amount') as FormControl;
   }
@@ -44,6 +67,8 @@ export class DepositSelectedMethodComponent implements OnInit {
   >();
 
   getSelectedDepositMethod$ = new Observable<PaymentMethod>();
+  getUserInfo$ = new Observable<UserInfo>();
+
   displayedColumns = [
     'select',
     'type',
@@ -76,6 +101,12 @@ export class DepositSelectedMethodComponent implements OnInit {
 
     this.getSelectedDepositMethodAccounts$ = this.store.select(
       selectSelectedDepositMethodAccountMatData
+    );
+
+    this.getUserInfo$ = this.store.select(selectUserInfo).pipe(
+      tap((userInfo) => {
+        this.createUserDetailsForm(userInfo);
+      })
     );
   }
 
@@ -121,6 +152,31 @@ export class DepositSelectedMethodComponent implements OnInit {
       data: {
         paymentMethod,
       },
+    });
+  }
+
+  updateUserDetails() {
+    if (this.confirmDepositDetailsForm.invalid) {
+      return;
+    }
+    const payload =
+      this.confirmDepositDetailsForm.getRawValue() as UpdatedUserInfo;
+
+    this.store.dispatch(
+      CashierPageActions.updateUserDepositDetails({
+        payload,
+      })
+    );
+  }
+  createUserDetailsForm(userInfo: UserInfo) {
+    const userdata = this.confirmDepositDetailsForm.get(
+      'userdata'
+    ) as FormGroup;
+    userdata.patchValue(userInfo);
+    Object.entries(userdata.controls).forEach(([controlName, { value }]) => {
+      if (value) {
+        userdata.get(controlName)?.disable();
+      }
     });
   }
 }

@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { UpdatedUserInfo } from 'src/app/account/models/updated-user-info';
 import { DepositActionPayload } from '../../models/deposit-action-payload';
 import { DepositAddAccountRequest } from '../../models/deposit-add-account-request';
 import { DepositUpdateAccountRequest } from '../../models/deposit-update-account-request';
@@ -65,5 +66,12 @@ export const depositAddAccount = createAction(
   '[Cashier/Deposits] Add account',
   props<{
     payload: DepositAddAccountRequest;
+  }>()
+);
+
+export const updateUserDepositDetails = createAction(
+  '[Cashier/Deposits] Update user details',
+  props<{
+    payload: UpdatedUserInfo;
   }>()
 );

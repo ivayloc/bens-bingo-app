@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, forkJoin, map, mergeMap, of, tap } from 'rxjs';
+import { UserService } from 'src/app/shared/services/user.service';
 import { CashierService } from '../services/cashier.service';
 import { CashierApiActions, CashierPageActions } from './actions';
 
@@ -11,7 +12,7 @@ export class CashierEffects {
     private actions$: Actions,
     private cashierService: CashierService,
     private router: Router,
-    private route: ActivatedRoute
+    private userService: UserService
   ) {}
 
   loadPaymentMethods$ = createEffect(() => {
@@ -210,6 +211,22 @@ export class CashierEffects {
           ),
           catchError((error) =>
             of(CashierApiActions.depositUpdateAccountFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  updateUserDepositDetails$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CashierPageActions.updateUserDepositDetails),
+      mergeMap(({ payload }) =>
+        this.userService.updateUserInfo(payload).pipe(
+          map((success) =>
+            CashierApiActions.updateUserDepositDetailsSuccess(success)
+          ),
+          catchError((error) =>
+            of(CashierApiActions.updateUserDepositDetailsFailure({ error }))
           )
         )
       )

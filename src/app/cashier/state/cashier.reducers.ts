@@ -154,5 +154,20 @@ export const cashierReducer = createReducer<CashierState>(
         error: action.error,
       };
     }
-  )
+  ),
+  on(
+    CashierApiActions.makeDepositSuccess,
+    (state, { success }): CashierState => {
+      return {
+        ...state,
+        error: '',
+      };
+    }
+  ),
+  on(CashierApiActions.makeDepositFailure, (state, action): CashierState => {
+    return {
+      ...state,
+      error: action.error,
+    };
+  })
 );

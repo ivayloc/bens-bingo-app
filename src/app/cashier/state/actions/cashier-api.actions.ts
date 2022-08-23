@@ -111,3 +111,13 @@ export const depositUpdateAccountFailure = createAction(
   '[Cashier/Deposit API] Update account to payment method Failure',
   props<{ error: string }>()
 );
+
+export const updateUserDepositDetailsSuccess = createAction(
+  '[Cashier/Deposit API] Update user details Success',
+  props<{ success: boolean }>()
+);
+
+export const updateUserDepositDetailsFailure = createAction(
+  '[Cashier/Deposit API] Update user details Failure',
+  props<{ error: string }>()
+);

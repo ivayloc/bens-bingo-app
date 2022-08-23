@@ -224,7 +224,6 @@
   >
     <div class="row justify-content-center">
       <div class="col-4">
-        <!-- <form (ngSubmit)="submitCvv(paymentMethod.id)"> -->
         <mat-form-field class="d-block fz-24 mb-4" appearance="fill">
           <mat-label>CVV</mat-label>
           <input type="number" matInput formControlName="cvv" />
@@ -241,8 +240,231 @@
             <span class="btn-main-text">Continue</span>
           </button>
         </div>
-        <!-- </form> -->
       </div>
     </div>
   </app-content-box>
 </form>
+
+<app-content-box
+  [isFluid]="true"
+  headerText="Confirm Deposit Details"
+  class="mb-5"
+  *ngIf="getSelectedDepositMethod$ | async as paymentMethod"
+>
+  <div class="row justify-content-center fz-24">
+    <div class="col-8">
+      <form
+        [formGroup]="confirmDepositDetailsForm"
+        *ngIf="getUserInfo$ | async as user"
+        (ngSubmit)="updateUserDetails()"
+      >
+        <div formGroupName="userdata">
+          <div class="row justify-content-between">
+            <div class="col-4 mb-2">
+              <!-- <ng-container *ngIf="user.firstname; else firstNameField">
+                <dl>
+                  <dt class="mb-2">First Name</dt>
+                  <dd>{{ user.firstname }}</dd>
+                </dl>
+              </ng-container> -->
+              <!-- <ng-template #firstNameField> -->
+              <mat-form-field class="d-block" appearance="fill">
+                <mat-label>First Name</mat-label>
+                <input matInput formControlName="firstname" />
+              </mat-form-field>
+              <!-- </ng-template> -->
+            </div>
+            <div class="col-4 mb-2">
+              <!-- <ng-container *ngIf="user.lastname; else lastnameField">
+                <dl>
+                  <dt class="mb-2">Last Name</dt>
+                  <dd>{{ user.lastname }}</dd>
+                </dl>
+              </ng-container> -->
+              <!-- <ng-template #lastnameField> -->
+              <mat-form-field class="d-block" appearance="fill">
+                <mat-label>Last Name</mat-label>
+                <input matInput formControlName="lastname" />
+              </mat-form-field>
+              <!-- </ng-template> -->
+            </div>
+          </div>
+          <div class="mb-2">
+            <!-- <ng-container *ngIf="user.address; else addressField">
+              <div class="fw-bold mb-2">Address</div>
+              <address>{{ user.address }}</address>
+            </ng-container>
+            <ng-template #addressField> -->
+            <mat-form-field class="d-block" appearance="fill">
+              <mat-label>Address</mat-label>
+              <input matInput formControlName="address" />
+            </mat-form-field>
+            <!-- </ng-template> -->
+          </div>
+          <div class="row justify-content-between">
+            <div class="col-4 mb-2">
+              <!-- <ng-container *ngIf="user.city; else cityField">
+                <dl>
+                  <dt class="mb-2">City</dt>
+                  <dd>{{ user.city }}</dd>
+                </dl>
+              </ng-container>
+              <ng-template #cityField> -->
+              <mat-form-field class="d-block" appearance="fill">
+                <mat-label>City</mat-label>
+                <input matInput formControlName="city" />
+              </mat-form-field>
+              <!-- </ng-template> -->
+            </div>
+            <div class="col-4 mb-2">
+              <!-- <ng-container *ngIf="user.state; else stateField">
+                <dl>
+                  <dt class="mb-2">State</dt>
+                  <dd>{{ user.state }}</dd>
+                </dl>
+              </ng-container>
+              <ng-template #stateField> -->
+              <mat-form-field class="d-block" appearance="fill">
+                <mat-label>State</mat-label>
+                <input matInput formControlName="state" />
+              </mat-form-field>
+              <!-- </ng-template> -->
+            </div>
+          </div>
+          <div class="row justify-content-between">
+            <div class="col-4 mb-2">
+              <!-- <ng-container *ngIf="user.zip; else zipField">
+                <dl>
+                  <dt class="mb-2">Zip</dt>
+                  <dd>{{ user.zip }}</dd>
+                </dl>
+              </ng-container>
+              <ng-template #zipField> -->
+              <mat-form-field class="d-block" appearance="fill">
+                <mat-label>Zip</mat-label>
+                <input matInput formControlName="zip" />
+              </mat-form-field>
+              <!-- </ng-template> -->
+            </div>
+            <div class="col-4 mb-2">
+              <!-- <ng-container *ngIf="user.country; else countryField">
+                <dl>
+                  <dt class="mb-2">Country</dt>
+                  <dd>{{ user.country }}</dd>
+                </dl>
+              </ng-container>
+              <ng-template #countryField> -->
+              <mat-form-field class="d-block" appearance="fill">
+                <mat-label>Country</mat-label>
+                <input matInput formControlName="country" />
+              </mat-form-field>
+              <!-- </ng-template> -->
+            </div>
+          </div>
+          <div class="row justify-content-between mb-4">
+            <div class="col-4 mb-2">
+              <!-- <ng-container *ngIf="user.phoneNumbers; else phoneNumberField">
+                <dl>
+                  <ng-container *ngFor="let phone of user.phoneNumbers">
+                    <dt class="mb-2">Phone Number</dt>
+                    <dd>{{ phone.phone }}</dd>
+                  </ng-container>
+                </dl>
+              </ng-container>
+              <ng-template #phoneNumberField> -->
+              <mat-form-field class="d-block" appearance="fill">
+                <mat-label>Phone Number</mat-label>
+                <input matInput formControlName="phone" />
+              </mat-form-field>
+              <!-- </ng-template> -->
+            </div>
+            <div class="col-4 mb-2">
+              <!-- <ng-container *ngIf="user.birthdate; else birthdateField">
+                <dl>
+                  <dt class="mb-2">Birthdate</dt>
+                  <dd>{{ user.birthdate }}</dd>
+                </dl>
+              </ng-container>
+              <ng-template #birthdateField> -->
+
+              <mat-form-field appearance="fill" class="d-block">
+                <mat-label>Birthday</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="picker"
+                  formControlName="birthdate"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="picker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+              <!-- </ng-template> -->
+            </div>
+          </div>
+          <div class="text-center">
+            <button
+              type="submit"
+              class="btn-clear btn-main py-1 mx-2 min-w-auto"
+            >
+              <span class="btn-main-text">Update Details</span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</app-content-box>
+
+<app-content-box
+  [isFluid]="true"
+  headerText="Confirm Deposit Details"
+  class="mb-5"
+  *ngIf="getSelectedDepositMethod$ | async as paymentMethod"
+>
+  <div class="row justify-content-center fz-24 mb-4">
+    <div class="col-8">
+      <div class="fz-22">
+        <div class="small">
+          <p>
+            This transaction will appear on your billing statement as FakeOut,
+            +46850513501
+          </p>
+          <p>
+            The payment method will be debited immediately once the transaction
+            is fully completed.
+          </p>
+          <p>
+            BensCasino always handles customer data in a confidential manner.
+          </p>
+          <p>
+            Please note; It is the sole responsibility of the cardholder to
+            observe the national law in their country as they pertain to
+            gambling prohibitions.
+          </p>
+          <p>Gambling may only be enjoyed by adults.</p>
+          <p>
+            Your invoice will be displayed once the payment process is complete.
+            We suggest you print or save a copy of this invoice for your
+            records.
+          </p>
+          <p>
+            Payments processing is handled by Technical Consulting and
+            Management Services Ltd. (Company Number: 7857267). London, England.
+            You can contact us at info@innovusnv.com or phone 020 7193 1099
+          </p>
+          <p>
+            For additional support, please visit our support page:
+            <a href="/en/help/">Here</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center">
+    <button type="button" class="btn-clear btn-main py-1 mx-2 min-w-auto">
+      <span class="btn-main-text">Confirm Deposit</span>
+    </button>
+  </div>
+</app-content-box>

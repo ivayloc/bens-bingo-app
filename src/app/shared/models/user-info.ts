@@ -6,23 +6,23 @@ import { UserSubscription } from '../../account/models/user-subscription';
 import { UserVip } from '../../account/models/user-vip';
 
 export interface UserInfo {
-  userid: number;
-  alias: string;
-  firstname: string;
-  lastname: string;
-  gender: string;
   address: string;
   address2: string;
-  city: string;
-  state: string;
-  country: string;
-  zip: string;
-  email: UserEmail;
-  birthdate: string;
-  subscription: UserSubscription;
-  created: string;
-  phoneNumbers: UserPhoneNumber[];
+  alias: string;
   balance: UserBalance;
+  birthdate: string;
+  city: string;
+  country: string;
+  created: string;
   currency: UserCurrency;
+  email: UserEmail;
+  firstname: string;
+  gender: string;
+  lastname: string;
+  phoneNumbers: UserPhoneNumber[];
+  state: string;
+  subscription: UserSubscription;
+  userid: number;
   vip: UserVip;
+  zip: string;
 }

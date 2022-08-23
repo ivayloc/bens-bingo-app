@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, forkJoin, map, mergeMap, of, switchMap } from 'rxjs';
-import { CasinoService } from 'src/app/shared/services/casino.service';
 import { GamesService } from 'src/app/shared/services/games.service';
+import { UserService } from 'src/app/shared/services/user.service';
 import { AccountService } from '../services/account.service';
 import { AccountApiActions, AccountPageActions } from './actions';
 
@@ -11,8 +11,8 @@ export class AccountEffects {
   constructor(
     private actions$: Actions,
     private accountService: AccountService,
-    private casinoService: CasinoService,
-    private gamesService: GamesService
+    private gamesService: GamesService,
+    private userService: UserService
   ) {}
 
   loadTransactions$ = createEffect(() => {
@@ -54,7 +54,7 @@ export class AccountEffects {
     return this.actions$.pipe(
       ofType(AccountPageActions.updateUserInfo),
       mergeMap(({ payload }) =>
-        this.accountService.updateUserInfo(payload).pipe(
+        this.userService.updateUserInfo(payload).pipe(
           map(({ success }) =>
             AccountApiActions.updateUserInfoSuccess({
               success,

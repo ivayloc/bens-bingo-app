@@ -20,7 +20,6 @@ import { Transaction } from '../models/transaction';
 import { TransactionsHistory } from '../models/transactions-history';
 import { TransactionsHistoryRequest } from '../models/transactions-history-request';
 import { UpdateUserProfileRequest } from '../models/update-user-profile-request';
-import { UpdatedUserInfo } from '../models/updated-user-info';
 import { UserProfile } from '../models/user-profile';
 import { UserProfilePicture } from '../models/user-profile-picture';
 
@@ -75,15 +74,6 @@ export class AccountService {
         }
       )
       .pipe(map(({ data }) => data.items));
-  }
-
-  updateUserInfo(updatedUserInfo: UpdatedUserInfo): Observable<Success> {
-    return this.http
-      .put<ResponseOf<Success>>(
-        `${environment.apiDomain}/user/current/info`,
-        updatedUserInfo
-      )
-      .pipe(map(({ data }) => data));
   }
 
   getUserFriendsList(): Observable<FriendsList> {
