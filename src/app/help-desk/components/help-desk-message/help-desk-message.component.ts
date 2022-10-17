@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -19,8 +19,8 @@ import { HelpDeskPageActions } from '../../state/actions';
 export class HelpDeskMessageComponent implements OnInit {
   helpDeskMessageTypes = HelpDeskMessageType;
   helpDeskMessageType = '' as HelpDeskMessageTypes;
-  get messageField(): FormControl {
-    return this.replyForm.get('message') as FormControl;
+  get messageField(): UntypedFormControl {
+    return this.replyForm.get('message') as UntypedFormControl;
   }
   // TODO: Replace with state
   hideSendFeedbackForm = false;
@@ -43,7 +43,7 @@ export class HelpDeskMessageComponent implements OnInit {
     private store: Store,
     private route: ActivatedRoute,
     private router: Router,
-    private fb: FormBuilder
+    private fb: UntypedFormBuilder
   ) {}
 
   ngOnInit(): void {

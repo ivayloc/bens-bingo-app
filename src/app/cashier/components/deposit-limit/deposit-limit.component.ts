@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { DepositLimitsDuration } from '../../models/deposit-limits-duration';
@@ -17,13 +17,13 @@ export class DepositLimitComponent implements OnInit {
     duration: ['day', Validators.required],
   });
 
-  public get depositLimitSumField(): FormControl {
-    return this.depositLimitForm.get('sum') as FormControl;
+  public get depositLimitSumField(): UntypedFormControl {
+    return this.depositLimitForm.get('sum') as UntypedFormControl;
   }
 
   getDepositLimitsPlayerDuration$ = new Observable<DepositLimitsDuration[]>();
 
-  constructor(private store: Store, private fb: FormBuilder) {}
+  constructor(private store: Store, private fb: UntypedFormBuilder) {}
 
   ngOnInit(): void {
     this.store.dispatch(CashierPageActions.getDepositLimits());

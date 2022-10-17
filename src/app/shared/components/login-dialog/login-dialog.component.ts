@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import {
   MatDialog,
   MatDialogRef,
@@ -24,7 +24,7 @@ export class LoginDialogComponent {
 
   constructor(
     private store: Store,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private router: Router,
     private dialog: MatDialog,
     private dialogRef: MatDialogRef<LoginDialogComponent>,

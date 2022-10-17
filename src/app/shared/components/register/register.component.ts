@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppPageActions } from 'src/app/state/actions';
 import { ValidatorsService } from '../../services/validators.service';
@@ -38,21 +38,21 @@ export class RegisterComponent {
     accounttype: 'normal',
   });
 
-  get passwordControl(): FormControl {
-    return this.registerForm.get('userdata.password') as FormControl;
+  get passwordControl(): UntypedFormControl {
+    return this.registerForm.get('userdata.password') as UntypedFormControl;
   }
 
-  get emailControl(): FormControl {
-    return this.registerForm.get('userdata.email') as FormControl;
+  get emailControl(): UntypedFormControl {
+    return this.registerForm.get('userdata.email') as UntypedFormControl;
   }
 
-  get usernameControl(): FormControl {
-    return this.registerForm.get('userdata.username') as FormControl;
+  get usernameControl(): UntypedFormControl {
+    return this.registerForm.get('userdata.username') as UntypedFormControl;
   }
 
   constructor(
     private store: Store,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private validatorsService: ValidatorsService
   ) {}
 

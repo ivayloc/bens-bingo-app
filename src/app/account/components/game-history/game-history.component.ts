@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
@@ -54,7 +54,7 @@ export class GameHistoryComponent implements OnInit {
 
   getGamesHistory$ = new Observable<MatTableDataSource<GameHistory>>();
 
-  constructor(private store: Store, private fb: FormBuilder) {}
+  constructor(private store: Store, private fb: UntypedFormBuilder) {}
 
   ngOnInit(): void {
     this.getGamesHistory$ = this.store.select(getGameHistory).pipe(

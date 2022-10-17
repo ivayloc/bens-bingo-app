@@ -5,7 +5,7 @@ import {
   TranslationWidth,
 } from '@angular/common';
 import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { PaymentMethod } from '../../models/payment-method';
@@ -57,7 +57,7 @@ export class DepositAddEditCardComponent implements OnInit {
   constructor(
     private store: Store,
     @Inject(LOCALE_ID) private localeId: string,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     @Inject(MAT_DIALOG_DATA)
     private data: {
       paymentMethod: PaymentMethod;

@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -27,8 +27,8 @@ export class FriendsComponent implements OnInit {
   outgoingFriendsRequest!: ElementRef<HTMLDivElement>;
   searchFriendForm = this.fb.group({ search: ['', Validators.required] });
 
-  public get searchBuddyField(): FormControl {
-    return this.searchFriendForm.get('search') as FormControl;
+  public get searchBuddyField(): UntypedFormControl {
+    return this.searchFriendForm.get('search') as UntypedFormControl;
   }
 
   displayedColumns = ['alias', 'online', 'currentLocation', 'action'];
@@ -42,7 +42,7 @@ export class FriendsComponent implements OnInit {
 
   constructor(
     private store: Store,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private dialog: MatDialog
   ) {}
 

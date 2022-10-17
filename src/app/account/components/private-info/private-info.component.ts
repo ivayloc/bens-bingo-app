@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {
   AbstractControl,
-  FormBuilder,
+  UntypedFormBuilder,
   ValidationErrors,
   Validators,
 } from '@angular/forms';
@@ -75,7 +75,7 @@ export class PrivateInfoComponent implements OnInit {
 
   constructor(
     private store: Store,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private validatorsService: ValidatorsService
   ) {}
 

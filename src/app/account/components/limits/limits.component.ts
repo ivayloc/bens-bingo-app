@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-limits',
@@ -9,5 +9,5 @@ import { FormBuilder } from '@angular/forms';
 export class LimitsComponent {
   timeFrameField = this.fb.control('24');
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: UntypedFormBuilder) { }
 }

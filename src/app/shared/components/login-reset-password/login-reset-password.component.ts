@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -25,13 +25,13 @@ export class LoginResetPasswordComponent implements OnInit {
     resetPasswordCodeSend: boolean;
   }>();
 
-  public get accountIdentifierField(): FormControl {
-    return this.resetPasswordForm.get('accountIdentifier') as FormControl;
+  public get accountIdentifierField(): UntypedFormControl {
+    return this.resetPasswordForm.get('accountIdentifier') as UntypedFormControl;
   }
 
   constructor(
     private store: Store,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private dialogRef: MatDialogRef<LoginResetPasswordComponent>
   ) {}
 

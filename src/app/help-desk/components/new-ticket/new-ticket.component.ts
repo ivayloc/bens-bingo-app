@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { HelpDeskQuestion } from 'src/app/help-desk/models/help-desk-question';
@@ -22,7 +22,7 @@ export class NewTicketComponent implements OnInit {
 
   getHelpDeskQuestions$ = new Observable<HelpDeskQuestion[]>();
 
-  constructor(private store: Store, private fb: FormBuilder) {}
+  constructor(private store: Store, private fb: UntypedFormBuilder) {}
 
   ngOnInit(): void {
     this.store.dispatch(HelpDeskPageActions.loadHelpDeskQuestions());

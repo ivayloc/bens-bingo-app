@@ -1,9 +1,9 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
 import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
+  UntypedFormBuilder,
+  UntypedFormControl,
+  UntypedFormGroup,
   Validators,
 } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -50,16 +50,16 @@ export class DepositSelectedMethodComponent implements OnInit {
     signuptype: 'depositupdate',
   });
 
-  get depositAmountField(): FormControl {
-    return this.depositForm.get('amount') as FormControl;
+  get depositAmountField(): UntypedFormControl {
+    return this.depositForm.get('amount') as UntypedFormControl;
   }
 
-  get cvvField(): FormControl {
-    return this.depositForm.get('cvv') as FormControl;
+  get cvvField(): UntypedFormControl {
+    return this.depositForm.get('cvv') as UntypedFormControl;
   }
 
-  get accountField(): FormControl {
-    return this.depositForm.get('account') as FormControl;
+  get accountField(): UntypedFormControl {
+    return this.depositForm.get('account') as UntypedFormControl;
   }
 
   getSelectedDepositMethodAccounts$ = new Observable<
@@ -83,7 +83,7 @@ export class DepositSelectedMethodComponent implements OnInit {
 
   constructor(
     private store: Store,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private dialog: MatDialog
   ) {}
 
@@ -171,7 +171,7 @@ export class DepositSelectedMethodComponent implements OnInit {
   createUserDetailsForm(userInfo: UserInfo) {
     const userdata = this.confirmDepositDetailsForm.get(
       'userdata'
-    ) as FormGroup;
+    ) as UntypedFormGroup;
     userdata.patchValue(userInfo);
     Object.entries(userdata.controls).forEach(([controlName, { value }]) => {
       if (value) {

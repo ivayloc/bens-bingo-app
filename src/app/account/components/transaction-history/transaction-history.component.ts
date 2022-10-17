@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
@@ -35,7 +35,7 @@ export class TransactionHistoryComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   showTable = false;
 
-  constructor(private store: Store, private fb: FormBuilder) {}
+  constructor(private store: Store, private fb: UntypedFormBuilder) {}
 
   ngOnInit(): void {
     this.getTransactionsHistory$ = this.store

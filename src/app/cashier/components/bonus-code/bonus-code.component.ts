@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { CashierPageActions } from '../../state/actions';
 
@@ -11,11 +11,11 @@ import { CashierPageActions } from '../../state/actions';
 export class BonusCodeComponent {
   bonusCodeForm = this.fb.group({ code: ['', Validators.required] });
 
-  public get bonusCodeField(): FormControl {
-    return this.bonusCodeForm.get('code') as FormControl;
+  public get bonusCodeField(): UntypedFormControl {
+    return this.bonusCodeForm.get('code') as UntypedFormControl;
   }
 
-  constructor(private store: Store, private fb: FormBuilder) {}
+  constructor(private store: Store, private fb: UntypedFormBuilder) {}
 
   submitCode() {
     const code = this.bonusCodeField.value;
