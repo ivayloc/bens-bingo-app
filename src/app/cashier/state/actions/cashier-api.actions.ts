@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { CashOutStatus } from '../../models/cash-out-status';
+import { DepositAccount } from '../../models/deposit-account';
 import { DepositLimits } from '../../models/deposit-limits';
 import { PaymentMethod } from '../../models/payment-method';
 
@@ -84,7 +85,7 @@ export const redeemBonusCodeFailure = createAction(
 
 export const makeDepositSuccess = createAction(
   '[Cashier/Deposit API] Make a deposit Success',
-  props<{ success: boolean }>()
+  props<{ depositAccount: DepositAccount }>()
 );
 
 export const makeDepositFailure = createAction(
@@ -119,5 +120,15 @@ export const updateUserDepositDetailsSuccess = createAction(
 
 export const updateUserDepositDetailsFailure = createAction(
   '[Cashier/Deposit API] Update user details Failure',
+  props<{ error: string }>()
+);
+
+export const confirmDepositSuccess = createAction(
+  '[Cashier/Deposit API] Confirm deposit Success',
+  props<{ success: boolean }>()
+);
+
+export const confirmDepositFailure = createAction(
+  '[Cashier/Deposit API] Confirm deposit Failure',
   props<{ error: string }>()
 );

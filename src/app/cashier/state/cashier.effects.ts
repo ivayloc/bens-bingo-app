@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
 import { catchError, forkJoin, map, mergeMap, of, tap } from 'rxjs';
 import { UserService } from 'src/app/shared/services/user.service';
+import { selectTransactionId } from '.';
 import { CashierService } from '../services/cashier.service';
 import { CashierApiActions, CashierPageActions } from './actions';
 
@@ -12,7 +14,8 @@ export class CashierEffects {
     private actions$: Actions,
     private cashierService: CashierService,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private store: Store
   ) {}
 
   loadPaymentMethods$ = createEffect(() => {
@@ -178,7 +181,9 @@ export class CashierEffects {
       ofType(CashierPageActions.makeDeposit),
       mergeMap(({ payload }) =>
         this.cashierService.makeDeposit(payload).pipe(
-          map((success) => CashierApiActions.makeDepositSuccess(success)),
+          map((depositAccount) =>
+            CashierApiActions.makeDepositSuccess({ depositAccount })
+          ),
           catchError((error) =>
             of(CashierApiActions.makeDepositFailure({ error }))
           )
@@ -227,6 +232,21 @@ export class CashierEffects {
           ),
           catchError((error) =>
             of(CashierApiActions.updateUserDepositDetailsFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  confirmDeposit$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CashierPageActions.confirmDeposit),
+      concatLatestFrom(() => this.store.select(selectTransactionId)),
+      mergeMap(([type, transactionId]) =>
+        this.cashierService.confirmDeposit(transactionId).pipe(
+          map((success) => CashierApiActions.confirmDepositSuccess(success)),
+          catchError((error) =>
+            of(CashierApiActions.confirmDepositFailure({ error }))
           )
         )
       )

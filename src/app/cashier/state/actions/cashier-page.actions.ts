@@ -75,3 +75,7 @@ export const updateUserDepositDetails = createAction(
     payload: UpdatedUserInfo;
   }>()
 );
+
+export const confirmDeposit = createAction(
+  '[Cashier/Deposits] Confirm deposit'
+);

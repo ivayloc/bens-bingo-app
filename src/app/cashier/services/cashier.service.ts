@@ -5,6 +5,7 @@ import { ResponseOf } from 'src/app/shared/models/response-of';
 import { Success } from 'src/app/shared/models/success';
 import { environment } from 'src/environments/environment';
 import { CashOutStatus } from '../models/cash-out-status';
+import { DepositAccount } from '../models/deposit-account';
 import { DepositActionPayload } from '../models/deposit-action-payload';
 import { DepositAddAccountRequest } from '../models/deposit-add-account-request';
 import { DepositLimits } from '../models/deposit-limits';
@@ -82,9 +83,9 @@ export class CashierService {
     accountid,
     amount,
     cvv,
-  }: DepositActionPayload): Observable<Success> {
+  }: DepositActionPayload): Observable<DepositAccount> {
     return this.http
-      .post<ResponseOf<Success>>(
+      .post<ResponseOf<DepositAccount>>(
         `${environment.apiDomainUser}/deposit/processor/${processorid}/account/${accountid}`,
         { amount, cvv }
       )
@@ -107,6 +108,14 @@ export class CashierService {
       .put<ResponseOf<Success>>(
         `${environment.apiDomainUser}/deposit/processor/${payload.processorid}/account/${payload.accountid}`,
         payload
+      )
+      .pipe(map(({ data }) => data));
+  }
+
+  confirmDeposit(transactionId: number): Observable<Success> {
+    return this.http
+      .get<ResponseOf<Success>>(
+        `${environment.apiDomainUser}/transaction/${transactionId}`
       )
       .pipe(map(({ data }) => data));
   }

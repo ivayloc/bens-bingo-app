@@ -66,3 +66,8 @@ export const selectDepositLimitsPlayerDuration = createSelector(
   selectCashierGamesState,
   (state) => state.depositLimits?.playerEntries?.duration
 );
+
+export const selectTransactionId = createSelector(
+  selectCashierGamesState,
+  (state) => state.depositAccount.transactionId
+);

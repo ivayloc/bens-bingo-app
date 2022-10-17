@@ -180,5 +180,7 @@ export class DepositSelectedMethodComponent implements OnInit {
     });
   }
 
-  confirmDeposit() {}
+  confirmDeposit() {
+    this.store.dispatch(CashierPageActions.confirmDeposit());
+  }
 }
