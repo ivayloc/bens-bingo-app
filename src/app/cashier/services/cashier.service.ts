@@ -21,7 +21,7 @@ export class CashierService {
   getPaymentMethods(): Observable<PaymentMethod[]> {
     return this.http
       .get<ResponseOf<PaymentMethodsResponse>>(
-        `${environment.apiDomain}/user/current/deposit`
+        `${environment.apiDomainUser}/deposit`
       )
       .pipe(map(({ data }) => data.items));
   }
@@ -29,23 +29,21 @@ export class CashierService {
   getCashOutMethods(): Observable<PaymentMethod[]> {
     return this.http
       .get<ResponseOf<PaymentMethodsResponse>>(
-        `${environment.apiDomain}/user/current/cashout/processorlist`
+        `${environment.apiDomainUser}/cashout/processorlist`
       )
       .pipe(map(({ data }) => data.items));
   }
 
   getCashOutStatus(): Observable<CashOutStatus> {
     return this.http
-      .get<ResponseOf<CashOutStatus>>(
-        `${environment.apiDomain}/user/current/cashout`
-      )
+      .get<ResponseOf<CashOutStatus>>(`${environment.apiDomainUser}/cashout`)
       .pipe(map(({ data }) => data));
   }
 
   getDepositLimits(): Observable<DepositLimits> {
     return this.http
       .get<ResponseOf<DepositLimits>>(
-        `${environment.apiDomain}/user/current/limits/transaction?transactiontype=credit&transactionaction=deposit`
+        `${environment.apiDomainUser}/limits/transaction?transactiontype=credit&transactionaction=deposit`
       )
       .pipe(map(({ data }) => data));
   }
@@ -53,7 +51,7 @@ export class CashierService {
   setDepositLimit(duration: string, sum: number): Observable<Success> {
     return this.http
       .post<ResponseOf<Success>>(
-        `${environment.apiDomain}/user/current/limits/transaction/add`,
+        `${environment.apiDomainUser}/limits/transaction/add`,
         {
           duration,
           sum,
@@ -66,17 +64,16 @@ export class CashierService {
   removeDepositLimits(): Observable<Success> {
     return this.http
       .delete<ResponseOf<Success>>(
-        `${environment.apiDomain}/user/current/limits/transaction/remove`
+        `${environment.apiDomainUser}/limits/transaction/remove`
       )
       .pipe(map(({ data }) => data));
   }
 
   redeemBonusCode(code: string): Observable<Success> {
     return this.http
-      .post<ResponseOf<Success>>(
-        `${environment.apiDomain}/user/current/coupon`,
-        { code }
-      )
+      .post<ResponseOf<Success>>(`${environment.apiDomainUser}/coupon`, {
+        code,
+      })
       .pipe(map(({ data }) => data));
   }
 
@@ -88,7 +85,7 @@ export class CashierService {
   }: DepositActionPayload): Observable<Success> {
     return this.http
       .post<ResponseOf<Success>>(
-        `${environment.apiDomain}/user/current/deposit/processor/${processorid}/account/${accountid}`,
+        `${environment.apiDomainUser}/deposit/processor/${processorid}/account/${accountid}`,
         { amount, cvv }
       )
       .pipe(map(({ data }) => data));
@@ -97,7 +94,7 @@ export class CashierService {
   depositAddAccount(payload: DepositAddAccountRequest): Observable<Success> {
     return this.http
       .post<ResponseOf<Success>>(
-        `${environment.apiDomain}/user/current/deposit/processor/${payload.paymentmethodid}/account`,
+        `${environment.apiDomainUser}/deposit/processor/${payload.paymentmethodid}/account`,
         payload
       )
       .pipe(map(({ data }) => data));
@@ -108,7 +105,7 @@ export class CashierService {
   ): Observable<Success> {
     return this.http
       .put<ResponseOf<Success>>(
-        `${environment.apiDomain}/user/current/deposit/processor/${payload.processorid}/account/${payload.accountid}`,
+        `${environment.apiDomainUser}/deposit/processor/${payload.processorid}/account/${payload.accountid}`,
         payload
       )
       .pipe(map(({ data }) => data));

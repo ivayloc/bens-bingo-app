@@ -15,14 +15,14 @@ export class UserService {
 
   getUserInfo(): Observable<UserInfo> {
     return this.http
-      .get<ResponseOf<UserInfo>>(`${environment.apiDomain}/user/current/info`)
+      .get<ResponseOf<UserInfo>>(`${environment.apiDomain}/user/_current/info`)
       .pipe(map(({ data }) => data));
   }
 
   updateUserInfo(updatedUserInfo: UpdatedUserInfo): Observable<Success> {
     return this.http
       .put<ResponseOf<Success>>(
-        `${environment.apiDomain}/user/current/info`,
+        `${environment.apiDomainUser}/info`,
         updatedUserInfo
       )
       .pipe(map(({ data }) => data));

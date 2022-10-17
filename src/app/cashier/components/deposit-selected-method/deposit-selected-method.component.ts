@@ -179,4 +179,6 @@ export class DepositSelectedMethodComponent implements OnInit {
       }
     });
   }
+
+  confirmDeposit() {}
 }

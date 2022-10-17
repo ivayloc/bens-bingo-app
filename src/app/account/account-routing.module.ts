@@ -15,7 +15,7 @@ const routes: Routes = [
     path: '',
     component: CustomerPortalLayoutComponent,
     children: [
-      { path: '', redirectTo: 'dashboard' },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'private-info', component: PrivateInfoComponent },
       { path: 'public-profile', component: PublicProfileComponent },

@@ -70,10 +70,7 @@ export class AuthService {
   }
 
   userLogout(): Observable<Success> {
-    return this.http.post<Success>(
-      `${environment.apiDomain}/user/current/logout`,
-      {}
-    );
+    return this.http.post<Success>(`${environment.apiDomainUser}/logout`, {});
   }
 
   resetPasswordInquiry(

@@ -68,7 +68,7 @@ export class AccountService {
 
     return this.http
       .get<ResponseOf<GamesHistory>>(
-        `${environment.apiDomain}/user/current/history/game`,
+        `${environment.apiDomainUser}/history/game`,
         {
           params,
         }
@@ -84,9 +84,7 @@ export class AccountService {
     });
 
     return this.http
-      .get<ResponseOf<FriendsList>>(
-        `${environment.apiDomain}/user/current/friends/list`
-      )
+      .get<ResponseOf<FriendsList>>(`${environment.apiDomainUser}/friends/list`)
       .pipe(map(({ data }) => data));
   }
   removeUserFriend(friendalias: string): Observable<FriendsList> {
@@ -97,7 +95,7 @@ export class AccountService {
     });
     return this.http
       .get<ResponseOf<FriendsList>>(
-        `${environment.apiDomain}/user/current/friends/remove`,
+        `${environment.apiDomainUser}/friends/remove`,
         { params }
       )
       .pipe(map(({ data }) => data));
@@ -110,7 +108,7 @@ export class AccountService {
     });
     return this.http
       .get<ResponseOf<FriendsList>>(
-        `${environment.apiDomain}/user/current/friends/decline`,
+        `${environment.apiDomainUser}/friends/decline`,
         { params }
       )
       .pipe(map(({ data }) => data));
@@ -124,10 +122,7 @@ export class AccountService {
   }
   saveUserProfile(payload: UpdateUserProfileRequest): Observable<Success> {
     return this.http
-      .put<ResponseOf<Success>>(
-        `${environment.apiDomain}/user/current/profile`,
-        payload
-      )
+      .put<ResponseOf<Success>>(`${environment.apiDomainUser}/profile`, payload)
       .pipe(map(({ data }) => data));
   }
   searchUser(friendalias: string): Observable<SearchUserResult> {
@@ -139,7 +134,7 @@ export class AccountService {
 
     return this.http
       .get<ResponseOf<SearchUserResponse>>(
-        `${environment.apiDomain}/user/current/friends/search`,
+        `${environment.apiDomainUser}/friends/search`,
         { params }
       )
       .pipe(map(({ data }) => data.result));
@@ -151,7 +146,7 @@ export class AccountService {
 
     return this.http
       .post<ResponseOf<AddFriendResponse>>(
-        `${environment.apiDomain}/user/current/friends/invite`,
+        `${environment.apiDomainUser}/friends/invite`,
         body
       )
       .pipe(map(({ data }) => data.result));
@@ -165,7 +160,7 @@ export class AccountService {
     };
 
     return this.http.delete<FriendRequestResult>(
-      `${environment.apiDomain}/user/current/friends/cancel`,
+      `${environment.apiDomainUser}/friends/cancel`,
       { body }
     );
   }
@@ -176,7 +171,7 @@ export class AccountService {
     };
 
     return this.http.post<FriendRequestResult>(
-      `${environment.apiDomain}/user/current/friends/approve`,
+      `${environment.apiDomainUser}/friends/approve`,
       body
     );
   }
@@ -198,7 +193,7 @@ export class AccountService {
 
     return this.http
       .post<ResponseOf<UserProfilePicture>>(
-        `${environment.apiDomain}/user/current/profilepicture`,
+        `${environment.apiDomainUser}/profilepicture`,
         form
       )
       .pipe(map(({ data }) => data));
@@ -207,7 +202,7 @@ export class AccountService {
   changePassword(payload: ChangePasswordRequest): Observable<Success> {
     return this.http
       .put<ResponseOf<Success>>(
-        `${environment.apiDomain}/user/current/updatepassword`,
+        `${environment.apiDomainUser}/updatepassword`,
         payload
       )
       .pipe(map(({ data }) => data));
