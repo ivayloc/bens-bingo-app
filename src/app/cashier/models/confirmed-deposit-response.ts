@@ -4,11 +4,13 @@ export interface ConfirmedDepositResponse {
   type: string;
   latest_result: string;
   details: {
-    id: number;
-    amount: number;
-    currency: string;
-    result: string;
-    action: string;
-    date: Date;
-  }[];
+    items: {
+      id: number;
+      amount: number;
+      currency: string;
+      result: string;
+      action: string;
+      date: Date;
+    }[];
+  };
 }

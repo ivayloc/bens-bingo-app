@@ -13,9 +13,11 @@ import { distinctUntilChanged, Observable, tap } from 'rxjs';
 import { UpdatedUserInfo } from 'src/app/account/models/updated-user-info';
 import { UserInfo } from 'src/app/shared/models/user-info';
 import { selectUserInfo } from 'src/app/state';
+import { DepositReceipt } from '../../models/deposit-receipt';
 import { PaymentMethod } from '../../models/payment-method';
 import { PaymentMethodAccount } from '../../models/payment-method-account';
 import {
+  selectDepositReceipt,
   selectSelectedDepositMethod,
   selectSelectedDepositMethodAccountMatData,
 } from '../../state';
@@ -68,6 +70,7 @@ export class DepositSelectedMethodComponent implements OnInit {
 
   getSelectedDepositMethod$ = new Observable<PaymentMethod>();
   getUserInfo$ = new Observable<UserInfo>();
+  getDepositReceipt$ = new Observable<DepositReceipt>();
 
   displayedColumns = [
     'select',
@@ -108,6 +111,7 @@ export class DepositSelectedMethodComponent implements OnInit {
         this.createUserDetailsForm(userInfo);
       })
     );
+    this.getDepositReceipt$ = this.store.select(selectDepositReceipt);
 
     // this.accountField.valueChanges
     //   .pipe(distinctUntilChanged())
@@ -200,5 +204,9 @@ export class DepositSelectedMethodComponent implements OnInit {
 
   confirmDeposit() {
     this.store.dispatch(CashierPageActions.confirmDeposit());
+  }
+
+  printReceipt() {
+    window.print();
   }
 }

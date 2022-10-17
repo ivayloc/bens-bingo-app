@@ -14,7 +14,7 @@
       <mat-card-title>{{ paymentMethod.name }}</mat-card-title>
 
       <mat-card-content class="fz-24">
-        <div class="row">
+        <div class="row justify-content-between">
           <div class="col-md-3">
             <img
               [src]="
@@ -43,7 +43,7 @@
               </dl>
             </div>
           </div>
-          <div class="col-md-9">
+          <div class="col-md-8">
             <ng-container *ngIf="paymentMethod.description">
               <div [outerHTML]="paymentMethod.description"></div>
             </ng-container>
@@ -473,3 +473,115 @@
     </button>
   </div>
 </app-content-box>
+
+<ng-container *ngIf="getDepositReceipt$ | async as depositReceipt">
+  <app-content-box
+    [isFluid]="true"
+    [headerText]="'Deposit ' + depositReceipt.status"
+    class="mb-5"
+  >
+    <!-- <div class="row justify-content-center"> -->
+    <!-- <div class="col-8"> -->
+    <mat-card *ngIf="getSelectedDepositMethod$ | async as paymentMethod">
+      <mat-card-content class="fz-24">
+        <div class="row justify-content-between">
+          <div class="col-md-3">
+            <img
+              [src]="
+                'https://functionalgames.cdn.bingolab.com/images/common/processors/' +
+                paymentMethod.image +
+                '.png'
+              "
+              class="w-100"
+              alt="payment method"
+            />
+            <div
+              class="mt-4 pt-3"
+              *ngFor="let paymentDetail of paymentMethod.details"
+            >
+              <dl class="d-flex">
+                <dt class="pe-2">Fee:</dt>
+                <dd class="mb-0">{{ paymentDetail.fee }}</dd>
+              </dl>
+              <dl class="d-flex">
+                <dt class="pe-2">Minimum:</dt>
+                <dd class="mb-0">{{ paymentDetail.min }}</dd>
+              </dl>
+              <dl class="d-flex">
+                <dt class="pe-2">Maximum:</dt>
+                <dd class="mb-0">{{ paymentDetail.max }}</dd>
+              </dl>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <ul class="list-unstyled fz-24">
+              <li>
+                <dl class="ms-2 me-auto d-flex">
+                  <dt class="fw-bold me-3">Time:</dt>
+                  <dd>{{ depositReceipt.date | date: "yyy-MM-dd" }}</dd>
+                </dl>
+              </li>
+              <li>
+                <dl class="ms-2 me-auto d-flex">
+                  <dt class="fw-bold me-3">Deposit Amount:</dt>
+                  <dd>
+                    {{
+                      depositReceipt.amount | currency: depositReceipt.currency
+                    }}
+                  </dd>
+                </dl>
+              </li>
+              <li>
+                <dl class="ms-2 me-auto d-flex">
+                  <dt class="fw-bold me-3">Current Balance:</dt>
+                  <dd>
+                    {{
+                      depositReceipt.totalCash
+                        | currency: depositReceipt.currency
+                    }}
+                  </dd>
+                </dl>
+              </li>
+              <li>
+                <dl class="ms-2 me-auto d-flex">
+                  <dt class="fw-bold me-3">Transaction ID:</dt>
+                  <dd>{{ depositReceipt.transactionId }}</dd>
+                </dl>
+              </li>
+              <li>
+                <dl class="ms-2 me-auto d-flex">
+                  <dt class="fw-bold me-3">Confirmation #:</dt>
+                  <dd>{{ depositReceipt.trackId }}</dd>
+                </dl>
+              </li>
+              <li>
+                <dl class="ms-2 me-auto d-flex">
+                  <dt class="fw-bold me-3">Deposit Status:</dt>
+                  <dd class="text-capitalize">
+                    {{ depositReceipt.status }}
+                  </dd>
+                </dl>
+              </li>
+            </ul>
+            <hr class="hr" />
+            Please keep this transaction receipt at an easily accessible place
+            (you may print or save this page)
+
+            <button
+              type="button"
+              class="btn-clear btn-main btn-sm py-1 mx-2 min-w-auto mt-3"
+              (click)="printReceipt()"
+            >
+              <span class="btn-main-text">Print Receipt</span>
+            </button>
+          </div>
+        </div>
+      </mat-card-content>
+      <!-- <mat-card-actions align="end">
+        
+      </mat-card-actions> -->
+    </mat-card>
+    <!-- </div> -->
+    <!-- </div> -->
+  </app-content-box>
+</ng-container>

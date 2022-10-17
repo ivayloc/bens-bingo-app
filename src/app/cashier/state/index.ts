@@ -1,5 +1,6 @@
 import { MatTableDataSource } from '@angular/material/table';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { selectUserInfoBalance } from 'src/app/state';
 import * as AppState from '../../state/app.states';
 import { PaymentMethod } from '../models/payment-method';
 import { CashierState } from './cashier.reducers';
@@ -8,30 +9,30 @@ export interface State extends AppState.State {
   cashierGames: CashierState;
 }
 
-const selectCashierGamesState = createFeatureSelector<CashierState>('cashier');
+const selectCashierState = createFeatureSelector<CashierState>('cashier');
 
 export const selectPaymentMethods = createSelector(
-  selectCashierGamesState,
+  selectCashierState,
   (state) => state.paymentMethods
 );
 
 export const selectCashOutMethods = createSelector(
-  selectCashierGamesState,
+  selectCashierState,
   (state) => state.cashOutMethods
 );
 
 export const selectCashOutStatus = createSelector(
-  selectCashierGamesState,
+  selectCashierState,
   (state) => state.cashOutStatus
 );
 
 export const selectSelectedPaymentMethod = createSelector(
-  selectCashierGamesState,
+  selectCashierState,
   (state) => state.selectedPaymentMethodId
 );
 
 export const selectSelectedCashOutMethod = createSelector(
-  selectCashierGamesState,
+  selectCashierState,
   selectSelectedPaymentMethod,
   (state, id) => {
     return state.cashOutMethods.find(
@@ -41,7 +42,7 @@ export const selectSelectedCashOutMethod = createSelector(
 );
 
 export const selectSelectedDepositMethod = createSelector(
-  selectCashierGamesState,
+  selectCashierState,
   selectSelectedPaymentMethod,
   (state, id) => {
     return state.paymentMethods.find(
@@ -51,7 +52,7 @@ export const selectSelectedDepositMethod = createSelector(
 );
 
 export const selectSelectedDepositMethodAccountMatData = createSelector(
-  selectCashierGamesState,
+  selectCashierState,
   selectSelectedPaymentMethod,
   (state, id) => {
     const dataSource = state.paymentMethods.find(
@@ -63,11 +64,27 @@ export const selectSelectedDepositMethodAccountMatData = createSelector(
 );
 
 export const selectDepositLimitsPlayerDuration = createSelector(
-  selectCashierGamesState,
+  selectCashierState,
   (state) => state.depositLimits?.playerEntries?.duration
 );
 
 export const selectTransactionId = createSelector(
-  selectCashierGamesState,
+  selectCashierState,
   (state) => state.depositAccount.transactionId
+);
+
+export const selectDepositReceipt = createSelector(
+  selectCashierState,
+  selectUserInfoBalance,
+  (state, userBalance) => {
+    return {
+      amount: state.confirmedDeposit.amount,
+      date: state.confirmedDeposit.details?.items[1].date,
+      status: state.confirmedDeposit.latest_result,
+      transactionId: state.confirmedDeposit.id,
+      totalCash: userBalance.balance?.cash,
+      currency: state.depositAccount.currency,
+      trackId: state.depositAccount.trackId,
+    };
+  }
 );
