@@ -1,8 +1,10 @@
 import { createReducer, on } from '@ngrx/store';
 import { CashOutStatus } from '../models/cash-out-status';
+import { ConfirmedDepositResponse } from '../models/confirmed-deposit-response';
 import { DepositAccount } from '../models/deposit-account';
 import { DepositLimits } from '../models/deposit-limits';
 import { PaymentMethod } from '../models/payment-method';
+import { PaymentMethodAccount } from '../models/payment-method-account';
 import { CashierApiActions, CashierPageActions } from './actions';
 
 export interface CashierState {
@@ -12,6 +14,8 @@ export interface CashierState {
   selectedPaymentMethodId: number;
   depositLimits: DepositLimits;
   depositAccount: DepositAccount;
+  depositSelectedCard: PaymentMethodAccount;
+  confirmedDeposit: ConfirmedDepositResponse;
   error: string;
 }
 
@@ -22,6 +26,8 @@ const initialState: CashierState = {
   selectedPaymentMethodId: 0,
   depositLimits: {} as DepositLimits,
   depositAccount: {} as DepositAccount,
+  depositSelectedCard: {} as PaymentMethodAccount,
+  confirmedDeposit: {} as ConfirmedDepositResponse,
   error: '',
 };
 
@@ -171,6 +177,32 @@ export const cashierReducer = createReducer<CashierState>(
   on(CashierApiActions.makeDepositFailure, (state, action): CashierState => {
     return {
       ...state,
+      error: action.error,
+    };
+  }),
+  on(
+    CashierPageActions.depositSelectedCard,
+    (state, { selectedCard }): CashierState => {
+      return {
+        ...state,
+        depositSelectedCard: selectedCard,
+      };
+    }
+  ),
+  on(
+    CashierApiActions.confirmDepositSuccess,
+    (state, { confirmedDeposit }): CashierState => {
+      return {
+        ...state,
+        confirmedDeposit,
+        error: '',
+      };
+    }
+  ),
+  on(CashierApiActions.confirmDepositFailure, (state, action): CashierState => {
+    return {
+      ...state,
+      confirmedDeposit: {} as ConfirmedDepositResponse,
       error: action.error,
     };
   })

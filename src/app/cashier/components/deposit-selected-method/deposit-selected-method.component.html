@@ -122,10 +122,11 @@
               <mat-radio-button
                 [value]="row"
                 (click)="$event.stopPropagation()"
-                (change)="selectCard($event, row)"
+                (change)="selectCard()"
                 [attr.aria-label]="checkboxLabel(row)"
                 [value]="row"
               ></mat-radio-button>
+              <!-- $event, row -->
             </mat-radio-group>
           </td>
         </ng-container>

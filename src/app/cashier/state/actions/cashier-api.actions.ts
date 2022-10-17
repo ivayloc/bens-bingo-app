@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { CashOutStatus } from '../../models/cash-out-status';
+import { ConfirmedDepositResponse } from '../../models/confirmed-deposit-response';
 import { DepositAccount } from '../../models/deposit-account';
 import { DepositLimits } from '../../models/deposit-limits';
 import { PaymentMethod } from '../../models/payment-method';
@@ -125,7 +126,7 @@ export const updateUserDepositDetailsFailure = createAction(
 
 export const confirmDepositSuccess = createAction(
   '[Cashier/Deposit API] Confirm deposit Success',
-  props<{ success: boolean }>()
+  props<{ confirmedDeposit: ConfirmedDepositResponse }>()
 );
 
 export const confirmDepositFailure = createAction(

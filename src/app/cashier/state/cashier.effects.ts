@@ -179,6 +179,7 @@ export class CashierEffects {
   makeDeposit$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CashierPageActions.makeDeposit),
+
       mergeMap(({ payload }) =>
         this.cashierService.makeDeposit(payload).pipe(
           map((depositAccount) =>
@@ -244,7 +245,9 @@ export class CashierEffects {
       concatLatestFrom(() => this.store.select(selectTransactionId)),
       mergeMap(([type, transactionId]) =>
         this.cashierService.confirmDeposit(transactionId).pipe(
-          map((success) => CashierApiActions.confirmDepositSuccess(success)),
+          map((confirmedDeposit) =>
+            CashierApiActions.confirmDepositSuccess({ confirmedDeposit })
+          ),
           catchError((error) =>
             of(CashierApiActions.confirmDepositFailure({ error }))
           )

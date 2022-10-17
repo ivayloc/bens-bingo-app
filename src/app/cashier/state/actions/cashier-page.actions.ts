@@ -3,6 +3,7 @@ import { UpdatedUserInfo } from 'src/app/account/models/updated-user-info';
 import { DepositActionPayload } from '../../models/deposit-action-payload';
 import { DepositAddAccountRequest } from '../../models/deposit-add-account-request';
 import { DepositUpdateAccountRequest } from '../../models/deposit-update-account-request';
+import { PaymentMethodAccount } from '../../models/payment-method-account';
 
 export const loadPaymentMethods = createAction(
   '[Cashier/Deposits Page] Load payment methods'
@@ -78,4 +79,11 @@ export const updateUserDepositDetails = createAction(
 
 export const confirmDeposit = createAction(
   '[Cashier/Deposits] Confirm deposit'
+);
+
+export const depositSelectedCard = createAction(
+  '[Cashier/Deposits] Credit card is selected',
+  props<{
+    selectedCard: PaymentMethodAccount;
+  }>()
 );

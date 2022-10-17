@@ -9,7 +9,7 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
-import { Observable, tap } from 'rxjs';
+import { distinctUntilChanged, Observable, tap } from 'rxjs';
 import { UpdatedUserInfo } from 'src/app/account/models/updated-user-info';
 import { UserInfo } from 'src/app/shared/models/user-info';
 import { selectUserInfo } from 'src/app/state';
@@ -79,7 +79,7 @@ export class DepositSelectedMethodComponent implements OnInit {
   ];
   selection = new SelectionModel<PaymentMethodAccount>(false, []);
 
-  selectedCard = {} as PaymentMethodAccount;
+  // selectedCard = {} as PaymentMethodAccount;
 
   constructor(
     private store: Store,
@@ -108,16 +108,34 @@ export class DepositSelectedMethodComponent implements OnInit {
         this.createUserDetailsForm(userInfo);
       })
     );
+
+    // this.accountField.valueChanges
+    //   .pipe(distinctUntilChanged())
+    //   .subscribe((changes) => {
+    //     console.log(changes);
+    //   });
+
+    this.selectCard().subscribe();
   }
 
   continue() {
     this.showCardsStep = true;
   }
 
-  selectCard($event: any, card: PaymentMethodAccount) {
-    if ($event) {
-      this.selectedCard = card;
-    }
+  selectCard() {
+    // $event: any, selectedCard: PaymentMethodAccount
+    return this.accountField.valueChanges.pipe(
+      distinctUntilChanged(),
+      tap<PaymentMethodAccount>((selectedCard) => {
+        this.store.dispatch(
+          CashierPageActions.depositSelectedCard({ selectedCard })
+        );
+      })
+    );
+    // if ($event) {
+    //   // this.selectedCard = card;
+
+    // }
   }
 
   checkboxLabel(row?: any): string {

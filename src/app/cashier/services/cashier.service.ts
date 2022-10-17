@@ -5,6 +5,7 @@ import { ResponseOf } from 'src/app/shared/models/response-of';
 import { Success } from 'src/app/shared/models/success';
 import { environment } from 'src/environments/environment';
 import { CashOutStatus } from '../models/cash-out-status';
+import { ConfirmedDepositResponse } from '../models/confirmed-deposit-response';
 import { DepositAccount } from '../models/deposit-account';
 import { DepositActionPayload } from '../models/deposit-action-payload';
 import { DepositAddAccountRequest } from '../models/deposit-add-account-request';
@@ -87,7 +88,7 @@ export class CashierService {
     return this.http
       .post<ResponseOf<DepositAccount>>(
         `${environment.apiDomainUser}/deposit/processor/${processorid}/account/${accountid}`,
-        { amount, cvv }
+        { amount, cvv2: cvv }
       )
       .pipe(map(({ data }) => data));
   }
@@ -112,9 +113,9 @@ export class CashierService {
       .pipe(map(({ data }) => data));
   }
 
-  confirmDeposit(transactionId: number): Observable<Success> {
+  confirmDeposit(transactionId: number): Observable<ConfirmedDepositResponse> {
     return this.http
-      .get<ResponseOf<Success>>(
+      .get<ResponseOf<ConfirmedDepositResponse>>(
         `${environment.apiDomainUser}/transaction/${transactionId}`
       )
       .pipe(map(({ data }) => data));
