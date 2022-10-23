@@ -11,9 +11,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { distinctUntilChanged, Observable, tap } from 'rxjs';
 import { UpdatedUserInfo } from 'src/app/account/models/updated-user-info';
+import { PaymentMethod } from 'src/app/shared/models/payment-method';
 import { UserInfo } from 'src/app/shared/models/user-info';
 import { selectUserInfo } from 'src/app/state';
-import { PaymentMethod } from '../../../shared/models/payment-method';
 import { DepositReceipt } from '../../models/deposit-receipt';
 import { PaymentMethodAccount } from '../../models/payment-method-account';
 import {
@@ -25,11 +25,11 @@ import { DepositsPageActions } from '../../state/actions';
 import { DepositAddEditCardComponent } from '../deposit-add-edit-card/deposit-add-edit-card.component';
 
 @Component({
-  selector: 'app-deposit-selected-method',
-  templateUrl: './deposit-selected-method.component.html',
-  styleUrls: ['./deposit-selected-method.component.scss'],
+  selector: 'app-deposit-select-card',
+  templateUrl: './deposit-select-card.component.html',
+  styleUrls: ['./deposit-select-card.component.scss'],
 })
-export class DepositSelectedMethodComponent implements OnInit {
+export class DepositSelectCardComponent implements OnInit {
   showCardsStep = false;
   depositForm = this.fb.group({
     amount: ['', Validators.required],

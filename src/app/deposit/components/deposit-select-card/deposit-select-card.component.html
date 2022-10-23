@@ -1,83 +1,28 @@
 <form [formGroup]="depositForm">
   <app-content-box
-    [isFluid]="true"
     [headerText]="'Pay with ' + paymentMethod.name"
-    *ngIf="getSelectedDepositMethod$ | async as paymentMethod"
     class="mb-5"
+    [isFluid]="true"
+    *ngIf="getSelectedDepositMethod$ | async as paymentMethod"
   >
-    <mat-card *ngIf="getSelectedDepositMethod$ | async as paymentMethod">
-      <mat-card-title>{{ paymentMethod.name }}</mat-card-title>
-
-      <mat-card-content class="fz-24">
-        <div class="row justify-content-between">
-          <div class="col-md-3">
-            <img
-              [src]="
-                'https://functionalgames.cdn.bingolab.com/images/common/processors/' +
-                paymentMethod.image +
-                '.png'
-              "
-              class="w-100"
-              alt="payment method"
-            />
-            <div
-              class="mt-4 pt-3"
-              *ngFor="let paymentDetail of paymentMethod.details"
-            >
-              <dl class="d-flex">
-                <dt class="pe-2">Fee:</dt>
-                <dd class="mb-0">{{ paymentDetail.fee }}</dd>
-              </dl>
-              <dl class="d-flex">
-                <dt class="pe-2">Minimum:</dt>
-                <dd class="mb-0">{{ paymentDetail.min }}</dd>
-              </dl>
-              <dl class="d-flex">
-                <dt class="pe-2">Maximum:</dt>
-                <dd class="mb-0">{{ paymentDetail.max }}</dd>
-              </dl>
-            </div>
-          </div>
-          <div class="col-md-8">
-            <ng-container *ngIf="paymentMethod.description">
-              <div [outerHTML]="paymentMethod.description"></div>
-            </ng-container>
-            <hr class="hr my-4" />
-            <mat-form-field appearance="fill">
-              <mat-label>Amount</mat-label>
-              <mat-select
-                formControlName="amount"
-                *ngIf="paymentMethod.amounts"
-              >
-                <mat-option
-                  *ngFor="let amount of paymentMethod.amounts?.items"
-                  [value]="amount"
-                >
-                  {{ amount }}
-                </mat-option>
-              </mat-select>
-              <input
-                matInput
-                formControlName="amount"
-                *ngIf="!paymentMethod.amounts"
-              />
-            </mat-form-field>
-          </div>
-        </div>
-      </mat-card-content>
-      <mat-card-actions align="end" class="align-items-baseline">
-        <button type="button" class="btn btn-link fz-22">Change method</button>
-        <div class="px-4 pb-4">
-          <button
-            type="button"
-            class="btn-clear btn-main py-1 mx-2 min-w-auto"
-            (click)="continue()"
+    <app-payment-method [paymentMethod]="paymentMethod">
+      <mat-form-field appearance="fill">
+        <mat-label>Amount</mat-label>
+        <mat-select formControlName="amount" *ngIf="paymentMethod.amounts">
+          <mat-option
+            *ngFor="let amount of paymentMethod.amounts?.items"
+            [value]="amount"
           >
-            <span class="btn-main-text">Continue</span>
-          </button>
-        </div>
-      </mat-card-actions>
-    </mat-card>
+            {{ amount }}
+          </mat-option>
+        </mat-select>
+        <input
+          matInput
+          formControlName="amount"
+          *ngIf="!paymentMethod.amounts"
+        />
+      </mat-form-field>
+    </app-payment-method>
   </app-content-box>
 
   <app-content-box
@@ -259,11 +204,11 @@
           <div class="row justify-content-between">
             <div class="col-4 mb-2">
               <!-- <ng-container *ngIf="user.firstname; else firstNameField">
-                <dl>
-                  <dt class="mb-2">First Name</dt>
-                  <dd>{{ user.firstname }}</dd>
-                </dl>
-              </ng-container> -->
+                  <dl>
+                    <dt class="mb-2">First Name</dt>
+                    <dd>{{ user.firstname }}</dd>
+                  </dl>
+                </ng-container> -->
               <!-- <ng-template #firstNameField> -->
               <mat-form-field class="d-block" appearance="fill">
                 <mat-label>First Name</mat-label>
@@ -273,11 +218,11 @@
             </div>
             <div class="col-4 mb-2">
               <!-- <ng-container *ngIf="user.lastname; else lastnameField">
-                <dl>
-                  <dt class="mb-2">Last Name</dt>
-                  <dd>{{ user.lastname }}</dd>
-                </dl>
-              </ng-container> -->
+                  <dl>
+                    <dt class="mb-2">Last Name</dt>
+                    <dd>{{ user.lastname }}</dd>
+                  </dl>
+                </ng-container> -->
               <!-- <ng-template #lastnameField> -->
               <mat-form-field class="d-block" appearance="fill">
                 <mat-label>Last Name</mat-label>
@@ -288,10 +233,10 @@
           </div>
           <div class="mb-2">
             <!-- <ng-container *ngIf="user.address; else addressField">
-              <div class="fw-bold mb-2">Address</div>
-              <address>{{ user.address }}</address>
-            </ng-container>
-            <ng-template #addressField> -->
+                <div class="fw-bold mb-2">Address</div>
+                <address>{{ user.address }}</address>
+              </ng-container>
+              <ng-template #addressField> -->
             <mat-form-field class="d-block" appearance="fill">
               <mat-label>Address</mat-label>
               <input matInput formControlName="address" />
@@ -301,12 +246,12 @@
           <div class="row justify-content-between">
             <div class="col-4 mb-2">
               <!-- <ng-container *ngIf="user.city; else cityField">
-                <dl>
-                  <dt class="mb-2">City</dt>
-                  <dd>{{ user.city }}</dd>
-                </dl>
-              </ng-container>
-              <ng-template #cityField> -->
+                  <dl>
+                    <dt class="mb-2">City</dt>
+                    <dd>{{ user.city }}</dd>
+                  </dl>
+                </ng-container>
+                <ng-template #cityField> -->
               <mat-form-field class="d-block" appearance="fill">
                 <mat-label>City</mat-label>
                 <input matInput formControlName="city" />
@@ -315,12 +260,12 @@
             </div>
             <div class="col-4 mb-2">
               <!-- <ng-container *ngIf="user.state; else stateField">
-                <dl>
-                  <dt class="mb-2">State</dt>
-                  <dd>{{ user.state }}</dd>
-                </dl>
-              </ng-container>
-              <ng-template #stateField> -->
+                  <dl>
+                    <dt class="mb-2">State</dt>
+                    <dd>{{ user.state }}</dd>
+                  </dl>
+                </ng-container>
+                <ng-template #stateField> -->
               <mat-form-field class="d-block" appearance="fill">
                 <mat-label>State</mat-label>
                 <input matInput formControlName="state" />
@@ -331,12 +276,12 @@
           <div class="row justify-content-between">
             <div class="col-4 mb-2">
               <!-- <ng-container *ngIf="user.zip; else zipField">
-                <dl>
-                  <dt class="mb-2">Zip</dt>
-                  <dd>{{ user.zip }}</dd>
-                </dl>
-              </ng-container>
-              <ng-template #zipField> -->
+                  <dl>
+                    <dt class="mb-2">Zip</dt>
+                    <dd>{{ user.zip }}</dd>
+                  </dl>
+                </ng-container>
+                <ng-template #zipField> -->
               <mat-form-field class="d-block" appearance="fill">
                 <mat-label>Zip</mat-label>
                 <input matInput formControlName="zip" />
@@ -345,12 +290,12 @@
             </div>
             <div class="col-4 mb-2">
               <!-- <ng-container *ngIf="user.country; else countryField">
-                <dl>
-                  <dt class="mb-2">Country</dt>
-                  <dd>{{ user.country }}</dd>
-                </dl>
-              </ng-container>
-              <ng-template #countryField> -->
+                  <dl>
+                    <dt class="mb-2">Country</dt>
+                    <dd>{{ user.country }}</dd>
+                  </dl>
+                </ng-container>
+                <ng-template #countryField> -->
               <mat-form-field class="d-block" appearance="fill">
                 <mat-label>Country</mat-label>
                 <input matInput formControlName="country" />
@@ -361,14 +306,14 @@
           <div class="row justify-content-between mb-4">
             <div class="col-4 mb-2">
               <!-- <ng-container *ngIf="user.phoneNumbers; else phoneNumberField">
-                <dl>
-                  <ng-container *ngFor="let phone of user.phoneNumbers">
-                    <dt class="mb-2">Phone Number</dt>
-                    <dd>{{ phone.phone }}</dd>
-                  </ng-container>
-                </dl>
-              </ng-container>
-              <ng-template #phoneNumberField> -->
+                  <dl>
+                    <ng-container *ngFor="let phone of user.phoneNumbers">
+                      <dt class="mb-2">Phone Number</dt>
+                      <dd>{{ phone.phone }}</dd>
+                    </ng-container>
+                  </dl>
+                </ng-container>
+                <ng-template #phoneNumberField> -->
               <mat-form-field class="d-block" appearance="fill">
                 <mat-label>Phone Number</mat-label>
                 <input matInput formControlName="phone" />
@@ -377,12 +322,12 @@
             </div>
             <div class="col-4 mb-2">
               <!-- <ng-container *ngIf="user.birthdate; else birthdateField">
-                <dl>
-                  <dt class="mb-2">Birthdate</dt>
-                  <dd>{{ user.birthdate }}</dd>
-                </dl>
-              </ng-container>
-              <ng-template #birthdateField> -->
+                  <dl>
+                    <dt class="mb-2">Birthdate</dt>
+                    <dd>{{ user.birthdate }}</dd>
+                  </dl>
+                </ng-container>
+                <ng-template #birthdateField> -->
 
               <mat-form-field appearance="fill" class="d-block">
                 <mat-label>Birthday</mat-label>
@@ -574,8 +519,8 @@
         </div>
       </mat-card-content>
       <!-- <mat-card-actions align="end">
-        
-      </mat-card-actions> -->
+          
+        </mat-card-actions> -->
     </mat-card>
     <!-- </div> -->
     <!-- </div> -->

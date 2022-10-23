@@ -1,6 +1,0 @@
-<app-content-box [isFluid]="true" headerText="Choose a Payment Method">
-  <app-payment-methods
-    [paymentMethods]="getPaymentMethods$ | async"
-    (selectedPaymentMethod)="selectPaymentMethod($event)"
-  ></app-payment-methods>
-</app-content-box>

@@ -6,19 +6,19 @@ import { StoreModule } from '@ngrx/store';
 import { AngularMaterialModule } from '../shared/modules/angular-material.module';
 import { SharedModule } from '../shared/shared.module';
 import { DepositAddEditCardComponent } from './components/deposit-add-edit-card/deposit-add-edit-card.component';
-import { DepositSelectedMethodComponent } from './components/deposit-selected-method/deposit-selected-method.component';
-import { DepositComponent } from './components/deposit/deposit.component';
+import { DepositLayoutComponent } from './components/deposit-layout/deposit-layout.component';
+import { DepositSelectCardComponent } from './components/deposit-select-card/deposit-select-card.component';
 import { DepositRoutingModule } from './deposit-routing.module';
 import { DepositsEffects } from './state/deposits.effects';
 import { depositsReducer } from './state/deposits.reducers';
-import { DepositLayoutComponent } from './components/deposit-layout/deposit-layout.component';
+import { DepositSelectNetellerComponent } from './components/deposit-select-neteller/deposit-select-neteller.component';
 
 @NgModule({
   declarations: [
-    DepositSelectedMethodComponent,
     DepositAddEditCardComponent,
-    DepositComponent,
     DepositLayoutComponent,
+    DepositSelectCardComponent,
+    DepositSelectNetellerComponent,
   ],
   imports: [
     CommonModule,

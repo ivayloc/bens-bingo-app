@@ -41,7 +41,7 @@ export class DepositsEffects {
       return this.actions$.pipe(
         ofType(DepositsPageActions.setSelectedDepositMethod),
         tap(({ type, id }) => {
-          this.router.navigate(['/cashier/deposit/', id]);
+          this.router.navigate(['/cashier/deposit/card', id]);
         })
       );
     },

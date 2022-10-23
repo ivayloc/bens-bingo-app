@@ -2,7 +2,7 @@
   <mat-card-title>{{ paymentMethod.name }}</mat-card-title>
 
   <mat-card-content class="fz-24">
-    <div class="row">
+    <div class="row justify-content-between">
       <div class="col-md-3">
         <img
           [src]="
@@ -13,77 +13,42 @@
           class="w-100"
           alt="payment method"
         />
+        <div
+          class="mt-4 pt-3"
+          *ngFor="let paymentDetail of paymentMethod.details"
+        >
+          <dl class="d-flex">
+            <dt class="pe-2">Fee:</dt>
+            <dd class="mb-0">{{ paymentDetail.fee }}</dd>
+          </dl>
+          <dl class="d-flex">
+            <dt class="pe-2">Minimum:</dt>
+            <dd class="mb-0">{{ paymentDetail.min }}</dd>
+          </dl>
+          <dl class="d-flex">
+            <dt class="pe-2">Maximum:</dt>
+            <dd class="mb-0">{{ paymentDetail.max }}</dd>
+          </dl>
+        </div>
       </div>
-      <div class="col-md-9">
-        <form>
-          <div class="row g-4">
-            <div class="col-auto">
-              <mat-form-field appearance="fill">
-                <mat-label>Account</mat-label>
-                <input matInput value="************2929" />
-              </mat-form-field>
-            </div>
-            <div class="col-auto">
-              <mat-form-field appearance="fill">
-                <mat-label>CVV</mat-label>
-                <input matInput />
-              </mat-form-field>
-            </div>
-          </div>
-          <mat-form-field appearance="fill">
-            <mat-label>Amount</mat-label>
-            <input matInput />
-            <div matSuffix>EUR</div>
-          </mat-form-field>
-        </form>
-      </div>
-      <!-- <div class="ms-auto">
-                <dl class="d-flex">
-                  <dt>Fee</dt>
-                  <dd class="mb-0">{{ paymentMethod.details.fee }}</dd>
-                </dl>
-                <dl class="d-flex">
-                  <dt>Minimum</dt>
-                  <dd class="mb-0">{{ paymentMethod.details.min }}</dd>
-                </dl>
-                <dl class="d-flex">
-                  <dt>Maximum</dt>
-                  <dd class="mb-0">{{ paymentMethod.details.max }}</dd>
-                </dl>
-              </div> -->
-    </div>
-  </mat-card-content>
-  <mat-divider inset class="mb-3"></mat-divider>
-  <mat-card-content class="fz-24 mb-3">
-    <div
-      class="row text-center"
-      *ngFor="let paymentDetail of paymentMethod.details"
-    >
-      <div class="col-md-4">
-        <dl class="mb-0">
-          <dt>Fee</dt>
-          <dd class="mb-0">{{ paymentDetail.fee }}</dd>
-        </dl>
-      </div>
-      <div class="col-md-4">
-        <dl class="mb-0">
-          <dt>Minimum</dt>
-          <dd class="mb-0">{{ paymentDetail.min }}</dd>
-        </dl>
-      </div>
-      <div class="col-md-4">
-        <dl class="mb-0">
-          <dt>Maximum</dt>
-          <dd class="mb-0">{{ paymentDetail.max }}</dd>
-        </dl>
+      <div class="col-md-8">
+        <ng-container *ngIf="paymentMethod.description">
+          <div [outerHTML]="paymentMethod.description"></div>
+        </ng-container>
+        <hr class="hr my-4" />
+        <ng-content></ng-content>
       </div>
     </div>
   </mat-card-content>
-  <mat-divider inset></mat-divider>
-  <mat-card-actions align="end">
-    <div class="p-4">
-      <button type="button" class="btn-clear btn-main py-1 mx-2 min-w-auto">
-        <span class="btn-main-text">{{ buttonLabel }}</span>
+  <mat-card-actions align="end" class="align-items-baseline">
+    <button type="button" class="btn btn-link fz-22">Change method</button>
+    <div class="px-4 pb-4">
+      <button
+        type="button"
+        class="btn-clear btn-main py-1 mx-2 min-w-auto"
+        (click)="continue()"
+      >
+        <span class="btn-main-text">Continue</span>
       </button>
     </div>
   </mat-card-actions>

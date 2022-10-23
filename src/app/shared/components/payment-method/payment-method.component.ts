@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { PaymentMethod } from 'src/app/shared/models/payment-method';
 
 @Component({
@@ -6,16 +6,19 @@ import { PaymentMethod } from 'src/app/shared/models/payment-method';
   templateUrl: './payment-method.component.html',
   styleUrls: ['./payment-method.component.scss'],
 })
-export class PaymentMethodComponent implements OnInit {
+export class PaymentMethodComponent {
   @Input() paymentMethod = {} as PaymentMethod;
   @Input() buttonLabel = '';
   @Output() selectedPaymentMethod = new EventEmitter<PaymentMethod>();
+  showCardsStep = false;
 
   constructor() {}
 
-  ngOnInit(): void {}
-
   selectPaymentMethod(paymentMethod: PaymentMethod) {
     this.selectedPaymentMethod.emit(paymentMethod);
+  }
+
+  continue() {
+    this.showCardsStep = true;
   }
 }
