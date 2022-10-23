@@ -19,7 +19,7 @@ import { PaymentMethod } from 'src/app/shared/models/payment-method';
   ],
 })
 export class DepositCardCvvComponent
-  implements OnInit, ControlValueAccessor, AfterViewInit
+  implements OnInit, AfterViewInit, ControlValueAccessor
 {
   @Input() paymentMethod!: PaymentMethod;
   cvvField = this.fb.control('');

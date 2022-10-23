@@ -33,6 +33,7 @@
   >
     <ng-container *ngIf="getSelectedDepositMethodAccounts$ | async as accounts">
       <app-deposit-method-accounts-list
+        formControlName="account"
         [paymentMethod]="paymentMethod"
         [accounts]="accounts"
       ></app-deposit-method-accounts-list>

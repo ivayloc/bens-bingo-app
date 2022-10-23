@@ -1,6 +1,10 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, Input, OnInit } from '@angular/core';
-import { NonNullableFormBuilder } from '@angular/forms';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import {
+  ControlValueAccessor,
+  NG_VALUE_ACCESSOR,
+  NonNullableFormBuilder,
+} from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
@@ -14,8 +18,17 @@ import { DepositAddEditCardComponent } from '../deposit-add-edit-card/deposit-ad
   selector: 'app-deposit-method-accounts-list',
   templateUrl: './deposit-method-accounts-list.component.html',
   styleUrls: ['./deposit-method-accounts-list.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: DepositMethodAccountsListComponent,
+      multi: true,
+    },
+  ],
 })
-export class DepositMethodAccountsListComponent implements OnInit {
+export class DepositMethodAccountsListComponent
+  implements OnInit, AfterViewInit, ControlValueAccessor
+{
   @Input() accounts!: MatTableDataSource<PaymentMethodAccount>;
   @Input() paymentMethod!: PaymentMethod;
 
@@ -30,6 +43,8 @@ export class DepositMethodAccountsListComponent implements OnInit {
     'action',
   ];
   selection = new SelectionModel<PaymentMethodAccount>(false, []);
+  onChange!: (val: any) => void;
+  onTouched!: () => void;
 
   constructor(
     private dialog: MatDialog,
@@ -75,5 +90,20 @@ export class DepositMethodAccountsListComponent implements OnInit {
         paymentMethod,
       },
     });
+  }
+
+  writeValue(selectedCard: PaymentMethodAccount): void {
+    this.accountField.setValue(selectedCard);
+  }
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
+  ngAfterViewInit(): void {
+    this.accountField.valueChanges.subscribe((selectedCard) =>
+      this.onChange(selectedCard)
+    );
   }
 }
