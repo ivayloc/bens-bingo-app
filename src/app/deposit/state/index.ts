@@ -15,6 +15,11 @@ export const selectPaymentMethods = createSelector(
   (state) => state.paymentMethods
 );
 
+export const selectCurrentDepositStep = createSelector(
+  selectDepositsState,
+  (state) => state.currentDepositStep
+);
+
 export const selectSelectedDepositMethod = createSelector(
   selectDepositsState,
   selectRouteParams,

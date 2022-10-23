@@ -53,7 +53,7 @@ export class DepositMethodAccountsListComponent
   ) {}
 
   ngOnInit(): void {
-    this.selectCard().subscribe();
+    // this.selectCard().subscribe();
     this.accountField.setValue(this.accounts?.data[0]);
   }
 
@@ -102,8 +102,16 @@ export class DepositMethodAccountsListComponent
     this.onTouched = fn;
   }
   ngAfterViewInit(): void {
-    this.accountField.valueChanges.subscribe((selectedCard) =>
-      this.onChange(selectedCard)
-    );
+    this.accountField.valueChanges
+      .pipe(distinctUntilChanged())
+      .subscribe((selectedCard) => {
+        if (!selectedCard) {
+          return;
+        }
+        this.store.dispatch(
+          DepositsPageActions.depositSelectedCard({ selectedCard })
+        );
+        this.onChange(selectedCard);
+      });
   }
 }

@@ -1,133 +1,151 @@
-<form [formGroup]="depositForm">
-  <app-content-box
-    [headerText]="'Pay with ' + paymentMethod.name"
-    class="mb-5"
-    [isFluid]="true"
-    *ngIf="getSelectedDepositMethod$ | async as paymentMethod"
-  >
-    <app-payment-method [paymentMethod]="paymentMethod">
-      <mat-form-field appearance="fill">
-        <mat-label>Amount</mat-label>
-        <mat-select formControlName="amount" *ngIf="paymentMethod.amounts">
-          <mat-option
-            *ngFor="let amount of paymentMethod.amounts?.items"
-            [value]="amount"
-          >
-            {{ amount }}
-          </mat-option>
-        </mat-select>
-        <input
-          matInput
-          formControlName="amount"
-          *ngIf="!paymentMethod.amounts"
-        />
-      </mat-form-field>
-    </app-payment-method>
-  </app-content-box>
-
-  <app-content-box
-    [isFluid]="true"
-    *ngIf="getSelectedDepositMethod$ | async as paymentMethod"
-    class="my-5"
-    [headerText]="'Choose a ' + paymentMethod.name + ' Card'"
-  >
-    <ng-container *ngIf="getSelectedDepositMethodAccounts$ | async as accounts">
-      <app-deposit-method-accounts-list
-        formControlName="account"
+<ng-container *ngIf="getCurrentDepositStep$ | async as currentDepositStep">
+  <form [formGroup]="depositForm">
+    <app-content-box
+      [headerText]="'Pay with ' + paymentMethod.name"
+      class="mb-5"
+      [isFluid]="true"
+      *ngIf="getSelectedDepositMethod$ | async as paymentMethod"
+    >
+      <app-payment-method
         [paymentMethod]="paymentMethod"
-        [accounts]="accounts"
-      ></app-deposit-method-accounts-list>
-    </ng-container>
-  </app-content-box>
-
-  <app-content-box
-    [isFluid]="true"
-    headerText="CVV"
-    class="mb-5"
-    *ngIf="getSelectedDepositMethod$ | async as paymentMethod"
-  >
-    <app-deposit-card-cvv
-      formControlName="cvv"
-      [paymentMethod]="paymentMethod"
-    ></app-deposit-card-cvv>
-
-    <div class="text-center">
-      <button
-        type="button"
-        class="btn-clear btn-main py-1 mx-2 min-w-auto"
-        (click)="submitDeposit(paymentMethod.id)"
+        (submittedDepositAmount)="submitDepositAmount()"
       >
-        <span class="btn-main-text">Continue</span>
-      </button>
-    </div>
-  </app-content-box>
-</form>
+        <mat-form-field appearance="fill">
+          <mat-label>Amount</mat-label>
+          <mat-select formControlName="amount" *ngIf="paymentMethod.amounts">
+            <mat-option
+              *ngFor="let amount of paymentMethod.amounts?.items"
+              [value]="amount"
+            >
+              {{ amount }}
+            </mat-option>
+          </mat-select>
+          <input
+            matInput
+            formControlName="amount"
+            *ngIf="!paymentMethod.amounts"
+          />
+        </mat-form-field>
+      </app-payment-method>
+    </app-content-box>
+    <div id="scrollToAnchor" #scrollToAnchor></div>
+    <ng-container *ngIf="currentDepositStep === depositSteps.ChooseDepositCard">
+      <app-content-box
+        [isFluid]="true"
+        *ngIf="getSelectedDepositMethod$ | async as paymentMethod"
+        class="my-5"
+        [headerText]="'Choose a ' + paymentMethod.name + ' Card'"
+      >
+        <ng-container
+          *ngIf="getSelectedDepositMethodAccounts$ | async as accounts"
+        >
+          <app-deposit-method-accounts-list
+            formControlName="account"
+            [paymentMethod]="paymentMethod"
+            [accounts]="accounts"
+          ></app-deposit-method-accounts-list>
+        </ng-container>
+      </app-content-box>
 
-<app-content-box
-  [isFluid]="true"
-  headerText="Confirm Deposit Details"
-  class="mb-5"
-  *ngIf="getSelectedDepositMethod$ | async as paymentMethod"
->
-  <app-confirm-deposit-details></app-confirm-deposit-details>
-</app-content-box>
+      <app-content-box
+        [isFluid]="true"
+        headerText="CVV"
+        class="mb-5"
+        *ngIf="getSelectedDepositMethod$ | async as paymentMethod"
+      >
+        <app-deposit-card-cvv
+          formControlName="cvv"
+          [paymentMethod]="paymentMethod"
+        ></app-deposit-card-cvv>
+        <div class="text-center">
+          <button
+            type="button"
+            class="btn-clear btn-main py-1 mx-2 min-w-auto"
+            (click)="submitDeposit(paymentMethod.id)"
+          >
+            <span class="btn-main-text">Continue</span>
+          </button>
+        </div>
+      </app-content-box>
+    </ng-container>
+  </form>
 
-<app-content-box
-  [isFluid]="true"
-  headerText="Information"
-  class="mb-5"
-  *ngIf="getSelectedDepositMethod$ | async as paymentMethod"
->
-  <div class="row justify-content-center fz-24 mb-4">
-    <div class="col-8">
-      <div class="fz-22">
-        <div class="small">
-          <p>
-            This transaction will appear on your billing statement as FakeOut,
-            +46850513501
-          </p>
-          <p>
-            The payment method will be debited immediately once the transaction
-            is fully completed.
-          </p>
-          <p>
-            BensCasino always handles customer data in a confidential manner.
-          </p>
-          <p>
-            Please note; It is the sole responsibility of the cardholder to
-            observe the national law in their country as they pertain to
-            gambling prohibitions.
-          </p>
-          <p>Gambling may only be enjoyed by adults.</p>
-          <p>
-            Your invoice will be displayed once the payment process is complete.
-            We suggest you print or save a copy of this invoice for your
-            records.
-          </p>
-          <p>
-            Payments processing is handled by Technical Consulting and
-            Management Services Ltd. (Company Number: 7857267). London, England.
-            You can contact us at info@innovusnv.com or phone 020 7193 1099
-          </p>
-          <p>
-            For additional support, please visit our support page:
-            <a href="/en/help/">Here</a>
-          </p>
+  <ng-container
+    *ngIf="currentDepositStep === depositSteps.ConfirmDepositDetails"
+  >
+    <app-content-box
+      [isFluid]="true"
+      headerText="Confirm Deposit Details"
+      class="mb-5"
+      *ngIf="getSelectedDepositMethod$ | async as paymentMethod"
+    >
+      <app-confirm-deposit-details></app-confirm-deposit-details>
+    </app-content-box>
+
+    <app-content-box
+      [isFluid]="true"
+      headerText="Information"
+      class="mb-5"
+      *ngIf="getSelectedDepositMethod$ | async as paymentMethod"
+    >
+      <div class="row justify-content-center fz-24 mb-4">
+        <div class="col-8">
+          <div class="fz-22">
+            <div class="small">
+              <p>
+                This transaction will appear on your billing statement as
+                FakeOut, +46850513501
+              </p>
+              <p>
+                The payment method will be debited immediately once the
+                transaction is fully completed.
+              </p>
+              <p>
+                BensCasino always handles customer data in a confidential
+                manner.
+              </p>
+              <p>
+                Please note; It is the sole responsibility of the cardholder to
+                observe the national law in their country as they pertain to
+                gambling prohibitions.
+              </p>
+              <p>Gambling may only be enjoyed by adults.</p>
+              <p>
+                Your invoice will be displayed once the payment process is
+                complete. We suggest you print or save a copy of this invoice
+                for your records.
+              </p>
+              <p>
+                Payments processing is handled by Technical Consulting and
+                Management Services Ltd. (Company Number: 7857267). London,
+                England. You can contact us at info@innovusnv.com or phone 020
+                7193 1099
+              </p>
+              <p>
+                For additional support, please visit our support page:
+                <a href="/en/help/">Here</a>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="text-center">
-    <button
-      type="button"
-      (click)="confirmDeposit()"
-      class="btn-clear btn-main py-1 mx-2 min-w-auto"
-    >
-      <span class="btn-main-text">Confirm Deposit</span>
-    </button>
-  </div>
-</app-content-box>
+      <div class="text-center">
+        <button
+          type="button"
+          (click)="confirmDeposit()"
+          class="btn-clear btn-main py-1 mx-2 min-w-auto"
+        >
+          <span class="btn-main-text">Confirm Deposit</span>
+        </button>
+      </div>
+    </app-content-box>
+  </ng-container>
 
-<ng-container *ngIf="getSelectedDepositMethod$ | async as paymentMethod">
-  <app-deposit-receipt [paymentMethod]="paymentMethod"></app-deposit-receipt>
+  <ng-container *ngIf="currentDepositStep === depositSteps.DepositReceipt">
+    <ng-container *ngIf="getSelectedDepositMethod$ | async as paymentMethod">
+      <app-deposit-receipt
+        [paymentMethod]="paymentMethod"
+      ></app-deposit-receipt>
+    </ng-container>
+  </ng-container>
 </ng-container>

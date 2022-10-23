@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import {
   UntypedFormBuilder,
   UntypedFormControl,
@@ -6,10 +12,12 @@ import {
 } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
-import { Observable, tap } from 'rxjs';
+import { delay, Observable, tap } from 'rxjs';
 import { PaymentMethod } from 'src/app/shared/models/payment-method';
+import { DepositSteps } from '../../models/deposit-steps.enum';
 import { PaymentMethodAccount } from '../../models/payment-method-account';
 import {
+  selectCurrentDepositStep,
   selectSelectedDepositMethod,
   selectSelectedDepositMethodAccountMatData,
 } from '../../state';
@@ -20,8 +28,9 @@ import { DepositsPageActions } from '../../state/actions';
   templateUrl: './deposit-select-card.component.html',
   styleUrls: ['./deposit-select-card.component.scss'],
 })
-export class DepositSelectCardComponent implements OnInit {
-  showCardsStep = false;
+export class DepositSelectCardComponent implements OnInit, AfterViewInit {
+  @ViewChild('scrollToAnchor') scrollToAnchor!: ElementRef<HTMLDivElement>;
+  depositSteps = DepositSteps;
   depositForm = this.fb.group({
     amount: ['', Validators.required],
     cvv: ['', Validators.required],
@@ -45,6 +54,7 @@ export class DepositSelectCardComponent implements OnInit {
   >();
 
   getSelectedDepositMethod$ = new Observable<PaymentMethod | undefined>();
+  getCurrentDepositStep$ = new Observable<DepositSteps>();
 
   constructor(private store: Store, private fb: UntypedFormBuilder) {}
 
@@ -57,13 +67,35 @@ export class DepositSelectCardComponent implements OnInit {
         })
       );
 
-    this.getSelectedDepositMethodAccounts$ = this.store.select(
-      selectSelectedDepositMethodAccountMatData
-    );
+    this.getSelectedDepositMethodAccounts$ = this.store
+      .select(selectSelectedDepositMethodAccountMatData)
+      .pipe(
+        tap((paymentAccounts) => {
+          this.accountField.setValue(paymentAccounts.data[0]);
+        })
+      );
   }
 
-  continue() {
-    this.showCardsStep = true;
+  ngAfterViewInit(): void {
+    this.getCurrentDepositStep$ = this.store
+      .select(selectCurrentDepositStep)
+      .pipe(
+        delay(0),
+        tap((depositStep) => {
+          if (depositStep === DepositSteps.ConfirmDepositDetails) {
+            this.depositAmountField.disable();
+          }
+          if (depositStep !== DepositSteps.SelectDepositAmount) {
+            setTimeout(() => {
+              this.scrollToAnchor.nativeElement.scrollIntoView();
+            }, 300);
+          }
+        })
+      );
+  }
+
+  submitDepositAmount() {
+    this.store.dispatch(DepositsPageActions.submitDepositAmount());
   }
 
   submitDeposit(processorid: number) {

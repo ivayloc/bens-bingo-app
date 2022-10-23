@@ -2,6 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import { PaymentMethod } from '../../shared/models/payment-method';
 import { ConfirmedDepositResponse } from '../models/confirmed-deposit-response';
 import { DepositAccount } from '../models/deposit-account';
+import { DepositSteps } from '../models/deposit-steps.enum';
 import { PaymentMethodAccount } from '../models/payment-method-account';
 import { DepositsApiActions, DepositsPageActions } from './actions';
 
@@ -10,6 +11,7 @@ export interface DepositsState {
   depositAccount: DepositAccount;
   depositSelectedCard: PaymentMethodAccount;
   confirmedDeposit: ConfirmedDepositResponse;
+  currentDepositStep: DepositSteps;
   error: string;
 }
 
@@ -18,6 +20,7 @@ const initialState: DepositsState = {
   depositAccount: {} as DepositAccount,
   depositSelectedCard: {} as PaymentMethodAccount,
   confirmedDeposit: {} as ConfirmedDepositResponse,
+  currentDepositStep: DepositSteps.SelectDepositAmount,
   error: '',
 };
 
@@ -48,6 +51,7 @@ export const depositsReducer = createReducer<DepositsState>(
     (state, { depositAccount }): DepositsState => {
       return {
         ...state,
+        currentDepositStep: DepositSteps.ConfirmDepositDetails,
         depositAccount,
         error: '',
       };
@@ -85,6 +89,16 @@ export const depositsReducer = createReducer<DepositsState>(
         ...state,
         confirmedDeposit: {} as ConfirmedDepositResponse,
         error: action.error,
+      };
+    }
+  ),
+  on(
+    DepositsPageActions.submitDepositAmount,
+    (state, action): DepositsState => {
+      return {
+        ...state,
+        currentDepositStep: DepositSteps.ChooseDepositCard,
+        error: '',
       };
     }
   )

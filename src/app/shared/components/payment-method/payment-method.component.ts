@@ -9,16 +9,12 @@ import { PaymentMethod } from 'src/app/shared/models/payment-method';
 export class PaymentMethodComponent {
   @Input() paymentMethod = {} as PaymentMethod;
   @Input() buttonLabel = '';
-  @Output() selectedPaymentMethod = new EventEmitter<PaymentMethod>();
+  @Output() submittedDepositAmount = new EventEmitter<PaymentMethod>();
   showCardsStep = false;
 
   constructor() {}
 
-  selectPaymentMethod(paymentMethod: PaymentMethod) {
-    this.selectedPaymentMethod.emit(paymentMethod);
-  }
-
-  continue() {
-    this.showCardsStep = true;
+  submitDepositAmount() {
+    this.submittedDepositAmount.emit();
   }
 }

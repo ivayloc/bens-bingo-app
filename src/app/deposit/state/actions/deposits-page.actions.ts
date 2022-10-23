@@ -46,6 +46,10 @@ export const confirmDeposit = createAction(
   '[Cashier/Deposits] Confirm deposit'
 );
 
+export const submitDepositAmount = createAction(
+  '[Cashier/Deposits] Submit deposit amount'
+);
+
 export const depositSelectedCard = createAction(
   '[Cashier/Deposits] Credit card is selected',
   props<{
