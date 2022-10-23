@@ -15,6 +15,7 @@ import { depositsReducer } from './state/deposits.reducers';
 import { DepositMethodAccountsListComponent } from './components/deposit-method-accounts-list/deposit-method-accounts-list.component';
 import { DepositCardCvvComponent } from './components/deposit-card-cvv/deposit-card-cvv.component';
 import { ConfirmDepositDetailsComponent } from './components/confirm-deposit-details/confirm-deposit-details.component';
+import { DepositReceiptComponent } from './components/deposit-receipt/deposit-receipt.component';
 // import { depositsReducer } from './state/deposits.reducers';
 
 @NgModule({
@@ -26,6 +27,7 @@ import { ConfirmDepositDetailsComponent } from './components/confirm-deposit-det
     DepositMethodAccountsListComponent,
     DepositCardCvvComponent,
     ConfirmDepositDetailsComponent,
+    DepositReceiptComponent,
   ],
   imports: [
     CommonModule,

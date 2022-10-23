@@ -8,10 +8,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { Observable, tap } from 'rxjs';
 import { PaymentMethod } from 'src/app/shared/models/payment-method';
-import { DepositReceipt } from '../../models/deposit-receipt';
 import { PaymentMethodAccount } from '../../models/payment-method-account';
 import {
-  selectDepositReceipt,
   selectSelectedDepositMethod,
   selectSelectedDepositMethodAccountMatData,
 } from '../../state';
@@ -47,7 +45,6 @@ export class DepositSelectCardComponent implements OnInit {
   >();
 
   getSelectedDepositMethod$ = new Observable<PaymentMethod | undefined>();
-  getDepositReceipt$ = new Observable<DepositReceipt>();
 
   constructor(private store: Store, private fb: UntypedFormBuilder) {}
 
@@ -63,8 +60,6 @@ export class DepositSelectCardComponent implements OnInit {
     this.getSelectedDepositMethodAccounts$ = this.store.select(
       selectSelectedDepositMethodAccountMatData
     );
-
-    this.getDepositReceipt$ = this.store.select(selectDepositReceipt);
   }
 
   continue() {
@@ -83,9 +78,5 @@ export class DepositSelectCardComponent implements OnInit {
 
   confirmDeposit() {
     this.store.dispatch(DepositsPageActions.confirmDeposit());
-  }
-
-  printReceipt() {
-    window.print();
   }
 }
