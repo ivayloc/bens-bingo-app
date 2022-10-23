@@ -27,7 +27,7 @@ export class DepositSelectNetellerComponent implements OnInit {
   get accountField(): FormControl<PaymentMethodAccount> {
     return this.depositForm.get('account') as FormControl;
   }
-  getSelectedDepositMethod$ = new Observable<PaymentMethod>();
+  getSelectedDepositMethod$ = new Observable<PaymentMethod | undefined>();
 
   constructor(private store: Store, private fb: NonNullableFormBuilder) {}
 

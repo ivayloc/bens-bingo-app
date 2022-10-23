@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
+import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
@@ -24,7 +25,7 @@ import { appReducer } from './state/app.reducers';
     TranslocoRootModule,
     BrowserAnimationsModule,
     SharedModule,
-    StoreModule.forRoot({ app: appReducer }, {}),
+    StoreModule.forRoot({ app: appReducer, router: routerReducer }, {}),
     EffectsModule.forRoot([AppEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
@@ -40,6 +41,7 @@ import { appReducer } from './state/app.reducers';
         persist: true,
       },
     }),
+    StoreRouterConnectingModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

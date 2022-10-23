@@ -7,7 +7,6 @@ import { DepositsApiActions, DepositsPageActions } from './actions';
 
 export interface DepositsState {
   paymentMethods: PaymentMethod[];
-  selectedPaymentMethodId: number;
   depositAccount: DepositAccount;
   depositSelectedCard: PaymentMethodAccount;
   confirmedDeposit: ConfirmedDepositResponse;
@@ -16,7 +15,6 @@ export interface DepositsState {
 
 const initialState: DepositsState = {
   paymentMethods: [],
-  selectedPaymentMethodId: 0,
   depositAccount: {} as DepositAccount,
   depositSelectedCard: {} as PaymentMethodAccount,
   confirmedDeposit: {} as ConfirmedDepositResponse,
@@ -42,17 +40,6 @@ export const depositsReducer = createReducer<DepositsState>(
         ...state,
         paymentMethods: [],
         error: action.error,
-      };
-    }
-  ),
-
-  on(
-    DepositsPageActions.setSelectedDepositMethod,
-    (state, { id }): DepositsState => {
-      return {
-        ...state,
-        selectedPaymentMethodId: id,
-        error: '',
       };
     }
   ),

@@ -49,6 +49,7 @@
     "@angular-eslint/template-parser": "13.5.0",
     "@angular/cli": "^14.2.6",
     "@angular/compiler-cli": "^14.2.6",
+    "@ngrx/router-store": "^14.3.2",
     "@sass-collective/strip-unit": "^3.1.2",
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",

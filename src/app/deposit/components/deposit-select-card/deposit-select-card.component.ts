@@ -68,7 +68,7 @@ export class DepositSelectCardComponent implements OnInit {
     MatTableDataSource<PaymentMethodAccount>
   >();
 
-  getSelectedDepositMethod$ = new Observable<PaymentMethod>();
+  getSelectedDepositMethod$ = new Observable<PaymentMethod | undefined>();
   getUserInfo$ = new Observable<UserInfo>();
   getDepositReceipt$ = new Observable<DepositReceipt>();
 

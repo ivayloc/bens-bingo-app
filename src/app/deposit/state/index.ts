@@ -1,10 +1,9 @@
 import { MatTableDataSource } from '@angular/material/table';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { selectUserInfoBalance } from 'src/app/state';
-import { PaymentMethod } from '../../shared/models/payment-method';
 import * as AppState from '../../state/app.states';
 import { DepositsState } from './deposits.reducers';
-
+import { selectRouteParams } from './router.selectors';
 export interface State extends AppState.State {
   deposits: DepositsState;
 }
@@ -16,25 +15,17 @@ export const selectPaymentMethods = createSelector(
   (state) => state.paymentMethods
 );
 
-export const selectSelectedPaymentMethod = createSelector(
-  selectDepositsState,
-  (state) => state.selectedPaymentMethodId
-);
-
 export const selectSelectedDepositMethod = createSelector(
   selectDepositsState,
-  selectSelectedPaymentMethod,
-  (state, id) => {
-    return state.paymentMethods.find(
-      (method) => method.id === id
-    ) as PaymentMethod;
-  }
+  selectRouteParams,
+  (state, { id }) =>
+    state.paymentMethods.find((method) => method.id === parseInt(id, 10))
 );
 
 export const selectSelectedDepositMethodAccountMatData = createSelector(
   selectDepositsState,
-  selectSelectedPaymentMethod,
-  (state, id) => {
+  selectRouteParams,
+  (state, { id }) => {
     const dataSource = state.paymentMethods.find(
       (method) => method.id === id
     )?.accounts;

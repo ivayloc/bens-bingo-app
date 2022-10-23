@@ -8,10 +8,11 @@ import { SharedModule } from '../shared/shared.module';
 import { DepositAddEditCardComponent } from './components/deposit-add-edit-card/deposit-add-edit-card.component';
 import { DepositLayoutComponent } from './components/deposit-layout/deposit-layout.component';
 import { DepositSelectCardComponent } from './components/deposit-select-card/deposit-select-card.component';
+import { DepositSelectNetellerComponent } from './components/deposit-select-neteller/deposit-select-neteller.component';
 import { DepositRoutingModule } from './deposit-routing.module';
 import { DepositsEffects } from './state/deposits.effects';
 import { depositsReducer } from './state/deposits.reducers';
-import { DepositSelectNetellerComponent } from './components/deposit-select-neteller/deposit-select-neteller.component';
+// import { depositsReducer } from './state/deposits.reducers';
 
 @NgModule({
   declarations: [
