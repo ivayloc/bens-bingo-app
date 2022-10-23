@@ -3,9 +3,9 @@ import { PaymentMethod } from '../../shared/models/payment-method';
 import { ConfirmedDepositResponse } from '../models/confirmed-deposit-response';
 import { DepositAccount } from '../models/deposit-account';
 import { PaymentMethodAccount } from '../models/payment-method-account';
-import { CashierApiActions, CashierPageActions } from './actions';
+import { DepositsApiActions, DepositsPageActions } from './actions';
 
-export interface CashierState {
+export interface DepositsState {
   paymentMethods: PaymentMethod[];
   selectedPaymentMethodId: number;
   depositAccount: DepositAccount;
@@ -14,7 +14,7 @@ export interface CashierState {
   error: string;
 }
 
-const initialState: CashierState = {
+const initialState: DepositsState = {
   paymentMethods: [],
   selectedPaymentMethodId: 0,
   depositAccount: {} as DepositAccount,
@@ -23,11 +23,11 @@ const initialState: CashierState = {
   error: '',
 };
 
-export const cashierReducer = createReducer<CashierState>(
+export const depositsReducer = createReducer<DepositsState>(
   initialState,
   on(
-    CashierApiActions.getPaymentMethodsSuccess,
-    (state, { paymentMethods }): CashierState => {
+    DepositsApiActions.getPaymentMethodsSuccess,
+    (state, { paymentMethods }): DepositsState => {
       return {
         ...state,
         paymentMethods,
@@ -36,8 +36,8 @@ export const cashierReducer = createReducer<CashierState>(
     }
   ),
   on(
-    CashierApiActions.getPaymentMethodsFailure,
-    (state, action): CashierState => {
+    DepositsApiActions.getPaymentMethodsFailure,
+    (state, action): DepositsState => {
       return {
         ...state,
         paymentMethods: [],
@@ -47,8 +47,8 @@ export const cashierReducer = createReducer<CashierState>(
   ),
 
   on(
-    CashierPageActions.setSelectedDepositMethod,
-    (state, { id }): CashierState => {
+    DepositsPageActions.setSelectedDepositMethod,
+    (state, { id }): DepositsState => {
       return {
         ...state,
         selectedPaymentMethodId: id,
@@ -57,8 +57,8 @@ export const cashierReducer = createReducer<CashierState>(
     }
   ),
   on(
-    CashierApiActions.makeDepositSuccess,
-    (state, { depositAccount }): CashierState => {
+    DepositsApiActions.makeDepositSuccess,
+    (state, { depositAccount }): DepositsState => {
       return {
         ...state,
         depositAccount,
@@ -66,15 +66,15 @@ export const cashierReducer = createReducer<CashierState>(
       };
     }
   ),
-  on(CashierApiActions.makeDepositFailure, (state, action): CashierState => {
+  on(DepositsApiActions.makeDepositFailure, (state, action): DepositsState => {
     return {
       ...state,
       error: action.error,
     };
   }),
   on(
-    CashierPageActions.depositSelectedCard,
-    (state, { selectedCard }): CashierState => {
+    DepositsPageActions.depositSelectedCard,
+    (state, { selectedCard }): DepositsState => {
       return {
         ...state,
         depositSelectedCard: selectedCard,
@@ -82,8 +82,8 @@ export const cashierReducer = createReducer<CashierState>(
     }
   ),
   on(
-    CashierApiActions.confirmDepositSuccess,
-    (state, { confirmedDeposit }): CashierState => {
+    DepositsApiActions.confirmDepositSuccess,
+    (state, { confirmedDeposit }): DepositsState => {
       return {
         ...state,
         confirmedDeposit,
@@ -91,11 +91,14 @@ export const cashierReducer = createReducer<CashierState>(
       };
     }
   ),
-  on(CashierApiActions.confirmDepositFailure, (state, action): CashierState => {
-    return {
-      ...state,
-      confirmedDeposit: {} as ConfirmedDepositResponse,
-      error: action.error,
-    };
-  })
+  on(
+    DepositsApiActions.confirmDepositFailure,
+    (state, action): DepositsState => {
+      return {
+        ...state,
+        confirmedDeposit: {} as ConfirmedDepositResponse,
+        error: action.error,
+      };
+    }
+  )
 );

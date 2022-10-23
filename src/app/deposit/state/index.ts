@@ -3,26 +3,26 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { selectUserInfoBalance } from 'src/app/state';
 import { PaymentMethod } from '../../shared/models/payment-method';
 import * as AppState from '../../state/app.states';
-import { CashierState } from './cashier.reducers';
+import { DepositsState } from './deposits.reducers';
 
 export interface State extends AppState.State {
-  cashierGames: CashierState;
+  deposits: DepositsState;
 }
 
-const selectCashierState = createFeatureSelector<CashierState>('cashier');
+const selectDepositsState = createFeatureSelector<DepositsState>('deposits');
 
 export const selectPaymentMethods = createSelector(
-  selectCashierState,
+  selectDepositsState,
   (state) => state.paymentMethods
 );
 
 export const selectSelectedPaymentMethod = createSelector(
-  selectCashierState,
+  selectDepositsState,
   (state) => state.selectedPaymentMethodId
 );
 
 export const selectSelectedDepositMethod = createSelector(
-  selectCashierState,
+  selectDepositsState,
   selectSelectedPaymentMethod,
   (state, id) => {
     return state.paymentMethods.find(
@@ -32,7 +32,7 @@ export const selectSelectedDepositMethod = createSelector(
 );
 
 export const selectSelectedDepositMethodAccountMatData = createSelector(
-  selectCashierState,
+  selectDepositsState,
   selectSelectedPaymentMethod,
   (state, id) => {
     const dataSource = state.paymentMethods.find(
@@ -44,12 +44,12 @@ export const selectSelectedDepositMethodAccountMatData = createSelector(
 );
 
 export const selectTransactionId = createSelector(
-  selectCashierState,
+  selectDepositsState,
   (state) => state.depositAccount.transactionId
 );
 
 export const selectDepositReceipt = createSelector(
-  selectCashierState,
+  selectDepositsState,
   selectUserInfoBalance,
   (state, userBalance) => {
     return {

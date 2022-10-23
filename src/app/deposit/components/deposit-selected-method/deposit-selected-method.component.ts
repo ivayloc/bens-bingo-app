@@ -21,7 +21,7 @@ import {
   selectSelectedDepositMethod,
   selectSelectedDepositMethodAccountMatData,
 } from '../../state';
-import { CashierPageActions } from '../../state/actions';
+import { DepositsPageActions } from '../../state/actions';
 import { DepositAddEditCardComponent } from '../deposit-add-edit-card/deposit-add-edit-card.component';
 
 @Component({
@@ -123,7 +123,7 @@ export class DepositSelectedMethodComponent implements OnInit {
       distinctUntilChanged(),
       tap<PaymentMethodAccount>((selectedCard) => {
         this.store.dispatch(
-          CashierPageActions.depositSelectedCard({ selectedCard })
+          DepositsPageActions.depositSelectedCard({ selectedCard })
         );
       })
     );
@@ -142,7 +142,7 @@ export class DepositSelectedMethodComponent implements OnInit {
       amount: this.depositAmountField.value,
       cvv: this.cvvField.value,
     };
-    this.store.dispatch(CashierPageActions.makeDeposit({ payload }));
+    this.store.dispatch(DepositsPageActions.makeDeposit({ payload }));
   }
 
   editCardDetails(paymentMethod: PaymentMethod, account: PaymentMethodAccount) {
@@ -172,7 +172,7 @@ export class DepositSelectedMethodComponent implements OnInit {
       this.confirmDepositDetailsForm.getRawValue() as UpdatedUserInfo;
 
     this.store.dispatch(
-      CashierPageActions.updateUserDepositDetails({
+      DepositsPageActions.updateUserDepositDetails({
         payload,
       })
     );
@@ -190,7 +190,7 @@ export class DepositSelectedMethodComponent implements OnInit {
   }
 
   confirmDeposit() {
-    this.store.dispatch(CashierPageActions.confirmDeposit());
+    this.store.dispatch(DepositsPageActions.confirmDeposit());
   }
 
   printReceipt() {

@@ -12,6 +12,7 @@ const routes: Routes = [
     path: '',
     component: CashierLayoutComponent,
     children: [
+      { path: '', redirectTo: 'deposit', pathMatch: 'full' },
       {
         path: 'deposit',
         loadChildren: () =>

@@ -21,6 +21,8 @@ import { LoginButtonComponent } from './components/login-button/login-button.com
 import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
 import { LoginResetPasswordComponent } from './components/login-reset-password/login-reset-password.component';
 import { MainNavigationComponent } from './components/main-navigation/main-navigation.component';
+import { PaymentMethodComponent } from './components/payment-method/payment-method.component';
+import { PaymentMethodsComponent } from './components/payment-methods/payment-methods.component';
 import { RecentWinnersComponent } from './components/recent-winners/recent-winners.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SlotsGameComponent } from './components/slots-game/slots-game.component';
@@ -55,6 +57,8 @@ import { LoaderService } from './services/loader.service';
     FormErrorMessageComponent,
     LoginResetPasswordComponent,
     UserVipLevelComponent,
+    PaymentMethodComponent,
+    PaymentMethodsComponent,
   ],
   imports: [
     CommonModule,
@@ -62,6 +66,7 @@ import { LoaderService } from './services/loader.service';
     AngularMaterialModule,
     PrimeNgModule,
     CarouselModule,
+
     ReactiveFormsModule,
   ],
   exports: [
@@ -84,6 +89,8 @@ import { LoaderService } from './services/loader.service';
     TranslocoModule,
     FormErrorMessageComponent,
     UserVipLevelComponent,
+    PaymentMethodComponent,
+    PaymentMethodsComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useExisting: LoaderService, multi: true },

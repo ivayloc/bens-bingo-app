@@ -7,7 +7,7 @@ const routes: Routes = [
   { path: '', component: DepositComponent },
 
   {
-    path: 'deposit/:id',
+    path: ':id',
     component: DepositSelectedMethodComponent,
   },
 ];

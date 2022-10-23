@@ -5,14 +5,14 @@ import { Store } from '@ngrx/store';
 import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import { UserService } from 'src/app/shared/services/user.service';
 import { selectTransactionId } from '.';
-import { CashierService } from '../services/cashier.service';
-import { CashierApiActions, CashierPageActions } from './actions';
+import { DepositsService } from '../services/deposits.service';
+import { DepositsApiActions, DepositsPageActions } from './actions';
 
 @Injectable()
-export class CashierEffects {
+export class DepositsEffects {
   constructor(
     private actions$: Actions,
-    private cashierService: CashierService,
+    private depositsService: DepositsService,
     private router: Router,
     private userService: UserService,
     private store: Store
@@ -20,16 +20,16 @@ export class CashierEffects {
 
   loadPaymentMethods$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(CashierPageActions.loadPaymentMethods),
+      ofType(DepositsPageActions.loadPaymentMethods),
       mergeMap(() =>
-        this.cashierService.getPaymentMethods().pipe(
+        this.depositsService.getPaymentMethods().pipe(
           map((paymentMethods) =>
-            CashierApiActions.getPaymentMethodsSuccess({
+            DepositsApiActions.getPaymentMethodsSuccess({
               paymentMethods,
             })
           ),
           catchError((error) =>
-            of(CashierApiActions.getPaymentMethodsFailure({ error }))
+            of(DepositsApiActions.getPaymentMethodsFailure({ error }))
           )
         )
       )
@@ -39,7 +39,7 @@ export class CashierEffects {
   navigateToSelectedState$ = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType(CashierPageActions.setSelectedDepositMethod),
+        ofType(DepositsPageActions.setSelectedDepositMethod),
         tap(({ type, id }) => {
           this.router.navigate(['/cashier/deposit/', id]);
         })
@@ -50,15 +50,15 @@ export class CashierEffects {
 
   makeDeposit$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(CashierPageActions.makeDeposit),
+      ofType(DepositsPageActions.makeDeposit),
 
       mergeMap(({ payload }) =>
-        this.cashierService.makeDeposit(payload).pipe(
+        this.depositsService.makeDeposit(payload).pipe(
           map((depositAccount) =>
-            CashierApiActions.makeDepositSuccess({ depositAccount })
+            DepositsApiActions.makeDepositSuccess({ depositAccount })
           ),
           catchError((error) =>
-            of(CashierApiActions.makeDepositFailure({ error }))
+            of(DepositsApiActions.makeDepositFailure({ error }))
           )
         )
       )
@@ -67,12 +67,14 @@ export class CashierEffects {
 
   depositAddAccount$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(CashierPageActions.depositAddAccount),
+      ofType(DepositsPageActions.depositAddAccount),
       mergeMap(({ payload }) =>
-        this.cashierService.depositAddAccount(payload).pipe(
-          map((success) => CashierApiActions.depositAddAccountSuccess(success)),
+        this.depositsService.depositAddAccount(payload).pipe(
+          map((success) =>
+            DepositsApiActions.depositAddAccountSuccess(success)
+          ),
           catchError((error) =>
-            of(CashierApiActions.depositAddAccountFailure({ error }))
+            of(DepositsApiActions.depositAddAccountFailure({ error }))
           )
         )
       )
@@ -81,14 +83,14 @@ export class CashierEffects {
 
   depositUpdateAccount$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(CashierPageActions.depositUpdateAccount),
+      ofType(DepositsPageActions.depositUpdateAccount),
       mergeMap(({ payload }) =>
-        this.cashierService.depositUpdateAccount(payload).pipe(
+        this.depositsService.depositUpdateAccount(payload).pipe(
           map((success) =>
-            CashierApiActions.depositUpdateAccountSuccess(success)
+            DepositsApiActions.depositUpdateAccountSuccess(success)
           ),
           catchError((error) =>
-            of(CashierApiActions.depositUpdateAccountFailure({ error }))
+            of(DepositsApiActions.depositUpdateAccountFailure({ error }))
           )
         )
       )
@@ -97,14 +99,14 @@ export class CashierEffects {
 
   updateUserDepositDetails$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(CashierPageActions.updateUserDepositDetails),
+      ofType(DepositsPageActions.updateUserDepositDetails),
       mergeMap(({ payload }) =>
         this.userService.updateUserInfo(payload).pipe(
           map((success) =>
-            CashierApiActions.updateUserDepositDetailsSuccess(success)
+            DepositsApiActions.updateUserDepositDetailsSuccess(success)
           ),
           catchError((error) =>
-            of(CashierApiActions.updateUserDepositDetailsFailure({ error }))
+            of(DepositsApiActions.updateUserDepositDetailsFailure({ error }))
           )
         )
       )
@@ -113,15 +115,15 @@ export class CashierEffects {
 
   confirmDeposit$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(CashierPageActions.confirmDeposit),
+      ofType(DepositsPageActions.confirmDeposit),
       concatLatestFrom(() => this.store.select(selectTransactionId)),
       mergeMap(([type, transactionId]) =>
-        this.cashierService.confirmDeposit(transactionId).pipe(
+        this.depositsService.confirmDeposit(transactionId).pipe(
           map((confirmedDeposit) =>
-            CashierApiActions.confirmDepositSuccess({ confirmedDeposit })
+            DepositsApiActions.confirmDepositSuccess({ confirmedDeposit })
           ),
           catchError((error) =>
-            of(CashierApiActions.confirmDepositFailure({ error }))
+            of(DepositsApiActions.confirmDepositFailure({ error }))
           )
         )
       )
@@ -131,10 +133,10 @@ export class CashierEffects {
   reloadPaymentMethods$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(
-        CashierApiActions.depositAddAccountSuccess,
-        CashierApiActions.depositUpdateAccountSuccess
+        DepositsApiActions.depositAddAccountSuccess,
+        DepositsApiActions.depositUpdateAccountSuccess
       ),
-      map(() => CashierPageActions.loadPaymentMethods())
+      map(() => DepositsPageActions.loadPaymentMethods())
     );
   });
 }

@@ -1,4 +1,4 @@
-import * as CashierApiActions from './cashier-api.actions';
-import * as CashierPageActions from './cashier-page.actions';
+import * as DepositsApiActions from './deposits-api.actions';
+import * as DepositsPageActions from './deposits-page.actions';
 
-export { CashierApiActions, CashierPageActions };
+export { DepositsApiActions, DepositsPageActions };

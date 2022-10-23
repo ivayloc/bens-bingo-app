@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { PaymentMethod } from 'src/app/shared/models/payment-method';
 import { CashOutStatus } from '../../models/cash-out-status';
-import { PaymentMethod } from '../../models/payment-method';
 import { selectCashOutMethods, selectCashOutStatus } from '../../state';
 import { CashierPageActions } from '../../state/actions';
 

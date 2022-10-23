@@ -10,7 +10,7 @@ export const loadPaymentMethods = createAction(
 );
 
 export const setSelectedDepositMethod = createAction(
-  '[Cashier Page] Set selected deposit method',
+  '[Deposits Page] Set selected deposit method',
   props<{ id: number }>()
 );
 

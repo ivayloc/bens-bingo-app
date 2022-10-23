@@ -15,7 +15,7 @@ import { DepositUpdateAccountRequest } from '../models/deposit-update-account-re
 @Injectable({
   providedIn: 'root',
 })
-export class CashierService {
+export class DepositsService {
   constructor(private http: HttpClient) {}
 
   getPaymentMethods(): Observable<PaymentMethod[]> {

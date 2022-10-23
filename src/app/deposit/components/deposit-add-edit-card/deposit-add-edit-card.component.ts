@@ -10,7 +10,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { PaymentMethod } from '../../../shared/models/payment-method';
 import { PaymentMethodAccount } from '../../models/payment-method-account';
-import { CashierPageActions } from '../../state/actions';
+import { DepositsPageActions } from '../../state/actions';
 
 @Component({
   selector: 'app-deposit-add-edit-card',
@@ -86,10 +86,12 @@ export class DepositAddEditCardComponent implements OnInit {
     if (this.editMode) {
       payload.processorid = this.data.paymentMethod.id;
       payload.accountid = this.data.account.id;
-      this.store.dispatch(CashierPageActions.depositUpdateAccount({ payload }));
+      this.store.dispatch(
+        DepositsPageActions.depositUpdateAccount({ payload })
+      );
     } else {
       payload.paymentmethodid = this.data.paymentMethod.id;
-      this.store.dispatch(CashierPageActions.depositAddAccount({ payload }));
+      this.store.dispatch(DepositsPageActions.depositAddAccount({ payload }));
     }
 
     this.dialogRef.close();

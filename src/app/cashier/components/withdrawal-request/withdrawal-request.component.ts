@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { PaymentMethod } from '../../models/payment-method';
+import { PaymentMethod } from 'src/app/shared/models/payment-method';
 import { selectSelectedCashOutMethod } from '../../state';
 
 @Component({
