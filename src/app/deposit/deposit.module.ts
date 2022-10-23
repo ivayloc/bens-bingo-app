@@ -12,6 +12,8 @@ import { DepositSelectNetellerComponent } from './components/deposit-select-nete
 import { DepositRoutingModule } from './deposit-routing.module';
 import { DepositsEffects } from './state/deposits.effects';
 import { depositsReducer } from './state/deposits.reducers';
+import { DepositMethodAccountsListComponent } from './components/deposit-method-accounts-list/deposit-method-accounts-list.component';
+import { DepositCardCvvComponent } from './components/deposit-card-cvv/deposit-card-cvv.component';
 // import { depositsReducer } from './state/deposits.reducers';
 
 @NgModule({
@@ -20,6 +22,8 @@ import { depositsReducer } from './state/deposits.reducers';
     DepositLayoutComponent,
     DepositSelectCardComponent,
     DepositSelectNetellerComponent,
+    DepositMethodAccountsListComponent,
+    DepositCardCvvComponent,
   ],
   imports: [
     CommonModule,
