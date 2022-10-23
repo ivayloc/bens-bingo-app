@@ -17,7 +17,10 @@ const routes: Routes = [
       {
         path: 'deposit',
         component: DepositComponent,
-        children: [{ path: ':id', component: DepositSelectedMethodComponent }],
+      },
+      {
+        path: 'deposit/:id',
+        component: DepositSelectedMethodComponent,
       },
       {
         path: 'withdrawal',

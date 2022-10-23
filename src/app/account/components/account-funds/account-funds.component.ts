@@ -13,8 +13,8 @@ import { UserCurrency } from '../../models/user-currency';
 })
 export class AccountFundsComponent implements OnInit {
   getUserInfoBalance$ = new Observable<{
-    balance: UserBalance;
-    currency: UserCurrency;
+    balance: UserBalance | null;
+    currency: UserCurrency | null;
   }>();
 
   constructor(private store: Store) {}

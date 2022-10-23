@@ -10,8 +10,6 @@ import { CashierLayoutComponent } from './components/cashier-layout/cashier-layo
 import { DepositAddEditCardComponent } from './components/deposit-add-edit-card/deposit-add-edit-card.component';
 import { DepositLimitComponent } from './components/deposit-limit/deposit-limit.component';
 import { DepositSelectedMethodComponent } from './components/deposit-selected-method/deposit-selected-method.component';
-import { DepositStartComponent } from './components/deposit-start/deposit-start.component';
-import { DepositWtihPaymentMethodComponent } from './components/deposit-wtih-payment-method/deposit-wtih-payment-method.component';
 import { DepositComponent } from './components/deposit/deposit.component';
 import { PaymentMethodComponent } from './components/payment-method/payment-method.component';
 import { PaymentMethodsComponent } from './components/payment-methods/payment-methods.component';
@@ -31,8 +29,6 @@ import { cashierReducer } from './state/cashier.reducers';
     PaymentMethodComponent,
     WithdrawalRequestComponent,
     DepositSelectedMethodComponent,
-    DepositStartComponent,
-    DepositWtihPaymentMethodComponent,
     DepositAddEditCardComponent,
   ],
   imports: [

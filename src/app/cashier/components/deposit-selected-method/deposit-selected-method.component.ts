@@ -82,8 +82,6 @@ export class DepositSelectedMethodComponent implements OnInit {
   ];
   selection = new SelectionModel<PaymentMethodAccount>(false, []);
 
-  // selectedCard = {} as PaymentMethodAccount;
-
   constructor(
     private store: Store,
     private fb: UntypedFormBuilder,
@@ -113,12 +111,6 @@ export class DepositSelectedMethodComponent implements OnInit {
     );
     this.getDepositReceipt$ = this.store.select(selectDepositReceipt);
 
-    // this.accountField.valueChanges
-    //   .pipe(distinctUntilChanged())
-    //   .subscribe((changes) => {
-    //     console.log(changes);
-    //   });
-
     this.selectCard().subscribe();
   }
 
@@ -127,7 +119,6 @@ export class DepositSelectedMethodComponent implements OnInit {
   }
 
   selectCard() {
-    // $event: any, selectedCard: PaymentMethodAccount
     return this.accountField.valueChanges.pipe(
       distinctUntilChanged(),
       tap<PaymentMethodAccount>((selectedCard) => {
@@ -136,10 +127,6 @@ export class DepositSelectedMethodComponent implements OnInit {
         );
       })
     );
-    // if ($event) {
-    //   // this.selectedCard = card;
-
-    // }
   }
 
   checkboxLabel(row?: any): string {

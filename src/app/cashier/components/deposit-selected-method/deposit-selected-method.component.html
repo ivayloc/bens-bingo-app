@@ -5,11 +5,6 @@
     *ngIf="getSelectedDepositMethod$ | async as paymentMethod"
     class="mb-5"
   >
-    <!-- <app-payment-method
-      buttonLabel="Continue"
-      [paymentMethod]="selectedPaymentMethod"
-    ></app-payment-method> -->
-
     <mat-card *ngIf="getSelectedDepositMethod$ | async as paymentMethod">
       <mat-card-title>{{ paymentMethod.name }}</mat-card-title>
 
@@ -48,10 +43,12 @@
               <div [outerHTML]="paymentMethod.description"></div>
             </ng-container>
             <hr class="hr my-4" />
-            <!-- <form [formGroup]="depositForm"> -->
             <mat-form-field appearance="fill">
               <mat-label>Amount</mat-label>
-              <mat-select formControlName="amount">
+              <mat-select
+                formControlName="amount"
+                *ngIf="paymentMethod.amounts"
+              >
                 <mat-option
                   *ngFor="let amount of paymentMethod.amounts?.items"
                   [value]="amount"
@@ -59,13 +56,12 @@
                   {{ amount }}
                 </mat-option>
               </mat-select>
+              <input
+                matInput
+                formControlName="amount"
+                *ngIf="!paymentMethod.amounts"
+              />
             </mat-form-field>
-            <!-- <mat-form-field appearance="fill">
-                <mat-label>Amount</mat-label>
-                <input matInput formControlName="amount" />
-                <div matSuffix>EUR</div>
-              </mat-form-field> -->
-            <!-- </form> -->
           </div>
         </div>
       </mat-card-content>
@@ -185,7 +181,7 @@
             Expiry
           </th>
           <td class="fz-24" mat-cell *matCellDef="let element">
-            {{ element.expmonth }} / {{ element.expyear }}
+            {{ element.expmonth | number: "2.0-0" }} / {{ element.expyear }}
           </td>
         </ng-container>
 

@@ -1,17 +1,3 @@
-<!-- <app-content-box
-  [isFluid]="true"
-  headerText="Repeat Your Last Deposit"
-  class="mb-5"
->
-  <ng-container *ngIf="getPaymentMethods$ | async as paymentMethods">
-    <app-payment-method
-      *ngIf="paymentMethods.length"
-      [paymentMethod]="paymentMethods[0]"
-      buttonLabel="Deposit"
-    ></app-payment-method>
-  </ng-container>
-</app-content-box> -->
-
 <router-outlet></router-outlet>
 
 <app-content-box [isFluid]="true" headerText="Choose a Payment Method">
