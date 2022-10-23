@@ -16,6 +16,6 @@ export interface UpdatedUserInfo {
     state: string;
     zip: string;
   };
-  subscription: UserSubscription;
+  subscription?: UserSubscription;
   signuptype: string;
 }
