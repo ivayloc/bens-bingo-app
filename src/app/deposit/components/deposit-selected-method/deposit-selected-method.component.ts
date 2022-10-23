@@ -13,8 +13,8 @@ import { distinctUntilChanged, Observable, tap } from 'rxjs';
 import { UpdatedUserInfo } from 'src/app/account/models/updated-user-info';
 import { UserInfo } from 'src/app/shared/models/user-info';
 import { selectUserInfo } from 'src/app/state';
+import { PaymentMethod } from '../../../shared/models/payment-method';
 import { DepositReceipt } from '../../models/deposit-receipt';
-import { PaymentMethod } from '../../models/payment-method';
 import { PaymentMethodAccount } from '../../models/payment-method-account';
 import {
   selectDepositReceipt,

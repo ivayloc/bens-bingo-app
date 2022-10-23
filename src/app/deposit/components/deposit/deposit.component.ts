@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { PaymentMethod } from '../../models/payment-method';
-import { selectPaymentMethods } from '../../state';
-import { CashierPageActions } from '../../state/actions';
+import { PaymentMethod } from 'src/app/shared/models/payment-method';
+import { selectPaymentMethods } from '../../../cashier/state';
+import { CashierPageActions } from '../../../cashier/state/actions';
 
 @Component({
   selector: 'app-deposit',

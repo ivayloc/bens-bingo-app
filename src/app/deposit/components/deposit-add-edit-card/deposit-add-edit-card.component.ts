@@ -8,7 +8,7 @@ import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { PaymentMethod } from '../../models/payment-method';
+import { PaymentMethod } from '../../../shared/models/payment-method';
 import { PaymentMethodAccount } from '../../models/payment-method-account';
 import { CashierPageActions } from '../../state/actions';
 

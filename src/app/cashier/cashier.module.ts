@@ -3,14 +3,12 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { DepositComponent } from '../deposit/components/deposit/deposit.component';
 import { SharedModule } from '../shared/shared.module';
 import { CashierRoutingModule } from './cashier-routing.module';
 import { BonusCodeComponent } from './components/bonus-code/bonus-code.component';
 import { CashierLayoutComponent } from './components/cashier-layout/cashier-layout.component';
-import { DepositAddEditCardComponent } from './components/deposit-add-edit-card/deposit-add-edit-card.component';
 import { DepositLimitComponent } from './components/deposit-limit/deposit-limit.component';
-import { DepositSelectedMethodComponent } from './components/deposit-selected-method/deposit-selected-method.component';
-import { DepositComponent } from './components/deposit/deposit.component';
 import { PaymentMethodComponent } from './components/payment-method/payment-method.component';
 import { PaymentMethodsComponent } from './components/payment-methods/payment-methods.component';
 import { WithdrawalRequestComponent } from './components/withdrawal-request/withdrawal-request.component';
@@ -28,8 +26,6 @@ import { cashierReducer } from './state/cashier.reducers';
     PaymentMethodsComponent,
     PaymentMethodComponent,
     WithdrawalRequestComponent,
-    DepositSelectedMethodComponent,
-    DepositAddEditCardComponent,
   ],
   imports: [
     CommonModule,

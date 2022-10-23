@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { catchError, forkJoin, map, mergeMap, of, tap } from 'rxjs';
 import { UserService } from 'src/app/shared/services/user.service';
-import { selectTransactionId } from '.';
 import { CashierService } from '../services/cashier.service';
 import { CashierApiActions, CashierPageActions } from './actions';
 
@@ -17,24 +16,6 @@ export class CashierEffects {
     private userService: UserService,
     private store: Store
   ) {}
-
-  loadPaymentMethods$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(CashierPageActions.loadPaymentMethods),
-      mergeMap(() =>
-        this.cashierService.getPaymentMethods().pipe(
-          map((paymentMethods) =>
-            CashierApiActions.getPaymentMethodsSuccess({
-              paymentMethods,
-            })
-          ),
-          catchError((error) =>
-            of(CashierApiActions.getPaymentMethodsFailure({ error }))
-          )
-        )
-      )
-    );
-  });
 
   loadCashOutMethods$ = createEffect(() => {
     return this.actions$.pipe(
@@ -97,17 +78,11 @@ export class CashierEffects {
   navigateToSelectedState$ = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType(
-          CashierPageActions.setSelectedDepositMethod,
-          CashierPageActions.setSelectedCashOutMethod
-        ),
+        ofType(CashierPageActions.setSelectedCashOutMethod),
         tap(({ type, id }) => {
-          if (type === '[Cashier Page] Set selected deposit method') {
-            this.router.navigate(['/cashier/deposit/', id]);
-          }
-          if (type === '[Cashier Page] Set selected cash-out method') {
-            this.router.navigate(['/cashier/withdrawal/', id]);
-          }
+          // if (type === '[Cashier Page] Set selected cash-out method') {
+          this.router.navigate(['/cashier/withdrawal/', id]);
+          // }
         })
       );
     },
@@ -173,96 +148,6 @@ export class CashierEffects {
           )
         )
       )
-    );
-  });
-
-  makeDeposit$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(CashierPageActions.makeDeposit),
-
-      mergeMap(({ payload }) =>
-        this.cashierService.makeDeposit(payload).pipe(
-          map((depositAccount) =>
-            CashierApiActions.makeDepositSuccess({ depositAccount })
-          ),
-          catchError((error) =>
-            of(CashierApiActions.makeDepositFailure({ error }))
-          )
-        )
-      )
-    );
-  });
-
-  depositAddAccount$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(CashierPageActions.depositAddAccount),
-      mergeMap(({ payload }) =>
-        this.cashierService.depositAddAccount(payload).pipe(
-          map((success) => CashierApiActions.depositAddAccountSuccess(success)),
-          catchError((error) =>
-            of(CashierApiActions.depositAddAccountFailure({ error }))
-          )
-        )
-      )
-    );
-  });
-
-  depositUpdateAccount$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(CashierPageActions.depositUpdateAccount),
-      mergeMap(({ payload }) =>
-        this.cashierService.depositUpdateAccount(payload).pipe(
-          map((success) =>
-            CashierApiActions.depositUpdateAccountSuccess(success)
-          ),
-          catchError((error) =>
-            of(CashierApiActions.depositUpdateAccountFailure({ error }))
-          )
-        )
-      )
-    );
-  });
-
-  updateUserDepositDetails$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(CashierPageActions.updateUserDepositDetails),
-      mergeMap(({ payload }) =>
-        this.userService.updateUserInfo(payload).pipe(
-          map((success) =>
-            CashierApiActions.updateUserDepositDetailsSuccess(success)
-          ),
-          catchError((error) =>
-            of(CashierApiActions.updateUserDepositDetailsFailure({ error }))
-          )
-        )
-      )
-    );
-  });
-
-  confirmDeposit$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(CashierPageActions.confirmDeposit),
-      concatLatestFrom(() => this.store.select(selectTransactionId)),
-      mergeMap(([type, transactionId]) =>
-        this.cashierService.confirmDeposit(transactionId).pipe(
-          map((confirmedDeposit) =>
-            CashierApiActions.confirmDepositSuccess({ confirmedDeposit })
-          ),
-          catchError((error) =>
-            of(CashierApiActions.confirmDepositFailure({ error }))
-          )
-        )
-      )
-    );
-  });
-
-  reloadPaymentMethods$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(
-        CashierApiActions.depositAddAccountSuccess,
-        CashierApiActions.depositUpdateAccountSuccess
-      ),
-      map(() => CashierPageActions.loadPaymentMethods())
     );
   });
 }

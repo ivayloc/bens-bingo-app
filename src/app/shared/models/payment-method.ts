@@ -1,6 +1,6 @@
-import { PaymentMethodAccount } from './payment-method-account';
-import { PaymentMethodAmounts } from './payment-method-amounts';
-import { PaymentMethodDetails } from './payment-method-details';
+import { PaymentMethodAccount } from '../../deposit/models/payment-method-account';
+import { PaymentMethodAmounts } from '../../deposit/models/payment-method-amounts';
+import { PaymentMethodDetails } from '../../deposit/models/payment-method-details';
 
 export interface PaymentMethod {
   accounts?: PaymentMethodAccount[];
