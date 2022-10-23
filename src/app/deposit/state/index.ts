@@ -27,7 +27,7 @@ export const selectSelectedDepositMethodAccountMatData = createSelector(
   selectRouteParams,
   (state, { id }) => {
     const dataSource = state.paymentMethods.find(
-      (method) => method.id === id
+      (method) => method.id === parseInt(id, 10)
     )?.accounts;
 
     return new MatTableDataSource(dataSource);
