@@ -17,7 +17,6 @@ export class DepositLayoutComponent implements OnInit {
   constructor(private store: Store, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.store.dispatch(DepositsPageActions.loadPaymentMethods());
     this.getPaymentMethods$ = this.store.select(selectPaymentMethods);
 
     this.loadSelectedPaymentMethodOnLoad();

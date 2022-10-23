@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { catchError, map, mergeMap, of, tap } from 'rxjs';
+import { catchError, filter, map, mergeMap, of, tap } from 'rxjs';
 import { UserService } from 'src/app/shared/services/user.service';
-import { selectTransactionId } from '.';
+import { selectPaymentMethods, selectTransactionId } from '.';
 import { DepositsService } from '../services/deposits.service';
 import { DepositsApiActions, DepositsPageActions } from './actions';
 
@@ -21,6 +21,8 @@ export class DepositsEffects {
   loadPaymentMethods$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(DepositsPageActions.loadPaymentMethods),
+      concatLatestFrom(() => this.store.select(selectPaymentMethods)),
+      filter(([type, paymentMethods]) => !paymentMethods.length),
       mergeMap(() =>
         this.depositsService.getPaymentMethods().pipe(
           map((paymentMethods) =>
