@@ -11,12 +11,14 @@ import { DepositComponent } from './components/deposit/deposit.component';
 import { DepositRoutingModule } from './deposit-routing.module';
 import { DepositsEffects } from './state/deposits.effects';
 import { depositsReducer } from './state/deposits.reducers';
+import { DepositLayoutComponent } from './components/deposit-layout/deposit-layout.component';
 
 @NgModule({
   declarations: [
     DepositSelectedMethodComponent,
     DepositAddEditCardComponent,
     DepositComponent,
+    DepositLayoutComponent,
   ],
   imports: [
     CommonModule,

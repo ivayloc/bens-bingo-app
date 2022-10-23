@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DepositLayoutComponent } from './components/deposit-layout/deposit-layout.component';
 import { DepositSelectedMethodComponent } from './components/deposit-selected-method/deposit-selected-method.component';
-import { DepositComponent } from './components/deposit/deposit.component';
 
 const routes: Routes = [
-  { path: '', component: DepositComponent },
+  { path: '', component: DepositLayoutComponent },
 
   {
     path: ':id',
