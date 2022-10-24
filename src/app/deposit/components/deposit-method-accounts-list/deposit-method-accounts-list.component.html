@@ -19,8 +19,11 @@
     <ng-container matColumnDef="select">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let row">
-        <!-- <ng-container *ngIf="accounts?.data"> -->
-        <mat-radio-group name="account" [formControl]="accountField">
+        <mat-radio-group
+          name="account"
+          (change)="changed($event.value)"
+          [value]="fieldValue"
+        >
           <mat-radio-button
             [value]="row"
             (click)="$event.stopPropagation()"
@@ -29,7 +32,6 @@
             [value]="row"
           ></mat-radio-button>
         </mat-radio-group>
-        <!-- </ng-container> -->
       </td>
     </ng-container>
 

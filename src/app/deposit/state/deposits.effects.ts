@@ -117,7 +117,7 @@ export class DepositsEffects {
 
   confirmDeposit$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(DepositsPageActions.confirmDeposit),
+      ofType(DepositsApiActions.updateUserDepositDetailsSuccess),
       concatLatestFrom(() => this.store.select(selectTransactionId)),
       mergeMap(([type, transactionId]) =>
         this.depositsService.confirmDeposit(transactionId).pipe(

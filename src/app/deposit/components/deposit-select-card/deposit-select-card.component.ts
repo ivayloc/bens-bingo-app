@@ -107,8 +107,4 @@ export class DepositSelectCardComponent implements OnInit, AfterViewInit {
     };
     this.store.dispatch(DepositsPageActions.makeDeposit({ payload }));
   }
-
-  confirmDeposit() {
-    this.store.dispatch(DepositsPageActions.confirmDeposit());
-  }
 }

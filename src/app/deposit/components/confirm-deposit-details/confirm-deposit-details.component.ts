@@ -6,8 +6,10 @@ import {
 } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable, tap } from 'rxjs';
+import { PaymentMethod } from 'src/app/shared/models/payment-method';
 import { UserInfo } from 'src/app/shared/models/user-info';
 import { selectUserInfo } from 'src/app/state';
+import { selectSelectedDepositMethod } from '../../state';
 import { DepositsPageActions } from '../../state/actions';
 
 @Component({
@@ -16,6 +18,7 @@ import { DepositsPageActions } from '../../state/actions';
   styleUrls: ['./confirm-deposit-details.component.scss'],
 })
 export class ConfirmDepositDetailsComponent implements OnInit {
+  getSelectedDepositMethod$ = new Observable<PaymentMethod | undefined>();
   confirmDepositDetailsForm = this.fb.group({
     userdata: this.fb.group({
       firstname: ['', Validators.required],
@@ -40,20 +43,11 @@ export class ConfirmDepositDetailsComponent implements OnInit {
         this.createUserDetailsForm(userInfo);
       })
     );
-  }
-
-  updateUserDetails() {
-    if (this.confirmDepositDetailsForm.invalid) {
-      return;
-    }
-    const payload: any = this.confirmDepositDetailsForm.getRawValue();
-
-    this.store.dispatch(
-      DepositsPageActions.updateUserDepositDetails({
-        payload,
-      })
+    this.getSelectedDepositMethod$ = this.store.select(
+      selectSelectedDepositMethod
     );
   }
+
   createUserDetailsForm(userInfo: UserInfo) {
     const userdata = this.confirmDepositDetailsForm.get(
       'userdata'
@@ -65,4 +59,21 @@ export class ConfirmDepositDetailsComponent implements OnInit {
       }
     });
   }
+
+  confirmDeposit() {
+    if (this.confirmDepositDetailsForm.invalid) {
+      return;
+    }
+    const payload: any = this.confirmDepositDetailsForm.getRawValue();
+
+    this.store.dispatch(
+      DepositsPageActions.updateUserDepositDetails({
+        payload,
+      })
+    );
+  }
+
+  // confirmDeposit() {
+  //   this.store.dispatch(DepositsPageActions.confirmDeposit());
+  // }
 }

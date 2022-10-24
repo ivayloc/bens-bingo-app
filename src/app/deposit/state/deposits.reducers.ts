@@ -78,6 +78,7 @@ export const depositsReducer = createReducer<DepositsState>(
       return {
         ...state,
         confirmedDeposit,
+        currentDepositStep: DepositSteps.DepositReceipt,
         error: '',
       };
     }

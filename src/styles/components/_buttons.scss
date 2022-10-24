@@ -25,6 +25,11 @@
     text-transform: uppercase;
     transform: skew(20deg);
   }
+
+  &:disabled {
+    background-color: rgba($color: #0d808a, $alpha: 0.65);
+    opacity: 0.65;
+  }
 }
 .btn-secondary {
   background-color: #e833d0;

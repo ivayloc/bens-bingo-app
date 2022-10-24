@@ -49,13 +49,7 @@
       Change method
     </button>
     <div class="px-4 pb-4">
-      <button
-        type="button"
-        class="btn-clear btn-main py-1 mx-2 min-w-auto"
-        (click)="submitDepositAmount()"
-      >
-        <span class="btn-main-text">Continue</span>
-      </button>
+      <ng-content select="[submitButton]"></ng-content>
     </div>
   </mat-card-actions>
 </mat-card>

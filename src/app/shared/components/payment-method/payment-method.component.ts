@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { PaymentMethod } from 'src/app/shared/models/payment-method';
 
 @Component({
@@ -9,12 +9,13 @@ import { PaymentMethod } from 'src/app/shared/models/payment-method';
 export class PaymentMethodComponent {
   @Input() paymentMethod = {} as PaymentMethod;
   @Input() buttonLabel = '';
-  @Output() submittedDepositAmount = new EventEmitter<PaymentMethod>();
-  showCardsStep = false;
+  // @Input() disableButton= false;
+  // @Output() submittedDepositAmount = new EventEmitter<PaymentMethod>();
+  // showCardsStep = false;
 
   constructor() {}
 
-  submitDepositAmount() {
-    this.submittedDepositAmount.emit();
-  }
+  // submitDepositAmount() {
+  //   this.submittedDepositAmount.emit();
+  // }
 }

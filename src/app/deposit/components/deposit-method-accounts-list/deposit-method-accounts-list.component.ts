@@ -1,5 +1,5 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
@@ -27,7 +27,7 @@ import { DepositAddEditCardComponent } from '../deposit-add-edit-card/deposit-ad
   ],
 })
 export class DepositMethodAccountsListComponent
-  implements OnInit, AfterViewInit, ControlValueAccessor
+  implements OnInit, ControlValueAccessor
 {
   @Input() accounts!: MatTableDataSource<PaymentMethodAccount>;
   @Input() paymentMethod!: PaymentMethod;
@@ -42,6 +42,7 @@ export class DepositMethodAccountsListComponent
     'expiry',
     'action',
   ];
+  fieldValue!: PaymentMethodAccount;
   selection = new SelectionModel<PaymentMethodAccount>(false, []);
   onChange!: (val: any) => void;
   onTouched!: () => void;
@@ -53,8 +54,7 @@ export class DepositMethodAccountsListComponent
   ) {}
 
   ngOnInit(): void {
-    // this.selectCard().subscribe();
-    this.accountField.setValue(this.accounts?.data[0]);
+    this.fieldValue = this.accounts?.data[0];
   }
 
   editCardDetails(paymentMethod: PaymentMethod, account: PaymentMethodAccount) {
@@ -93,7 +93,7 @@ export class DepositMethodAccountsListComponent
   }
 
   writeValue(selectedCard: PaymentMethodAccount): void {
-    this.accountField.setValue(selectedCard);
+    this.fieldValue = selectedCard;
   }
   registerOnChange(fn: any): void {
     this.onChange = fn;
@@ -101,17 +101,10 @@ export class DepositMethodAccountsListComponent
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
-  ngAfterViewInit(): void {
-    this.accountField.valueChanges
-      .pipe(distinctUntilChanged())
-      .subscribe((selectedCard) => {
-        if (!selectedCard) {
-          return;
-        }
-        this.store.dispatch(
-          DepositsPageActions.depositSelectedCard({ selectedCard })
-        );
-        this.onChange(selectedCard);
-      });
+  changed(selectedCard: PaymentMethodAccount) {
+    this.store.dispatch(
+      DepositsPageActions.depositSelectedCard({ selectedCard })
+    );
+    this.onChange(selectedCard);
   }
 }
