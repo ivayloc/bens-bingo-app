@@ -5,17 +5,19 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { AngularMaterialModule } from '../shared/modules/angular-material.module';
 import { SharedModule } from '../shared/shared.module';
+import { ConfirmDepositDetailsComponent } from './components/confirm-deposit-details/confirm-deposit-details.component';
 import { DepositAddEditCardComponent } from './components/deposit-add-edit-card/deposit-add-edit-card.component';
+import { DepositCardCvvComponent } from './components/deposit-card-cvv/deposit-card-cvv.component';
 import { DepositLayoutComponent } from './components/deposit-layout/deposit-layout.component';
+import { DepositMethodAccountsListComponent } from './components/deposit-method-accounts-list/deposit-method-accounts-list.component';
+import { DepositMethodNetellerAccountsListComponent } from './components/deposit-method-neteller-accounts-list/deposit-method-neteller-accounts-list.component';
+import { DepositReceiptComponent } from './components/deposit-receipt/deposit-receipt.component';
 import { DepositSelectCardComponent } from './components/deposit-select-card/deposit-select-card.component';
 import { DepositSelectNetellerComponent } from './components/deposit-select-neteller/deposit-select-neteller.component';
 import { DepositRoutingModule } from './deposit-routing.module';
 import { DepositsEffects } from './state/deposits.effects';
 import { depositsReducer } from './state/deposits.reducers';
-import { DepositMethodAccountsListComponent } from './components/deposit-method-accounts-list/deposit-method-accounts-list.component';
-import { DepositCardCvvComponent } from './components/deposit-card-cvv/deposit-card-cvv.component';
-import { ConfirmDepositDetailsComponent } from './components/confirm-deposit-details/confirm-deposit-details.component';
-import { DepositReceiptComponent } from './components/deposit-receipt/deposit-receipt.component';
+import { DepositAddEditNetellerComponent } from './components/deposit-add-edit-neteller/deposit-add-edit-neteller.component';
 // import { depositsReducer } from './state/deposits.reducers';
 
 @NgModule({
@@ -28,6 +30,8 @@ import { DepositReceiptComponent } from './components/deposit-receipt/deposit-re
     DepositCardCvvComponent,
     ConfirmDepositDetailsComponent,
     DepositReceiptComponent,
+    DepositMethodNetellerAccountsListComponent,
+    DepositAddEditNetellerComponent,
   ],
   imports: [
     CommonModule,

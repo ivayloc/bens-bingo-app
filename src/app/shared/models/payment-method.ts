@@ -6,6 +6,7 @@ export interface PaymentMethod {
   accounts?: PaymentMethodAccount[];
   amounts?: PaymentMethodAmounts;
   default?: number;
+  account_type?: string;
   description: string;
   details: PaymentMethodDetails[];
   id: number;

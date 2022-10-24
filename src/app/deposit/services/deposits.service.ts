@@ -9,8 +9,6 @@ import { ConfirmedDepositResponse } from '../../deposit/models/confirmed-deposit
 import { PaymentMethod } from '../../shared/models/payment-method';
 import { DepositAccount } from '../models/deposit-account';
 import { DepositActionPayload } from '../models/deposit-action-payload';
-import { DepositAddAccountRequest } from '../models/deposit-add-account-request';
-import { DepositUpdateAccountRequest } from '../models/deposit-update-account-request';
 
 @Injectable({
   providedIn: 'root',
@@ -40,18 +38,16 @@ export class DepositsService {
       .pipe(map(({ data }) => data));
   }
 
-  depositAddAccount(payload: DepositAddAccountRequest): Observable<Success> {
+  depositAddAccount(payload: any): Observable<Success> {
     return this.http
       .post<ResponseOf<Success>>(
-        `${environment.apiDomainUser}/deposit/processor/${payload.paymentmethodid}/account`,
+        `${environment.apiDomainUser}/deposit/processor/${payload.processorid}/account`,
         payload
       )
       .pipe(map(({ data }) => data));
   }
 
-  depositUpdateAccount(
-    payload: DepositUpdateAccountRequest
-  ): Observable<Success> {
+  depositUpdateAccount(payload: any): Observable<Success> {
     return this.http
       .put<ResponseOf<Success>>(
         `${environment.apiDomainUser}/deposit/processor/${payload.processorid}/account/${payload.accountid}`,

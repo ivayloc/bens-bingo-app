@@ -20,7 +20,9 @@ export class DepositLayoutComponent implements OnInit {
     this.getPaymentMethods$ = this.store.select(selectPaymentMethods);
   }
 
-  selectPaymentMethod({ id }: PaymentMethod) {
-    this.store.dispatch(DepositsPageActions.setSelectedDepositMethod({ id }));
+  selectPaymentMethod(paymentMethod: PaymentMethod) {
+    this.store.dispatch(
+      DepositsPageActions.selectPaymentMethod({ paymentMethod })
+    );
   }
 }

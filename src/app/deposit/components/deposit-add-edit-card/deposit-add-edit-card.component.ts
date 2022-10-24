@@ -90,7 +90,7 @@ export class DepositAddEditCardComponent implements OnInit {
         DepositsPageActions.depositUpdateAccount({ payload })
       );
     } else {
-      payload.paymentmethodid = this.data.paymentMethod.id;
+      payload.processorid = this.data.paymentMethod.id;
       this.store.dispatch(DepositsPageActions.depositAddAccount({ payload }));
     }
 

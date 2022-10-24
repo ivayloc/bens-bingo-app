@@ -32,6 +32,16 @@ export const depositAddAccountFailure = createAction(
   props<{ error: string }>()
 );
 
+export const depositAddNetellerAccountSuccess = createAction(
+  '[Deposits/Deposit API] Add Neteller account to payment method Success',
+  props<{ success: boolean }>()
+);
+
+export const depositAddNetellerAccountFailure = createAction(
+  '[Deposits/Deposit API] Add Neteller account to payment method Failure',
+  props<{ error: string }>()
+);
+
 export const depositUpdateAccountSuccess = createAction(
   '[Deposits/Deposit API] Update account to payment method Success',
   props<{ success: boolean }>()
@@ -39,6 +49,16 @@ export const depositUpdateAccountSuccess = createAction(
 
 export const depositUpdateAccountFailure = createAction(
   '[Deposits/Deposit API] Update account to payment method Failure',
+  props<{ error: string }>()
+);
+
+export const depositUpdateNetellerAccountSuccess = createAction(
+  '[Deposits/Deposit API] Update Neteller account to payment method Success',
+  props<{ success: boolean }>()
+);
+
+export const depositUpdateNetellerAccountFailure = createAction(
+  '[Deposits/Deposit API] Update Neteller account to payment method Failure',
   props<{ error: string }>()
 );
 

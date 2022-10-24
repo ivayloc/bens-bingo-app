@@ -41,9 +41,17 @@ export class DepositsEffects {
   navigateToSelectedState$ = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType(DepositsPageActions.setSelectedDepositMethod),
-        tap(({ id }) => {
-          this.router.navigate(['/cashier/deposit/card', id]);
+        ofType(DepositsPageActions.selectPaymentMethod),
+        tap(({ paymentMethod }) => {
+          if (paymentMethod.account_type === 'creditcard') {
+            this.router.navigate(['/cashier/deposit/card', paymentMethod.id]);
+          }
+          if (paymentMethod.account_type === 'netelleremail') {
+            this.router.navigate([
+              '/cashier/deposit/neteller',
+              paymentMethod.id,
+            ]);
+          }
         })
       );
     },
@@ -82,6 +90,21 @@ export class DepositsEffects {
       )
     );
   });
+  depositAddNetellerAccount$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(DepositsPageActions.depositAddNetellerAccount),
+      mergeMap(({ payload }) =>
+        this.depositsService.depositAddAccount(payload).pipe(
+          map((success) =>
+            DepositsApiActions.depositAddNetellerAccountSuccess(success)
+          ),
+          catchError((error) =>
+            of(DepositsApiActions.depositAddNetellerAccountFailure({ error }))
+          )
+        )
+      )
+    );
+  });
 
   depositUpdateAccount$ = createEffect(() => {
     return this.actions$.pipe(
@@ -93,6 +116,24 @@ export class DepositsEffects {
           ),
           catchError((error) =>
             of(DepositsApiActions.depositUpdateAccountFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  depositUpdateNetellerAccount$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(DepositsPageActions.depositUpdateNetellerAccount),
+      mergeMap(({ payload }) =>
+        this.depositsService.depositUpdateAccount(payload).pipe(
+          map((success) =>
+            DepositsApiActions.depositUpdateNetellerAccountSuccess(success)
+          ),
+          catchError((error) =>
+            of(
+              DepositsApiActions.depositUpdateNetellerAccountFailure({ error })
+            )
           )
         )
       )
@@ -136,9 +177,22 @@ export class DepositsEffects {
     return this.actions$.pipe(
       ofType(
         DepositsApiActions.depositAddAccountSuccess,
-        DepositsApiActions.depositUpdateAccountSuccess
+        DepositsApiActions.depositUpdateAccountSuccess,
+        DepositsApiActions.depositAddNetellerAccountSuccess,
+        DepositsApiActions.depositUpdateNetellerAccountSuccess
       ),
-      map(() => DepositsPageActions.loadPaymentMethods())
+      mergeMap(() =>
+        this.depositsService.getPaymentMethods().pipe(
+          map((paymentMethods) =>
+            DepositsApiActions.getPaymentMethodsSuccess({
+              paymentMethods,
+            })
+          ),
+          catchError((error) =>
+            of(DepositsApiActions.getPaymentMethodsFailure({ error }))
+          )
+        )
+      )
     );
   });
 }

@@ -1,0 +1,42 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <app-content-box [headerText]="dialogTitle">
+      <form
+        [formGroup]="netellerAccountForm"
+        class="fz-24 px-5"
+        (ngSubmit)="submit()"
+      >
+        <mat-form-field class="d-block mb-4" appearance="fill">
+          <mat-label>Account Email</mat-label>
+          <input
+            matInput
+            formControlName="accountnumber"
+            autocomplete="email"
+          />
+          <mat-hint>(Neteller account email)</mat-hint>
+        </mat-form-field>
+        <mat-form-field class="d-block mb-4" appearance="fill">
+          <mat-label>Secure ID</mat-label>
+          <input matInput formControlName="id" type="number" />
+          <mat-hint>(6 Digit Number)</mat-hint>
+        </mat-form-field>
+
+        <div class="text-center">
+          <button
+            type="button"
+            class="btn btn-link fz-22 mx-4"
+            (click)="cancel()"
+          >
+            Cancel
+          </button>
+          <button class="btn-clear btn-main py-1 mx-2 min-w-auto">
+            <span class="btn-main-text">
+              <ng-container *ngIf="!editMode">Add</ng-container>
+              <ng-container *ngIf="editMode">Save</ng-container></span
+            >
+          </button>
+        </div>
+      </form>
+    </app-content-box>
+  </div>
+</div>

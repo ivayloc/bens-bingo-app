@@ -102,5 +102,15 @@ export const depositsReducer = createReducer<DepositsState>(
         error: '',
       };
     }
+  ),
+  on(
+    DepositsPageActions.selectPaymentMethod,
+    (state, action): DepositsState => {
+      return {
+        ...state,
+        currentDepositStep: DepositSteps.SelectDepositAmount,
+        error: '',
+      };
+    }
   )
 );
