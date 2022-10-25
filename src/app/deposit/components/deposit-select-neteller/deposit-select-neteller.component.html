@@ -1,5 +1,8 @@
 <ng-container *ngIf="getCurrentDepositStep$ | async as currentDepositStep">
-  <form [formGroup]="depositForm">
+  <form
+    [formGroup]="depositForm"
+    *ngIf="getSelectedDepositMethod$ | async as paymentMethod"
+  >
     <app-content-box
       [headerText]="'Pay with ' + paymentMethod.name"
       class="mb-5"
@@ -32,7 +35,6 @@
     <ng-container *ngIf="currentDepositStep === depositSteps.ChooseDepositCard">
       <app-content-box
         [isFluid]="true"
-        *ngIf="getSelectedDepositMethod$ | async as paymentMethod"
         class="my-5"
         [headerText]="'Choose a ' + paymentMethod.name + ' Account'"
       >
@@ -45,6 +47,12 @@
             [accounts]="accounts"
           ></app-deposit-method-neteller-accounts-list>
         </ng-container>
+        <button
+          class="btn-clear btn-main py-1 mx-2 min-w-auto"
+          (click)="submitDeposit(paymentMethod.id)"
+        >
+          <span class="btn-main-text">Confirm Deposit</span>
+        </button>
       </app-content-box>
     </ng-container>
   </form>

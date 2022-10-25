@@ -93,4 +93,13 @@ export class DepositSelectNetellerComponent implements OnInit, AfterViewInit {
   submitDepositAmount() {
     this.store.dispatch(DepositsPageActions.submitDepositAmount());
   }
+
+  submitDeposit(processorid: number) {
+    const payload = {
+      processorid,
+      accountid: this.accountField.value.id,
+      amount: this.depositAmountField.value,
+    };
+    this.store.dispatch(DepositsPageActions.makeDeposit({ payload }));
+  }
 }

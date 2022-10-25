@@ -3,4 +3,5 @@ export enum DepositSteps {
   ChooseDepositCard = 2,
   ConfirmDepositDetails = 3,
   DepositReceipt = 4,
+  Iframe = 5,
 }
