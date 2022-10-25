@@ -14,11 +14,11 @@
                     "
                   >
                     <ng-container
-                      *ngIf="userProfilePicture.base64; else missingImage"
+                      *ngIf="userProfilePicture.src; else missingImage"
                     >
                       <img
                         class="img-fluid"
-                        [src]="userProfilePicture.base64"
+                        [src]="userProfilePicture.src"
                         alt=""
                         srcset=""
                       />

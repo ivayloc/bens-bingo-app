@@ -14,12 +14,10 @@
                   getSelectedUserProfilePicture$ | async as userProfilePicture
                 "
               >
-                <ng-container
-                  *ngIf="userProfilePicture.base64; else missingImage"
-                >
+                <ng-container *ngIf="userProfilePicture.src; else missingImage">
                   <img
                     width="172"
-                    [src]="userProfilePicture.base64"
+                    [src]="userProfilePicture.src"
                     alt=""
                     srcset=""
                   />

@@ -116,7 +116,7 @@ export class AccountService {
   showUserProfile(friendalias: string): Observable<UserProfile> {
     return this.http
       .get<ResponseOf<UserProfile>>(
-        `${environment.apiDomain}/profile/${friendalias}`
+        `${environment.apiDomain}/user/${friendalias}/profile`
       )
       .pipe(map(({ data }) => data));
   }
@@ -179,7 +179,7 @@ export class AccountService {
   getUserProfilePicture(alias: string): Observable<UserProfilePicture> {
     return this.http
       .get<ResponseOf<UserProfilePicture>>(
-        `${environment.apiDomain}/profilepicture/${alias}/bigsquare`
+        `${environment.apiDomain}/user/${alias}/profilepicture/bigsquare`
       )
       .pipe(map(({ data }) => data));
   }
