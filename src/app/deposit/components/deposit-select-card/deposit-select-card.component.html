@@ -1,92 +1,110 @@
-<ng-container *ngIf="getCurrentDepositStep$ | async as currentDepositStep">
-  <form [formGroup]="depositForm">
-    <app-content-box
-      [headerText]="'Pay with ' + paymentMethod.name"
-      class="mb-5"
-      [isFluid]="true"
-      *ngIf="getSelectedDepositMethod$ | async as paymentMethod"
-    >
-      <app-payment-method [paymentMethod]="paymentMethod">
-        <!-- (submittedDepositAmount)="submitDepositAmount()" -->
-        <mat-form-field appearance="fill">
-          <mat-label>Amount</mat-label>
-          <mat-select formControlName="amount" *ngIf="paymentMethod.amounts">
-            <mat-option
-              *ngFor="let amount of paymentMethod.amounts?.items"
-              [value]="amount"
-            >
-              {{ amount }}
-            </mat-option>
-          </mat-select>
-          <input
-            matInput
-            formControlName="amount"
-            *ngIf="!paymentMethod.amounts"
-          />
-        </mat-form-field>
-
-        <button
-          *ngIf="currentDepositStep === depositSteps.SelectDepositAmount"
-          submitButton
-          type="button"
-          class="btn-clear btn-main py-1 mx-2 min-w-auto"
-          (click)="submitDepositAmount()"
-        >
-          <span class="btn-main-text">Continue</span>
-        </button>
-      </app-payment-method>
-    </app-content-box>
-    <div id="scrollToAnchor" #scrollToAnchor></div>
-
-    <ng-container *ngIf="currentDepositStep === depositSteps.ChooseDepositCard">
+<ng-container *ngIf="getSelectedDepositMethod$ | async as paymentMethod">
+  <ng-container *ngIf="getCurrentDepositStep$ | async as currentDepositStep">
+    <form [formGroup]="depositForm">
       <app-content-box
-        [isFluid]="true"
-        *ngIf="getSelectedDepositMethod$ | async as paymentMethod"
-        class="my-5"
-        [headerText]="'Choose a ' + paymentMethod.name + ' Card'"
-      >
-        <ng-container
-          *ngIf="getSelectedDepositMethodAccounts$ | async as accounts"
-        >
-          <app-deposit-method-accounts-list
-            formControlName="account"
-            [paymentMethod]="paymentMethod"
-            [accounts]="accounts"
-          ></app-deposit-method-accounts-list>
-        </ng-container>
-      </app-content-box>
-
-      <app-content-box
-        [isFluid]="true"
-        headerText="CVV"
+        [headerText]="'Pay with ' + paymentMethod.name"
         class="mb-5"
-        *ngIf="getSelectedDepositMethod$ | async as paymentMethod"
+        [isFluid]="true"
       >
-        <app-deposit-card-cvv
-          formControlName="cvv"
-          [paymentMethod]="paymentMethod"
-        ></app-deposit-card-cvv>
-        <div class="text-center">
+        <app-payment-method [paymentMethod]="paymentMethod">
+          <mat-form-field appearance="fill">
+            <mat-label>Amount</mat-label>
+            <mat-select formControlName="amount" *ngIf="paymentMethod.amounts">
+              <mat-option
+                *ngFor="let amount of paymentMethod.amounts?.items"
+                [value]="amount"
+              >
+                {{ amount }}
+              </mat-option>
+            </mat-select>
+            <input
+              matInput
+              formControlName="amount"
+              *ngIf="!paymentMethod.amounts"
+              type="number"
+            />
+          </mat-form-field>
+
           <button
+            *ngIf="
+              currentDepositStep === depositSteps.SelectDepositAmount &&
+              paymentMethod.accounts?.length
+            "
+            submitButton
+            type="button"
+            class="btn-clear btn-main py-1 mx-2 min-w-auto"
+            (click)="submitDepositAmount(paymentMethod)"
+          >
+            <span class="btn-main-text">Continue</span>
+          </button>
+          <button
+            *ngIf="
+              currentDepositStep === depositSteps.SelectDepositAmount &&
+              !paymentMethod.accounts?.length
+            "
+            submitButton
             type="button"
             class="btn-clear btn-main py-1 mx-2 min-w-auto"
             (click)="submitDeposit(paymentMethod.id)"
           >
             <span class="btn-main-text">Continue</span>
           </button>
-        </div>
+        </app-payment-method>
       </app-content-box>
+      <div id="scrollToAnchor" #scrollToAnchor></div>
+
+      <ng-container
+        *ngIf="currentDepositStep === depositSteps.ChooseDepositCard"
+      >
+        <app-deposit-method-accounts-list
+          formControlName="account"
+        ></app-deposit-method-accounts-list>
+
+        <ng-container
+          *ngIf="
+            paymentMethod?.account?.params &&
+            paymentMethod.account.params['cvv']
+          "
+        >
+          <app-content-box [isFluid]="true" headerText="CVV" class="mb-5">
+            <app-deposit-card-cvv
+              formControlName="cvv"
+              [paymentMethod]="paymentMethod"
+            ></app-deposit-card-cvv>
+          </app-content-box>
+        </ng-container>
+
+        <ng-container
+          *ngIf="
+            paymentMethod.account_type === paymentMethodTypes.NetellerEmail ||
+            paymentMethod.account_type === paymentMethodTypes.Neteller
+          "
+        >
+          <app-deposit-method-neteller-accounts-list></app-deposit-method-neteller-accounts-list>
+        </ng-container>
+
+        <div
+          class="text-center"
+          *ngIf="getSelectedAccountId$ | async as accountId"
+        >
+          <button
+            type="button"
+            class="btn-clear btn-main py-1 mx-2 min-w-auto"
+            (click)="submitDeposit(paymentMethod.id, accountId)"
+          >
+            <span class="btn-main-text">Continue</span>
+          </button>
+        </div>
+      </ng-container>
+    </form>
+
+    <ng-container
+      *ngIf="currentDepositStep === depositSteps.ConfirmDepositDetails"
+    >
+      <app-confirm-deposit-details></app-confirm-deposit-details>
     </ng-container>
-  </form>
 
-  <ng-container
-    *ngIf="currentDepositStep === depositSteps.ConfirmDepositDetails"
-  >
-    <app-confirm-deposit-details></app-confirm-deposit-details>
-  </ng-container>
-
-  <ng-container *ngIf="currentDepositStep === depositSteps.DepositReceipt">
-    <ng-container *ngIf="getSelectedDepositMethod$ | async as paymentMethod">
+    <ng-container *ngIf="currentDepositStep === depositSteps.DepositReceipt">
       <app-deposit-receipt
         [paymentMethod]="paymentMethod"
       ></app-deposit-receipt>

@@ -1,3 +1,5 @@
+import { DepositAccountForm } from './deposit-account-form';
+
 export interface DepositAccount {
   transactionId: number;
   message: string;
@@ -27,4 +29,5 @@ export interface DepositAccount {
       }[];
     };
   };
+  form: DepositAccountForm;
 }

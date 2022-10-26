@@ -8,9 +8,13 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
-import { distinctUntilChanged, tap } from 'rxjs';
+import { distinctUntilChanged, Observable, tap } from 'rxjs';
 import { PaymentMethod } from 'src/app/shared/models/payment-method';
 import { PaymentMethodAccount } from '../../models/payment-method-account';
+import {
+  selectSelectedDepositMethod,
+  selectSelectedDepositMethodAccountMatData,
+} from '../../state';
 import { DepositsPageActions } from '../../state/actions';
 import { DepositAddEditCardComponent } from '../deposit-add-edit-card/deposit-add-edit-card.component';
 
@@ -33,7 +37,6 @@ export class DepositMethodAccountsListComponent
   @Input() paymentMethod!: PaymentMethod;
 
   accountField = this.fb.control({} as PaymentMethodAccount);
-
   displayedColumns = [
     'select',
     'type',
@@ -46,6 +49,10 @@ export class DepositMethodAccountsListComponent
   selection = new SelectionModel<PaymentMethodAccount>(false, []);
   onChange!: (val: any) => void;
   onTouched!: () => void;
+  getSelectedDepositMethodAccounts$ = new Observable<
+    MatTableDataSource<PaymentMethodAccount>
+  >();
+  getSelectedDepositMethod$ = new Observable<PaymentMethod | undefined>();
 
   constructor(
     private dialog: MatDialog,
@@ -54,7 +61,13 @@ export class DepositMethodAccountsListComponent
   ) {}
 
   ngOnInit(): void {
-    this.fieldValue = this.accounts?.data[0];
+    this.getSelectedDepositMethodAccounts$ = this.store.select(
+      selectSelectedDepositMethodAccountMatData
+    );
+
+    this.getSelectedDepositMethod$ = this.store.select(
+      selectSelectedDepositMethod
+    );
   }
 
   editCardDetails(paymentMethod: PaymentMethod, account: PaymentMethodAccount) {
@@ -70,9 +83,11 @@ export class DepositMethodAccountsListComponent
   selectCard() {
     return this.accountField.valueChanges.pipe(
       distinctUntilChanged(),
-      tap((selectedCard) => {
+      tap((selectedAccount) => {
         this.store.dispatch(
-          DepositsPageActions.depositSelectedCard({ selectedCard })
+          DepositsPageActions.depositSelectedAccount({
+            selectedAccount,
+          })
         );
       })
     );
@@ -92,8 +107,8 @@ export class DepositMethodAccountsListComponent
     });
   }
 
-  writeValue(selectedCard: PaymentMethodAccount): void {
-    this.fieldValue = selectedCard;
+  writeValue(selectedAccount: PaymentMethodAccount): void {
+    this.fieldValue = selectedAccount;
   }
   registerOnChange(fn: any): void {
     this.onChange = fn;
@@ -101,10 +116,12 @@ export class DepositMethodAccountsListComponent
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
-  changed(selectedCard: PaymentMethodAccount) {
+  changed(selectedAccount: PaymentMethodAccount) {
     this.store.dispatch(
-      DepositsPageActions.depositSelectedCard({ selectedCard })
+      DepositsPageActions.depositSelectedAccount({
+        selectedAccount,
+      })
     );
-    this.onChange(selectedCard);
+    this.onChange(selectedAccount);
   }
 }

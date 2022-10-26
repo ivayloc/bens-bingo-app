@@ -43,15 +43,15 @@ export class DepositsEffects {
       return this.actions$.pipe(
         ofType(DepositsPageActions.selectPaymentMethod),
         tap(({ paymentMethod }) => {
-          if (paymentMethod.account_type === 'creditcard') {
-            this.router.navigate(['/cashier/deposit/card', paymentMethod.id]);
-          }
-          if (paymentMethod.account_type === 'netelleremail') {
-            this.router.navigate([
-              '/cashier/deposit/neteller',
-              paymentMethod.id,
-            ]);
-          }
+          // if (paymentMethod.account_type === 'creditcard') {
+          this.router.navigate(['/cashier/deposit/card', paymentMethod.id]);
+          // }
+          // if (paymentMethod.account_type === 'netelleremail') {
+          //   this.router.navigate([
+          //     '/cashier/deposit/neteller',
+          //     paymentMethod.id,
+          //   ]);
+          // }
         })
       );
     },

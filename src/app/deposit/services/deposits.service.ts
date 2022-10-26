@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 import { ConfirmedDepositResponse } from '../../deposit/models/confirmed-deposit-response';
 import { PaymentMethod } from '../../shared/models/payment-method';
 import { DepositAccount } from '../models/deposit-account';
+import { DepositAccountForm } from '../models/deposit-account-form';
 import { DepositActionPayload } from '../models/deposit-action-payload';
 
 @Injectable({
@@ -30,9 +31,13 @@ export class DepositsService {
     amount,
     cvv,
   }: DepositActionPayload): Observable<DepositAccount> {
+    let accountIdVariable = `/account/${accountid}`;
+    if (!accountid) {
+      accountIdVariable = '';
+    }
     return this.http
       .post<ResponseOf<DepositAccount>>(
-        `${environment.apiDomainUser}/deposit/processor/${processorid}/account/${accountid}`,
+        `${environment.apiDomainUser}/deposit/processor/${processorid}${accountIdVariable}`,
         { amount, cvv2: cvv }
       )
       .pipe(map(({ data }) => data));
@@ -62,5 +67,15 @@ export class DepositsService {
         `${environment.apiDomainUser}/transaction/${transactionId}`
       )
       .pipe(map(({ data }) => data));
+  }
+
+  submitFormData(form: DepositAccountForm): Observable<any> {
+    const formData = new FormData();
+
+    form.items.forEach(({ name, value }) => {
+      formData.append(name, value.toString());
+    });
+
+    return this.http.post<any>(form.action, formData);
   }
 }

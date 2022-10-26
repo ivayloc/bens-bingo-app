@@ -1,120 +1,131 @@
-<div class="text-end mb-4">
-  <button
-    type="button"
-    class="btn-clear btn-main btn-sm py-1 mx-2 min-w-auto"
-    (click)="addDepositAccount(paymentMethod)"
-  >
-    <span class="btn-main-text">Add new {{ paymentMethod.name }} Card</span>
-  </button>
-</div>
-
-<ng-container *ngIf="accounts?.data?.length; else noAccounts">
-  <table
-    mat-table
-    aria-describedby="aa"
-    [dataSource]="accounts"
-    class="mat-elevation-z8 w-100"
-  >
-    <!-- select Column -->
-    <ng-container matColumnDef="select">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let row">
-        <mat-radio-group
-          name="account"
-          (change)="changed($event.value)"
-          [value]="fieldValue"
-        >
-          <mat-radio-button
-            [value]="row"
-            (click)="$event.stopPropagation()"
-            (change)="selectCard()"
-            [attr.aria-label]="checkboxLabel(row)"
-            [value]="row"
-          ></mat-radio-button>
-        </mat-radio-group>
-      </td>
-    </ng-container>
-
-    <!-- Number Column -->
-    <ng-container matColumnDef="number">
-      <th
-        mat-header-cell
-        class="fz-24"
-        *matHeaderCellDef
-        sortActionDescription="Sort by Number"
-      >
-        Number
-      </th>
-      <td class="fz-24" mat-cell *matCellDef="let element">
-        {{ element.masked_accountnumber }}
-      </td>
-    </ng-container>
-
-    <!-- type Column-->
-    <ng-container matColumnDef="type">
-      <th
-        mat-header-cell
-        class="fz-24"
-        *matHeaderCellDef
-        sortActionDescription="Sort by type"
-      >
-        Type
-      </th>
-      <td class="fz-24" mat-cell *matCellDef="let element">
-        {{ element.method }}
-      </td>
-    </ng-container>
-    <!-- nameOnCard Column-->
-    <ng-container matColumnDef="nameOnCard">
-      <th
-        mat-header-cell
-        class="fz-24"
-        *matHeaderCellDef
-        sortActionDescription="Sort by nameOnCard"
-      >
-        Name On Card
-      </th>
-      <td class="fz-24" mat-cell *matCellDef="let element">
-        {{ element.nameoncard }}
-      </td>
-    </ng-container>
-    <!-- Expiry Column-->
-    <ng-container matColumnDef="expiry">
-      <th
-        mat-header-cell
-        class="fz-24"
-        *matHeaderCellDef
-        sortActionDescription="Sort by expiry"
-      >
-        Expiry
-      </th>
-      <td class="fz-24" mat-cell *matCellDef="let element">
-        {{ element.expmonth | number: "2.0-0" }} / {{ element.expyear }}
-      </td>
-    </ng-container>
-
-    <!-- action Column -->
-    <ng-container matColumnDef="action">
-      <th
-        mat-header-cell
-        class="fz-24 text-end"
-        *matHeaderCellDef
-        sortActionDescription="Sort by action"
-      >
-        Action
-      </th>
-      <td class="fz-24 text-end" mat-cell *matCellDef="let element">
-        <button
-          type="button"
-          class="btn-clear btn-main btn-sm min-w-auto"
-          (click)="editCardDetails(paymentMethod, element)"
-        >
-          <span class="btn-main-text">Edit</span>
-        </button>
-      </td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
+<ng-container *ngIf="getSelectedDepositMethodAccounts$ | async as accounts">
+  <ng-container *ngIf="getSelectedDepositMethod$ | async as paymentMethod">
+    <app-content-box
+      *ngIf="accounts.data.length"
+      [isFluid]="true"
+      class="my-5"
+      [headerText]="'Choose a ' + paymentMethod.name + ' Card'"
+    >
+      <ng-container>
+        <div class="text-end mb-4">
+          <button
+            type="button"
+            class="btn-clear btn-main btn-sm py-1 mx-2 min-w-auto"
+            (click)="addDepositAccount(paymentMethod)"
+          >
+            <span class="btn-main-text"
+              >Add new {{ paymentMethod.name }} Card</span
+            >
+          </button>
+        </div>
+        <ng-container *ngIf="accounts?.data?.length; else noAccounts">
+          <table
+            mat-table
+            aria-describedby="aa"
+            [dataSource]="accounts"
+            class="mat-elevation-z8 w-100"
+          >
+            <!-- select Column -->
+            <ng-container matColumnDef="select">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let row">
+                <mat-radio-group
+                  name="account"
+                  (change)="changed($event.value)"
+                  [value]="accounts.data[0]"
+                >
+                  <mat-radio-button
+                    [value]="row"
+                    (click)="$event.stopPropagation()"
+                    (change)="selectCard()"
+                    [attr.aria-label]="checkboxLabel(row)"
+                    [value]="row"
+                  ></mat-radio-button>
+                </mat-radio-group>
+              </td>
+            </ng-container>
+            <!-- Number Column -->
+            <ng-container matColumnDef="number">
+              <th
+                mat-header-cell
+                class="fz-24"
+                *matHeaderCellDef
+                sortActionDescription="Sort by Number"
+              >
+                Number
+              </th>
+              <td class="fz-24" mat-cell *matCellDef="let element">
+                {{ element.masked_accountnumber }}
+              </td>
+            </ng-container>
+            <!-- type Column-->
+            <ng-container matColumnDef="type">
+              <th
+                mat-header-cell
+                class="fz-24"
+                *matHeaderCellDef
+                sortActionDescription="Sort by type"
+              >
+                Type
+              </th>
+              <td class="fz-24" mat-cell *matCellDef="let element">
+                {{ element.method }}
+              </td>
+            </ng-container>
+            <!-- nameOnCard Column-->
+            <ng-container matColumnDef="nameOnCard">
+              <th
+                mat-header-cell
+                class="fz-24"
+                *matHeaderCellDef
+                sortActionDescription="Sort by nameOnCard"
+              >
+                Name On Card
+              </th>
+              <td class="fz-24" mat-cell *matCellDef="let element">
+                {{ element.nameoncard }}
+              </td>
+            </ng-container>
+            <!-- Expiry Column-->
+            <ng-container matColumnDef="expiry">
+              <th
+                mat-header-cell
+                class="fz-24"
+                *matHeaderCellDef
+                sortActionDescription="Sort by expiry"
+              >
+                Expiry
+              </th>
+              <td class="fz-24" mat-cell *matCellDef="let element">
+                {{ element.expmonth | number: "2.0-0" }} / {{ element.expyear }}
+              </td>
+            </ng-container>
+            <!-- action Column -->
+            <ng-container matColumnDef="action">
+              <th
+                mat-header-cell
+                class="fz-24 text-end"
+                *matHeaderCellDef
+                sortActionDescription="Sort by action"
+              >
+                Action
+              </th>
+              <td class="fz-24 text-end" mat-cell *matCellDef="let element">
+                <button
+                  type="button"
+                  class="btn-clear btn-main btn-sm min-w-auto"
+                  (click)="editCardDetails(paymentMethod, element)"
+                >
+                  <span class="btn-main-text">Edit</span>
+                </button>
+              </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+        </ng-container>
+        <ng-template #noAccounts> No Transaction Data </ng-template>
+      </ng-container>
+    </app-content-box>
+  </ng-container>
 </ng-container>
-<ng-template #noAccounts> No Transaction Data </ng-template>

@@ -20,7 +20,7 @@ import { DepositAddEditCardComponent } from '../deposit-add-edit-card/deposit-ad
 export class DepositAddEditNetellerComponent implements OnInit {
   netellerAccountForm = this.fb.group({
     accountnumber: ['', [Validators.required, Validators.email]],
-    id: [0, [Validators.required, Validators.minLength(6)]],
+    id: [null, [Validators.required, Validators.minLength(6)]],
   });
   editMode = false;
 
@@ -28,8 +28,8 @@ export class DepositAddEditNetellerComponent implements OnInit {
     return this.netellerAccountForm.get('accountnumber') as FormControl<string>;
   }
 
-  public get idField(): FormControl<number> {
-    return this.netellerAccountForm.get('id') as FormControl<number>;
+  public get idField(): FormControl<number | null> {
+    return this.netellerAccountForm.get('id') as FormControl<number | null>;
   }
 
   public get dialogTitle(): string {
@@ -55,7 +55,6 @@ export class DepositAddEditNetellerComponent implements OnInit {
     if (this.data.account) {
       this.editMode = true;
       this.netellerAccountForm.patchValue({
-        id: this.data.account.id,
         accountnumber: this.data.account.masked_accountnumber,
       });
       this.netellerAccountForm.get('accountnumber')?.disable();

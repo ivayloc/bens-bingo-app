@@ -39,9 +39,19 @@ export const selectSelectedDepositMethodAccountMatData = createSelector(
   }
 );
 
+export const selectDepositAccount = createSelector(
+  selectDepositsState,
+  (state) => state.depositAccount
+);
+
 export const selectTransactionId = createSelector(
   selectDepositsState,
   (state) => state.depositAccount.transactionId
+);
+
+export const selectSelectedAccountId = createSelector(
+  selectDepositsState,
+  (state) => state.selectedAccount.id
 );
 
 export const selectDepositReceipt = createSelector(
@@ -50,7 +60,7 @@ export const selectDepositReceipt = createSelector(
   (state, userBalance) => {
     return {
       amount: state.confirmedDeposit.amount,
-      date: state.confirmedDeposit.details?.items[1].date,
+      date: state.confirmedDeposit.details?.items?.slice()?.pop()?.date as Date,
       status: state.confirmedDeposit.latest_result,
       transactionId: state.confirmedDeposit.id,
       totalCash: userBalance.balance?.cash,

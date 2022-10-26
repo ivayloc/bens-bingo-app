@@ -1,6 +1,6 @@
 export interface DepositActionPayload {
   processorid: number;
-  accountid: number;
+  accountid?: number;
   amount: number;
   cvv?: number;
 }

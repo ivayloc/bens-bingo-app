@@ -10,16 +10,16 @@ import {
   UntypedFormControl,
   Validators,
 } from '@angular/forms';
-import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { delay, Observable, tap } from 'rxjs';
 import { PaymentMethod } from 'src/app/shared/models/payment-method';
+import { PaymentMethodTypes } from 'src/app/shared/models/payment-method-types';
+import { DepositActionPayload } from '../../models/deposit-action-payload';
 import { DepositSteps } from '../../models/deposit-steps.enum';
-import { PaymentMethodAccount } from '../../models/payment-method-account';
 import {
   selectCurrentDepositStep,
+  selectSelectedAccountId,
   selectSelectedDepositMethod,
-  selectSelectedDepositMethodAccountMatData,
 } from '../../state';
 import { DepositsPageActions } from '../../state/actions';
 
@@ -31,6 +31,8 @@ import { DepositsPageActions } from '../../state/actions';
 export class DepositSelectCardComponent implements OnInit, AfterViewInit {
   @ViewChild('scrollToAnchor') scrollToAnchor!: ElementRef<HTMLDivElement>;
   depositSteps = DepositSteps;
+  paymentMethodTypes = PaymentMethodTypes;
+
   depositForm = this.fb.group({
     amount: ['', Validators.required],
     cvv: ['', Validators.required],
@@ -49,12 +51,9 @@ export class DepositSelectCardComponent implements OnInit, AfterViewInit {
     return this.depositForm.get('account') as UntypedFormControl;
   }
 
-  getSelectedDepositMethodAccounts$ = new Observable<
-    MatTableDataSource<PaymentMethodAccount>
-  >();
-
   getSelectedDepositMethod$ = new Observable<PaymentMethod | undefined>();
   getCurrentDepositStep$ = new Observable<DepositSteps>();
+  getSelectedAccountId$ = new Observable<number>();
 
   constructor(private store: Store, private fb: UntypedFormBuilder) {}
 
@@ -67,13 +66,7 @@ export class DepositSelectCardComponent implements OnInit, AfterViewInit {
         })
       );
 
-    this.getSelectedDepositMethodAccounts$ = this.store
-      .select(selectSelectedDepositMethodAccountMatData)
-      .pipe(
-        tap((paymentAccounts) => {
-          this.accountField.setValue(paymentAccounts.data[0]);
-        })
-      );
+    this.getSelectedAccountId$ = this.store.select(selectSelectedAccountId);
   }
 
   ngAfterViewInit(): void {
@@ -94,17 +87,25 @@ export class DepositSelectCardComponent implements OnInit, AfterViewInit {
       );
   }
 
-  submitDepositAmount() {
+  submitDepositAmount(paymentMethod: PaymentMethod) {
+    // if (paymentMethod.accounts?.length) {
+
+    //   this.store.dispatch(DepositsPageActions.submitDepositAmount());
+    // }
     this.store.dispatch(DepositsPageActions.submitDepositAmount());
   }
 
-  submitDeposit(processorid: number) {
-    const payload = {
+  submitDeposit(processorid: number, accountId?: number) {
+    const payload: DepositActionPayload = {
       processorid,
-      accountid: this.accountField.value.id,
+      accountid: accountId,
       amount: this.depositAmountField.value,
-      cvv: this.cvvField.value,
     };
+
+    if (this.cvvField.value) {
+      payload.cvv = this.cvvField.value;
+    }
+
     this.store.dispatch(DepositsPageActions.makeDeposit({ payload }));
   }
 }
